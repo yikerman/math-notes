@@ -1,0 +1,58 @@
+% Shared preamble — included by all course main.tex files
+
+% --- Layout ---
+\usepackage[margin=1in]{geometry}
+
+% --- Math ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Graphs ---
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{calc}
+
+% --- Boxes ---
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, breakable}
+
+% --- Misc ---
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{pifont}
+
+% --- Theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+% --- Example box ---
+\NewTColorBox{example}{ o }{%
+	colback=gray!5, 
+	colframe=gray!60,
+	fonttitle=\bfseries, 
+	title={Example\IfValueTF{#1}{: #1}{}}, 
+	breakable
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+% --- Common shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ve}[1]{\langle #1 \rangle}   % vector brackets
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\dd}[1]{\,\mathrm{d}#1}       % differential
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}  % partial derivative
+\newcommand{\xmark}{\ding{55}}
+
