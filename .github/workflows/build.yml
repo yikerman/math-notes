@@ -1,0 +1,33 @@
+name: Build PDFs
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest-full
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build all courses
+        run: bash build.sh
+
+      - name: Collect PDFs
+        run: |
+          mkdir -p pdf-output
+          find . -path './*/main.pdf' -exec sh -c '
+            dir=$(dirname "{}" | sed "s|^\./||")
+            cp "{}" "pdf-output/${dir}.pdf"
+          ' \;
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: pdf-output/
