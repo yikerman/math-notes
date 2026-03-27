@@ -273,9 +273,9 @@ $\dfrac{dx}{dt}=2$, \; $\dfrac{dy}{dt}=\dfrac{1}{2}t^{-1/2}$
 \begin{align*}
     \frac{d}{dt}f(x(t),y(t))
     &= (2x+3y)\cdot 2 + 3x\cdot\tfrac{1}{2}t^{-1/2} \\
-    &= 2(4t+3\sqrt{t})\cdot 2 + 3(2t)\cdot\tfrac{1}{2}t^{-1/2} \\
-    &= 2(4t+3-3\sqrt{t})-3\sqrt{t} \\
-    &= 6+8t-9\sqrt{t}
+    &= (4t+3\sqrt{t})\cdot 2 + 3(2t)\cdot\tfrac{1}{2}t^{-1/2} \\
+    &= 8t+6\sqrt{t}+3\sqrt{t} \\
+    &= 8t+9\sqrt{t}
 \end{align*}
 \end{example}
 
@@ -649,8 +649,8 @@ $D = \begin{vmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{vmatrix}
 $D>0$, $f_{xx}>0$ $\;\Longrightarrow\;$ minimum.
 \end{example}
 
-\begin{example}[Minimum distance from a cylinder to a point]
-Minimize the distance from a point on $x^{2}+y=7$ to $(2,0)$.
+\begin{example}[Minimum distance from a surface to a point]
+Minimize the distance from a point on $z=x^{2}+y$ to $(2,0,0)$.
 
 $\text{dist}^{2} = f^{2}(x,y) = (x-2)^{2}+y^{2}+z^{2}
 = (x-2)^{2}+y^{2}+(x^{2}+y)^{2}$
@@ -663,7 +663,7 @@ $\text{dist}^{2} = f^{2}(x,y) = (x-2)^{2}+y^{2}+z^{2}
 $\nabla(f^{2})=\mathbf{0}$: from the second component, $y=-\tfrac{1}{2}x^{2}$.
 Substituting into the first:
 \[
-    2x^{3}+x^{3}+x-2 = 0
+    x^{3}+x-2 = 0
     \;\Longrightarrow\;
     (x-1)(x^{2}+x+2)=0
 \]
@@ -686,7 +686,7 @@ $\begin{cases}12y-2xy-y^{2}=0\\12x-x^{2}-2xy=0\end{cases}$
 Since we want to maximize $xyz>0$, ignore critical points with
 $x=0$ or $y=0$. The remaining solution is $(4,4)$, giving $z=4$.
 
-$D(4,4) = \begin{vmatrix}-8&4\\-4&-8\end{vmatrix} > 0$, \;
+$D(4,4) = \begin{vmatrix}-8&-4\\-4&-8\end{vmatrix} > 0$, \;
 $f_{xx}<0$ $\;\Longrightarrow\;$ maximum.
 \end{example}
 
@@ -765,7 +765,7 @@ The absolute max/min is among (1) and (2).
 \end{theorem}
 
 \begin{example}[Extreme Value Theorem on a square]
-Find the absolute max/min of $f(x,y)=2xy-3xy$ on $0\le x,y\le 1$.
+Find the absolute max/min of $f(x,y)=2x+y-3xy$ on $0\le x,y\le 1$.
 
 \begin{center}
 \begin{tikzpicture}

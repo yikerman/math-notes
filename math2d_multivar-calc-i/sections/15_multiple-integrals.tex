@@ -98,7 +98,7 @@ $f(x,y) = x + y^2$. Compute $\displaystyle\int_0^1\!\int_2^3 f\dd{x}\dd{y}$.
 \begin{align*}
     \int_0^1\!\int_2^3 (x+y^2)\dd{x}\dd{y}
     &= \int_0^1 \left[\frac{1}{2}x^2 + xy\right]_{x=2}^{3}\dd{y} \\
-    &= \int_0^1 \left(2.5 + y^2\right)\dd{y} \\[4pt]
+    &= \int_0^1 \left(\tfrac{5}{2} + y^2\right)\dd{y} \\[4pt]
     &= \left[\frac{5}{2}y + \frac{1}{3}y^3\right]_0^1
     = \frac{17}{6}
 \end{align*}
@@ -324,7 +324,7 @@ Compute $\iint_D f\dd{A}$ when:
 \begin{enumerate}
     \item $D$ is nice in polar coordinates
     \item $f$ is nice in polar coordinates,
-          e.g.\ $f(x,y)=(x^2+y^2)^{-2}=(r^2)^{-2}=1$
+          e.g.\ $f(x,y)=x^2+y^2=r^2$
 \end{enumerate}
 
 In normal coordinates $\dd{A}=\dd{x}\dd{y}$;
@@ -378,7 +378,7 @@ Find the volume under $z=4-x^2-y^2$ above $z=0$.
 $D$ in polar: $0\le r\le 2$, $0\le\theta\le 2\pi$.
 \begin{align*}
     \text{Volume}
-    &= \int_0^{2\pi}\!\int_0^{2}(4-r^2)\,r\dd{\underline{}r}\dd{\theta} \\
+    &= \int_0^{2\pi}\!\int_0^{2}(4-r^2)\,r\dd{r}\dd{\theta} \\
     &= \int_0^{2\pi}\dd{\theta}\;\int_0^{2}(4r-r^3)\dd{r}
     \quad\text{(separable)} \\
     &= 2\pi\left[2r^2-\tfrac{r^4}{4}\right]_0^2
