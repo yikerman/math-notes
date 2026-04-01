@@ -34,7 +34,8 @@ Add new shared commands/environments here, not in individual course files.
 
 ## Formatting (enforce regardless of handwriting style)
 
-- **Vectors as components**: use angle brackets via `\ve{...}`, e.g. `\ve{x(t),\, y(t)}` — never parentheses for inline/horizontal component vectors. For vertical (column) vectors, use `\begin{pmatrix}...\end{pmatrix}`.
+- **Matrices**: use square brackets — `\begin{bmatrix}...\end{bmatrix}` for plain matrices and `\left[\begin{array}{...}...\end{array}\right]` for augmented matrices.
+- **Vectors as components**: use angle brackets via `\ve{...}`, e.g. `\ve{x(t),\, y(t)}` — never parentheses for inline/horizontal component vectors. For vertical (column) vectors, use `\begin{bmatrix}...\end{bmatrix}`.
 - **Vector names**: use `\mathbf{v}` (bold), not `\vec{v}` (arrows).
 - **Vector magnitudes**: use `\lVert...\rVert`, e.g. `\lVert\mathbf{a}\rVert` — not `\abs{...}` or `|...|`.
 - **Definitions and theorems**: wrap formal definitions in `\begin{definition}...\end{definition}` and named theorems in `\begin{theorem}...\end{theorem}` (with optional `[Name]`), even if the handwritten notes don't explicitly label them as such. Use judgement to identify statements that are definitions or theorems by their mathematical content.
