@@ -279,6 +279,45 @@ Substitution: $y=\sqrt{R^2-x^2}\sin\theta$,
 $\dd{y}=\sqrt{R^2-x^2}\cos\theta\dd{\theta}$.
 \end{example}
 
+\begin{example}[Fubini's Theorem — Switching Order of Integration]
+Compute $\displaystyle\int_0^1\!\left(\int_{x^2}^{1}\sqrt{y}\sin y\dd{y}\right)\dd{x}$.
+
+The inner integral is difficult to evaluate directly, so we use Fubini's theorem to switch the order of integration.
+
+\textbf{1. Describe the domain $D$:}
+$x\in[0,1]$, \; $y\in[x^2,\,1]$ \quad (Type I).
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[thick,->] (-0.3,0) -- (2.2,0) node[right]{$x$};
+    \draw[thick,->] (0,-0.3) -- (0,2.2) node[above]{$y$};
+    \fill[gray!15] (0,0) parabola (1.4,1.96) -- (0,1.96) -- cycle;
+    \draw[thick, domain=0:1.4, samples=50] plot (\x, {\x*\x});
+    \draw[thick] (0,1.96) -- (1.4,1.96);
+    \node at (0.4,1.2) {$D$};
+    \node[below] at (1.4,0) {\small$1$};
+    \node[left] at (0,1.96) {\small$1$};
+    \node[right] at (1.2,1.0) {\small$y=x^2$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{2. Rewrite as Type II:}
+$y\in[0,1]$, \; $x\in[0,\,\sqrt{y}]$.
+
+\textbf{3. Evaluate:}
+\begin{align*}
+    \int_0^1\!\int_0^{\sqrt{y}}\sqrt{y}\sin y\dd{x}\dd{y}
+    &= \int_0^1 \bigl[\sqrt{y}\sin y\cdot x\bigr]_{x=0}^{\sqrt{y}}\dd{y}
+    = \int_0^1 y\sin y\dd{y}
+\end{align*}
+Integration by parts ($u=y$, $\dd{v}=\sin y\dd{y}$):
+\begin{align*}
+    &= \bigl[-y\cos y\bigr]_0^1 + \int_0^1\cos y\dd{y}
+    = -\cos 1 + \bigl[\sin y\bigr]_0^1
+    = \sin 1 - \cos 1
+\end{align*}
+\end{example}
+
 \subsubsection*{Properties of Double Integrals}
 
 \begin{enumerate}
