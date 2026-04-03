@@ -68,6 +68,10 @@ When given a photo of handwritten notes:
 6. Place output in the appropriate `sections/` file and add `\input` to `main.tex` if new.
 7. Run `make` to verify compilation.
 
+## Building
+
+After any LaTeX edit, run `make` in the affected course directory to rebuild the PDF and verify compilation.
+
 ## Adding a New Course
 
 1. Create `<course-dir>/` with `main.tex`, `Makefile`, and `sections/`.
