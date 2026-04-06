@@ -260,3 +260,60 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
     \end{array}\right]
   \]
 \end{example}
+
+\subsubsection*{Basic and Free Variables}
+
+\begin{definition}[Basic and Free Variables]
+Variables corresponding to pivot positions are called \textbf{basic variables}. Variables corresponding to non-pivot columns are called \textbf{free variables}.
+\end{definition}
+
+\begin{example}
+  For the reduced echelon form
+  \[
+    \left[\begin{array}{ccc|c}
+      \boxed{1} & 0 &  7 & 6 \\
+      0 & \boxed{1} & -6 & 5
+    \end{array}\right]
+  \]
+  $x_1, x_2$ are basic variables and $x_3$ is a free variable.
+
+  To solve: let $x_3 = t$.
+  \begin{align*}
+    x_1 + 7t &= 6  & &\Longrightarrow & x_1 &= -7t + 6 \\
+    x_2 - 6t &= 5  & &\Longrightarrow & x_2 &= 6t + 5
+  \end{align*}
+  \[
+    (x_1,\, x_2,\, x_3) = (-7t + 6,\; 6t + 5,\; t)
+  \]
+\end{example}
+
+\subsubsection*{Existence and Uniqueness of Solutions}
+
+\begin{theorem}
+A system is inconsistent (no solutions) if and only if there exists a row of the form
+$\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b\,\bigr]$ with $b \neq 0$ in its echelon form.
+\end{theorem}
+
+\begin{theorem}
+Assuming the system is consistent:
+\begin{itemize}
+  \item The system has infinitely many solutions if and only if there exists at least one free variable.
+  \item The system has a unique solution if and only if there are no free variables.
+\end{itemize}
+\end{theorem}
+
+\begin{remark}
+$\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of unknowns.
+\end{remark}
+
+\begin{example}
+  The echelon form
+  \[
+    \left[\begin{array}{ccc|c}
+      \boxed{2} & 3 & 5 & 8 \\
+      0 & \boxed{8} & 6 & 9 \\
+      0 & 0 & \boxed{1} & 6
+    \end{array}\right]
+  \]
+  has $3$ pivots and $3$ unknowns, so the number of free variables is $0$ --- the system has a unique solution.
+\end{example}
