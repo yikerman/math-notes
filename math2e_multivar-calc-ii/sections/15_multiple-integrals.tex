@@ -1,0 +1,100 @@
+\subsection{Triple Integrals}
+
+\[
+    \iiint_D f(x,y,z)\dd{V}
+\]
+
+Hard to visualize. If $f(x,y,z) = 1$:
+\[
+    \text{Volume of } D = \iiint_D 1\dd{V}
+\]
+
+Extend from 2D via Riemann sums --- think of density:
+\[
+    \iiint_{\text{Rect}} f
+    = \lim_{\substack{l,m,n\to\infty}}
+    \sum_{i=1}^{l}\sum_{j=1}^{m}\sum_{k=1}^{n}
+    f(x_{ijk},\,y_{ijk},\,z_{ijk})\,\Delta x\,\Delta y\,\Delta z
+\]
+where $\Delta V = \Delta x\,\Delta y\,\Delta z$.
+
+\begin{theorem}[Fubini's Theorem in 3D]
+For a rectangular box $B = [a,b]\times[c,d]\times[r,s]$:
+\[
+    \iiint_B f(x,y,z)\dd{V}
+    = \int_r^s\int_c^d\int_a^b f(x,y,z)\dd{x}\dd{y}\dd{z}
+\]
+\end{theorem}
+
+\subsubsection*{Type I Regions}
+
+\begin{definition}[Type I Region]
+\[
+    E = \{(x,y,z) \mid (x,y)\in D,\; u_1(x,y)\leq z\leq u_2(x,y)\}
+\]
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[thick,->] (0,0,0) -- (3,0,0) node[right]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,3,0) node[above]{$z$};
+    \draw[thick,->] (0,0,0) -- (0,0,3) node[below left]{$y$};
+    % projection D
+    \draw[thick,fill=gray!20] (0.5,0,0.5) -- (2.2,0,0.5) -- (2.2,0,2.2) -- (0.5,0,2.2) -- cycle;
+    \node at (1.35,0,1.35) {$D$};
+    % lower surface
+    \draw[thick,blue] (0.5,0.4,0.5) .. controls (1.2,0.3,0.8) .. (2.2,0.5,0.5)
+        -- (2.2,0.5,2.2) .. controls (1.2,0.3,1.8) .. (0.5,0.4,2.2) -- cycle;
+    \node[blue,left] at (0.3,0.4,1.35) {$z=u_1(x,y)$};
+    % upper surface
+    \draw[thick,red] (0.5,2.0,0.5) .. controls (1.2,2.4,0.8) .. (2.2,1.8,0.5)
+        -- (2.2,1.8,2.2) .. controls (1.2,2.4,1.8) .. (0.5,2.0,2.2) -- cycle;
+    \node[red,left] at (0.3,2.2,1.35) {$z=u_2(x,y)$};
+    % vertical dashed line at sample point
+    \draw[dashed] (1.35,0,1.35) -- (1.35,0.35,1.35);
+    \draw[dashed] (1.35,0.35,1.35) -- (1.35,2.2,1.35);
+    \filldraw (1.35,0,1.35) circle (1pt) node[below right]{\small$(x,y)$};
+\end{tikzpicture}
+\end{center}
+
+Reduces 3D integral to 2D + 1D:
+\[
+    \iiint_E f\dd{V}
+    = \iint_D\!\left(\int_{u_1(x,y)}^{u_2(x,y)} f\dd{z}\right)dA
+\]
+
+\begin{example}
+$\displaystyle\iiint_E z\dd{V}$ where $E$ is the solid in $x,y,z\geq 0$ bounded by the surface $z = 12xy$ and the planes $y = x$, $x = 1$.
+
+\begin{center}
+\begin{tikzpicture}
+    % 3D sketch
+    \draw[thick,->] (0,0,0) -- (2.5,0,0) node[right]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,2.5,0) node[above]{$z$};
+    \draw[thick,->] (0,0,0) -- (0,0,2.5) node[below left]{$y$};
+    % plane x=1 (vertical plane)
+    \draw[gray,fill=gray!10,fill opacity=0.3]
+        (1.5,0,-0.3) -- (1.5,0,2.3) -- (1.5,2.3,2.3) -- (1.5,2.3,-0.3) -- cycle;
+    \node[below] at (1.5,0,0) {$1$};
+    \node[right] at (1.5,1.5,0) {\small$x=1$};
+    % plane y=x (vertical plane)
+    \draw[gray,fill=blue!8,fill opacity=0.3]
+        (-0.2,0,-0.2) -- (2.0,0,2.0) -- (2.0,2.3,2.0) -- (-0.2,2.3,-0.2) -- cycle;
+    \node[below] at (1.8,0,1.8) {\small$y=x$};
+\end{tikzpicture}
+\hspace{1.5cm}
+% D projection
+\begin{tikzpicture}
+    \draw[thick,->] (-0.3,0) -- (2.5,0) node[right]{$x$};
+    \draw[thick,->] (0,-0.3) -- (0,2.5) node[above]{$y$};
+    \draw[thick] (0,0) -- (1.8,1.8) node[right]{\small$y=x$};
+    \draw[thick] (1.8,0) -- (1.8,1.8);
+    \draw[thick,fill=gray!15] (0,0) -- (1.8,1.8) -- (1.8,0) -- cycle;
+    \node at (1.2,0.5) {$D$};
+    \node[below] at (1.8,0) {$1$};
+    \node[right] at (1.8,1.8) {};
+\end{tikzpicture}
+\end{center}
+
+% (Example not finished)
+\end{example}
