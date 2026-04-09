@@ -317,3 +317,129 @@ $\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of un
   \]
   has $3$ pivots and $3$ unknowns, so the number of free variables is $0$ --- the system has a unique solution.
 \end{example}
+
+\subsection{Vectors in $\R^n$}
+
+Recall $\R^2 = \{(x, y) \mid x, y \in \R\}$.
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-0.5,0)--(3,0) node[right]{$x$};
+  \draw[->] (0,-0.5)--(0,2.5) node[above]{$y$};
+  \draw[->,thick,blue] (0,0)--(2,1.5) node[above right]{$\mathbf{v} \in \R^2$};
+\end{tikzpicture}
+\end{center}
+
+Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or row vectors $\ve{x, y}$.
+
+\subsubsection*{Vector Addition}
+
+\begin{itemize}
+  \item \textbf{Algebraic:}
+    $\mathbf{v}_1 + \mathbf{v}_2
+      = \begin{bmatrix} x_1 + x_2 \\ y_1 + y_2 \end{bmatrix}$
+  \item \textbf{Geometric:} parallelogram rule
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-0.5,0)--(4,0) node[right]{$x$};
+  \draw[->] (0,-0.5)--(0,3) node[above]{$y$};
+  \draw[->,thick,blue] (0,0)--(2,0.5) node[midway,below]{$\mathbf{v}_1$};
+  \draw[->,thick,red] (0,0)--(1,2) node[midway,left]{$\mathbf{v}_2$};
+  \draw[dashed,blue] (1,2)--(3,2.5);
+  \draw[dashed,red] (2,0.5)--(3,2.5);
+  \draw[->,thick,purple] (0,0)--(3,2.5) node[above right]{$\mathbf{v}_1 + \mathbf{v}_2$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Scalar Multiplication}
+
+For $\lambda \in \R$ and $\mathbf{v} \in \R^2$:
+\[
+  \lambda \mathbf{v} = \begin{bmatrix} \lambda x \\ \lambda y \end{bmatrix}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-0.5,0)--(4.5,0) node[right]{$x$};
+  \draw[->] (0,-0.5)--(0,3) node[above]{$y$};
+  \draw[->,thick,blue] (0,0)--(1.5,1) node[midway,below right]{$\mathbf{v}$};
+  \draw[->,thick,red] (0,0)--(3,2) node[above left]{$\lambda\mathbf{v}$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Linear Combinations}
+
+\begin{definition}[Linear Combination]
+Let $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$. A \textbf{linear combination} of $\mathbf{v}_1, \mathbf{v}_2$ is a vector of the form
+\[
+  \lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2, \quad \lambda_1, \lambda_2 \in \R.
+\]
+\end{definition}
+
+\begin{example}
+  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$,
+  $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$.
+  Show that the linear combinations of $\mathbf{v}_1, \mathbf{v}_2$ span all of $\R^2$.
+
+  \begin{center}
+  \begin{tikzpicture}
+    \draw[->] (-1.5,0)--(2,0) node[right]{$x$};
+    \draw[->] (0,-1.5)--(0,2.5) node[above]{$y$};
+    \draw[->,thick,blue] (0,0)--(1,-1) node[below right]{$\mathbf{v}_1$};
+    \draw[->,thick,red] (0,0)--(1,2) node[above right]{$\mathbf{v}_2$};
+  \end{tikzpicture}
+  \end{center}
+
+  Let $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}$. Solve $\lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2 = \mathbf{b}$:
+  \[
+    \lambda_1 \begin{bmatrix} 1 \\ -1 \end{bmatrix}
+    + \lambda_2 \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+    = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}
+    \quad \Longrightarrow \quad
+    \begin{cases}
+      \lambda_1 + \lambda_2 = b_1 \\
+      -\lambda_1 + 2\lambda_2 = b_2
+    \end{cases}
+  \]
+
+  Augmented matrix and row reduction:
+  \[
+    \left[\begin{array}{cc|c}
+      1 & 1 & b_1 \\
+      -1 & 2 & b_2
+    \end{array}\right]
+    \longrightarrow
+    \left[\begin{array}{cc|c}
+      1 & 1 & b_1 \\
+      0 & 3 & b_1 + b_2
+    \end{array}\right]
+  \]
+
+  Consistent for all $\mathbf{b} \in \R^2$, and no free variables $\Longrightarrow$ unique solution.
+\end{example}
+
+\begin{example}
+  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}$,
+  $\mathbf{v}_2 = \begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}$,
+  $\mathbf{b} = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}$.
+  Is $\mathbf{b}$ a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$?
+
+  Solve $\mathbf{b} = \lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2$:
+  \[
+    \left[\begin{array}{cc|c}
+      1 & 2 & 1 \\
+      1 & 3 & 1 \\
+      -1 & 1 & 2
+    \end{array}\right]
+    \longrightarrow
+    \left[\begin{array}{cc|c}
+      1 & 2 & 1 \\
+      0 & 1 & 0 \\
+      0 & 0 & 3
+    \end{array}\right]
+  \]
+
+  $R_3$ reads $0 = 3$ --- inconsistent. $\mathbf{b}$ is \textbf{not} a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$.
+\end{example}
