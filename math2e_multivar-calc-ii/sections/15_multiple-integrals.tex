@@ -96,5 +96,108 @@ $\displaystyle\iiint_E z\dd{V}$ where $E$ is the solid in $x,y,z\geq 0$ bounded 
 \end{tikzpicture}
 \end{center}
 
-% (Example not finished)
+$D\colon\; 0\leq x\leq 1,\; 0\leq y\leq x$, \quad $z\colon\; 0\leq z\leq 12xy$.
+\begin{align*}
+    \iiint_E z\dd{V}
+    &= \iint_D\!\left(\int_0^{12xy} z\dd{z}\right)dA
+    = \int_0^1\!\int_0^x\!\int_0^{12xy} z\dd{z}\dd{y}\dd{x} \\
+    &= \int_0^1\!\int_0^x \frac{z^2}{2}\bigg|_0^{12xy}\dd{y}\dd{x}
+    = \int_0^1\!\int_0^x 72x^2y^2\dd{y}\dd{x} \\
+    &= \int_0^1 72x^2\cdot\frac{y^3}{3}\bigg|_0^x\dd{x}
+    = \int_0^1 24x^5\dd{x} \\
+    &= 4x^6\big|_0^1
+    = 4
+\end{align*}
 \end{example}
+
+\begin{example}
+Find the volume of the tetrahedron $T$ bounded by the planes $x + 2y + z = 2$, $x = 2y$, $x = 0$, $z = 0$.
+
+\[
+    \operatorname{Vol}(T) = \iiint_T 1\dd{V}
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % 3D sketch
+    \draw[thick,->] (0,0,0) -- (2.5,0,0) node[right]{$y$};
+    \draw[thick,->] (0,0,0) -- (0,2.5,0) node[above]{$z$};
+    \draw[thick,->] (0,0,0) -- (0,0,2.5) node[below left]{$x$};
+    % vertices: (0,0,0), (0,0,0)=origin, (1,0,0)=y-axis, (0,2,0)=z-axis, (0,0,0)
+    % Tetrahedron vertices in (x,y,z): (0,0,0), (0,0,2), (0,1,0), (1,1/2,0)
+    % In tikz 3d coords (y,z,x):
+    %   (0,0,0), (0,2,0), (1,0,0), (0.5,0,1)
+    \coordinate (O) at (0,0,0);
+    \coordinate (A) at (0,2,0);     % (0,0,2) -> z=2
+    \coordinate (B) at (1,0,0);     % (0,1,0) -> y=1
+    \coordinate (C) at (0.5,0,1);   % (1,1/2,0) -> x=1
+    % faces
+    \draw[thick,fill=blue!8,fill opacity=0.3] (O) -- (A) -- (B) -- cycle;
+    \draw[thick,fill=gray!15,fill opacity=0.3] (O) -- (B) -- (C) -- cycle;
+    \draw[thick,fill=blue!8,fill opacity=0.3] (O) -- (A) -- (C) -- cycle;
+    \draw[thick,fill=gray!15,fill opacity=0.3] (A) -- (B) -- (C) -- cycle;
+    % labels
+    \node[left] at (0,1.2,0) {\small$z=2$};
+    \node[below right] at (0.8,0,0) {\small$y=1$};
+    \node[below] at (0.5,0,1) {\small$x=1$};
+    \node[above right] at (0.6,0.8,0.3) {\small$x+2y+z=2$};
+\end{tikzpicture}
+\hspace{1.5cm}
+% D projection on x-y plane
+\begin{tikzpicture}[scale=2.2]
+    \draw[thick,->] (-0.2,0) -- (1.5,0) node[right]{$x$};
+    \draw[thick,->] (0,-0.2) -- (0,1.3) node[above]{$y$};
+    % y = x/2
+    \draw[thick] (0,0) -- (1,0.5);
+    \node[right] at (1,0.5) {\small$y=\tfrac{1}{2}x$};
+    % y = 1 - x/2 (from x+2y=2)
+    \draw[thick] (0,1) -- (1,0.5);
+    \node[left] at (0,1) {\small$1$};
+    \node[above right] at (0.2,0.95) {\small$x+2y=2$};
+    % region
+    \draw[thick,fill=gray!15] (0,0) -- (1,0.5) -- (0,1) -- cycle;
+    \node at (0.3,0.5) {$D$};
+    \node[below] at (1,0) {\small$1$};
+\end{tikzpicture}
+\end{center}
+
+Projection onto $xy$-plane ($z=0$): $y = \tfrac{1}{2}x$ and $x + 2y = 2$.
+Intersect at $x = 1$, $y = \tfrac{1}{2}$.
+
+$D\colon\; 0\leq x\leq 1,\; \tfrac{1}{2}x \leq y \leq 1 - \tfrac{1}{2}x$.
+
+From $x + 2y + z = 2$: $z = 2 - x - 2y$, so $z \in [0,\, 2 - x - 2y]$.
+\begin{align*}
+    \operatorname{Vol}(T)
+    &= \int_0^1\!\int_{x/2}^{1-x/2}\!\int_0^{2-x-2y} \dd{z}\dd{y}\dd{x}
+    = \int_0^1\!\int_{x/2}^{1-x/2} (2-x-2y)\dd{y}\dd{x} \\
+    &= \int_0^1 \left[(2-x)y - y^2\right]_{y=x/2}^{y=1-x/2}\dd{x}
+    = \int_0^1 (1-x)^2\dd{x} \\
+    &= -\frac{(1-x)^3}{3}\bigg|_0^1
+    = \frac{1}{3}
+\end{align*}
+\end{example}
+
+\subsubsection*{Type II and Type III Regions}
+
+Analogous to Type I, with the roles of the axes permuted.
+
+\begin{definition}[Type II Region]
+\[
+    E = \{(x,y,z) \mid (y,z)\in D,\; u_1(y,z)\leq x\leq u_2(y,z)\}
+\]
+\[
+    \iiint_E f\dd{V}
+    = \iint_D\!\left(\int_{u_1(y,z)}^{u_2(y,z)} f\dd{x}\right)dA
+\]
+\end{definition}
+
+\begin{definition}[Type III Region]
+\[
+    E = \{(x,y,z) \mid (x,z)\in D,\; u_1(x,z)\leq y\leq u_2(x,z)\}
+\]
+\[
+    \iiint_E f\dd{V}
+    = \iint_D\!\left(\int_{u_1(x,z)}^{u_2(x,z)} f\dd{y}\right)dA
+\]
+\end{definition}
