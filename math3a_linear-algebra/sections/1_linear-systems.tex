@@ -320,6 +320,8 @@ $\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of un
 
 \subsection{Vectors in $\R^n$}
 
+\subsubsection*{Recap: 2D Vectors}
+
 Recall $\R^2 = \{(x, y) \mid x, y \in \R\}$.
 
 \begin{center}
@@ -332,8 +334,7 @@ Recall $\R^2 = \{(x, y) \mid x, y \in \R\}$.
 
 Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or row vectors $\ve{x, y}$.
 
-\subsubsection*{Vector Addition}
-
+\textbf{Vector addition:}
 \begin{itemize}
   \item \textbf{Algebraic:}
     $\mathbf{v}_1 + \mathbf{v}_2
@@ -353,9 +354,7 @@ Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or 
 \end{tikzpicture}
 \end{center}
 
-\subsubsection*{Scalar Multiplication}
-
-For $\lambda \in \R$ and $\mathbf{v} \in \R^2$:
+\textbf{Scalar multiplication:} for $\lambda \in \R$ and $\mathbf{v} \in \R^2$:
 \[
   \lambda \mathbf{v} = \begin{bmatrix} \lambda x \\ \lambda y \end{bmatrix}
 \]
@@ -372,16 +371,16 @@ For $\lambda \in \R$ and $\mathbf{v} \in \R^2$:
 \subsubsection*{Linear Combinations}
 
 \begin{definition}[Linear Combination]
-Let $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$. A \textbf{linear combination} of $\mathbf{v}_1, \mathbf{v}_2$ is a vector of the form
+Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \ldots, c_p \in \R$. A \textbf{linear combination} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is a vector of the form
 \[
-  \lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2, \quad \lambda_1, \lambda_2 \in \R.
+  c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p.
 \]
 \end{definition}
 
 \begin{example}
   Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$,
   $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$.
-  Show that the linear combinations of $\mathbf{v}_1, \mathbf{v}_2$ span all of $\R^2$.
+  Show that all possible linear combinations of $\mathbf{v}_1, \mathbf{v}_2$ is $\R^2$.
 
   \begin{center}
   \begin{tikzpicture}
@@ -443,3 +442,148 @@ Let $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$. A \textbf{linear combination} of $\ma
 
   $R_3$ reads $0 = 3$ --- inconsistent. $\mathbf{b}$ is \textbf{not} a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$.
 \end{example}
+
+\subsubsection*{Span}
+
+\begin{definition}[Span]
+Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{span} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is the set of all linear combinations of these vectors:
+\[
+  \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p\}
+  = \bigl\{\, c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p \;\bigm|\; c_1, c_2, \ldots, c_p \in \R \,\bigr\}.
+\]
+\end{definition}
+
+\begin{example}
+  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}$,
+  $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \in \R^3$.
+  Then $\operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ is the set of all linear combinations of $\mathbf{v}_1$ and $\mathbf{v}_2$ --- geometrically, a plane through the origin.
+
+  \begin{center}
+  \begin{tikzpicture}
+    % Plane as a filled parallelogram
+    \fill[blue!10] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
+    \draw[blue!40] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
+    % Vectors
+    \draw[->,thick,blue] (0,0)--(1.2,0.8) node[above right]{$\mathbf{v}_1$};
+    \draw[->,thick,red] (0,0)--(-0.8,1) node[above left]{$\mathbf{v}_2$};
+    \filldraw (0,0) circle (1.5pt);
+  \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\subsubsection*{Span and Linear Systems}
+
+Given $\mathbf{b} \in \R^n$, the question ``is $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}$?'' is equivalent to asking whether the linear system $c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p = \mathbf{b}$ has a solution.
+
+Writing out the vectors componentwise with
+\[
+  \mathbf{v}_1 = \begin{bmatrix} v_{11} \\ v_{12} \\ \vdots \\ v_{1n} \end{bmatrix}, \quad
+  \mathbf{v}_2 = \begin{bmatrix} v_{21} \\ v_{22} \\ \vdots \\ v_{2n} \end{bmatrix}, \quad \ldots, \quad
+  \mathbf{v}_p = \begin{bmatrix} v_{p1} \\ v_{p2} \\ \vdots \\ v_{pn} \end{bmatrix}, \quad
+  \mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix},
+\]
+the equation $c_1 \mathbf{v}_1 + \cdots + c_p \mathbf{v}_p = \mathbf{b}$ becomes
+\[
+  \begin{bmatrix}
+    c_1 v_{11} \\ c_1 v_{12} \\ \vdots \\ c_1 v_{1n}
+  \end{bmatrix}
+  + \cdots +
+  \begin{bmatrix}
+    c_p v_{p1} \\ c_p v_{p2} \\ \vdots \\ c_p v_{pn}
+  \end{bmatrix}
+  =
+  \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+  \quad \Longrightarrow \quad
+  \begin{cases}
+    c_1 v_{11} + c_2 v_{21} + \cdots + c_p v_{p1} = b_1 \\
+    c_1 v_{12} + c_2 v_{22} + \cdots + c_p v_{p2} = b_2 \\
+    \hspace{2em}\vdots \\
+    c_1 v_{1n} + c_2 v_{2n} + \cdots + c_p v_{pn} = b_n
+  \end{cases}
+\]
+This system has the augmented matrix
+\[
+  \left[\; \mathbf{v}_1 \;\; \mathbf{v}_2 \;\; \cdots \;\; \mathbf{v}_p \;\bigm|\; \mathbf{b} \;\right]
+  =
+  \left[\begin{array}{cccc|c}
+    v_{11} & v_{21} & \cdots & v_{p1} & b_1 \\
+    v_{12} & v_{22} & \cdots & v_{p2} & b_2 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    v_{1n} & v_{2n} & \cdots & v_{pn} & b_n
+  \end{array}\right].
+\]
+Therefore $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}$ if and only if this augmented matrix row-reduces to a consistent system.
+
+\begin{example}
+  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \\ -2 \end{bmatrix}$,
+  $\mathbf{v}_2 = \begin{bmatrix} 5 \\ -4 \\ -7 \end{bmatrix}$,
+  $\mathbf{v}_3 = \begin{bmatrix} -3 \\ 1 \\ 0 \end{bmatrix}$,
+  $\mathbf{b} = \begin{bmatrix} 3 \\ 3 \\ h \end{bmatrix}$.
+  Find $h$ such that $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$.
+
+  Augmented matrix and row reduction:
+  \[
+    \left[\begin{array}{ccc|c}
+       1 &  5 & -3 & 3 \\
+      -1 & -4 &  1 & 3 \\
+      -2 & -7 &  0 & h
+    \end{array}\right]
+    \longrightarrow
+    \left[\begin{array}{ccc|c}
+      1 & 5 & -3 & 3 \\
+      0 & 1 & -2 & 6 \\
+      0 & 0 &  0 & h - 12
+    \end{array}\right]
+  \]
+
+  Solution exists $\iff h - 12 = 0$, so $h = 12$.
+\end{example}
+
+\subsection{Matrix Multiplication Form}
+
+An $m \times n$ linear system ($m$ equations, $n$ unknowns)
+\[
+  \begin{cases}
+    a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+    a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+    \hspace{2em}\vdots \\
+    a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+  \end{cases}
+\]
+can be written compactly using:
+\begin{itemize}
+  \item \textbf{Coefficient matrix:}
+    $A = \begin{bmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \cdots & a_{mn}
+    \end{bmatrix} \in \R^{m \times n}$
+  \item \textbf{Vector of unknowns:}
+    $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \R^n$
+  \item \textbf{Right-hand side:}
+    $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{bmatrix} \in \R^m$
+\end{itemize}
+
+The system is then written as the matrix equation
+\[
+  A\mathbf{x} = \mathbf{b}.
+\]
+Expanding $A\mathbf{x}$:
+\[
+  \begin{bmatrix}
+    a_{11} & \cdots & a_{1n} \\
+    \vdots & \ddots & \vdots \\
+    a_{m1} & \cdots & a_{mn}
+  \end{bmatrix}
+  \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix}
+  =
+  \begin{bmatrix}
+    a_{11}x_1 + \cdots + a_{1n}x_n \\
+    \vdots \\
+    a_{m1}x_1 + \cdots + a_{mn}x_n
+  \end{bmatrix}
+  =
+  \begin{bmatrix} b_1 \\ \vdots \\ b_m \end{bmatrix},
+\]
+recovers the original linear system.
