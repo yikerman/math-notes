@@ -52,7 +52,7 @@ Any linear system has exactly one of three types of solution sets: no solution, 
 \end{tikzpicture}
 \end{center}
 
-\subsubsection*{Row Operations}
+\subsubsection{Row Operations}
 
 \begin{definition}[Elementary Row Operations]
 The three \textbf{elementary row operations} on a linear system are:
@@ -64,12 +64,12 @@ The three \textbf{elementary row operations} on a linear system are:
 Each operation produces an equivalent system (same solution set).
 \end{definition}
 
-\subsubsection*{Augmented Matrix}
+\subsubsection{Augmented Matrix}
 
 A system is conveniently represented by its \textbf{augmented matrix}
-$\bigl[A \mid \mathbf{b}\bigr]$. Row operations are applied to this matrix to reach echelon form.
+$\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$. Row operations are applied to this matrix to reach echelon form.
 
-\subsubsection*{Echelon Form}
+\subsubsection{Echelon Form}
 
 \begin{definition}[Echelon Form]
 A matrix is in \textbf{echelon form} if:
@@ -90,8 +90,6 @@ A matrix is in \textbf{reduced echelon form} (RREF) if it is in echelon form and
 \end{definition}
 
 Once in echelon form, the unknowns are solved by back-substitution. Row reducing further to RREF reads off the solution directly.
-
-\subsubsection*{Row Reduction Examples}
 
 \begin{example}
   Solve the $3 \times 3$ system
@@ -218,8 +216,6 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
   \]
 \end{example}
 
-\subsubsection*{Echelon Form to Reduced Echelon Form}
-
 \begin{example}
   Convert from echelon form to reduced echelon form:
   \[
@@ -261,7 +257,7 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
   \]
 \end{example}
 
-\subsubsection*{Basic and Free Variables}
+\subsubsection{Basic and Free Variables}
 
 \begin{definition}[Basic and Free Variables]
 Variables corresponding to pivot positions are called \textbf{basic variables}. Variables corresponding to non-pivot columns are called \textbf{free variables}.
@@ -287,7 +283,7 @@ Variables corresponding to pivot positions are called \textbf{basic variables}. 
   \]
 \end{example}
 
-\subsubsection*{Existence and Uniqueness of Solutions}
+\subsubsection{Existence and Uniqueness of Solutions}
 
 \begin{theorem}
 A system is inconsistent (no solutions) if and only if there exists a row of the form
@@ -320,7 +316,7 @@ $\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of un
 
 \subsection{Vectors in $\R^n$}
 
-\subsubsection*{Recap: 2D Vectors}
+\subsubsection{Recap: 2D Vectors}
 
 Recall $\R^2 = \{(x, y) \mid x, y \in \R\}$.
 
@@ -368,7 +364,7 @@ Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or 
 \end{tikzpicture}
 \end{center}
 
-\subsubsection*{Linear Combinations}
+\subsubsection{Linear Combinations}
 
 \begin{definition}[Linear Combination]
 Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \ldots, c_p \in \R$. A \textbf{linear combination} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is a vector of the form
@@ -443,7 +439,7 @@ Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \
   $R_3$ reads $0 = 3$ --- inconsistent. $\mathbf{b}$ is \textbf{not} a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$.
 \end{example}
 
-\subsubsection*{Span}
+\subsubsection{Span}
 
 \begin{definition}[Span]
 Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{span} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is the set of all linear combinations of these vectors:
@@ -471,7 +467,7 @@ Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{spa
   \end{center}
 \end{example}
 
-\subsubsection*{Span and Linear Systems}
+\subsubsection{Span and Linear Systems}
 
 Given $\mathbf{b} \in \R^n$, the question ``is $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}$?'' is equivalent to asking whether the linear system $c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p = \mathbf{b}$ has a solution.
 
@@ -553,7 +549,7 @@ An $m \times n$ linear system ($m$ equations, $n$ unknowns)
 can be written compactly using:
 \begin{itemize}
   \item \textbf{Coefficient matrix:}
-    $A = \begin{bmatrix}
+    $\mathbf{A} = \begin{bmatrix}
       a_{11} & a_{12} & \cdots & a_{1n} \\
       a_{21} & a_{22} & \cdots & a_{2n} \\
       \vdots & \vdots & \ddots & \vdots \\
@@ -567,9 +563,9 @@ can be written compactly using:
 
 The system is then written as the matrix equation
 \[
-  A\mathbf{x} = \mathbf{b}.
+  \mathbf{A}\mathbf{x} = \mathbf{b}.
 \]
-Expanding $A\mathbf{x}$:
+Expanding $\mathbf{A}\mathbf{x}$:
 \[
   \begin{bmatrix}
     a_{11} & \cdots & a_{1n} \\
@@ -587,3 +583,75 @@ Expanding $A\mathbf{x}$:
   \begin{bmatrix} b_1 \\ \vdots \\ b_m \end{bmatrix},
 \]
 recovers the original linear system.
+
+\subsubsection{$\mathbf{A}\mathbf{x}$ as Linear Combination of Columns}
+
+Writing $\mathbf{A}$ by its columns as $\mathbf{A} = \bigl[\,\mathbf{a}_1 \;\; \mathbf{a}_2 \;\; \cdots \;\; \mathbf{a}_n\,\bigr]$, the product $\mathbf{A}\mathbf{x}$ is equivalently defined as the linear combination
+\[
+  \mathbf{A}\mathbf{x} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \cdots + x_n \mathbf{a}_n.
+\]
+
+\subsubsection{$\mathbf{A}\mathbf{x}$ as Row Products}
+
+Writing $\mathbf{A}$ by its rows as
+$\mathbf{A} = \begin{bmatrix} \mathbf{R}_1 \\ \mathbf{R}_2 \\ \vdots \\ \mathbf{R}_m \end{bmatrix}$,
+the product $\mathbf{A}\mathbf{x}$ can also be computed as
+\[
+  \mathbf{A}\mathbf{x}
+  = \begin{bmatrix}
+    \mathbf{R}_1 \cdot \mathbf{x} \\
+    \mathbf{R}_2 \cdot \mathbf{x} \\
+    \vdots \\
+    \mathbf{R}_m \cdot \mathbf{x}
+  \end{bmatrix},
+\]
+
+\begin{example}
+  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 1 \end{bmatrix}$,
+  $\mathbf{x} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$.
+
+  \textbf{Column view:}
+  \[
+    \mathbf{A}\mathbf{x}
+    = 1 \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+    + (-1) \begin{bmatrix} 2 \\ 1 \end{bmatrix}
+    = \begin{bmatrix} -1 \\ 2 \end{bmatrix}
+  \]
+
+  \textbf{Row view:}
+  \[
+    \mathbf{A}\mathbf{x}
+    = \begin{bmatrix} 1 & 2 \\ 3 & 1 \end{bmatrix}
+    \begin{bmatrix} 1 \\ -1 \end{bmatrix}
+    = \begin{bmatrix} 1(1) + 2(-1) \\ 3(1) + 1(-1) \end{bmatrix}
+    = \begin{bmatrix} -1 \\ 2 \end{bmatrix}
+  \]
+\end{example}
+
+\subsection{Existence of Solutions}
+
+\begin{theorem}
+Let $\mathbf{A}$ be an $m \times n$ matrix with columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The following statements are equivalent:
+\begin{enumerate}
+  \item The linear system $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b} \in \R^m$.
+  \item Every $\mathbf{b} \in \R^m$ is a linear combination of the columns of $\mathbf{A}$.
+  \item The echelon form of $\mathbf{A}$ has a pivot in every row.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+
+\textbf{(1) $\Leftrightarrow$ (2):} trivial.
+
+\textbf{(1) $\Leftrightarrow$ (3):} Row reduce $\mathbf{A}$ to echelon form. In the augmented matrix $\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$, row reduction produces
+\[
+  \left[\begin{array}{cccc|c}
+    p_1 & * & \cdots & * & b_1' \\
+    0 & p_2 & \cdots & * & b_2' \\
+    \vdots & & \ddots & \vdots & \vdots \\
+    0 & 0 & \cdots & p_m & b_m'
+  \end{array}\right]
+\]
+
+If the echelon form of $\mathbf{A}$ does \emph{not} have a pivot in every row, then some row of the augmented matrix has the form $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b_m'\,\bigr]$. Choosing $\mathbf{b}$ so that $b_m' \neq 0$ gives an inconsistent system.
+\end{proof}
