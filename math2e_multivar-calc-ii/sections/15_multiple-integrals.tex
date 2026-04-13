@@ -235,3 +235,93 @@ Combined with the original lower bound $y\geq\tfrac{1}{2}x$:
     T = \{(x,y,z) \mid 0\leq x\leq 1,\; 0\leq z\leq 2-2x,\; \tfrac{1}{2}x\leq y\leq 1 - \tfrac{1}{2}x - \tfrac{1}{2}z\}
 \]
 \end{example}
+
+\subsection{Polar Coordinates}
+
+\subsubsection{Cylindrical Coordinates}
+
+Cylindrical coordinates $(r,\theta,z)$:
+
+\begin{itemize}
+    \item Cylindrical $\to$ rectangular: $x = r\cos\theta$, \; $y = r\sin\theta$, \; $z = z$
+    \item Rectangular $\to$ cylindrical: $r = \sqrt{x^2+y^2}$, \; $\theta = \arctan\!\dfrac{y}{x}$ (adjust for quadrant), \; $z = z$
+\end{itemize}
+
+For a Type I region
+\[
+    E = \{(x,y,z) \mid (x,y)\in D,\; u_1(x,y)\leq z\leq u_2(x,y)\}
+\]
+where $D$ is a polar region $\{(r,\theta) \mid \alpha\leq\theta\leq\beta,\; h_1(\theta)\leq r\leq h_2(\theta)\}$:
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    \draw[thick,->] (0,0,0) -- (3,0,0) node[right]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,3,0) node[above]{$z$};
+    \draw[thick,->] (0,0,0) -- (0,0,3) node[below left]{$y$};
+    % wedge projection D in the y=0 plane (ground)
+    % radial edges from origin
+    \draw[thick] (0,0,0) -- ({2.4*cos(15)},0,{2.4*sin(15)});
+    \draw[thick] (0,0,0) -- ({2.4*cos(55)},0,{2.4*sin(55)});
+    % inner arc r=h1 (sampled points in 3D)
+    \draw[thick] plot[smooth] coordinates {
+        ({0.8*cos(15)},0,{0.8*sin(15)})
+        ({0.8*cos(25)},0,{0.8*sin(25)})
+        ({0.8*cos(35)},0,{0.8*sin(35)})
+        ({0.8*cos(45)},0,{0.8*sin(45)})
+        ({0.8*cos(55)},0,{0.8*sin(55)})
+    };
+    % outer arc r=h2
+    \draw[thick] plot[smooth] coordinates {
+        ({2.4*cos(15)},0,{2.4*sin(15)})
+        ({2.4*cos(25)},0,{2.4*sin(25)})
+        ({2.4*cos(35)},0,{2.4*sin(35)})
+        ({2.4*cos(45)},0,{2.4*sin(45)})
+        ({2.4*cos(55)},0,{2.4*sin(55)})
+    };
+    % fill the wedge region
+    \fill[gray!15]
+        ({0.8*cos(15)},0,{0.8*sin(15)})
+        \foreach \a in {25,35,45,55} { -- ({0.8*cos(\a)},0,{0.8*sin(\a)}) }
+        -- ({2.4*cos(55)},0,{2.4*sin(55)})
+        \foreach \a in {45,35,25,15} { -- ({2.4*cos(\a)},0,{2.4*sin(\a)}) }
+        -- cycle;
+    \node at ({1.6*cos(35)},0,{1.6*sin(35)}) {$D$};
+    % angle labels
+    \node[below] at ({1.2*cos(5)+1},0,{1.2*sin(5)-0.15}) {\small$\theta=\alpha$};
+    \node[left] at ({1.0*cos(55)-0.1},0,{1.0*sin(55)+0.1}) {\small$\theta=\beta$};
+    % arc labels
+    \draw[<-] ({0.8*cos(35)},0,{0.8*sin(35)}) -- (-0.3,0,0.2)
+        node[left]{\small$r=h_1(\theta)$};
+    \draw[<-] ({2.4*cos(35)},0,{2.4*sin(35)}) -- (2.8,0,2.5)
+        node[right]{\small$r=h_2(\theta)$};
+    % lower surface over wedge
+    \draw[thick,blue]
+        ({0.8*cos(15)},0.4,{0.8*sin(15)})
+        \foreach \a in {25,35,45,55} { -- ({0.8*cos(\a)},0.4,{0.8*sin(\a)}) }
+        -- ({2.4*cos(55)},0.6,{2.4*sin(55)})
+        \foreach \a in {45,35,25,15} { -- ({2.4*cos(\a)},0.6,{2.4*sin(\a)}) }
+        -- cycle;
+    \node[blue,left] at (0.2,0.5,0.8) {\small$z=u_1$};
+    % upper surface over wedge
+    \draw[thick,red]
+        ({0.8*cos(15)},2.0,{0.8*sin(15)})
+        \foreach \a in {25,35,45,55} { -- ({0.8*cos(\a)},2.0,{0.8*sin(\a)}) }
+        -- ({2.4*cos(55)},2.3,{2.4*sin(55)})
+        \foreach \a in {45,35,25,15} { -- ({2.4*cos(\a)},2.3,{2.4*sin(\a)}) }
+        -- cycle;
+    \node[red,left] at (0.2,2.2,0.8) {\small$z=u_2$};
+    % vertical dashed line at sample point
+    \draw[dashed] ({1.6*cos(35)},0,{1.6*sin(35)})
+        -- ({1.6*cos(35)},0.5,{1.6*sin(35)});
+    \draw[dashed] ({1.6*cos(35)},0.5,{1.6*sin(35)})
+        -- ({1.6*cos(35)},2.15,{1.6*sin(35)});
+    \node[right] at ({1.6*cos(35)+0.1},1.3,{1.6*sin(35)}) {\small$E$};
+\end{tikzpicture}
+\end{center}
+
+\[
+    \iiint_E f\dd{V}
+    = \iint_D\!\left(\int_{u_1}^{u_2} f\dd{z}\right)dA
+\]
+where $dA = \dd{x} \dd{y} = r\dd{r}\dd{\theta}$
+
