@@ -201,3 +201,37 @@ Analogous to Type I, with the roles of the axes permuted.
     = \iint_D\!\left(\int_{u_1(x,z)}^{u_2(x,z)} f\dd{y}\right)dA
 \]
 \end{definition}
+
+\subsubsection{Changing Integration Order}
+
+\begin{example}
+Change the bounds of the tetrahedron
+\[
+    T = \{(x,y,z) \mid 0\leq x\leq 1,\; \tfrac{1}{2}x\leq y\leq 1-\tfrac{1}{2}x,\; 0\leq z\leq 2-x-2y\}
+\]
+from $\dd{z}\dd{y}\dd{x}$ to $\dd{y}\dd{z}\dd{x}$ without using pictures.
+
+Target form: $0\leq x\leq 1$, then $z$ bounds (dep.\ on $x$), then $y$ bounds (dep.\ on $x,z$).
+
+\textbf{Step 1: bounds for $z$} (moving forward is relaxing conditions).
+\begin{itemize}
+    \item Lower bound: $z = 0$, independent of $y$ --- no change.
+    \item Upper bound: $z \leq 2 - x - 2y$. Relax by using the smallest $y$: $y \geq \tfrac{1}{2}x$, so
+    \[
+        z \leq 2 - x - 2\!\left(\tfrac{1}{2}x\right) = 2 - 2x
+    \]
+\end{itemize}
+
+\textbf{Step 2: bounds for $y$} (last variable, most restrictive --- add conditions from $z$).
+
+From $0\leq z\leq 2-x-2y$:
+\begin{itemize}
+    \item $0\leq z$: no new info.
+    \item $z\leq 2-x-2y \implies 2y\leq 2-x-z \implies y\leq \dfrac{2-x-z}{2} = 1 - \tfrac{1}{2}x - \tfrac{1}{2}z$.
+\end{itemize}
+
+Combined with the original lower bound $y\geq\tfrac{1}{2}x$:
+\[
+    T = \{(x,y,z) \mid 0\leq x\leq 1,\; 0\leq z\leq 2-2x,\; \tfrac{1}{2}x\leq y\leq 1 - \tfrac{1}{2}x - \tfrac{1}{2}z\}
+\]
+\end{example}
