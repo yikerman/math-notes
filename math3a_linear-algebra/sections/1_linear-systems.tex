@@ -655,3 +655,43 @@ Let $\mathbf{A}$ be an $m \times n$ matrix with columns $\mathbf{a}_1, \mathbf{a
 
 If the echelon form of $\mathbf{A}$ does \emph{not} have a pivot in every row, then some row of the augmented matrix has the form $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b_m'\,\bigr]$. Choosing $\mathbf{b}$ so that $b_m' \neq 0$ gives an inconsistent system.
 \end{proof}
+
+\subsection{Homogeneous and Non-Homogeneous Linear Systems}
+
+\begin{definition}[Homogeneous / Non-Homogeneous System]
+A linear system is \textbf{homogeneous} if it has the form $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+A system is \textbf{non-homogeneous} if $\mathbf{A}\mathbf{x} = \mathbf{b}$ with $\mathbf{b} \neq \mathbf{0}$.
+\end{definition}
+
+\begin{note}
+$\mathbf{A}\mathbf{x} = \mathbf{0}$ always has the \textbf{trivial solution} $\mathbf{x} = \mathbf{0}$.
+\end{note}
+
+\subsubsection*{Homogeneous Systems}
+
+\begin{enumerate}
+  \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions $\iff$ at least 1 free variable.
+  \begin{remark}
+  $\#\text{free variables} = n - \#\text{pivots} \geq 1$.
+  \end{remark}
+
+  \item $\mathbf{x} = \mathbf{0}$ is the only solution to $\mathbf{A}\mathbf{x} = \mathbf{0}$ $\iff$ $\#\text{pivots} = n$ (no free variables).
+\end{enumerate}
+
+\begin{example}
+Let
+\[
+  \mathbf{A}
+  = \begin{bmatrix} 1 & 2 & 3 \\ 2 & -1 & 1 \\ 3 & 1 & 4 \end{bmatrix},
+  \quad \text{solve } \mathbf{A}\mathbf{x} = \mathbf{0}.
+\]
+
+Row reduce $\mathbf{A}$:
+\[
+  \mathbf{A}
+  \xrightarrow{\text{row reduction}}
+  \begin{bmatrix} 1 & 2 & 3 \\ 0 & -5 & -5 \\ 0 & 0 & 0 \end{bmatrix}
+\]
+
+There are 2 pivots and 1 free variable, so $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions.
+\end{example}
