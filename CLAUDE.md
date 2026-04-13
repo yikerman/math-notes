@@ -27,7 +27,7 @@ Add new shared commands/environments here, not in individual course files.
 ## Conventions
 
 - **One file per textbook chapter**: named `<chap>_<topic>.tex` (e.g. `10_parametric-curves.tex`). All subsections from that chapter go in the same file.
-- **Heading hierarchy**: `main.tex` uses `\section` per textbook chapter. Section files use `\subsection` for topics and `\subsubsection*` for sub-topics. This produces TOC entries like 1.1, 1.2, etc.
+- **Heading hierarchy**: `main.tex` uses `\section` per textbook chapter. Section files use `\subsection` for topics and `\subsubsection` for sub-topics. This produces TOC entries like 1.1, 1.2, 1.2.1, etc.
 - Keep LaTeX **minimal and clean** — no excessive comments or boilerplate.
 - Use `amsmath`, `amssymb` for math; `pgfplots` with `tikzpicture` for graphs.
 - Wrap examples in `\begin{example}...\end{example}` — they render as gray boxes.

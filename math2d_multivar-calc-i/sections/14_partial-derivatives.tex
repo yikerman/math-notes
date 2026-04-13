@@ -144,7 +144,7 @@ $f(x,y,z) = x^{yz}$. \; Write $f = e^{yz\ln x}$:
 \]
 \end{example}
 
-\subsubsection*{Higher Order Derivatives}
+\subsubsection{Higher Order Derivatives}
 
 \[
     f_{xx} = \frac{\partial^{2}f}{\partial x^{2}}, \qquad
@@ -157,13 +157,13 @@ $f(x,y,z) = x^{yz}$. \; Write $f = e^{yz\ln x}$:
 $f_{xy}=f_{yx}$ — mixed partial derivatives commute (when both are continuous).
 \end{theorem}
 
-\subsubsection*{Approximation}
+\subsubsection{Approximation}
 
 \[
     f(x+h,\,y) \approx f(x,y) + h\,\pd{f}{x}
 \]
 
-\subsubsection*{Partial Differential Equations (PDE)}
+\subsubsection{Partial Differential Equations (PDE)}
 
 Differential equations with partial derivatives.
 
@@ -171,7 +171,7 @@ Differential equations with partial derivatives.
 $u(x,y)$: \; $u_{xx}+u_{yy}=0$
 \end{example}
 
-\subsubsection*{Implicit Partial Derivatives}
+\subsubsection{Implicit Partial Derivatives}
 
 \begin{example}
 Particle on surface $x^{2}+y^{2}+xyz^{2}=3$, at $(1,1,1)$.
@@ -223,7 +223,7 @@ $f_{x}=2x$, $f_{y}=4y^{3}$.
 \]
 \end{example}
 
-\subsubsection*{Why a plane?}
+\subsubsection{Why a plane?}
 
 Parametrize $z=f(x,y)$:
 $\mathbf{r}(x,y)=\begin{pmatrix}x\\y\\f(x,y)\end{pmatrix}$.
@@ -392,7 +392,7 @@ $\hat{\mathbf{u}}=\begin{pmatrix}12/13\\5/13\end{pmatrix}$:
 \]
 \end{example}
 
-\subsubsection*{Geometric Interpretation}
+\subsubsection{Geometric Interpretation}
 
 All unit vectors can be written as
 $\hat{\mathbf{u}}=\begin{pmatrix}\cos\phi\\\sin\phi\end{pmatrix}$, so
@@ -417,7 +417,7 @@ where $\theta=\angle(\hat{\mathbf{u}},\nabla f)$.
 
 At any point on a surface, there are directions $\phi$, $\phi+\pi$ for which $D_{\hat{\mathbf{u}}}f=0$.
 
-\subsubsection*{Higher Dimensions}
+\subsubsection{Higher Dimensions}
 
 $\nabla f = \ve{f_{x_{1}},\,f_{x_{2}},\,\dots,\,f_{x_{n}}}$, \;
 $\R^{n}\mapsto\R^{n}$.
@@ -432,7 +432,7 @@ $P=(1,4)$.
 $\nabla f = \ve{-x^{-2}e^{xz},\; ze^{xz},\; xe^{xz}}$... (evaluate and dot with $\hat{\mathbf{u}}$)
 \end{example}
 
-\subsubsection*{Tangent Lines and Planes via the Gradient}
+\subsubsection{Tangent Lines and Planes via the Gradient}
 
 Suppose $\mathbf{r}(t)$ is a curve on the level surface $f(\mathbf{r}(t))=0$.
 Then
@@ -591,7 +591,7 @@ Consider $P=(0,1)$: nearby, $f(x,1)=x^{3}$ crosses the tangent line
 $\;\Longrightarrow\;$ $P$ is a saddle point.
 \end{example}
 
-\subsubsection*{Multivariable Second Derivative Test}
+\subsubsection{Multivariable Second Derivative Test}
 
 \begin{theorem}[Second derivative test]
 Suppose $f(x,y)$ has continuous second derivatives near
@@ -741,7 +741,7 @@ constraint $g=0$, so $\nabla f\parallel\nabla g$.
 
 At max, $\nabla f\parallel\nabla g$.
 
-\subsubsection*{Lagrange Multiplier Method}
+\subsubsection{Lagrange Multiplier Method}
 
 To solve $\max/\min\; f(\mathbf{x})$ subject to $g(\mathbf{x})=k$:
 \[

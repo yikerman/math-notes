@@ -62,7 +62,7 @@ On the cylinder, choose $x=\cos t$, $y=\sin t$:
 
 \subsection{Derivatives and Integrals}
 
-\subsubsection*{Derivatives}
+\subsubsection{Derivatives}
 
 \[
     \mathbf{r}'
@@ -81,7 +81,7 @@ $\mathbf{r}'(t) = \begin{pmatrix} 1 \\ 2t \\ -\sin t \end{pmatrix}$
 $v(t) = \sqrt{1+4t^{2}+\sin^{2}t}$
 
 Unit tangent vector:
-$\mathbf{T}(t) = \dfrac{\mathbf{r}'}{\lVert\mathbf{r}'\rVert}
+$\mathbf{t}(t) = \dfrac{\mathbf{r}'}{\lVert\mathbf{r}'\rVert}
 = \dfrac{1}{\sqrt{1+4t^{2}+\sin^{2}t}}
 \begin{pmatrix} 1 \\ 2t \\ -\sin t \end{pmatrix}$
 \end{example}
@@ -93,7 +93,7 @@ $\mathbf{r}'(t) = \begin{pmatrix} -\sin t \\ \cos t \\ 1 \end{pmatrix}$
 Speed: $v(t) = \lVert\mathbf{r}'\rVert = \sqrt{\sin^{2}t+\cos^{2}t+1} = \sqrt{2}$
 \end{example}
 
-\subsubsection*{Derivative Rules}
+\subsubsection{Derivative Rules}
 
 \begin{align*}
     \frac{d}{dt}(\mathbf{r}+\mathbf{s}) &= \mathbf{r}'+\mathbf{s}' &
@@ -102,7 +102,7 @@ Speed: $v(t) = \lVert\mathbf{r}'\rVert = \sqrt{\sin^{2}t+\cos^{2}t+1} = \sqrt{2}
     \frac{d}{dt}(\mathbf{r}\times\mathbf{s}) &= \mathbf{r}'\times\mathbf{s}+\mathbf{r}\times\mathbf{s}'
 \end{align*}
 
-\subsubsection*{Integration}
+\subsubsection{Integration}
 
 \[
     \int_{a}^{b}\mathbf{r}\dd{t}
@@ -153,7 +153,7 @@ From $t=0$ to $t=2\pi$:
 \end{example}
 
 \begin{definition}[Curvature]
-On a point of $\mathbf{r}(t)$, imagine force $\mathbf{F}=\mathbf{r}''$.
+On a point of $\mathbf{r}(t)$, imagine force $\mathbf{f}=\mathbf{r}''$.
 Curvature measures this only when speed $=1$.
 \end{definition}
 
@@ -174,7 +174,7 @@ $\;\Longrightarrow\;$ speed $= 1$
 \]
 \end{example}
 
-\subsubsection*{Curvature when speed $\neq 1$}
+\subsubsection{Curvature when speed $\neq 1$}
 
 Reparametrize by arc length: $\kappa(t) = \kappa(t(s))$ so that speed $= 1$ w.r.t.\ $s$.
 
@@ -185,13 +185,13 @@ Reparametrize by arc length: $\kappa(t) = \kappa(t(s))$ so that speed $= 1$ w.r.
     \frac{ds}{dt} = \lVert\mathbf{r}'(t)\rVert = v(t)
 \]
 
-Since $\mathbf{r}'(t) = v(t)\,\mathbf{T}(t)$ where $\mathbf{T}$ is the unit tangent:
+Since $\mathbf{r}'(t) = v(t)\,\mathbf{t}(t)$ where $\mathbf{t}$ is the unit tangent:
 
 \[
     \kappa
     = \lVert\mathbf{r}''(s)\rVert
     = \left\lVert\frac{d}{ds}\!\left(\frac{\mathbf{r}'(t)}{v(t)}\right)\right\rVert
-    = \frac{\lVert\mathbf{T}'(t)\rVert}{v(t)}
+    = \frac{\lVert\mathbf{t}'(t)\rVert}{v(t)}
     = \boxed{\frac{\lVert\mathbf{r}'\times\mathbf{r}''\rVert}{v(t)^{3}}}
 \]
 
@@ -210,9 +210,9 @@ $t$: time, \; $\mathbf{r}(t)$: position, \;
 $\mathbf{v}(t)=\mathbf{r}'(t)$: velocity, \;
 $\mathbf{a}(t)=\mathbf{v}'(t)$: acceleration
 
-Newton's second law: $\mathbf{F}=m\mathbf{a}$ \; (differential equation).
+Newton's second law: $\mathbf{f}=m\mathbf{a}$ \; (differential equation).
 
-Gravity: $\mathbf{F}=-mg\,\hat{\mathbf{k}}$ where $\hat{\mathbf{k}}$ is the unit vector in $z$.
+Gravity: $\mathbf{f}=-mg\,\hat{\mathbf{k}}$ where $\hat{\mathbf{k}}$ is the unit vector in $z$.
 \[
     -mg\,\hat{\mathbf{k}} = m\,\mathbf{r}''(t)
     \;\Longrightarrow\;
@@ -220,8 +220,8 @@ Gravity: $\mathbf{F}=-mg\,\hat{\mathbf{k}}$ where $\hat{\mathbf{k}}$ is the unit
 \]
 Integrating:
 \begin{align*}
-    \mathbf{r}' &= -gt\,\hat{\mathbf{k}} + \mathbf{C}_{0} \\
+    \mathbf{r}' &= -gt\,\hat{\mathbf{k}} + \mathbf{c}_{0} \\
     \mathbf{r}  &= -\tfrac{1}{2}g t^{2}\,\hat{\mathbf{k}}
-                   + \mathbf{C}_{0}\,t + \mathbf{C}_{1}
+                   + \mathbf{c}_{0}\,t + \mathbf{c}_{1}
 \end{align*}
 \end{example}
