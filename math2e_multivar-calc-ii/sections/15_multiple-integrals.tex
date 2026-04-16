@@ -325,3 +325,176 @@ where $D$ is a polar region $\{(r,\theta) \mid \alpha\leq\theta\leq\beta,\; h_1(
 \]
 where $dA = \dd{x} \dd{y} = r\dd{r}\dd{\theta}$
 
+\subsubsection{Spherical Coordinates}
+
+Spheres have more rotational symmetry --- use spherical coordinates $(\rho, \theta, \varphi)$ (radius, longitude, latitude).
+
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+		\begin{axis}[
+			view={100}{30},
+			axis lines=center,
+			width=12cm, height=10cm,
+			xmin=0, xmax=5, ymin=0, ymax=6, zmin=0, zmax=5,
+			xtick=\empty, ytick=\empty, ztick=\empty,
+			xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+			every axis x label/.style={at={(ticklabel* cs:1)},anchor=north east},
+			every axis y label/.style={at={(ticklabel* cs:1)},anchor=north west},
+			every axis z label/.style={at={(ticklabel* cs:1)},anchor=south},
+			clip=false,
+			trig format plots=deg
+			]
+			
+			% Define coordinates
+			\coordinate (O) at (0,0,0);
+			\coordinate (P) at (3,4,4);
+			\coordinate (Pxy) at (3,4,0);
+			\coordinate (Pz) at (0,0,4);
+			
+			% Draw dashed projection lines
+			\draw[dashed] (P) -- (Pxy);
+			\draw[dashed] (Pz) -- (P) node[midway, above right] {$r = \sqrt{x^2+y^2} = \rho \sin\phi$};
+			
+			% Draw main vectors
+			\draw[thick, ->] (O) -- (P) node[midway, above left] {$\rho$};
+			\draw[thick, ->] (O) -- (Pxy);
+			
+			% Draw Point P
+			\filldraw (P) circle (1.5pt) node[right] {$P$};
+			
+			% Draw theta arc (in xy plane, from x-axis to r)
+			\addplot3 [
+			forget plot,
+			no marks,
+			samples y=0,
+			domain=0:53.13,
+			samples=30,
+			->
+			] ({2*cos(x)}, {2*sin(x)}, 0);
+			\node at ({2.6*cos(26.5)}, {2.6*sin(26.5)}, 0) {$\theta$};
+			
+			% Draw phi arc (from z-axis to rho vector)
+			\addplot3 [
+			forget plot,
+			no marks,
+			samples y=0,
+			domain=0:51.3,
+			samples=30,
+			->
+			] ({2.5*sin(x)*0.6}, {2.5*sin(x)*0.8}, {2.5*cos(x)});
+			\node at ({3.1*sin(25)*0.6}, {3.1*sin(25)*0.8}, {3.1*cos(25)}) {$\phi$};
+			
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+Conversion formulas ($r = \sqrt{x^2+y^2} = \rho\sin\varphi$ is the distance to the $z$-axis):
+\begin{align*}
+    x &= r\cos\theta = \rho\sin\varphi\cos\theta \\
+    y &= r\sin\theta = \rho\sin\varphi\sin\theta \\
+    z &= \rho\cos\varphi
+\end{align*}
+
+\textbf{Integration.} The volume element in spherical coordinates:
+\[
+    \dd{V} = \rho^2 \sin\varphi\;\dd{\rho}\dd{\theta}\dd{\varphi}
+\]
+
+\begin{center}
+% Side view
+\begin{tikzpicture}[scale=1.3]
+    \draw[thick,->] (0,0) -- (2.5,0) node[right]{$x$};
+    \draw[thick,->] (0,0) -- (0,2.8) node[above]{$z$};
+    % wedge
+    \draw[thick] (0,0) -- ({2.2*cos(55)},{2.2*sin(55)});
+    \draw[thick] (0,0) -- ({2.2*cos(70)},{2.2*sin(70)});
+    % arcs at rho and rho+drho
+    \draw[thick] ({1.5*cos(70)},{1.5*sin(70)}) arc[start angle=70, end angle=55, radius=1.5];
+    \draw[thick] ({2.0*cos(70)},{2.0*sin(70)}) arc[start angle=70, end angle=55, radius=2.0];
+    % labels
+    \node[left] at ({1.2*cos(70)},{1.2*sin(70)}) {\small$\rho$};
+    \node[right] at (-0.1, 0.3) {\small$\dd{\varphi}$};
+    % dphi arc
+    \node[right] at ({1.85*cos(58)},{1.85*sin(58)+0.5}) {\small$\rho\dd{\varphi}$};
+    \node at (0,-0.5) {side view};
+\end{tikzpicture}
+\hspace{2cm}
+% Top view
+\begin{tikzpicture}[scale=1.3]
+    \draw[thick,->] (0,0) -- (2.5,0) node[right]{$y$};
+    \draw[thick,->] (0,0) -- (0,-2) node[below]{$x$};
+    % wedge
+    \draw[thick] (0,0) -- ({2.0*cos(20)},{-2.0*sin(20)});
+    \draw[thick] (0,0) -- ({2.0*cos(45)},{-2.0*sin(45)});
+    % arcs at r and r+dr
+    \draw[thick] ({1.3*cos(45)},{-1.3*sin(45)}) arc[start angle=-45, end angle=-20, radius=1.3];
+    \draw[thick] ({1.8*cos(45)},{-1.8*sin(45)}) arc[start angle=-45, end angle=-20, radius=1.8];
+    % labels
+    \node[above] at ({1.0*cos(20)},{-1.0*sin(20)}) {\small$r = \rho\sin\varphi$};
+    \node[right] at ({1.7*cos(35)},{-1.7*sin(35)}) {\small$r\dd{\theta} = \rho\sin\varphi\dd{\theta}$};
+    % dtheta label
+    \node at (0,-2.5) {top view};
+\end{tikzpicture}
+\end{center}
+
+\begin{example}
+Describe the cone $z^2 = x^2 + y^2$ in both cylindrical and spherical coordinates.
+
+\textbf{Cylindrical:} $r^2 = x^2 + y^2$, $z = z$, so the cone equation becomes $z^2 = r^2$.
+
+\textbf{Spherical:} $r^2 = \rho^2\sin^2\varphi$, $z^2 = \rho^2\cos^2\varphi$, so
+\[
+    z^2 = r^2 \implies \sin^2\varphi = \cos^2\varphi
+    \implies \tan^2\varphi = 1
+    \implies \varphi = \frac{\pi}{4} \text{ or } \varphi = \frac{3\pi}{4}
+\]
+\end{example}
+
+\begin{example}
+Set up an integral to compute the volume of the solid enclosed by the cone $z = \sqrt{x^2+y^2}$ and the sphere $x^2+y^2+z^2 = 2$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    \draw[thick,->] (-1.8,0) -- (1.8,0) node[right]{$y$};
+    \draw[thick,->] (0,-0.3) -- (0,2.2) node[above]{$z$};
+    % sphere arc
+    \draw[thick] ({-sqrt(2)},0) arc[start angle=180, end angle=0, radius={sqrt(2)}];
+    % cone
+    \draw[thick] (0,0) -- (-1.2,1.2);
+    \draw[thick] (0,0) -- (1.2,1.2);
+    % intersection points
+    \filldraw (1,1) circle (1.5pt);
+    \filldraw (-1,1) circle (1.5pt);
+    % shaded region
+    \fill[gray!20] (0,0) -- (1,1) arc[start angle=45, end angle=135, radius={sqrt(2)}] -- cycle;
+    \node at (0,1.05) {\small$E$};
+\end{tikzpicture}
+\end{center}
+
+In cylindrical coordinates:
+\begin{itemize}
+    \item Cone: $z = r$
+    \item Sphere: $r^2 + z^2 = 2 \implies z = \sqrt{2 - r^2}$
+\end{itemize}
+Intersection: $r^2 = 2 - r^2 \implies r = 1$, $z = 1$.
+
+Shadow $D$: $r\in[0,1]$, $\theta\in[0,2\pi]$. \quad Vertical fiber: $z\in\bigl[r,\,\sqrt{2-r^2}\bigr]$.
+\[
+    \operatorname{Vol}(E)
+    = \int_0^{2\pi}\!\int_0^1\!\int_r^{\sqrt{2-r^2}} r\dd{z}\dd{r}\dd{\theta}
+\]
+
+In spherical coordinates:
+\begin{itemize}
+    \item Cone: $\varphi = \dfrac{\pi}{4}$
+    \item Sphere: $\rho = \sqrt{2}$
+\end{itemize}
+\[
+    E = \left\{(\rho,\theta,\varphi) \;\middle|\; 0\leq\rho\leq\sqrt{2},\; 0\leq\theta\leq 2\pi,\; 0\leq\varphi\leq\frac{\pi}{4}\right\}
+\]
+\[
+    \operatorname{Vol}(E)
+    = \int_0^{\pi/4}\!\int_0^{2\pi}\!\int_0^{\sqrt{2}} \rho^2\sin\varphi\dd{\rho}\dd{\theta}\dd{\varphi}
+\]
+\end{example}
+
