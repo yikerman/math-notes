@@ -667,8 +667,6 @@ A system is \textbf{non-homogeneous} if $\mathbf{A}\mathbf{x} = \mathbf{b}$ with
 $\mathbf{A}\mathbf{x} = \mathbf{0}$ always has the \textbf{trivial solution} $\mathbf{x} = \mathbf{0}$.
 \end{note}
 
-\subsubsection*{Homogeneous Systems}
-
 \begin{enumerate}
   \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions $\iff$ at least 1 free variable.
   \begin{remark}
@@ -678,7 +676,7 @@ $\mathbf{A}\mathbf{x} = \mathbf{0}$ always has the \textbf{trivial solution} $\m
   \item $\mathbf{x} = \mathbf{0}$ is the only solution to $\mathbf{A}\mathbf{x} = \mathbf{0}$ $\iff$ $\#\text{pivots} = n$ (no free variables).
 \end{enumerate}
 
-\begin{example}
+\begin{example}[Homogeneous System]
 Let
 \[
   \mathbf{A}
@@ -690,8 +688,130 @@ Row reduce $\mathbf{A}$:
 \[
   \mathbf{A}
   \xrightarrow{\text{row reduction}}
-  \begin{bmatrix} 1 & 2 & 3 \\ 0 & -5 & -5 \\ 0 & 0 & 0 \end{bmatrix}
+  \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}
 \]
 
 There are 2 pivots and 1 free variable, so $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions.
+
+The system from the reduced form:
+\[
+  \begin{cases}
+    x_1 + x_3 = 0 \\
+    x_2 + x_3 = 0 \\
+    x_3 \text{ free}
+  \end{cases}
+\]
+
+Let $x_3 = t$. Then $x_1 = -t$ and $x_2 = -t$:
+\[
+  \mathbf{x}
+  = \begin{bmatrix} -t \\ -t \\ t \end{bmatrix}
+  = t \begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix}
+\]
 \end{example}
+
+\begin{example}[Non-Homogeneous System]
+Using the same $\mathbf{A}$, let
+$\mathbf{b} = \begin{bmatrix} 6 \\ 2 \\ 8 \end{bmatrix}$.
+Solve $\mathbf{A}\mathbf{x} = \mathbf{b}$.
+
+Augmented matrix and row reduction:
+\[
+  \left[\begin{array}{ccc|c}
+    1 &  2 & 3 & 6 \\
+    2 & -1 & 1 & 2 \\
+    3 &  1 & 4 & 8
+  \end{array}\right]
+  \xrightarrow{\text{row reduction}}
+  \left[\begin{array}{ccc|c}
+    1 & 0 & 1 & 2 \\
+    0 & 1 & 1 & 2 \\
+    0 & 0 & 0 & 0
+  \end{array}\right]
+\]
+
+The system from the reduced form:
+\[
+  \begin{cases}
+    x_1 + x_3 = 2 \\
+    x_2 + x_3 = 2 \\
+    x_3 \text{ free}
+  \end{cases}
+\]
+
+Let $x_3 = t$. Then $x_1 = 2 - t$ and $x_2 = 2 - t$:
+\[
+  \mathbf{x}
+  = \begin{bmatrix} 2 - t \\ 2 - t \\ t \end{bmatrix}
+  = \underbrace{\begin{bmatrix} 2 \\ 2 \\ 0 \end{bmatrix}}_{\mathbf{x}_p}
+  + \underbrace{t \begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix}}_{\mathbf{x}_h}
+\]
+
+The solution decomposes into a particular solution $\mathbf{x}_p$ to $\mathbf{A}\mathbf{x} = \mathbf{b}$ plus the general solution $\mathbf{x}_h$ to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+\end{example}
+
+\begin{theorem}
+Let $\mathbf{A} \in \R^{m \times n}$, $\mathbf{b} \in \R^m$. If $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a particular solution $\mathbf{x}_p$, then the general solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ is
+\[
+  \mathbf{x} = \mathbf{x}_p + \mathbf{x}_h,
+\]
+where $\mathbf{x}_h$ ranges over all solutions to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathbf{x}$ be any solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$. Then
+\[
+  \mathbf{A}(\mathbf{x} - \mathbf{x}_p) = \mathbf{A}\mathbf{x} - \mathbf{A}\mathbf{x}_p = \mathbf{b} - \mathbf{b} = \mathbf{0},
+\]
+so $\mathbf{x}_h = \mathbf{x} - \mathbf{x}_p$ is a solution to the homogeneous system. Therefore $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h$.
+\end{proof}
+
+Geometrically, the solution set of $\mathbf{A}\mathbf{x} = \mathbf{b}$ is the homogeneous solution set shifted by $\mathbf{x}_p$:
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[->] (-0.5,0)--(4,0);
+  \draw[->] (0,-0.5)--(0,4);
+  % Homogeneous solution set (line through origin)
+  \draw[blue,thick] (-1,-1)--(3,3) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{0}$};
+  % x_p vector
+  \draw[->,thick,red] (0,0)--(1,2) node[midway,left,font=\small]{$\mathbf{x}_p$};
+  % Shifted solution set
+  \draw[blue,thick,dashed] (-1,0)--(3,4) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{b}$};
+  \filldraw (0,0) circle (1.5pt);
+  \filldraw (1,2) circle (1.5pt);
+\end{tikzpicture}
+\end{center}
+
+\begin{example}
+  $2x_1 + 3x_2 - x_3 = 4$ \quad ($m = 1$, $n = 3$).
+
+  Augmented matrix row reduced:
+  \[
+    \left[\begin{array}{ccc|c}
+      1 & \tfrac{3}{2} & -\tfrac{1}{2} & 2
+    \end{array}\right]
+  \]
+
+  Free variables $x_2 = t_1$, $x_3 = t_2$, so $x_1 = -\tfrac{3}{2}t_1 + \tfrac{1}{2}t_2 + 2$. In vector form:
+  \[
+    \mathbf{x}
+    = \begin{bmatrix} -\tfrac{3}{2}t_1 + \tfrac{1}{2}t_2 + 2 \\ t_1 \\ t_2 \end{bmatrix}
+    = \underbrace{\begin{bmatrix} 2 \\ 0 \\ 0 \end{bmatrix}}_{\mathbf{x}_p}
+    + \underbrace{t_1 \begin{bmatrix} -\tfrac{3}{2} \\ 1 \\ 0 \end{bmatrix} + t_2 \begin{bmatrix} \tfrac{1}{2} \\ 0 \\ 1 \end{bmatrix}}_{\mathbf{x}_h}
+  \]
+
+  $\mathbf{x}_h$ is a linear combination of two vectors whose span is a plane through the origin; $\mathbf{x}_p$ shifts that plane.
+\end{example}
+
+\subsection{Linear Independence}
+
+\begin{definition}[Linear Dependence / Independence]
+Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \in \R^m$. The vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are \textbf{linearly dependent} if and only if
+\[
+  x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n = \mathbf{0}
+\]
+has a non-trivial solution.
+
+The vectors are \textbf{linearly independent} if and only if the equation above has only the trivial solution $x_1 = x_2 = \cdots = x_n = 0$.
+\end{definition}
