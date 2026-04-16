@@ -2,21 +2,22 @@ name: Build PDFs
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
       image: texlive/texlive:latest-full
-
     steps:
       - uses: actions/checkout@v6
 
       - name: Build all courses
-        run: bash build.sh
+        run: ./build.sh
 
       - name: Collect PDFs
         run: |
@@ -26,8 +27,13 @@ jobs:
             cp "{}" "pdf-output/${dir}.pdf"
           ' \;
 
-      - name: Upload PDFs
-        uses: actions/upload-artifact@v7
+      - name: Publish PDFs to rolling release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@v2
         with:
-          name: pdfs
-          path: pdf-output/
+          files: pdf-output/*.pdf
+          tag_name: latest
+          name: Latest PDFs
+          body: Automatically built from the latest commit on master.
+          make_latest: "true"
+          fail_on_unmatched_files: true
