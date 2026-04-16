@@ -23,23 +23,29 @@
 \usepackage{pifont}
 
 % --- Theorem-like environments ---
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+
+% Definition — green box, own counter
+\newtcbtheorem[number within=section]{definition}{Definition}{%
+	colback=red!3, colframe=red!40,
+	fonttitle=\bfseries, breakable
+}{def}
 
 % --- Example box ---
 \NewTColorBox{example}{ o }{%
-	colback=gray!5, 
+	colback=gray!5,
 	colframe=gray!60,
-	fonttitle=\bfseries, 
-	title={Example\IfValueTF{#1}{: #1}{}}, 
+	fonttitle=\bfseries,
+	title={Example\IfValueTF{#1}{: #1}{}},
 	breakable
 }
 
+% Theorem — blue box, uses shared counter
+\newtcbtheorem[number within=section]{theorem}{Theorem}{%
+	colback=blue!3, colframe=blue!40,
+	fonttitle=\bfseries, breakable
+}{thm}
+
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{proposition}[theorem]{Proposition}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}

@@ -37,14 +37,14 @@ Subdivide $R$ into sub-rectangles with widths $\Delta x_i$, $\Delta y_j$.
 Choose sample points $P_{ij} = (x_{ij},\, y_{ij})$.
 Let $M = \max\{\Delta x_i,\, \Delta y_j\}$.
 
-\begin{definition}[Double Integral]
+\begin{definition}{Double Integral}{double-int}
 \[
     \iint_R f(x,y)\dd{A}
     := \lim_{M\to 0}\sum_{i=1}^{m}\sum_{j=1}^{n} f(P_{ij})\,\Delta x_i\,\Delta y_j
 \]
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}{}{continuous-integrable}
 If $f$ is continuous on $R$, then $f$ is integrable (i.e.\ the double integral exists).
 \end{theorem}
 
@@ -52,7 +52,7 @@ Evaluation of $\iint_R f\dd{A}$ by definition is usually difficult.
 
 \textbf{Estimation:} $\displaystyle\sum\sum(\text{midpoint value}\times\text{area})$.
 
-\begin{definition}[Average Value]
+\begin{definition}{Average Value}{avg-value}
 \[
     \text{average of } f(x,y) \text{ on } R
     = \frac{\iint_R f\dd{A}}{\operatorname{Area}(R)}
@@ -84,7 +84,7 @@ For $x^{*}\in[1,3]$:
     \iint_R f(x,y)\dd{A} = \int_a^b A(x)\dd{x}
 \]
 
-\begin{theorem}[Fubini's Theorem]
+\begin{theorem}{Fubini's Theorem}{fubini}
 Suppose $f$ is continuous on $R = [a,b]\times[c,d]$. Then
 \[
     \iint_R f(x,y)\dd{A}
@@ -282,7 +282,7 @@ $\dd{y}=\sqrt{R^2-x^2}\cos\theta\dd{\theta}$.
 \begin{example}[Fubini's Theorem — Switching Order of Integration]
 Compute $\displaystyle\int_0^1\!\left(\int_{x^2}^{1}\sqrt{y}\sin y\dd{y}\right)\dd{x}$.
 
-The inner integral is difficult to evaluate directly, so we use Fubini's theorem to switch the order of integration.
+The inner integral is difficult to evaluate directly, so we use Fubini's theorem (Theorem~\ref{thm:fubini}) to switch the order of integration.
 
 \textbf{1. Describe the domain $D$:}
 $x\in[0,1]$, \; $y\in[x^2,\,1]$ \quad (Type I).
@@ -387,7 +387,7 @@ in polar coordinates $\dd{A}=r\dd{r}\dd{\theta}$.
 \end{tikzpicture}
 \end{center}
 
-\begin{theorem}[Change to Polar Coordinates]
+\begin{theorem}{Change to Polar Coordinates}{polar-change}
 \[
     \iint_D f\dd{A}
     = \int_\alpha^\beta\!\int_a^b
@@ -559,7 +559,7 @@ where $D$ is enclosed by $r^2=\sin 2\theta$ in the first quadrant.
 
 Given a region $D$ with density $\rho(x,y)$:
 
-\begin{definition}[Center of Mass]
+\begin{definition}{Center of Mass}{center-mass}
 \[
     \mathbf{c}
     = \frac{1}{\text{mass}}

@@ -15,14 +15,7 @@ preamble.tex                  # shared preamble (packages, environments, shortcu
 
 ## Shared Preamble (`preamble.tex`)
 
-All courses `\input{../preamble}` before `\begin{document}`. It provides:
-
-- **Packages**: geometry, amsmath/amssymb/amsthm, tcolorbox, pgfplots, enumitem, hyperref
-- **Environments**: `definition`, `theorem`, `lemma`, `corollary`, `proposition`, `remark`, `note`
-- **`example` (tcolorbox)**: gray boxed environment — use `\begin{example}...\end{example}`
-- **Shortcuts**: `\R \N \Z \Q \C`, `\ve{...}` (angle brackets), `\norm{...}`, `\abs{...}`, `\dd{x}`, `\pd{f}{x}`
-
-Add new shared commands/environments here, not in individual course files.
+All courses `\input{../preamble}` before `\begin{document}`. Read `preamble.tex` for available environments, shortcuts, and styling. Add new shared commands/environments here, not in individual course files.
 
 ## Conventions
 
@@ -41,23 +34,7 @@ Add new shared commands/environments here, not in individual course files.
 - **Dot product**: use `\cdot` explicitly — e.g. `\mathbf{u} \cdot \mathbf{v}`.
 - **Cross product**: use `\times` explicitly — e.g. `\mathbf{u} \times \mathbf{v}`.
 - **Vector magnitudes**: use `\lVert...\rVert`, e.g. `\lVert\mathbf{a}\rVert` — not `\abs{...}` or `|...|`.
-- **Definitions and theorems**: wrap formal definitions in `\begin{definition}...\end{definition}` and named theorems in `\begin{theorem}...\end{theorem}` (with optional `[Name]`), even if the handwritten notes don't explicitly label them as such. Use judgement to identify statements that are definitions or theorems by their mathematical content.
-
-### Theorem/Definition Environments
-
-| Environment | Numbered | Style | Notes |
-|---|---|---|---|
-| `definition` | per section (own counter) | upright body | formal definitions of new terms |
-| `theorem` | per section (shared counter) | italic body | major results |
-| `lemma` | shared with `theorem` | italic body | supporting results |
-| `corollary` | shared with `theorem` | italic body | immediate consequences |
-| `proposition` | shared with `theorem` | italic body | minor results |
-| `remark` | unnumbered (`*`) | upright body | clarifications, caveats |
-| `note` | unnumbered (`*`) | upright body | side observations |
-
-- All take an optional name in brackets: `\begin{theorem}[Squeeze Theorem]...\end{theorem}`
-- `theorem`, `lemma`, `corollary`, `proposition` share one counter — they increment together within a section.
-- Use `remark`/`note` freely inline; they don't break the numbering sequence.
+- **Definitions and theorems**: wrap formal definitions in `\begin{definition}{Name}{label}...\end{definition}` and named theorems in `\begin{theorem}{Name}{label}...\end{theorem}`. These are `newtcbtheorem` environments (red/blue boxes) with prefixes `def:` and `thm:` respectively. Always give a descriptive kebab-case label (e.g. `{lin-eq}`, `{fubini}`). Use judgement to identify statements that are definitions or theorems by their mathematical content. Cross-reference with `\ref{def:label}` or `\ref{thm:label}` when later text refers back to a named definition or theorem.
 
 ## Handwriting Transcription
 

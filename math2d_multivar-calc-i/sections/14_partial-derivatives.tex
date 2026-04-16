@@ -37,7 +37,7 @@ $f(x,y,z)=k$ gives level surfaces: concentric spheres.
 
 \subsection{Limits and Continuity}
 
-\begin{definition}[Limit]
+\begin{definition}{Limit}{limit}
 $\displaystyle\lim_{(x,y)\to(a,b)}f(x,y) = L$:
 as $(x,y)$ approaches $(a,b)$, $f(x,y)$ tends to $L$.
 
@@ -51,7 +51,7 @@ Formally (when $L\neq\pm\infty$):
 \]
 \end{definition}
 
-\begin{definition}[Continuity]
+\begin{definition}{Continuity}{continuity}
 $f(x,y)$ continuous at $(a,b)$
 $\;\Longleftrightarrow\;$
 $\displaystyle\lim_{(x,y)\to(a,b)}f(x,y) = f(a,b)$.
@@ -105,7 +105,7 @@ When $k=1$: $\displaystyle\lim = 0$. \; Contradiction $\Longrightarrow$ limit do
 
 \subsection{Partial Derivatives}
 
-\begin{definition}[Partial derivative]
+\begin{definition}{Partial derivative}{partial-deriv}
 Given $f(x,y)$, let $y=$ constant $b$ $\;\Longrightarrow\;$ $g(x)=f(x,b)$.
 \[
     \frac{dg}{dx} = \pd{f}{x}\bigg|_{(x,b)} = f_{x}(x,b)
@@ -153,7 +153,7 @@ $f(x,y,z) = x^{yz}$. \; Write $f = e^{yz\ln x}$:
     f_{yx} = \frac{\partial^{2}f}{\partial x\,\partial y}
 \]
 
-\begin{theorem}[Clairaut's]
+\begin{theorem}{Clairaut's Theorem}{clairaut}
 $f_{xy}=f_{yx}$ — mixed partial derivatives commute (when both are continuous).
 \end{theorem}
 
@@ -208,7 +208,7 @@ $\begin{pmatrix}x\\y\end{pmatrix}
 + \lambda\begin{pmatrix}1\\f'(x_{0})\end{pmatrix}$
 — passes through $P$, parallel to tangent vector.
 
-\begin{definition}[Tangent plane]
+\begin{definition}{Tangent plane}{tangent-plane}
 Tangent plane to surface $z=f(x,y)$ at $P(x_{0},y_{0},z_{0})$:
 \[
     z = z_{0} + f_{x}(x_{0},y_{0})(x-x_{0}) + f_{y}(x_{0},y_{0})(y-y_{0})
@@ -243,7 +243,7 @@ $\mathbf{n}=\mathbf{u}\times\mathbf{v}=\begin{pmatrix}-f_{x}\\-f_{y}\\1\end{pmat
     0 = -f_{x}(x-x_{0})-f_{y}(y-y_{0})+(z-z_{0})
 \]
 
-\begin{definition}[Linear approximation]
+\begin{definition}{Linear approximation}{linear-approx}
 $f(x_{0}+\Delta x,\,y_{0}+\Delta y)
 \approx f(x_{0},y_{0})+f_{x}(Q)\,\Delta x+f_{y}(Q)\,\Delta y$
 
@@ -255,7 +255,7 @@ Total differential: $dz = f_{x}\dd{x}+f_{y}\dd{y}$
 Recall single variable:
 $\dfrac{d}{dx}f(g(x))=f'(g(x))\,g'(x)=\dfrac{df}{dg}\,\dfrac{dg}{dx}$
 
-\begin{theorem}
+\begin{theorem}{}{chain-rule-one-var}
 If $f(x,y)$ is differentiable and $x(t)$, $y(t)$ are differentiable, then
 $f(x(t),y(t))$ is differentiable w.r.t.\ $t$:
 \[
@@ -279,7 +279,7 @@ $\dfrac{dx}{dt}=2$, \; $\dfrac{dy}{dt}=\dfrac{1}{2}t^{-1/2}$
 \end{align*}
 \end{example}
 
-\begin{theorem}[Chain rule — two intermediate variables]
+\begin{theorem}{Chain rule — two intermediate variables}{chain-rule-two-var}
 If $f(x,y)$ is differentiable and $x(s,t)$, $y(s,t)$ are differentiable,
 then $f(x(s,t),y(s,t))$ is differentiable w.r.t.\ $s$ and $t$:
 \[
@@ -348,7 +348,7 @@ for a function $f(x,y)$.
 \end{tikzpicture}
 \end{center}
 
-\begin{definition}[Directional derivative]
+\begin{definition}{Directional derivative}{dir-deriv}
 \[
     D_{\hat{\mathbf{u}}}\,f(x_{0},y_{0})
     = \lim_{h\to 0}\frac{f(x_{0}+ha,\,y_{0}+hb)-f(x_{0},y_{0})}{h}
@@ -368,7 +368,7 @@ $P=(1,2)$.
 \]
 \end{example}
 
-\begin{definition}[Gradient]
+\begin{definition}{2D Gradient}{gradient-2d}
 The gradient of $f(x,y)$ is
 \[
     \nabla f = \begin{pmatrix}f_{x}\\f_{y}\end{pmatrix}
@@ -419,10 +419,16 @@ At any point on a surface, there are directions $\phi$, $\phi+\pi$ for which $D_
 
 \subsubsection{Higher Dimensions}
 
-$\nabla f = \ve{f_{x_{1}},\,f_{x_{2}},\,\dots,\,f_{x_{n}}}$, \;
-$\R^{n}\mapsto\R^{n}$.
+\begin{definition}{Gradient}{gradient}
+	$\nabla f = \ve{f_{x_{1}},\,f_{x_{2}},\,\dots,\,f_{x_{n}}}$, \;
+	$\R^{n}\mapsto\R^{n}$.
+\end{definition}
 
-$\nabla T$ indicates the direction and magnitude of most rapid temperature change.
+
+\begin{example}
+	$\nabla T$ indicates the direction and magnitude of most rapid temperature change.
+\end{example}
+
 
 \begin{example}
 $f = \dfrac{e^{xz}}{x}$, \;
@@ -478,7 +484,7 @@ So $\nabla f(P)$ is a normal vector to the level surface at $P$.
 \end{tikzpicture}
 \end{center}
 
-\begin{definition}[Tangent plane to a level surface]
+\begin{definition}{Tangent plane to a level surface}{tangent-plane-level}
 Tangent plane to $f(x,y,z)=0$ at $P$ is
 \[
     \nabla f(P)\cdot(\mathbf{x}-P)=0
@@ -547,7 +553,7 @@ Climb as fast as possible: $\mathbf{r}'(t)\parallel\nabla f(\mathbf{r}(t))$.
 
 \subsection{Maximum and Minimum Values}
 
-\begin{definition}[Local maximum]
+\begin{definition}{Local maximum}{local-max}
 $f(\mathbf{x})$, $\R^{n}\mapsto\R$. \;
 $x=\xi$ is a local maximum if $f(\mathbf{y})\le f(\xi)$ for all $\mathbf{y}$ near $\xi$.
 
@@ -571,14 +577,14 @@ for small $h>0$: $f(\xi+(h,0,\ldots))>f(\xi)$,
 so we can take a small step to increase $f$ — $\xi$ is not a local max.
 Vice versa, not min.
 
-\begin{definition}[Critical point]
+\begin{definition}{Critical point}{critical-pt}
 $f(\xi)$ is a critical point $\;\Longleftrightarrow\;$ $\nabla f(\xi)$
 is either $\mathbf{0}$ or DNE.
 
 Local max/min $\;\Longrightarrow\;$ critical point (but not conversely).
 \end{definition}
 
-\begin{definition}[Saddle point]
+\begin{definition}{Saddle point}{saddle-pt}
 A critical point where the graph crosses its tangent plane.
 \end{definition}
 
@@ -593,7 +599,7 @@ $\;\Longrightarrow\;$ $P$ is a saddle point.
 
 \subsubsection{Multivariable Second Derivative Test}
 
-\begin{theorem}[Second derivative test]
+\begin{theorem}{Second derivative test}{second-deriv-test}
 Suppose $f(x,y)$ has continuous second derivatives near
 $\xi=(x_{0},y_{0})$ with $\nabla f(\xi)=\mathbf{0}$.
 Define
@@ -755,7 +761,7 @@ If $g(\mathbf{x})=0$ has corners or endpoints,
 the Lagrange method may miss extreme there.
 \end{remark}
 
-\begin{theorem}[Extreme Value Theorem]
+\begin{theorem}{Extreme Value Theorem}{evt}
 Suppose $f\colon D\to\R$ is continuous on a closed, bounded $D$.
 \begin{enumerate}[nosep]
     \item Find critical points in $D$ by $\nabla f=\mathbf{0}$ in $D$.

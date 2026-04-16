@@ -1,6 +1,6 @@
 \subsection{Linear Systems of Equations}
 
-\begin{definition}[Linear Equation]
+\begin{definition}{Linear Equation}{lin-eq}
 A \textbf{linear equation} with $n$ unknowns $x_1, x_2, \ldots, x_n$ is an equation of the form
 \[
   a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b,
@@ -8,7 +8,7 @@ A \textbf{linear equation} with $n$ unknowns $x_1, x_2, \ldots, x_n$ is an equat
 where $a_1, a_2, \ldots, a_n, b \in \mathbb{R}$ are given constants.
 \end{definition}
 
-\begin{definition}[$m \times n$ Linear System]
+\begin{definition}{$m \times n$ Linear System}{lin-sys}
 An $m \times n$ \textbf{linear system} consists of $m$ linear equations in $n$ unknowns:
 \[
   \begin{cases}
@@ -54,7 +54,7 @@ Any linear system has exactly one of three types of solution sets: no solution, 
 
 \subsubsection{Row Operations}
 
-\begin{definition}[Elementary Row Operations]
+\begin{definition}{Elementary Row Operations}{elem-row-ops}
 The three \textbf{elementary row operations} on a linear system are:
 \begin{enumerate}
   \item Multiply a row by a non-zero scalar.
@@ -71,7 +71,7 @@ $\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$. Row operations are applied to this mat
 
 \subsubsection{Echelon Form}
 
-\begin{definition}[Echelon Form]
+\begin{definition}{Echelon Form}{echelon}
 A matrix is in \textbf{echelon form} if:
 \begin{enumerate}
   \item All zero rows are at the bottom of the matrix (if any).
@@ -81,7 +81,7 @@ A matrix is in \textbf{echelon form} if:
 A \textbf{zero row} is a row consisting entirely of zeros. A \textbf{pivot position} is the first non-zero entry in a row.
 \end{definition}
 
-\begin{definition}[Reduced Echelon Form]
+\begin{definition}{Reduced Echelon Form}{rref}
 A matrix is in \textbf{reduced echelon form} (RREF) if it is in echelon form and additionally:
 \begin{enumerate}
   \item Every pivot is equal to $1$.
@@ -259,7 +259,7 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
 
 \subsubsection{Basic and Free Variables}
 
-\begin{definition}[Basic and Free Variables]
+\begin{definition}{Basic and Free Variables}{basic-free-vars}
 Variables corresponding to pivot positions are called \textbf{basic variables}. Variables corresponding to non-pivot columns are called \textbf{free variables}.
 \end{definition}
 
@@ -285,12 +285,12 @@ Variables corresponding to pivot positions are called \textbf{basic variables}. 
 
 \subsubsection{Existence and Uniqueness of Solutions}
 
-\begin{theorem}
+\begin{theorem}{}{inconsistent}
 A system is inconsistent (no solutions) if and only if there exists a row of the form
 $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b\,\bigr]$ with $b \neq 0$ in its echelon form.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}{}{unique-inf}
 Assuming the system is consistent:
 \begin{itemize}
   \item The system has infinitely many solutions if and only if there exists at least one free variable.
@@ -366,7 +366,7 @@ Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or 
 
 \subsubsection{Linear Combinations}
 
-\begin{definition}[Linear Combination]
+\begin{definition}{Linear Combination}{lin-combo}
 Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \ldots, c_p \in \R$. A \textbf{linear combination} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is a vector of the form
 \[
   c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p.
@@ -441,7 +441,7 @@ Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \
 
 \subsubsection{Span}
 
-\begin{definition}[Span]
+\begin{definition}{Span}{span}
 Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{span} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is the set of all linear combinations of these vectors:
 \[
   \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p\}
@@ -630,7 +630,7 @@ the product $\mathbf{A}\mathbf{x}$ can also be computed as
 
 \subsection{Existence of Solutions}
 
-\begin{theorem}
+\begin{theorem}{}{existence}
 Let $\mathbf{A}$ be an $m \times n$ matrix with columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The following statements are equivalent:
 \begin{enumerate}
   \item The linear system $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b} \in \R^m$.
@@ -658,7 +658,7 @@ If the echelon form of $\mathbf{A}$ does \emph{not} have a pivot in every row, t
 
 \subsection{Homogeneous and Non-Homogeneous Linear Systems}
 
-\begin{definition}[Homogeneous / Non-Homogeneous System]
+\begin{definition}{Homogeneous / Non-Homogeneous System}{homo-sys}
 A linear system is \textbf{homogeneous} if it has the form $\mathbf{A}\mathbf{x} = \mathbf{0}$.
 A system is \textbf{non-homogeneous} if $\mathbf{A}\mathbf{x} = \mathbf{b}$ with $\mathbf{b} \neq \mathbf{0}$.
 \end{definition}
@@ -750,7 +750,7 @@ Let $x_3 = t$. Then $x_1 = 2 - t$ and $x_2 = 2 - t$:
 The solution decomposes into a particular solution $\mathbf{x}_p$ to $\mathbf{A}\mathbf{x} = \mathbf{b}$ plus the general solution $\mathbf{x}_h$ to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
 \end{example}
 
-\begin{theorem}
+\begin{theorem}{}{general-soln}
 Let $\mathbf{A} \in \R^{m \times n}$, $\mathbf{b} \in \R^m$. If $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a particular solution $\mathbf{x}_p$, then the general solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ is
 \[
   \mathbf{x} = \mathbf{x}_p + \mathbf{x}_h,
@@ -806,7 +806,7 @@ Geometrically, the solution set of $\mathbf{A}\mathbf{x} = \mathbf{b}$ is the ho
 
 \subsection{Linear Independence}
 
-\begin{definition}[Linear Dependence / Independence]
+\begin{definition}{Linear Dependence / Independence}{lin-dep-indep}
 Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \in \R^m$. The vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are \textbf{linearly dependent} if and only if
 \[
   x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n = \mathbf{0}

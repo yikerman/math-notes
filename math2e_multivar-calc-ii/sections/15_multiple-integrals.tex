@@ -18,7 +18,7 @@ Extend from 2D via Riemann sums --- think of density:
 \]
 where $\Delta V = \Delta x\,\Delta y\,\Delta z$.
 
-\begin{theorem}[Fubini's Theorem in 3D]
+\begin{theorem}{Fubini's Theorem in 3D}{fubini-3d}
 For a rectangular box $B = [a,b]\times[c,d]\times[r,s]$:
 \[
     \iiint_B f(x,y,z)\dd{V}
@@ -28,7 +28,7 @@ For a rectangular box $B = [a,b]\times[c,d]\times[r,s]$:
 
 \subsubsection{Type I Regions}
 
-\begin{definition}[Type I Region]
+\begin{definition}{Type I Region}{type-i}
 \[
     E = \{(x,y,z) \mid (x,y)\in D,\; u_1(x,y)\leq z\leq u_2(x,y)\}
 \]
@@ -180,9 +180,9 @@ From $x + 2y + z = 2$: $z = 2 - x - 2y$, so $z \in [0,\, 2 - x - 2y]$.
 
 \subsubsection{Type II and Type III Regions}
 
-Analogous to Type I, with the roles of the axes permuted.
+Analogous to Type I (Definition~\ref{def:type-i}), with the roles of the axes permuted.
 
-\begin{definition}[Type II Region]
+\begin{definition}{Type II Region}{type-ii}
 \[
     E = \{(x,y,z) \mid (y,z)\in D,\; u_1(y,z)\leq x\leq u_2(y,z)\}
 \]
@@ -192,7 +192,7 @@ Analogous to Type I, with the roles of the axes permuted.
 \]
 \end{definition}
 
-\begin{definition}[Type III Region]
+\begin{definition}{Type III Region}{type-iii}
 \[
     E = \{(x,y,z) \mid (x,z)\in D,\; u_1(x,z)\leq y\leq u_2(x,z)\}
 \]
@@ -240,12 +240,13 @@ Combined with the original lower bound $y\geq\tfrac{1}{2}x$:
 
 \subsubsection{Cylindrical Coordinates}
 
+\begin{definition}{Cylindrical Coordinates}{cylindrical-coord}
 Cylindrical coordinates $(r,\theta,z)$:
-
 \begin{itemize}
     \item Cylindrical $\to$ rectangular: $x = r\cos\theta$, \; $y = r\sin\theta$, \; $z = z$
     \item Rectangular $\to$ cylindrical: $r = \sqrt{x^2+y^2}$, \; $\theta = \arctan\!\dfrac{y}{x}$ (adjust for quadrant), \; $z = z$
 \end{itemize}
+\end{definition}
 
 For a Type I region
 \[
@@ -327,7 +328,14 @@ where $dA = \dd{x} \dd{y} = r\dd{r}\dd{\theta}$
 
 \subsubsection{Spherical Coordinates}
 
-Spheres have more rotational symmetry --- use spherical coordinates $(\rho, \theta, \varphi)$ (radius, longitude, latitude).
+\begin{definition}{Spherical Coordinates}{spherical-coord}
+Spherical coordinates $(\rho, \theta, \varphi)$ (radius, longitude, latitude). Conversion formulas ($r = \sqrt{x^2+y^2} = \rho\sin\varphi$ is the distance to the $z$-axis):
+\begin{align*}
+    x &= r\cos\theta = \rho\sin\varphi\cos\theta \\
+    y &= r\sin\theta = \rho\sin\varphi\sin\theta \\
+    z &= \rho\cos\varphi
+\end{align*}
+\end{definition}
 
 \begin{center}
 	\begin{tikzpicture}[scale=1]
@@ -387,13 +395,6 @@ Spheres have more rotational symmetry --- use spherical coordinates $(\rho, \the
 		\end{axis}
 	\end{tikzpicture}
 \end{center}
-
-Conversion formulas ($r = \sqrt{x^2+y^2} = \rho\sin\varphi$ is the distance to the $z$-axis):
-\begin{align*}
-    x &= r\cos\theta = \rho\sin\varphi\cos\theta \\
-    y &= r\sin\theta = \rho\sin\varphi\sin\theta \\
-    z &= \rho\cos\varphi
-\end{align*}
 
 \textbf{Integration.} The volume element in spherical coordinates:
 \[
