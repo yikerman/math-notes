@@ -28,6 +28,7 @@ All courses `\input{../preamble}` before `\begin{document}`. Read `preamble.tex`
 ## Formatting (enforce regardless of handwriting style)
 
 - **Matrices**: use square brackets — `\begin{bmatrix}...\end{bmatrix}` for plain matrices and `\left[\begin{array}{...}...\end{array}\right]` for augmented matrices.
+- **Determinants**: use `\det(\mathbf{M})` for a named matrix or `\det\begin{bmatrix}...\end{bmatrix}` for a matrix literal — never vertical bars `|M|` or `\begin{vmatrix}...\end{vmatrix}`.
 - **Vectors as components**: use angle brackets via `\ve{...}`, e.g. `\ve{x(t),\, y(t)}` — never parentheses for inline/horizontal component vectors. For vertical (column) vectors, use `\begin{bmatrix}...\end{bmatrix}`.
 - **Vector names**: use `\mathbf{v}` (lowercase bold), not `\vec{v}` (arrows).
 - **Matrix names**: use `\mathbf{A}` (uppercase bold) — e.g. `\mathbf{A}`, `\mathbf{R}_i`.

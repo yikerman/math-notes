@@ -326,6 +326,33 @@ where $D$ is a polar region $\{(r,\theta) \mid \alpha\leq\theta\leq\beta,\; h_1(
 \]
 where $dA = \dd{x} \dd{y} = r\dd{r}\dd{\theta}$
 
+\begin{example}
+\[
+    \int_{-2}^{2}\!\int_{-\sqrt{4-y^2}}^{\sqrt{4-y^2}}\!\int_{\sqrt{x^2+y^2}}^{2} xz\dd{z}\dd{x}\dd{y}
+\]
+
+Observation: $z$ is not inside the $\sqrt{\,\cdot^2 \pm \cdot^2\,}$ bounds --- cylindrical coordinates may simplify.
+
+\[
+    E = \{(x,y,z) \mid y\in[-2,2],\; x\in[-\sqrt{4-y^2},\sqrt{4-y^2}],\; z\in[\sqrt{x^2+y^2},\,2]\}
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[thick,->] (-2.5,0) -- (2.5,0) node[right]{$x$};
+    \draw[thick,->] (0,-2.5) -- (0,2.5) node[above]{$y$};
+    \draw[thick] (0,0) circle (2);
+    \node[below] at (0,-2) {\small$-2$};
+    \node[above] at (0,2) {\small$2$};
+\end{tikzpicture}
+\end{center}
+
+Shadow on $xy$-plane is the disk of radius $2$: $\theta\in[0,2\pi]$, $r\in[0,2]$. Vertical fiber: $z\in[r,\,2]$.
+\[
+    \int_0^{2\pi}\!\int_0^{2}\!\int_r^{2} (r\cos\theta)\,z\dd{z}\,r\dd{r}\dd{\theta}
+\]
+\end{example}
+
 \subsubsection{Spherical Coordinates}
 
 \begin{definition}{Spherical Coordinates}{spherical-coord}
@@ -497,5 +524,178 @@ In spherical coordinates:
     \operatorname{Vol}(E)
     = \int_0^{\pi/4}\!\int_0^{2\pi}\!\int_0^{\sqrt{2}} \rho^2\sin\varphi\dd{\rho}\dd{\theta}\dd{\varphi}
 \]
+\end{example}
+
+\subsection{Change of Variables}
+
+\subsubsection{One-Variable Recall}
+
+The 1D substitution rule $x = g(u)$ ($u$-sub):
+\[
+    \int_a^b f(x)\dd{x} = \int_\alpha^\beta f(g(u))\,g'(u)\dd{u}
+\]
+The factor $g'(u) = \dd{x}/\dd{u}$ --- the \emph{1D Jacobian} --- rescales a strip of width $\dd{u}$ to a strip of width $\dd{x}$.
+
+\subsubsection{General 2D Change of Variables}
+
+\begin{definition}{Transformation}{transformation-2d}
+	A \emph{transformation} $T\colon (u,v) \mapsto (x,y)$ is a one-to-one map
+	\[
+	x = g(u,v),\qquad y = h(u,v)
+	\]
+	from a region $S$ in the $uv$-plane to a region $R = T(S)$ in the $xy$-plane.
+\end{definition}
+
+\begin{example}[Polar as Change of Variables]
+
+We have already used one 2D change of variables: rectangular $\to$ polar. A uniform $(r,\theta)$ grid maps to a polar web in the $xy$-plane.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % uniform rθ grid
+    \draw[step=0.4, blue!40, thin] (0,0) grid (2,2);
+    \draw[thick,->] (-0.2,0) -- (2.3,0) node[right]{$r$};
+    \draw[thick,->] (0,-0.2) -- (0,2.3) node[above]{$\theta$};
+    \node at (1,-0.6) {\small uniform $(r,\theta)$ grid};
+\end{tikzpicture}
+\hspace{0.4cm}
+\begin{tikzpicture}[scale=0.8]
+    \node at (0,0) {$\xrightarrow{\;T\;}$};
+\end{tikzpicture}
+\hspace{0.4cm}
+\begin{tikzpicture}[scale=0.8]
+    \foreach \r in {0.4,0.8,1.2,1.6,2.0} {
+        \draw[blue!40] (0,0) circle (\r);
+    }
+    \foreach \a in {0,30,60,90,120,150,180,210,240,270,300,330} {
+        \draw[blue!40] (0,0) -- (\a:2.0);
+    }
+    \draw[thick,->] (-2.2,0) -- (2.3,0) node[right]{$x$};
+    \draw[thick,->] (0,-2.2) -- (0,2.3) node[above]{$y$};
+    \node at (0,-2.6) {\small polar web in $xy$};
+\end{tikzpicture}
+\end{center}
+
+\[
+    \iint_R f(x,y)\dd{A}
+    = \iint_S f(r\cos\theta,\, r\sin\theta)\,r\dd{r}\dd{\theta}
+\]
+The extra factor $r$ is the 2D Jacobian --- the local area-scaling factor.
+
+\end{example}
+
+\begin{center}
+\begin{tikzpicture}
+    % S in uv plane
+    \draw[thick] (0,0) circle (0.9);
+    \filldraw (0.25,0.2) circle (1pt) node[above right]{\small$(u_1,v_1)$};
+    \draw[thick,->] (-1.3,-1.1) -- (1.4,-1.1) node[right]{$u$};
+    \draw[thick,->] (-1.3,-1.1) -- (-1.3,1.2) node[above]{$v$};
+    \node at (0,-1.4) {$S$};
+    \node at (0,-2) {\small$\displaystyle\iint_S f\dd{\tilde{A}}$};
+    % arrows
+    \draw[->,thick] (1.7, 0.25) to[bend left=15] node[midway,above]{$T$} (4.3, 0.25);
+    \draw[->,thick] (4.3, -0.25) to[bend left=15] node[midway,below]{$T^{-1}$} (1.7, -0.25);
+    % R in xy plane
+    \begin{scope}[shift={(6,0)}]
+        \draw[thick,rotate=20] (0,0) ellipse (1.1 and 0.7);
+        \filldraw (0.4,0.3) circle (1pt) node[above right]{\small$(x_1,y_1)$};
+        \draw[thick,->] (-1.3,-1.1) -- (1.4,-1.1) node[right]{$x$};
+        \draw[thick,->] (-1.3,-1.1) -- (-1.3,1.2) node[above]{$y$};
+        \node at (0,-1.4) {$R$};
+        \node at (0,-2) {\small$\displaystyle\iint_R f\dd{A}$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}{Jacobian Matrix}{jacobian-matrix}
+The \emph{Jacobian matrix} of $T\colon(u,v)\mapsto(x,y)$ is
+\[
+    \mathbf{J} = \begin{bmatrix}
+        \pd{x}{u} & \pd{x}{v} \\[4pt]
+        \pd{y}{u} & \pd{y}{v}
+    \end{bmatrix}
+\]
+\end{definition}
+
+\begin{definition}{Jacobian}{jacobian}
+The \emph{Jacobian} of $T$ is the determinant of its Jacobian matrix:
+\[
+    \pd{(x,y)}{(u,v)}
+    = \det(\mathbf{J})
+    = \pd{x}{u}\pd{y}{v} - \pd{x}{v}\pd{y}{u}
+\]
+\end{definition}
+
+\textbf{How the Jacobian works.} $T$ turns lines of constant $u$ and $v$ into a distorted grid. A small rectangle $[u,u+\dd{u}]\times[v,v+\dd{v}]$ maps to a near-parallelogram with edges
+\[
+    \dd{\mathbf{x}} = \begin{bmatrix}
+        \pd{x}{u} & \pd{x}{v} \\[4pt]
+        \pd{y}{u} & \pd{y}{v}
+    \end{bmatrix}\begin{bmatrix}\dd{u}\\0\end{bmatrix},\qquad
+    \dd{\mathbf{y}} = \begin{bmatrix}
+        \pd{x}{u} & \pd{x}{v} \\[4pt]
+        \pd{y}{u} & \pd{y}{v}
+    \end{bmatrix}\begin{bmatrix}0\\\dd{v}\end{bmatrix}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+    % uv rectangle
+    \draw[step=0.4, blue!30, thin] (-0.4,-0.4) grid (1.6,1.6);
+    \draw[thick,fill=red!20] (0.4,0.4) rectangle (0.8,0.8);
+    \draw[thick,->] (0.4,0.35) -- (0.8,0.35) node[midway,below]{\scriptsize$\dd{u}$};
+    \draw[thick,->] (0.35,0.4) -- (0.35,0.8) node[midway,left]{\scriptsize$\dd{v}$};
+    \draw[thick,->] (-0.5,-0.4) -- (1.8,-0.4) node[right]{$u$};
+    \draw[thick,->] (-0.4,-0.5) -- (-0.4,1.8) node[above]{$v$};
+    % arrow
+    \draw[->,thick] (2.2,0.6) -- (3.6,0.6) node[midway,above]{$T$};
+    % xy parallelogram
+    \begin{scope}[shift={(5,0)}]
+        \foreach \i in {0,...,4} {
+            \draw[blue!30] plot[smooth,domain=0:2.0,samples=20] (\x, {0.35*\i + 0.12*sin(180*\x)});
+        }
+        \foreach \j in {0,...,4} {
+            \draw[blue!30] plot[smooth,domain=0:1.4,samples=20] ({0.4*\j + 0.1*sin(180*\x)}, \x);
+        }
+        \coordinate (A) at (0.5,0.5);
+        \coordinate (B) at (0.9,0.4);
+        \coordinate (C) at (0.8,0.8);
+        \coordinate (D) at (0.4,0.9);
+        \draw[thick,fill=red!20] (A) -- (B) -- (C) -- (D) -- cycle;
+        \draw[thick,->] (A) -- (B) node[midway,below right]{\scriptsize$\dd{\mathbf{y}}$};
+        \draw[thick,->] (A) -- (D) node[midway,left]{\scriptsize$\dd{\mathbf{x}}$};
+        \draw[thick,->] (-0.2,0) -- (2.2,0) node[right]{$x$};
+        \draw[thick,->] (0,-0.2) -- (0,1.8) node[above]{$y$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+The signed area of that parallelogram is
+\[
+    \dd{A}
+    = \det\!\begin{bmatrix}\dd{\mathbf{x}} & \dd{\mathbf{y}}\end{bmatrix}
+    = \det(\mathbf{J})\dd{u}\dd{v}
+\]
+
+\begin{theorem}{Change of Variables}{change-of-variables}
+Given transformation $T\colon S\to R$,
+\[
+    \iint_R f(x,y)\dd{A}
+    = \iint_S f(x(u,v),\,y(u,v))\,\abs{\pd{(x,y)}{(u,v)}}\dd{u}\dd{v}
+\]
+\end{theorem}
+
+\begin{example}[Polar]
+For $x = r\cos\theta$, $y = r\sin\theta$:
+\[
+    \pd{(x,y)}{(r,\theta)}
+    = \det\!\begin{bmatrix}
+        \cos\theta & -r\sin\theta \\
+        \sin\theta & r\cos\theta
+    \end{bmatrix}
+    = r\cos^2\theta + r\sin^2\theta = r
+\]
+which recovers $\dd{A} = r\dd{r}\dd{\theta}$.
 \end{example}
 
