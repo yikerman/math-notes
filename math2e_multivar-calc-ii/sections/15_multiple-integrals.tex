@@ -618,6 +618,21 @@ The \emph{Jacobian matrix} of $T\colon(u,v)\mapsto(x,y)$ is
 \]
 \end{definition}
 
+It represents linear approximation, since
+\begin{align*}
+    \Delta x &\approx \pd{x}{u}\Delta u + \pd{x}{v}\Delta v \\
+    \Delta y &\approx \pd{y}{u}\Delta u + \pd{y}{v}\Delta v
+\end{align*}
+so that
+\[
+    \begin{bmatrix}\Delta x \\ \Delta y\end{bmatrix}
+    \approx \begin{bmatrix}
+        \pd{x}{u} & \pd{x}{v} \\[4pt]
+        \pd{y}{u} & \pd{y}{v}
+    \end{bmatrix}\begin{bmatrix}\Delta u \\ \Delta v\end{bmatrix}
+    = \mathbf{J}\begin{bmatrix}\Delta u \\ \Delta v\end{bmatrix}
+\]
+
 \begin{definition}{Jacobian}{jacobian}
 The \emph{Jacobian} of $T$ is the determinant of its Jacobian matrix:
 \[
