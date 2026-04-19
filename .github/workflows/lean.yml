@@ -1,0 +1,22 @@
+name: Build Lean
+
+on:
+  push:
+    paths:
+      - 'math3a_linear-algebra/Math3a/**'
+      - '.github/workflows/lean.yml'
+  pull_request:
+    paths:
+      - 'math3a_linear-algebra/Math3a/**'
+      - '.github/workflows/lean.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: math3a_linear-algebra/Math3a
