@@ -904,3 +904,89 @@ Form $\mathbf{A} = \bigl[\,\mathbf{v}_1 \;\; \cdots \;\; \mathbf{v}_n\,\bigr] \i
 \]
 Hence $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
 \end{proof}
+
+\subsection{Linear Transformations}
+
+An $m \times n$ matrix $\mathbf{A}$ can be thought of as a map
+\[
+  \R^n \xrightarrow{\mathbf{A}} \R^m, \qquad \mathbf{x} \mapsto \mathbf{A}\mathbf{x}.
+\]
+Think of $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ as a transformation.
+
+\begin{definition}{Linear Transformation}{lin-transf}
+A map $T: \R^n \to \R^m$ is a \textbf{linear transformation} if
+\begin{enumerate}
+  \item $T(c\mathbf{x}) = c\, T(\mathbf{x})$ for all $c \in \R$,
+  \item $T(\mathbf{x}_1 + \mathbf{x}_2) = T(\mathbf{x}_1) + T(\mathbf{x}_2)$ for all $\mathbf{x}_1, \mathbf{x}_2 \in \R^n$.
+\end{enumerate}
+\end{definition}
+
+Matrix multiplication $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ satisfies both properties:
+\begin{align*}
+  \mathbf{A}(c\mathbf{x}) &= c\, \mathbf{A}\mathbf{x}, \\
+  \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) &= \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2.
+\end{align*}
+
+\begin{example}
+  Let $T: \R^2 \to \R^2$ be defined by
+  \[
+    T\!\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)
+    = \begin{bmatrix} x_1 + x_2 + 1 \\ 2x_1 - 3x_2 + 2 \end{bmatrix}.
+  \]
+  Take $c = 0$. Then
+  \[
+    T(c\mathbf{x}) = T(\mathbf{0}) = \begin{bmatrix} 1 \\ 2 \end{bmatrix},
+    \qquad
+    c\, T(\mathbf{x}) = \begin{bmatrix} 0 \\ 0 \end{bmatrix}.
+  \]
+  Since $T(c\mathbf{x}) \neq c\, T(\mathbf{x})$, $T$ is \textbf{not} a linear transformation.
+\end{example}
+
+\subsubsection{Domain, Codomain, and Range}
+
+For $T: \R^n \to \R^m$:
+\begin{itemize}
+  \item \textbf{Domain}: $\R^n$.
+  \item \textbf{Codomain}: $\R^m$.
+  \item \textbf{Range}: $\{\mathbf{y} = T(\mathbf{x}) \mid \mathbf{x} \in \text{domain}\} \subseteq \R^m$.
+\end{itemize}
+
+\begin{example}
+  Let $T: \R^2 \to \R^2$ be defined by
+  \[
+    T\!\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)
+    = \begin{bmatrix} x_1 + x_2 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}
+      \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+  \]
+  Then
+  \[
+    \mathrm{Range}(T)
+    = \mathrm{span}\!\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \end{bmatrix}\right\}
+    = \left\{ \begin{bmatrix} t \\ 0 \end{bmatrix} \,\bigg|\, t \in \R \right\}.
+  \]
+  Every input vector in $\R^2$ collapses onto the $x$-axis:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      % Domain
+      \draw[->] (-1.8,0) -- (1.8,0);
+      \draw[->] (0,-1.8) -- (0,1.8);
+      \foreach \a in {20,60,110,160,210,260,310,350} {
+        \draw[->, thick] (0,0) -- (\a:1.4);
+      }
+      \node at (0,-2.3) {domain $\R^2$};
+      % Arrow
+      \draw[->, very thick] (2.3,0) -- (4.3,0) node[midway, above] {$T$};
+      % Codomain
+      \begin{scope}[xshift=6.6cm]
+        \draw[->] (-1.8,0) -- (1.8,0);
+        \draw[->] (0,-1.8) -- (0,1.8);
+        \draw[->, thick] (0,0) -- (1.4,0);
+        \draw[->, thick] (0,0) -- (-1.4,0);
+        \node[right] at (1.5,0.3) {$\begin{bmatrix} x_1+x_2 \\ 0 \end{bmatrix}$};
+        \node at (0,-2.3) {codomain $\R^2$};
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  $T$ is \textbf{not onto} ($\mathrm{Range}(T) \neq \R^2$) and \textbf{not one-to-one} ($T(\mathbf{x}_1) = T(\mathbf{x}_2) \not\Rightarrow \mathbf{x}_1 = \mathbf{x}_2$).
+\end{example}
