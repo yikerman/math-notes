@@ -990,3 +990,51 @@ For $T: \R^n \to \R^m$:
   \end{center}
   $T$ is \textbf{not onto} ($\mathrm{Range}(T) \neq \R^2$) and \textbf{not one-to-one} ($T(\mathbf{x}_1) = T(\mathbf{x}_2) \not\Rightarrow \mathbf{x}_1 = \mathbf{x}_2$).
 \end{example}
+
+\subsubsection{Standard Matrix of a Linear Transformation}
+
+\begin{theorem}{Standard Matrix}{std-matrix}
+If $T: \R^n \to \R^m$ is a linear transformation, then
+\[
+  T(\mathbf{x}) = \mathbf{A}\mathbf{x}, \qquad \mathbf{A} \in \R^{m \times n},
+\]
+where
+\[
+  \mathbf{A} = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr].
+\]
+Here $\mathbf{e}_j = \begin{bmatrix} 0 \\ \vdots \\ 1 \\ \vdots \\ 0 \end{bmatrix}$ is the unit vector with $1$ only at position $j$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathbf{x} = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} = x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n$. Then
+\begin{align*}
+  T(\mathbf{x})
+  &= T(x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n) \\
+  &= x_1 T(\mathbf{e}_1) + x_2 T(\mathbf{e}_2) + \cdots + x_n T(\mathbf{e}_n)
+     \quad \text{(by linearity of } T\text{)} \\
+  &= \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr]
+     \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} \\
+  &= \mathbf{A}\mathbf{x}.
+\end{align*}
+\end{proof}
+
+\begin{example}[Rotation]
+  Let $T: \R^2 \to \R^2$ rotate $\mathbf{x}$ by $\theta$ counterclockwise.
+
+  \begin{center}
+  \begin{tikzpicture}
+    \draw[->] (-1.5,0)--(2,0);
+    \draw[->] (0,-0.5)--(0,2);
+    \draw[->,thick,blue] (0,0)--(1.5,0.6) node[right]{$\mathbf{x}$};
+    \draw[->,thick,red] (0,0)--(0.4,1.5) node[above]{$T(\mathbf{x})$};
+    \draw (0.8,0.32) arc[start angle=21.8, end angle=75, radius=0.86];
+    \node at (0.85,0.85) {$\theta$};
+  \end{tikzpicture}
+  \end{center}
+
+  \[
+    \mathbf{A}
+    = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \,\bigr]
+    = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}
+  \]
+\end{example}
