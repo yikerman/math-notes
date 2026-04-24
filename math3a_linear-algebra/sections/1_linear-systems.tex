@@ -1084,3 +1084,60 @@ Reframing via the equation $T(\mathbf{x}) = \mathbf{y}$:
   \item $T$ is onto $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\geq 1$ solution for every $\mathbf{y} \in \R^m$.
 \end{itemize}
 \end{remark}
+
+\begin{theorem}{One-to-One via Trivial Solution}{one-to-one-trivial}
+Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
+\[
+  T \text{ is one-to-one} \iff T(\mathbf{x}) = \mathbf{0} \text{ has only the trivial solution}.
+\]
+\end{theorem}
+
+\begin{remark}
+$T$ is one-to-one $\iff$ $\mathbf{A}$ has no free variables.
+\end{remark}
+
+\begin{proof}
+\textbf{($\Rightarrow$)} Assume $T(\mathbf{x}) = \mathbf{0}$ has only the trivial solution $\mathbf{x} = \mathbf{0}$. Suppose $T(\mathbf{x}_1) = T(\mathbf{x}_2)$. Then
+\begin{align*}
+  T(\mathbf{x}_1) - T(\mathbf{x}_2) &= \mathbf{0} \\
+  T(\mathbf{x}_1 - \mathbf{x}_2) &= \mathbf{0} && \text{(linearity of } T\text{)} \\
+  \mathbf{x}_1 - \mathbf{x}_2 &= \mathbf{0} && \text{(assumption)} \\
+  \mathbf{x}_1 &= \mathbf{x}_2,
+\end{align*}
+so $T$ is one-to-one.
+
+\textbf{($\Leftarrow$)} Suppose $T$ is one-to-one. Since $T(\mathbf{0}) = \mathbf{0}$, if $T(\mathbf{x}) = \mathbf{0} = T(\mathbf{0})$ then $\mathbf{x} = \mathbf{0}$ by the one-to-one definition.
+\end{proof}
+
+\begin{theorem}{Onto via Pivot in Every Row}{onto-pivot}
+Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
+\[
+  T \text{ is onto} \iff \text{the echelon form of } \mathbf{A} \text{ has a pivot in every row}.
+\]
+\end{theorem}
+
+\begin{remark}
+$T$ is onto $\iff$ $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent for every $\mathbf{y} \in \R^m$.
+\end{remark}
+
+\begin{proof}
+\textbf{($\Rightarrow$)} Contrapositive: suppose the echelon form of $\mathbf{A}$ is missing a pivot in some row. Then the augmented matrix $[\mathbf{A} \mid \mathbf{y}]$ row-reduces to
+\[
+  \left[\begin{array}{cccc|c}
+    * & * & \cdots & * & * \\
+    \vdots & & & \vdots & \vdots \\
+    0 & 0 & \cdots & 0 & b
+  \end{array}\right].
+\]
+Choose $\mathbf{y}$ so that $b \neq 0$; then the system is inconsistent, so $T$ is not onto.
+
+\textbf{($\Leftarrow$)} Suppose the echelon form of $\mathbf{A}$ has a pivot in every row. After row-reduction, no row of the form $[\,0\;\cdots\;0 \mid b\,]$ with $b \neq 0$ can occur, so $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent by \ref{thm:inconsistent}. Hence $T$ is onto.
+\end{proof}
+
+\begin{theorem}{One-to-One/Onto via Columns}{one-to-one-onto-cols}
+Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$.
+\begin{enumerate}
+  \item $T$ is one-to-one $\iff$ the columns of $\mathbf{A}$ are linearly independent.
+  \item $T$ is onto $\iff$ the columns of $\mathbf{A}$ span $\R^m$.
+\end{enumerate}
+\end{theorem}
