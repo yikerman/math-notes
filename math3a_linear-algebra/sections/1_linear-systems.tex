@@ -1038,3 +1038,49 @@ Let $\mathbf{x} = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} = x_1 \math
     = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}
   \]
 \end{example}
+\subsubsection{Identity Map}
+
+The \textbf{identity map} $T: \R^n \to \R^n$ is defined by $T(\mathbf{x}) = \mathbf{x}$.
+
+Its matrix is obtained column-by-column from the standard basis vectors $\mathbf{e}_1, \ldots, \mathbf{e}_n$:
+\[
+  T = \mathbf{A}
+  = \bigl[\,T(\mathbf{e}_1) \;\bigm|\; \cdots \;\bigm|\; T(\mathbf{e}_n)\,\bigr]
+  = \bigl[\,\mathbf{e}_1 \;\bigm|\; \cdots \;\bigm|\; \mathbf{e}_n\,\bigr]
+  = \begin{bmatrix}
+    1 & 0 & \cdots & 0 \\
+    0 & 1 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 1
+  \end{bmatrix}.
+\]
+
+\begin{definition}{Identity Matrix}{identity-matrix}
+The \textbf{identity matrix} $\mathbf{I}_n \in \R^{n \times n}$ is the square matrix with all ones on the diagonal and zeros elsewhere.
+\end{definition}
+
+\subsection{One-to-One and Onto Linear Transformations}
+
+Let $T: \R^n \to \R^m$ be a linear transformation.
+
+\begin{definition}{One-to-One}{one-to-one}
+$T$ is \textbf{one-to-one} if
+\[
+  T(\mathbf{x}_1) = T(\mathbf{x}_2) \;\Longrightarrow\; \mathbf{x}_1 = \mathbf{x}_2.
+\]
+\end{definition}
+
+\begin{definition}{Onto}{onto}
+$T$ is \textbf{onto} if for every $\mathbf{y} \in \R^m$ there exists $\mathbf{x} \in \R^n$ such that
+\[
+  T(\mathbf{x}) = \mathbf{y}.
+\]
+\end{definition}
+
+\begin{remark}
+Reframing via the equation $T(\mathbf{x}) = \mathbf{y}$:
+\begin{itemize}
+  \item $T$ is one-to-one $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\leq 1$ solution for every $\mathbf{y} \in \R^m$.
+  \item $T$ is onto $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\geq 1$ solution for every $\mathbf{y} \in \R^m$.
+\end{itemize}
+\end{remark}
