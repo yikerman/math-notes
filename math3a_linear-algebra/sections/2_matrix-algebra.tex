@@ -1,0 +1,141 @@
+\subsection{Matrix Addition \& Multiplication}
+
+An $m \times n$ matrix $\mathbf{A}$ has entries $a_{ij}$ with $i$ the row index and $j$ the column index:
+\[
+  \mathbf{A}
+  = \begin{bmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m1} & a_{m2} & \cdots & a_{mn}
+  \end{bmatrix}
+  = [a_{ij}].
+\]
+
+\subsubsection{Trivial Addition and Scalar Multiplication}
+
+\begin{definition}{Matrix Addition}{mat-add}
+Let $\mathbf{A}, \mathbf{B} \in \R^{m \times n}$. Their \textbf{sum} $\mathbf{A} + \mathbf{B} \in \R^{m \times n}$ is defined entrywise by
+\[
+  (\mathbf{A} + \mathbf{B})_{ij} = \mathbf{A}_{ij} + \mathbf{B}_{ij}.
+\]
+\end{definition}
+
+\begin{definition}{Scalar Multiplication}{scalar-mul}
+Let $\mathbf{A} \in \R^{m \times n}$ and $\lambda \in \R$. Then $\lambda \mathbf{A} \in \R^{m \times n}$ is defined entrywise by
+\[
+  (\lambda \mathbf{A})_{ij} = \lambda \mathbf{A}_{ij}.
+\]
+\end{definition}
+
+\textbf{Properties.} For $\mathbf{A}, \mathbf{B}, \mathbf{C} \in \R^{m \times n}$ and scalars $\lambda, \delta \in \R$:
+\begin{itemize}
+  \item Commutative: $\mathbf{A} + \mathbf{B} = \mathbf{B} + \mathbf{A}$.
+  \item Associative: $(\mathbf{A} + \mathbf{B}) + \mathbf{C} = \mathbf{A} + (\mathbf{B} + \mathbf{C})$.
+  \item Distributive: $\lambda(\mathbf{A} + \mathbf{B}) = \lambda \mathbf{A} + \lambda \mathbf{B}$ and $(\lambda + \delta)\mathbf{A} = \lambda \mathbf{A} + \delta \mathbf{A}$.
+  \item Additive identity: $\mathbf{A} + \mathbf{0} = \mathbf{A}$, where $\mathbf{0}$ is the $m \times n$ zero matrix.
+\end{itemize}
+
+\subsubsection{Matrix Multiplication}
+
+\begin{definition}{Matrix Multiplication}{mat-mul}
+Let $\mathbf{A} \in \R^{m \times n}$ and $\mathbf{B} \in \R^{n \times p}$ with $\mathbf{B}$ written by columns as $\mathbf{B} = \bigl[\,\mathbf{b}_1 \;\bigm|\; \mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{b}_p\,\bigr]$. The \textbf{product} $\mathbf{A}\mathbf{B} \in \R^{m \times p}$ is
+\[
+  \mathbf{A}\mathbf{B}
+  = \bigl[\,\mathbf{A}\mathbf{b}_1 \;\bigm|\; \mathbf{A}\mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{A}\mathbf{b}_p\,\bigr].
+\]
+\end{definition}
+
+\begin{example}
+  Let
+  $\mathbf{A} = \begin{bmatrix} 2 & 1 & -1 \\ 1 & 0 & -3 \end{bmatrix}$ ($2 \times 3$),
+  $\mathbf{B} = \begin{bmatrix} 1 & -2 \\ 1 & 3 \\ 1 & 0 \end{bmatrix}$ ($3 \times 2$).
+  Then $\mathbf{A}\mathbf{B}$ is $2 \times 2$:
+  \[
+    \mathbf{A}\mathbf{B}
+    = \left[\,\mathbf{A}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \;\bigm|\; \mathbf{A}\begin{bmatrix} -2 \\ 3 \\ 0 \end{bmatrix}\,\right]
+    = \begin{bmatrix} 2 & -1 \\ -2 & -2 \end{bmatrix}.
+  \]
+\end{example}
+
+\begin{remark}
+Matrix multiplication is \textbf{not commutative}. Using the same $\mathbf{A}, \mathbf{B}$ as above, $\mathbf{B}\mathbf{A}$ is $3 \times 3$:
+\[
+  \mathbf{B}\mathbf{A}
+  = \begin{bmatrix} 1 & -2 \\ 1 & 3 \\ 1 & 0 \end{bmatrix}
+    \begin{bmatrix} 2 & 1 & -1 \\ 1 & 0 & -3 \end{bmatrix}
+  = \begin{bmatrix} 0 & 1 & 5 \\ 5 & 1 & -10 \\ 2 & 1 & -1 \end{bmatrix}.
+\]
+$\mathbf{A}\mathbf{B}$ and $\mathbf{B}\mathbf{A}$ are not even the same size.
+\end{remark}
+
+\subsubsection{Row-Column View of Matrix Multiplication}
+
+The $(i, j)$ entry of $\mathbf{A}\mathbf{B}$ comes from row $i$ of $\mathbf{A}$ paired with column $j$ of $\mathbf{B}$, and lives at row $i$, column $j$ of $\mathbf{A}\mathbf{B}$:
+\[
+  \underbrace{\begin{bmatrix}
+    i\; \text{row} \quad \vdots \\
+    \boxed{a_{i1}\;\; a_{i2}\;\; \cdots\;\; a_{in}} \\
+    \vdots
+  \end{bmatrix}}_{\mathbf{A}}
+  \;\times\;
+  \underbrace{\begin{bmatrix}
+    j\; \text{col} \quad \cdots &
+    \boxed{\begin{matrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{matrix}} &
+    \cdots
+  \end{bmatrix}}_{\mathbf{B}}
+  \;=\;
+  \underbrace{\left[\begin{array}{c|c|c}
+    & i\; \text{row} \quad \vdots & \\ \hline
+    j\; \text{col} \quad \cdots & (\mathbf{A}\mathbf{B})_{ij} & \cdots \\ \hline
+    & \vdots &
+  \end{array}\right]}_{\mathbf{A}\mathbf{B}}
+\]
+Taking the dot product of these strips:
+\[
+  (\mathbf{A}\mathbf{B})_{ij}
+  = \begin{bmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{bmatrix}
+    \begin{bmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{bmatrix}
+  = a_{i1} b_{1j} + a_{i2} b_{2j} + \cdots + a_{in} b_{nj}.
+\]
+
+\begin{example}
+  Compute $(\mathbf{B}\mathbf{A})_{33}$ for the $\mathbf{A}, \mathbf{B}$ above. Box row $3$ of $\mathbf{B}$ and column $3$ of $\mathbf{A}$:
+  \[
+    \underbrace{\begin{bmatrix}
+      \begin{matrix} 1 & -2 \end{matrix} \\
+      \begin{matrix} 1 & \phantom{-}3 \end{matrix} \\
+      \boxed{\begin{matrix} 1 & \phantom{-}0 \end{matrix}}
+    \end{bmatrix}}_{\mathbf{B}}
+    \;\times\;
+    \underbrace{\begin{bmatrix}
+      \begin{matrix} 2 \\ 1 \end{matrix} &
+      \begin{matrix} 1 \\ 0 \end{matrix} &
+      \boxed{\begin{matrix} -1 \\ -3 \end{matrix}}
+    \end{bmatrix}}_{\mathbf{A}}
+    \;=\;
+    \underbrace{\left[\begin{array}{cc|c}
+      \cdot & \cdot & \vdots \\
+      \cdot & \cdot & \vdots \\ \hline
+      \cdots & \cdots & -1
+    \end{array}\right]}_{\mathbf{B}\mathbf{A}}
+  \]
+  Taking the dot product:
+  \[
+    (\mathbf{B}\mathbf{A})_{33}
+    = \begin{bmatrix} 1 & 0 \end{bmatrix}
+      \begin{bmatrix} -1 \\ -3 \end{bmatrix}
+    = (1)(-1) + (0)(-3) = -1.
+  \]
+\end{example}
+
+\subsubsection{Properties of Matrix Multiplication}
+
+For $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\lambda \in \R$ (matrix sizes must be compatible):
+\begin{itemize}
+  \item Associative: $\mathbf{A}(\mathbf{B}\mathbf{C}) = (\mathbf{A}\mathbf{B})\mathbf{C}$.
+  \item Not commutative in general (see counter-example above).
+  \item Distributive: $(\mathbf{A} + \mathbf{B})\mathbf{C} = \mathbf{A}\mathbf{C} + \mathbf{B}\mathbf{C}$ and $\mathbf{C}(\mathbf{A} + \mathbf{B}) = \mathbf{C}\mathbf{A} + \mathbf{C}\mathbf{B}$.
+  \item Scalar: $\lambda(\mathbf{A}\mathbf{B}) = (\lambda\mathbf{A})\mathbf{B} = \mathbf{A}(\lambda\mathbf{B})$.
+  \item Identity: $\mathbf{A}\mathbf{I}_n = \mathbf{I}_m \mathbf{A} = \mathbf{A}$.
+\end{itemize}
