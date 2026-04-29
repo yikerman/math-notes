@@ -139,3 +139,201 @@ For $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\lambda \in \R$ (matrix sizes
   \item Scalar: $\lambda(\mathbf{A}\mathbf{B}) = (\lambda\mathbf{A})\mathbf{B} = \mathbf{A}(\lambda\mathbf{B})$.
   \item Identity: $\mathbf{A}\mathbf{I}_n = \mathbf{I}_m \mathbf{A} = \mathbf{A}$.
 \end{itemize}
+
+\subsection{Transpose}
+
+\begin{definition}{Matrix Transpose}{transpose}
+Let $\mathbf{A} \in \R^{m \times n}$. The \textbf{transpose} $\mathbf{A}^T \in \R^{n \times m}$ is the matrix whose rows are the columns of $\mathbf{A}$:
+\[
+  \mathbf{A} = \bigl[\,\mathbf{a}_1 \;\bigm|\; \mathbf{a}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{a}_n\,\bigr]
+  \quad\Longrightarrow\quad
+  \mathbf{A}^T = \begin{bmatrix} \mathbf{a}_1 \\ \mathbf{a}_2 \\ \vdots \\ \mathbf{a}_n \end{bmatrix}.
+\]
+\end{definition}
+
+\begin{example}
+  \[
+    \mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 3 & -5 \\ 1 & -1 & 2 \end{bmatrix}
+    \quad\Longrightarrow\quad
+    \mathbf{A}^T = \begin{bmatrix} 1 & 0 & 1 \\ 2 & 3 & -1 \\ 3 & -5 & 2 \end{bmatrix}.
+  \]
+  \[
+    \mathbf{B} = \begin{bmatrix} 1 & 3 & -1 \\ 2 & 5 & 1 \end{bmatrix}
+    \quad\Longrightarrow\quad
+    \mathbf{B}^T = \begin{bmatrix} 1 & 2 \\ 3 & 5 \\ -1 & 1 \end{bmatrix}.
+  \]
+\end{example}
+
+\textbf{Properties.} For matrices $\mathbf{A}, \mathbf{B}$ of compatible sizes:
+\begin{itemize}
+  \item $(\mathbf{A}^T)^T = \mathbf{A}$.
+  \item $(\mathbf{A} + \mathbf{B})^T = \mathbf{A}^T + \mathbf{B}^T$.
+  \item $(\mathbf{A}\mathbf{B})^T = \mathbf{B}^T \mathbf{A}^T$.
+\end{itemize}
+
+\begin{example}
+  Let $\mathbf{x} = \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix}$. Then $\mathbf{x}^T = \begin{bmatrix} 3 & -2 & 2 \end{bmatrix}$, and
+  \[
+    \mathbf{x}^T \mathbf{x}
+    = \begin{bmatrix} 3 & -2 & 2 \end{bmatrix} \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix}
+    = \begin{bmatrix} 17 \end{bmatrix},
+  \]
+  \[
+    \mathbf{x}\mathbf{x}^T
+    = \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix} \begin{bmatrix} 3 & -2 & 2 \end{bmatrix}
+    = \begin{bmatrix} 9 & -6 & 6 \\ -6 & 4 & -4 \\ 6 & -4 & 4 \end{bmatrix}.
+  \]
+\end{example}
+
+\subsection{The Inverse Matrix}
+
+\textbf{Motivation.} If $\mathbf{A}\mathbf{x} = \mathbf{b}$ and $\mathbf{A}$ has an inverse $\mathbf{A}^{-1}$, then solving a linear system is easy:
+\[
+  \mathbf{A}^{-1}\mathbf{A}\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
+  \quad\Longrightarrow\quad
+  \mathbf{x} = \mathbf{A}^{-1}\mathbf{b}.
+\]
+
+\begin{definition}{Matrix Inverse}{mat-inv}
+Let $\mathbf{A} \in \R^{n \times n}$ be a square matrix. A matrix $\mathbf{B}$ is an \textbf{inverse} of $\mathbf{A}$ if
+\[
+  \mathbf{B}\mathbf{A} = \mathbf{I}_n
+  \quad\text{and}\quad
+  \mathbf{A}\mathbf{B} = \mathbf{I}_n.
+\]
+We denote $\mathbf{A}^{-1} = \mathbf{B}$.
+\end{definition}
+
+\begin{remark}
+Some matrices don't have inverses, such as the zero matrix $\mathbf{0}$: for any $\mathbf{B}$, $\mathbf{0}\mathbf{B} = \mathbf{0} \neq \mathbf{I}_n$.
+\end{remark}
+
+\begin{example}
+  Let $\mathbf{A} = \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix}$ and $\mathbf{B} = \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix}$. Then
+  \[
+    \mathbf{A}\mathbf{B}
+    = \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix} \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix}
+    = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    \quad
+    \mathbf{B}\mathbf{A}
+    = \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix} \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix}
+    = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+  \]
+  so $\mathbf{B}$ is the inverse of $\mathbf{A}$.
+\end{example}
+
+\begin{theorem}{Uniqueness of Inverse}{inv-unique}
+If $\mathbf{A}$ is invertible, then its inverse is unique.
+\end{theorem}
+
+\begin{proof}
+By contradiction. Assume $\mathbf{B} \neq \mathbf{C}$ are both inverses of $\mathbf{A}$, so
+\[
+  \mathbf{B}\mathbf{A} = \mathbf{A}\mathbf{B} = \mathbf{I},
+  \qquad
+  \mathbf{C}\mathbf{A} = \mathbf{A}\mathbf{C} = \mathbf{I}.
+\]
+Then
+\[
+  \mathbf{C}
+  = \mathbf{C}\mathbf{I}
+  = \mathbf{C}(\mathbf{A}\mathbf{B})
+  = (\mathbf{C}\mathbf{A})\mathbf{B}
+  = \mathbf{I}\mathbf{B}
+  = \mathbf{B},
+\]
+contradicting $\mathbf{B} \neq \mathbf{C}$.
+\end{proof}
+
+\begin{theorem}{$2 \times 2$ Inverse Formula}{inv-2x2}
+Let $\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ with $ad - bc \neq 0$. Then
+\[
+  \mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}.
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+  \mathbf{A}\mathbf{A}^{-1}
+  = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \cdot \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+  = \frac{1}{ad - bc} \begin{bmatrix} ad - bc & 0 \\ 0 & ad - bc \end{bmatrix}
+  = \mathbf{I}_2. \qedhere
+\]
+\end{proof}
+
+\subsubsection{Elementary Matrices}
+
+\begin{definition}{Elementary Matrix}{elem-mat}
+An \textbf{elementary matrix} is a matrix obtained from an identity matrix by applying a single row operation.
+\end{definition}
+
+\begin{example}
+  Starting from $\mathbf{I}_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$:
+  \begin{align*}
+    R_2 &\leftarrow 5 R_2: & \begin{bmatrix} 1 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \\
+    R_1 &\leftrightarrow R_3: & \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}, \\
+    R_3 &\leftarrow R_3 + b R_1: & \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ b & 0 & 1 \end{bmatrix}.
+  \end{align*}
+\end{example}
+
+\begin{theorem}{Row Operation as Elementary Matrix Multiplication}{row-op-elem}
+Let $\mathbf{A} \in \R^{n \times n}$ and $\mathbf{E} \in \R^{n \times n}$ an elementary matrix. Then $\mathbf{E}\mathbf{A}$ is the matrix obtained from $\mathbf{A}$ by applying the same row operation that produced $\mathbf{E}$ from $\mathbf{I}_n$.
+\end{theorem}
+
+\begin{example}
+  Swapping rows $1$ and $3$:
+  \[
+    \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}
+    \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}
+    = \begin{bmatrix} 7 & 8 & 9 \\ 4 & 5 & 6 \\ 1 & 2 & 3 \end{bmatrix}.
+  \]
+\end{example}
+
+\subsubsection{Finding the Inverse via Row Reduction}
+
+For $\mathbf{A} \in \R^{n \times n}$, if elementary matrices $\mathbf{E}_1, \mathbf{E}_2, \ldots, \mathbf{E}_k$ satisfy
+\[
+  \mathbf{E}_k \cdots \mathbf{E}_2 \mathbf{E}_1 \mathbf{A} = \mathbf{I}_n,
+  \quad\text{then}\quad
+  \mathbf{A}^{-1} = \mathbf{E}_k \cdots \mathbf{E}_2 \mathbf{E}_1.
+\]
+So finding $\mathbf{A}^{-1}$ becomes finding row operations that reduce $\mathbf{A}$ to $\mathbf{I}_n$.
+
+\textbf{Procedure.} Form the augmented matrix $[\,\mathbf{A} \mid \mathbf{I}_n\,]$ and row reduce:
+\[
+  [\,\mathbf{A} \mid \mathbf{I}_n\,]
+  \;\xrightarrow{\text{row ops}}\;
+  [\,\mathbf{I}_n \mid \mathbf{A}^{-1}\,].
+\]
+
+\begin{example}
+  Find the inverse of $\mathbf{A} = \begin{bmatrix} 2 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 2 \end{bmatrix}$.
+
+  Augmented matrix:
+  \[
+    \left[\begin{array}{ccc|ccc}
+      2 & 1 & 1 & 1 & 0 & 0 \\
+      0 & 1 & 2 & 0 & 1 & 0 \\
+      0 & 0 & 2 & 0 & 0 & 1
+    \end{array}\right]
+    \xrightarrow{R_1 \leftarrow \frac{1}{2} R_1,\; R_3 \leftarrow \frac{1}{2} R_3}
+    \left[\begin{array}{ccc|ccc}
+      1 & 1/2 & 1/2 & 1/2 & 0 & 0 \\
+      0 & 1 & 2 & 0 & 1 & 0 \\
+      0 & 0 & 1 & 0 & 0 & 1/2
+    \end{array}\right]
+  \]
+  Continue to reduced row echelon form:
+  \[
+    \longrightarrow
+    \left[\begin{array}{ccc|ccc}
+      1 & 0 & 0 & 1/2 & -1/2 & 3/4 \\
+      0 & 1 & 0 & 0 & 1 & -1 \\
+      0 & 0 & 1 & 0 & 0 & 1/2
+    \end{array}\right]
+  \]
+  The right block is
+  \[
+    \mathbf{A}^{-1} = \begin{bmatrix} 1/2 & -1/2 & 3/4 \\ 0 & 1 & -1 \\ 0 & 0 & 1/2 \end{bmatrix}.
+  \]
+\end{example}
