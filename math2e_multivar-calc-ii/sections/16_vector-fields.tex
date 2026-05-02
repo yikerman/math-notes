@@ -370,3 +370,98 @@ Total:
     = 1 + 1 = 2
 \]
 \end{example}
+
+\subsection{Fundamental Theorem for Line Integrals}
+
+Analogue to the single-variable FTC: think of $\nabla f$ as the ``derivative'' of $f$.
+
+\begin{remark}
+For $f\colon\R^n\to\R$,
+\[
+    \nabla f = \ve{\pd{f}{x},\,\pd{f}{y},\,\ldots}\colon \R^n\to\R^n
+\]
+is itself a vector field.
+\end{remark}
+
+\begin{remark}
+For $\mathbf{F}\colon\R^n\to\R^n$ a vector field, we say $\mathbf{F}$ is conservative if 
+$\mathbf{F} = \nabla f$ for some scalar function $f\colon\R^n\to\R$.
+\end{remark}
+
+\begin{theorem}{Fundamental Theorem for Line Integrals}{ftli}
+Let $C$ be a smooth curve given by $\mathbf{r}(t)$, $t\in[a,b]$, and let $f$ be a
+differentiable scalar function whose gradient $\nabla f$ is continuous on $C$. Then
+\[
+    \int_C \nabla f\cdot d\mathbf{r} = f(\mathbf{r}(b)) - f(\mathbf{r}(a))
+\]
+\end{theorem}
+
+\begin{proof}
+
+\begin{remark}
+Note that $\mathbf{r}(t) = \begin{bmatrix}x(t)\\y(t)\\z(t)\end{bmatrix}$.
+\end{remark}
+
+By the multivariable chain rule,
+\[
+    \frac{d}{dt}f(\mathbf{r}(t))
+    = \pd{f}{x}\frac{dx}{dt} + \pd{f}{y}\frac{dy}{dt} + \cdots
+    = \begin{bmatrix} \dfrac{\partial f}{\partial x} \\[8pt] \dfrac{\partial f}{\partial y} \\[8pt] \vdots \end{bmatrix}
+      \cdot
+      \begin{bmatrix} \dfrac{dx}{dt} \\[8pt] \dfrac{dy}{dt} \\[8pt] \vdots \end{bmatrix}
+    = \nabla f(\mathbf{r}(t))\cdot\mathbf{r}'(t)
+\]
+Therefore
+\[
+    \int_C \nabla f\cdot d\mathbf{r}
+    = \int_a^b \nabla f(\mathbf{r}(t))\cdot\mathbf{r}'(t)\dd{t}
+    = \int_a^b \frac{d}{dt}f(\mathbf{r}(t))\dd{t}
+    = f(\mathbf{r}(b)) - f(\mathbf{r}(a))
+\]
+\end{proof}
+
+As a result, on a conservative vector field $\mathbf{F} = \nabla f$, the line integral $\int_C \mathbf{F}\cdot d\mathbf{r}$ is
+independent of the path $C$ and depends only on the endpoints $\mathbf{r}(a)$ and $\mathbf{r}(b)$.
+
+\begin{example}[Work done by gravity]
+Find the work done by the gravitational field
+\[
+    \mathbf{F}(\mathbf{x}) = -\frac{GMm}{\lVert\mathbf{x}\rVert^3}\mathbf{x}
+\]
+on a particle moving from $\mathbf{x}_0 = (3,4,12)$ to $\mathbf{x}_1 = (2,2,1)$.
+
+Recall the potential $V(\mathbf{x}) = -\dfrac{GMm}{\lVert\mathbf{x}\rVert}$ satisfies $\mathbf{F} = -\nabla V$, so by FTLI,
+\[
+    \int_C \mathbf{F}\cdot d\mathbf{r}
+    = -\int_C \nabla V\cdot d\mathbf{r}
+    = -\bigl(V(\mathbf{x}_1) - V(\mathbf{x}_0)\bigr)
+    = \frac{GMm}{\lVert\mathbf{x}_1\rVert} - \frac{GMm}{\lVert\mathbf{x}_0\rVert}
+\]
+Compute norms:
+\[
+    \lVert\mathbf{x}_0\rVert = \sqrt{9+16+144} = 13,\qquad
+    \lVert\mathbf{x}_1\rVert = \sqrt{4+4+1} = 3
+\]
+Therefore
+\[
+    \int_C \mathbf{F}\cdot d\mathbf{r}
+    = GMm\left(\frac{1}{3} - \frac{1}{13}\right)
+    = \frac{10\,GMm}{39}
+\]
+\end{example}
+
+\begin{theorem}{Component Test for Conservative Vector Fields}{component-test-conservative}
+
+For vector field $\mathbf{F}(x, y)=\begin{bmatrix}P(x, y)\\Q(x, y)\end{bmatrix}$ with continuous first-order partials,
+
+\[
+    \mathbf{F} \text{ is conservative} \implies \pd{P}{y} = \pd{Q}{x}.
+\]
+
+And the converse only holds if the domain is simply connected.
+
+\begin{remark}
+Informally ``simply connected'' means the domain is one piece with no holes — every loop can be shrunk to a point without leaving the domain.
+\end{remark}
+
+\end{theorem}
