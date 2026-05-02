@@ -337,3 +337,31 @@ So finding $\mathbf{A}^{-1}$ becomes finding row operations that reduce $\mathbf
     \mathbf{A}^{-1} = \begin{bmatrix} 1/2 & -1/2 & 3/4 \\ 0 & 1 & -1 \\ 0 & 0 & 1/2 \end{bmatrix}.
   \]
 \end{example}
+
+\subsection{The Invertible Matrix Theorem}
+
+\begin{theorem}{Invertible Matrix Theorem}{imt}
+Let $\mathbf{A} \in \R^{n \times n}$. The following statements are equivalent:
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathbf{A}$ is invertible.
+  \item $\mathbf{A}$ is row equivalent to $\mathbf{I}_n$ (i.e.\ can be row reduced to $\mathbf{I}_n$).
+  \item $\mathbf{A}$ has $n$ pivots.
+  \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has only the trivial solution.
+  \item The columns of $\mathbf{A}$ are linearly independent.
+  \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is one-to-one.
+  \item $\mathbf{A}\mathbf{x} = \mathbf{b}$ has at least one solution for every $\mathbf{b} \in \R^n$.
+  \item $\operatorname{span}\{\text{columns of }\mathbf{A}\} = \R^n$.
+  \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is onto $\R^n$.
+  \item There exists $\mathbf{C}$ such that $\mathbf{C}\mathbf{A} = \mathbf{I}_n$.
+  \item There exists $\mathbf{B}$ such that $\mathbf{A}\mathbf{B} = \mathbf{I}_n$.
+  \item $\mathbf{A}^T$ is invertible.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+A proof sketch establishes the cycle
+\[
+  (a) \Longrightarrow (d) \Longrightarrow (c) \Longrightarrow (b) \Longrightarrow (a),
+\]
+which makes (a)--(d) equivalent. The remaining statements connect to these by similar implications.
+\end{remark}
