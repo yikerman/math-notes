@@ -465,3 +465,14 @@ Informally ``simply connected'' means the domain is one piece with no holes — 
 \end{remark}
 
 \end{theorem}
+
+\begin{proof}
+Suppose $\mathbf{F} = \nabla f$ for some scalar function $f$. Then
+\[
+    \mathbf{F} = \begin{bmatrix}P \\ Q\end{bmatrix} = \begin{bmatrix} f_x \\ f_y \end{bmatrix}
+\]
+By Clairaut's theorem on equality of mixed partials, $f_{xy} = f_{yx}$,
+\[
+    \pd{P}{y} = f_{xy} = f_{yx} = \pd{Q}{x}
+\]
+\end{proof}
