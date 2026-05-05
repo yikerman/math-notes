@@ -476,3 +476,104 @@ By Clairaut's theorem on equality of mixed partials, $f_{xy} = f_{yx}$,
     \pd{P}{y} = f_{xy} = f_{yx} = \pd{Q}{x}
 \]
 \end{proof}
+
+\subsection{Green's Theorem}
+
+\textbf{Orientation of a simple closed curve.} Let $C$ be a simple closed curve
+with unit tangent $\mathbf{T}$ and inward unit normal $\mathbf{N}$.
+\begin{itemize}
+    \item If $\mathbf{N}$ is $90^\circ$ counterclockwise from $\mathbf{T}$
+          (equivalently, $C$ is traversed counterclockwise), $C$ is
+          \emph{positively oriented}.
+    \item If $\mathbf{N}$ is $90^\circ$ clockwise from $\mathbf{T}$
+          (equivalently, $C$ is traversed clockwise), $C$ is
+          \emph{negatively oriented}.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, >=latex]
+    \draw[thick] (0,0) circle (1.2);
+    \foreach \a in {30, 120, 210, 300} {
+        \draw[->, thick] ({1.2*cos(\a)},{1.2*sin(\a)})
+            arc[start angle=\a, end angle=\a+15, radius=1.2];
+    }
+    \draw[->, thick, blue!70] (1.2,0) -- (1.2,0.7) node[right]{$\mathbf{T}$};
+    \draw[->, thick, red!70] (1.2,0) -- (0.5,0) node[above]{$\mathbf{N}$};
+    \node[below] at (0,-1.4) {positively oriented};
+\end{tikzpicture}
+\qquad\qquad
+\begin{tikzpicture}[scale=1, >=latex]
+    \draw[thick] (0,0) circle (1.2);
+    \foreach \a in {30, 120, 210, 300} {
+        \draw[<-, thick] ({1.2*cos(\a)},{1.2*sin(\a)})
+            arc[start angle=\a, end angle=\a+15, radius=1.2];
+    }
+    \draw[->, thick, blue!70] (1.2,0) -- (1.2,-0.7) node[right]{$\mathbf{T}$};
+    \draw[->, thick, red!70] (1.2,0) -- (0.5,0) node[above]{$\mathbf{N}$};
+    \node[below] at (0,-1.4) {negatively oriented};
+\end{tikzpicture}
+\end{center}
+
+\begin{theorem}{Green's Theorem}{green}
+Let $C$ be a positively oriented, piecewise-smooth simple closed curve in
+$\R^2$, and let $D$ be the region bounded by $C$. If
+$\mathbf{F} = \begin{bmatrix}P \\ Q\end{bmatrix}$ has continuous partial
+derivatives on an open region containing $D$, then
+\[
+    \oint_C \mathbf{F}\cdot d\mathbf{r}
+    = \int_C P\dd{x} + Q\dd{y}
+    = \iint_D \left(\pd{Q}{x} - \pd{P}{y}\right)dA
+\]
+\end{theorem}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, >=latex]
+    \draw[thick] plot[smooth cycle, tension=0.9]
+        coordinates {(-1.4,0) (-0.9,0.9) (0.3,1) (1.3,0.4) (1.4,-0.5) (0.4,-0.9) (-0.6,-0.6)};
+    \node at (0,0) {$D$};
+    \node at (1.6,0.7) {$C$};
+\end{tikzpicture}
+\end{center}
+
+Green's theorem can turn a potentially difficult to calculate line integral into a double integral.
+
+\begin{remark}
+Mnemonic:
+\[
+    \pd{Q}{x} - \pd{P}{y}
+    = \det\begin{bmatrix}
+        \partial/\partial x & \partial/\partial y \\
+        P & Q
+    \end{bmatrix}
+\]
+\end{remark}
+
+\begin{example}
+Evaluate $\displaystyle\int_C x^4\dd{x} + xy\dd{y}$ where $C$ is the triangle
+with vertices $(0,0)\to(1,0)\to(0,1)\to(0,0)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.6, >=latex]
+    \draw[->] (-0.3,0) -- (1.5,0) node[right]{$x$};
+    \draw[->] (0,-0.3) -- (0,1.5) node[above]{$y$};
+    \draw[->, thick] (0,0) -- (1,0);
+    \draw[->, thick] (1,0) -- (0,1);
+    \draw[->, thick] (0,1) -- (0,0);
+    \fill (1,0) circle (0.025) node[below right]{$(1,0)$};
+    \fill (0,1) circle (0.025) node[above right]{$(0,1)$};
+\end{tikzpicture}
+\end{center}
+
+The triangle is traversed counterclockwise, so Green's theorem applies. With
+$P = x^4$ and $Q = xy$,
+\[
+    \pd{Q}{x} - \pd{P}{y} = y - 0 = y
+\]
+\begin{align*}
+    \int_C x^4\dd{x} + xy\dd{y}
+    &= \iint_D y\dd{A}
+    = \int_0^1\!\int_0^{1-x} y\dd{y}\dd{x} \\
+    &= \int_0^1 \frac{(1-x)^2}{2}\dd{x}
+    = \frac{1}{6}
+\end{align*}
+\end{example}
