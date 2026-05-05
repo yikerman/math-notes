@@ -365,3 +365,118 @@ A proof sketch establishes the cycle
 \]
 which makes (a)--(d) equivalent. The remaining statements connect to these by similar implications.
 \end{remark}
+
+\subsection{Linear Subspace of $\R^n$}
+
+\begin{definition}{Linear Subspace}{lin-subspace}
+A subset $V \subseteq \R^n$ is a \textbf{linear subspace} if:
+\begin{enumerate}
+  \item $\mathbf{0} \in V$ (contains the zero vector);
+  \item $\forall \mathbf{v}_1, \mathbf{v}_2 \in V$, $\mathbf{v}_1 + \mathbf{v}_2 \in V$ (closed under addition);
+  \item $\forall c \in \R$, $\mathbf{v} \in V$, $c\mathbf{v} \in V$ (closed under scalar multiplication).
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Condition 3 implies condition 1 (take $c = 0$) provided $V$ is non-empty; condition 1 is included for emphasis.
+\end{remark}
+
+\begin{example}
+  Let
+  \[
+    V = \left\{ \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \;\Bigm|\; x_1 + x_2 - 2x_3 = 1 \right\} \subseteq \R^3.
+  \]
+  Then $\mathbf{0} \notin V$, so $V$ is \textbf{not} a linear subspace. ($V$ is a plane that does not pass through the origin.)
+\end{example}
+
+\begin{example}
+  Let
+  \[
+    V = \left\{ \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \;\Bigm|\; x_1 + x_2 - 2x_3 = 0 \right\} \subseteq \R^3.
+  \]
+  Take $\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}$, $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} \in V$.
+
+  \textbf{Closed under addition:}
+  \[
+    (a_1 + b_1) + (a_2 + b_2) - 2(a_3 + b_3) = (a_1 + a_2 - 2a_3) + (b_1 + b_2 - 2b_3) = 0,
+  \]
+  so $\mathbf{a} + \mathbf{b} = \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ a_3 + b_3 \end{bmatrix} \in V$.
+
+  \textbf{Closed under scalar multiplication:} for $c \in \R$,
+  \[
+    c x_1 + c x_2 - 2 c x_3 = c(x_1 + x_2 - 2 x_3) = c \cdot 0 = 0,
+  \]
+  so $c\mathbf{a} \in V$. Combined with $\mathbf{0} \in V$, $V$ is a linear subspace.
+\end{example}
+
+\subsubsection{Span is Linear Subspace}
+
+For $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$,
+\[
+  V = \operatorname{span}\{\mathbf{v}_1, \mathbf{v}_2\} = \{\, c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 \mid c_1, c_2 \in \R \,\}.
+\]
+
+\begin{theorem}{Span Is a Linear Subspace}{span-subspace}
+For all $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$, $V = \operatorname{span}\{\mathbf{v}_1, \mathbf{v}_2\}$ is a linear subspace of $\R^n$.
+\end{theorem}
+
+\begin{proof}
+\textbf{(1) Closed under addition.} Let $\mathbf{w}_1 = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2$, $\mathbf{w}_2 = d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2 \in V$. Then
+\[
+  \mathbf{w}_1 + \mathbf{w}_2
+  = (c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) + (d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2)
+  = (c_1 + d_1) \mathbf{v}_1 + (c_2 + d_2) \mathbf{v}_2
+\]
+is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $\mathbf{w}_1 + \mathbf{w}_2 \in V$.
+
+\textbf{(2) Closed under scalar multiplication.} Let $\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 \in V$. For $c \in \R$,
+\[
+  c\mathbf{w} = c(c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) = (c c_1) \mathbf{v}_1 + (c c_2) \mathbf{v}_2
+\]
+is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $c\mathbf{w} \in V$.
+\end{proof}
+
+\begin{theorem}{Generalized Span Is a Linear Subspace}{span-subspace-gen}
+For $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in \R^n$, $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ is a linear subspace of $\R^n$.
+\end{theorem}
+
+\subsubsection{Null Space and Column Space}
+
+Let $\mathbf{A} \in \R^{m \times n}$.
+
+\begin{definition}{Null Space}{null-space}
+The \textbf{null space} of $\mathbf{A}$ is
+\[
+  \operatorname{Null}(\mathbf{A}) = \{\, \mathbf{x} \in \R^n \mid \mathbf{A}\mathbf{x} = \mathbf{0} \,\}.
+\]
+(The solution set of the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.)
+\end{definition}
+
+\begin{definition}{Column Space}{col-space}
+Writing $\mathbf{A} = [\,\mathbf{a}_1 \mid \mathbf{a}_2 \mid \cdots \mid \mathbf{a}_n\,]$, the \textbf{column space} of $\mathbf{A}$ is
+\[
+  \operatorname{Col}(\mathbf{A}) = \operatorname{span}\{\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n\}.
+\]
+\end{definition}
+
+\begin{theorem}{Null and Column Spaces Are Subspaces}{null-col-subspace}
+$\operatorname{Null}(\mathbf{A})$ is a linear subspace of $\R^n$, and $\operatorname{Col}(\mathbf{A})$ is a linear subspace of $\R^m$.
+\end{theorem}
+
+\begin{proof}
+$\operatorname{Col}(\mathbf{A})$ is a span, hence a linear subspace by Theorem~\ref{thm:span-subspace-gen}.
+
+For $\operatorname{Null}(\mathbf{A})$:
+
+\textbf{(1) Closed under addition.} For $\mathbf{x}_1, \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$, $\mathbf{A}\mathbf{x}_1 = \mathbf{0}$ and $\mathbf{A}\mathbf{x}_2 = \mathbf{0}$, so
+\[
+  \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) = \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2 = \mathbf{0},
+\]
+hence $\mathbf{x}_1 + \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$.
+
+\textbf{(2) Closed under scalar multiplication.} For $c \in \R$ and $\mathbf{x} \in \operatorname{Null}(\mathbf{A})$,
+\[
+  \mathbf{A}(c\mathbf{x}) = c(\mathbf{A}\mathbf{x}) = c \cdot \mathbf{0} = \mathbf{0},
+\]
+hence $c\mathbf{x} \in \operatorname{Null}(\mathbf{A})$.
+\end{proof}
