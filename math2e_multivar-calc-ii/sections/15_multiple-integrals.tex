@@ -60,7 +60,7 @@ For a rectangular box $B = [a,b]\times[c,d]\times[r,s]$:
 Reduces 3D integral to 2D + 1D:
 \[
     \iiint_E f\dd{V}
-    = \iint_D\!\left(\int_{u_1(x,y)}^{u_2(x,y)} f\dd{z}\right)dA
+    = \iint_D\!\left(\int_{u_1(x,y)}^{u_2(x,y)} f\dd{z}\right)\dd{A}
 \]
 
 \begin{example}
@@ -99,7 +99,7 @@ $\displaystyle\iiint_E z\dd{V}$ where $E$ is the solid in $x,y,z\geq 0$ bounded 
 $D\colon\; 0\leq x\leq 1,\; 0\leq y\leq x$, \quad $z\colon\; 0\leq z\leq 12xy$.
 \begin{align*}
     \iiint_E z\dd{V}
-    &= \iint_D\!\left(\int_0^{12xy} z\dd{z}\right)dA
+    &= \iint_D\!\left(\int_0^{12xy} z\dd{z}\right)\dd{A}
     = \int_0^1\!\int_0^x\!\int_0^{12xy} z\dd{z}\dd{y}\dd{x} \\
     &= \int_0^1\!\int_0^x \frac{z^2}{2}\bigg|_0^{12xy}\dd{y}\dd{x}
     = \int_0^1\!\int_0^x 72x^2y^2\dd{y}\dd{x} \\
@@ -188,7 +188,7 @@ Analogous to Type I (Definition~\ref{def:type-i}), with the roles of the axes pe
 \]
 \[
     \iiint_E f\dd{V}
-    = \iint_D\!\left(\int_{u_1(y,z)}^{u_2(y,z)} f\dd{x}\right)dA
+    = \iint_D\!\left(\int_{u_1(y,z)}^{u_2(y,z)} f\dd{x}\right)\dd{A}
 \]
 \end{definition}
 
@@ -198,7 +198,7 @@ Analogous to Type I (Definition~\ref{def:type-i}), with the roles of the axes pe
 \]
 \[
     \iiint_E f\dd{V}
-    = \iint_D\!\left(\int_{u_1(x,z)}^{u_2(x,z)} f\dd{y}\right)dA
+    = \iint_D\!\left(\int_{u_1(x,z)}^{u_2(x,z)} f\dd{y}\right)\dd{A}
 \]
 \end{definition}
 
@@ -322,9 +322,9 @@ where $D$ is a polar region $\{(r,\theta) \mid \alpha\leq\theta\leq\beta,\; h_1(
 
 \[
     \iiint_E f\dd{V}
-    = \iint_D\!\left(\int_{u_1}^{u_2} f\dd{z}\right)dA
+    = \iint_D\!\left(\int_{u_1}^{u_2} f\dd{z}\right)\dd{A}
 \]
-where $dA = \dd{x} \dd{y} = r\dd{r}\dd{\theta}$
+where $\dd{A} = \dd{x}\dd{y} = r\dd{r}\dd{\theta}$
 
 \begin{example}
 \[
@@ -713,4 +713,3 @@ For $x = r\cos\theta$, $y = r\sin\theta$:
 \]
 which recovers $\dd{A} = r\dd{r}\dd{\theta}$.
 \end{example}
-
