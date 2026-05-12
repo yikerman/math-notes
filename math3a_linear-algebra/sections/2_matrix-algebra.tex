@@ -480,3 +480,86 @@ hence $\mathbf{x}_1 + \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$.
 \]
 hence $c\mathbf{x} \in \operatorname{Null}(\mathbf{A})$.
 \end{proof}
+
+\subsection{Basis of a Linear Subspace}
+
+Let $V \subseteq \R^n$ be a linear subspace.
+
+\begin{definition}{Basis}{basis}
+A set $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ is a \textbf{basis} of $V$ if:
+\begin{enumerate}
+  \item $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = V$;
+  \item $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}$ are linearly independent.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$.
+  \[
+    \operatorname{Col}(\mathbf{A})
+    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \end{bmatrix}, \begin{bmatrix} 3 \\ 6 \end{bmatrix} \right\}
+    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix} \right\},
+  \]
+  so $\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix} \right\}$ is a basis for $\operatorname{Col}(\mathbf{A})$.
+
+  For the null space, $\mathbf{A}\mathbf{x} = \mathbf{0}$ reduces to $x_1 + 2 x_2 + 3 x_3 = 0$, so $x_1 = -2 x_2 - 3 x_3$ with $x_2, x_3$ free. Then
+  \[
+    \operatorname{Null}(\mathbf{A})
+    = \operatorname{span}\left\{ \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix} \right\},
+  \]
+  and these two vectors form a basis for $\operatorname{Null}(\mathbf{A})$.
+\end{example}
+
+\subsection{Dimension}
+
+\begin{theorem}{Bases Have the Same Size}{basis-size}
+If $B$ and $B'$ are both bases of a linear subspace $V$, then $B$ and $B'$ have the same number of vectors.
+\end{theorem}
+
+\begin{definition}{Dimension}{dimension}
+Let $V$ be a linear subspace of $\R^n$ with basis $B$. The \textbf{dimension} of $V$, written $\dim(V)$, is the number of vectors in $B$.
+\end{definition}
+
+\begin{example}
+  For $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$, $\dim(\operatorname{Null}(\mathbf{A})) = 2$.
+\end{example}
+
+\begin{example}
+  $\dim(\R^n) = n$, with standard basis $\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n$.
+\end{example}
+
+\subsection{Rank-Nullity Theorem}
+
+\begin{theorem}{Rank-Nullity}{rank-nullity}
+Let $\mathbf{A} \in \R^{m \times n}$. Then
+\[
+  \dim(\operatorname{Null}(\mathbf{A})) + \dim(\operatorname{Col}(\mathbf{A})) = n.
+\]
+\end{theorem}
+
+\begin{definition}{Rank and Nullity}{rank-nullity-def}
+For $\mathbf{A} \in \R^{m \times n}$,
+\[
+  \operatorname{nullity}(\mathbf{A}) = \dim(\operatorname{Null}(\mathbf{A})),
+  \qquad
+  \operatorname{rank}(\mathbf{A}) = \dim(\operatorname{Col}(\mathbf{A})).
+\]
+\end{definition}
+
+\begin{example}
+  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix} \in \R^{2 \times 3}$. From the previous bases, $\operatorname{rank}(\mathbf{A}) = 1$ and $\operatorname{nullity}(\mathbf{A}) = 2$, and $1 + 2 = 3 = n$.
+\end{example}
+
+\begin{example}
+  Let
+  \[
+    \mathbf{A} = \begin{bmatrix} 1 & 2 & -3 & 4 & 1 \\ 2 & -1 & 3 & 1 & 0 \\ 3 & 1 & 0 & 5 & 1 \end{bmatrix} \in \R^{3 \times 5}.
+  \]
+  Row reduce:
+  \[
+    \mathbf{A}
+    \;\rightsquigarrow\;
+    \begin{bmatrix} 1 & 2 & -3 & 4 & 1 \\ 0 & -5 & 9 & -7 & -2 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
+  \]
+  Pivots are in columns $1$ and $2$, so $\operatorname{rank}(\mathbf{A}) = 2$ and by Theorem~\ref{thm:rank-nullity}, $\operatorname{nullity}(\mathbf{A}) = 5 - 2 = 3$.
+\end{example}
