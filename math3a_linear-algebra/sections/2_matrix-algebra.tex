@@ -558,8 +558,33 @@ For $\mathbf{A} \in \R^{m \times n}$,
   Row reduce:
   \[
     \mathbf{A}
-    \;\rightsquigarrow\;
+    \;\rightarrow\;
     \begin{bmatrix} 1 & 2 & -3 & 4 & 1 \\ 0 & -5 & 9 & -7 & -2 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
   \]
-  Pivots are in columns $1$ and $2$, so $\operatorname{rank}(\mathbf{A}) = 2$ and by Theorem~\ref{thm:rank-nullity}, $\operatorname{nullity}(\mathbf{A}) = 5 - 2 = 3$.
+  Pivots are in columns $1$ and $2$, so $\#\text{pivots} = 2$, $\#\text{free vars} = 3$, $\operatorname{rank}(\mathbf{A}) = 2$, and by Theorem~\ref{thm:rank-nullity}, $\operatorname{nullity}(\mathbf{A}) = 5 - 2 = 3$.
+
+  Continue to RREF:
+  \[
+    \mathbf{A}
+    \;\rightarrow\;
+    \begin{bmatrix} 1 & 0 & 3/5 & 6/5 & 1/5 \\ 0 & 1 & -9/5 & 7/5 & 2/5 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
+  \]
+  Setting $x_3 = s$, $x_4 = t$, $x_5 = u$, $\mathbf{A}\mathbf{x} = \mathbf{0}$ gives
+  \[
+    \mathbf{x}
+    = s \begin{bmatrix} -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0 \end{bmatrix}
+    + t \begin{bmatrix} -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0 \end{bmatrix}
+    + u \begin{bmatrix} -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1 \end{bmatrix},
+  \]
+  so
+  \[
+    \operatorname{Null}(\mathbf{A})
+    = \operatorname{span}\underbrace{\left\{ \begin{bmatrix} -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1 \end{bmatrix} \right\}}_{\text{basis}}.
+  \]
+  The column space is spanned by the pivot columns of the original $\mathbf{A}$:
+  \[
+    \operatorname{Col}(\mathbf{A})
+    = \operatorname{span}\{\text{pivot cols}\}
+    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 2 \\ -1 \\ 1 \end{bmatrix} \right\}.
+  \]
 \end{example}
