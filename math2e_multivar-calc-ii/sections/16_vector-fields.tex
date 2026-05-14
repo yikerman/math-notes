@@ -889,3 +889,164 @@ so
 \]
 
 \end{example}
+
+\begin{example}[Area of an ellipse]
+Find the area enclosed by $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$.
+
+Let $D$ be the region enclosed. Then
+\[
+    \operatorname{Area}(D) = \iint_D 1\dd{A}.
+\]
+Pick $\mathbf{F}=\begin{bmatrix}P\\Q\end{bmatrix}$ with $\pd{Q}{x}-\pd{P}{y}=1$. By Green's theorem,
+\[
+    \operatorname{Area}(D)
+    = \iint_D \left(\pd{Q}{x}-\pd{P}{y}\right)\dd{A}
+    = \oint_C \mathbf{F}\cdot\dd{\mathbf{r}}.
+\]
+One choice is $\mathbf{F}=\begin{bmatrix}0\\x\end{bmatrix}$, which gives $\pd{Q}{x}-\pd{P}{y}=1$.
+
+Parametrize the boundary:
+\[
+    C\colon\quad \mathbf{r}(t)=\ve{a\cos t,\,b\sin t},\qquad t\in[0,2\pi],
+\]
+so $\mathbf{r}'(t)=\ve{-a\sin t,\,b\cos t}$ and $\mathbf{F}(\mathbf{r}(t))=\ve{0,\,a\cos t}$. Therefore
+\begin{align*}
+    \operatorname{Area}(D)
+    &= \oint_C \mathbf{F}\cdot\dd{\mathbf{r}}
+    = \int_0^{2\pi}\ve{0,\,a\cos t}\cdot\ve{-a\sin t,\,b\cos t}\dd{t} \\
+    &= \int_0^{2\pi} ab\cos^2 t\dd{t}
+    = ab\pi.
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, >=latex]
+    \draw[->] (-2.3,0) -- (2.3,0) node[right]{$x$};
+    \draw[->] (0,-1.6) -- (0,1.6) node[above]{$y$};
+    \draw[thick] (0,0) ellipse (1.8 and 1.1);
+    \foreach \a in {30, 120, 210, 300} {
+        \draw[->, thick] ({1.8*cos(\a)},{1.1*sin(\a)})
+            arc[start angle=\a, end angle=\a+15, x radius=1.8, y radius=1.1];
+    }
+    \node at (1.3,0.95) {$C$};
+    \node at (0,0) {$D$};
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+\subsection{Curl and Divergence}
+
+\begin{definition}{Curl}{curl}
+Let $\mathbf{F}\colon\R^3\to\R^3$, $\mathbf{F}(x,y,z)=\begin{bmatrix}P(x,y,z)\\Q(x,y,z)\\R(x,y,z)\end{bmatrix}$. The \emph{curl} of $\mathbf{F}$ is the vector field
+\[
+    \operatorname{curl}\mathbf{F}
+    = \left(\pd{R}{y}-\pd{Q}{z}\right)\hat{\mathbf{i}}
+    + \left(\pd{P}{z}-\pd{R}{x}\right)\hat{\mathbf{j}}
+    + \left(\pd{Q}{x}-\pd{P}{y}\right)\hat{\mathbf{k}}.
+\]
+As a map, $\operatorname{curl}\colon(\R^3\to\R^3)\to(\R^3\to\R^3)$.
+\end{definition}
+
+\begin{definition}{Divergence}{divergence}
+Let $\mathbf{F}\colon\R^3\to\R^3$ as above. The \emph{divergence} of $\mathbf{F}$ is the scalar field
+\[
+    \operatorname{div}\mathbf{F}
+    = \pd{P}{x} + \pd{Q}{y} + \pd{R}{z}.
+\]
+As a map, $\operatorname{div}\colon(\R^3\to\R^3)\to\R$.
+\end{definition}
+
+\textbf{Memorization via $\nabla$.} Let
+\[
+    \nabla = \begin{bmatrix}\partial/\partial x\\\partial/\partial y\\\partial/\partial z\end{bmatrix}.
+\]
+Then
+\[
+    \operatorname{curl}\mathbf{F} = \nabla\times\mathbf{F}
+    = \det\begin{bmatrix}
+        \hat{\mathbf{i}} & \hat{\mathbf{j}} & \hat{\mathbf{k}} \\
+        \partial/\partial x & \partial/\partial y & \partial/\partial z \\
+        P & Q & R
+    \end{bmatrix}
+    \quad\text{(strictly 3D)},
+    \qquad
+    \operatorname{div}\mathbf{F} = \nabla\cdot\mathbf{F}.
+\]
+
+\textbf{Geometric meaning.} The curl measures local rotation of $\mathbf{F}$:
+
+\begin{center}
+\begin{tikzpicture}[scale=1, >=latex]
+    \foreach \x/\y/\dx/\dy in {
+        -0.8/0.6/0.4/-0.1, 0/0.7/0.3/0.2, 0.8/0.5/-0.1/0.4,
+        -0.9/-0.2/0.2/0.4, 0.9/0.1/-0.3/0.3,
+        -0.6/-0.7/-0.1/0.4, 0.2/-0.8/-0.3/0.3, 0.9/-0.6/-0.4/0.2
+    } {
+        \draw[->, thick, blue!70] (\x,\y) -- ++(\dx,\dy);
+    }
+    \node at (-2.2,0) {$\mathbf{F}$};
+
+    \begin{scope}[xshift=4cm]
+        \draw[->, very thick, red!70] (0,0) -- (0,1.1) node[above]{$\operatorname{curl}\mathbf{F}$};
+        \draw[->, thick] (0.6,0) arc[start angle=0, end angle=300, radius=0.6];
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{example}
+$\operatorname{div}\mathbf{F}=0$ corresponds to an incompressible flow velocity field.
+\end{example}
+
+\begin{theorem}{Curl of a Gradient}{curl-grad-zero}
+For a scalar field $f\colon\R^3\to\R$ with continuous second partials,
+\[
+    \operatorname{curl}(\nabla f) = \mathbf{0}.
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+    \operatorname{curl}(\nabla f)
+    = \begin{bmatrix}
+        f_{yz} - f_{zy}\\
+        f_{zx} - f_{xz}\\
+        f_{xy} - f_{yx}
+    \end{bmatrix}
+    = \mathbf{0}
+\]
+by Clairaut's theorem on equality of mixed partials.
+\end{proof}
+
+\begin{remark}
+Equivalently, for any loop $C$, $\oint_C \nabla f\cdot\dd{\mathbf{r}}=0$ (FTLI).
+\end{remark}
+
+\begin{theorem}{Zero Curl Implies Conservative}{zero-curl-conservative}
+Let $\mathbf{F}\colon\R^3\to\R^3$ with continuous partials 
+
+\[
+\operatorname{curl}\mathbf{F}=\mathbf{0} \implies \mathbf{F} \text{ is conservative.}
+\]
+
+\end{theorem}
+
+\begin{theorem}{Divergence of a Curl}{div-curl-zero}
+For $\mathbf{F}\colon\R^3\to\R^3$ with continuous second partials,
+\[
+    \operatorname{div}(\operatorname{curl}\mathbf{F}) = 0.
+\]
+\end{theorem}
+
+\begin{example}
+Find $\mathbf{G}\colon\R^3\to\R^3$ such that
+\[
+    \operatorname{curl}\mathbf{G}
+    = \begin{bmatrix}xz\\xy\\y\cos z\end{bmatrix}.
+\]
+By Theorem~\ref{thm:div-curl-zero}, $\operatorname{div}(\operatorname{curl}\mathbf{G})=0$. However,
+\[
+    \pd{}{x}(xz) + \pd{}{y}(xy) + \pd{}{z}(y\cos z)
+    = z + x - y\sin z
+    \neq 0.
+\]
+Therefore $\mathbf{G}$ does not exist.
+\end{example}
