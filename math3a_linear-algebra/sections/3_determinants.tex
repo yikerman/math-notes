@@ -1,0 +1,73 @@
+\subsection{Determinants}
+
+\begin{definition}{Minor Submatrix}{minor-submatrix}
+For $\mathbf{A} \in \R^{n \times n}$, let $\mathbf{A}_{ij} \in \R^{(n-1) \times (n-1)}$ denote the submatrix obtained from $\mathbf{A}$ by removing the $i$-th row and $j$-th column.
+\end{definition}
+
+\begin{definition}{Determinant}{determinant}
+Let $\mathbf{A} \in \R^{n \times n}$. The \textbf{determinant} $\det(\mathbf{A}) \in \R$ is defined inductively:
+\begin{itemize}
+  \item $n = 1$: $\det(\mathbf{A}) = a_{11}$.
+  \item $n = 2$: $\det(\mathbf{A}) = a_{11} a_{22} - a_{12} a_{21}$.
+  \item $n = 3$:
+  \[
+    \det(\mathbf{A})
+    = a_{11} \det\begin{bmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{bmatrix}
+    - a_{12} \det\begin{bmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{bmatrix}
+    + a_{13} \det\begin{bmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{bmatrix}.
+  \]
+\end{itemize}
+
+And for general $n$, expanding along the first row:
+\[
+  \det(\mathbf{A})
+  = a_{11} \det(\mathbf{A}_{11})
+  - a_{12} \det(\mathbf{A}_{12})
+  + a_{13} \det(\mathbf{A}_{13})
+  - a_{14} \det(\mathbf{A}_{14})
+  + \cdots
+  + (-1)^{n+1} a_{1n} \det(\mathbf{A}_{1n})
+\]
+
+\end{definition}
+
+
+
+\subsubsection{Cofactor Expansion Along Any Row}
+
+\begin{definition}{Cofactor}{cofactor}
+For $\mathbf{A} \in \R^{n \times n}$, the \textbf{$(i,j)$ cofactor} is
+\[
+  C_{ij} = (-1)^{i+j} \det(\mathbf{A}_{ij}).
+\]
+\end{definition}
+
+\begin{theorem}{Cofactor Expansion}{cofactor-expansion}
+For any row $i$ of $\mathbf{A} \in \R^{n \times n}$,
+\[
+  \det(\mathbf{A}) = a_{i1} C_{i1} + a_{i2} C_{i2} + \cdots + a_{in} C_{in}.
+\]
+\end{theorem}
+
+\begin{example}
+  Let
+  \[
+    \mathbf{A} = \begin{bmatrix}
+      2 & 3 & 1 & 4 & 5 \\
+      0 & 3 & 1 & 0 & -2 \\
+      0 & 0 & 2 & 0 & 5 \\
+      0 & 0 & 0 & 4 & -1 \\
+      0 & 0 & 0 & 0 & -1
+    \end{bmatrix}.
+  \]
+  Expand along row $5$: only $a_{55} = -1$ is non-zero, so
+  \[
+    \det(\mathbf{A}) = a_{55} C_{55} = (-1) \det(\mathbf{A}_{55})
+    = -\det\begin{bmatrix}
+      2 & 3 & 1 & 4 \\
+      0 & 3 & 1 & 0 \\
+      0 & 0 & 2 & 0 \\
+      0 & 0 & 0 & 4
+    \end{bmatrix}.
+  \]
+\end{example}
