@@ -1165,3 +1165,140 @@ Then
   \]
   Therefore $\mathbf{G}$ does not exist.
 \end{example}
+
+\subsection{Parametric Surfaces and Areas}
+
+\begin{definition}{Parametric Surface}{parametric-surface}
+  A \emph{parametric surface} is a vector-valued function
+  \[
+    \mathbf{r}(u,v) =
+    \begin{bmatrix}
+      x(u,v) \\ y(u,v) \\ z(u,v)
+    \end{bmatrix}
+  \]
+  defined over a region $D$ in the $uv$-plane. Its image $S = \mathbf{r}(D)\subseteq\R^3$ is the surface.
+\end{definition}
+
+\begin{center}
+  \begin{tikzpicture}[scale=0.9, >=latex]
+		\draw[->] (-0.3,0) -- (2.6,0) node[right]{$u$};
+		\draw[->] (0,-0.3) -- (0,2.2) node[above]{$v$};
+		\draw[thick] (1.3,1) .. controls (1.9,1.5) and (1.7,0.4) .. (1.1,0.5)
+		.. controls (0.7,0.55) and (0.8,1.3) .. (1.3,1);
+		\node at (1.3,1) {$D$};
+		\draw[|->, thick] (2.9,1) -- (4.2,1) node[midway, above]{$\mathbf{r}$};
+	\end{tikzpicture}
+  \hspace{0.5cm}
+  \tdplotsetmaincoords{70}{120}
+  \begin{tikzpicture}[tdplot_main_coords, scale=0.9, >=latex]
+		\draw[->] (0,0,0) -- (3,0,0) node[below]{$x$};
+		\draw[->] (0,0,0) -- (0,3,0) node[right]{$y$};
+		\draw[->] (0,0,0) -- (0,0,3) node[above]{$z$};
+		\draw[thick, blue!70, smooth, samples=40, domain=0:6.283, variable=\t]
+		plot ({1.2 + 0.6*cos(\t r)}, {2.0 + 0.6*sin(\t r)}, {1.5 + 0.4*sin(2*\t r)});
+		\node at (2.2,2.0,2.2) {$S$};
+	\end{tikzpicture}
+\end{center}
+
+\begin{remark}
+  Compare:
+  \begin{align*}
+    \text{curve in 3D:}   & \quad \mathbf{r}\colon\R\to\R^3   \\
+    \text{surface in 3D:} & \quad \mathbf{r}\colon\R^2\to\R^3
+  \end{align*}
+\end{remark}
+
+\textbf{Grid curves.} Fixing one variable produces a curve on $S$. For $u=u_0$,
+\[
+  \mathbf{r}(u_0,v) = \ve{x(u_0,v),\,y(u_0,v),\,z(u_0,v)}
+\]
+traces a curve on $S$ as $v$ varies, and vice versa for $v=v_0$.
+
+\begin{example}[Cylinder]
+  $\mathbf{r}(u,v) = \ve{2\cos u,\,v,\,2\sin u}$ parametrizes a cylinder of radius $2$ along the $y$-axis.
+
+  \textbf{Fix $v=v_0$:}
+  \[
+    \mathbf{r}(u) = \ve{2\cos u,\,v_0,\,2\sin u}
+  \]
+  is a circle of radius $2$ centered at $\ve{0,v_0,0}$ in the plane $y=v_0$.
+
+  \textbf{Fix $u=u_0$:}
+  \[
+    \mathbf{r}(v) = \ve{2\cos u_0,\,v,\,2\sin u_0}
+  \]
+  is a straight line parallel to the $y$-axis.
+
+  \begin{center}
+    \tdplotsetmaincoords{70}{120}
+    \begin{tikzpicture}[tdplot_main_coords, scale=0.9, >=latex]
+			\draw[->] (0,0,0) -- (3,0,0) node[below]{$x$};
+			\draw[->] (0,0,0) -- (0,3.5,0) node[right]{$y$};
+			\draw[->] (0,0,0) -- (0,0,3) node[above]{$z$};
+			% cylinder body
+			\draw[thick, blue!70] (2,0,0) -- (2,3,0);
+			\draw[thick, blue!70] (-2,0,0) -- (-2,3,0);
+			\draw[thick, blue!70] (0,0,2) -- (0,3,2);
+			\draw[thick, blue!70] (0,0,-2) -- (0,3,-2);
+			% circles at y=0, y=1.5, y=3
+			\foreach \y in {0, 1.5, 3} {
+					\draw[thick, red!70] plot[domain=0:360, samples=40, smooth]
+					({2*cos(\x)}, \y, {2*sin(\x)});
+				}
+			\node[right] at (2.2,1.5,0) {\small circle, $r=2$};
+		\end{tikzpicture}
+    \hspace{0.8cm}
+    \begin{tikzpicture}[scale=0.7, >=latex]
+			\draw[->] (-0.3,0) -- (7.5,0) node[right]{$u$};
+			\draw[->] (0,-0.3) -- (0,2.5) node[above]{$v$};
+			\draw[thick] (0,0.3) rectangle (6.2832,2);
+			\node[below] at (0,0) {$0$};
+			\node[below] at (6.2832,0) {$2\pi$};
+		\end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{example}[Coiled tube]
+  \[
+    \mathbf{r}(u,v) =
+    \begin{bmatrix}
+      (2+\sin v)\cos u \\
+      (2+\sin v)\sin u \\
+      u + \cos v
+    \end{bmatrix}
+    =
+    \underbrace{
+      \begin{bmatrix}
+        2\cos u \\ 2\sin u \\ u
+      \end{bmatrix}
+    }_{\text{helix coil}}
+    +
+    \underbrace{
+      \begin{bmatrix}
+        \sin v \cos u \\ \sin v \sin u \\ \cos v
+      \end{bmatrix}
+    }_{\text{circle of radius }1}
+  \]
+  Let $\hat{\mathbf{w}}(u) = \ve{\cos u,\,\sin u,\,0}$. Then the second term is
+  \[
+    \sin v\,\hat{\mathbf{w}} + \cos v\,\hat{\mathbf{k}},
+  \]
+  a unit circle in the plane spanned by $\hat{\mathbf{w}}$ and $\hat{\mathbf{k}}$. The surface is a tube of radius $1$ wound around the helix of radius $2$ ascending along the $z$-axis.
+
+  \begin{center}
+    \tdplotsetmaincoords{75}{110}
+    \begin{tikzpicture}[tdplot_main_coords, scale=0.85, >=latex]
+			\draw[->] (0,0,0) -- (3.5,0,0) node[below]{$x$};
+			\draw[->] (0,0,0) -- (0,3.5,0) node[right]{$y$};
+			\draw[->] (0,0,0) -- (0,0,7) node[above]{$z$};
+			% central helix
+			\draw[thick, gray!50, domain=0:18.85, samples=120, smooth, variable=\t]
+			plot ({2*cos(\t r)}, {2*sin(\t r)}, {\t*0.3});
+			% tube cross sections (circles) at sample u values
+			\foreach \u in {0, 0.8, 1.6, 2.4, 3.2, 4.0, 4.8, 5.6, 6.4, 7.2, 8.0, 8.8, 9.6, 10.4, 11.2, 12.0, 12.8, 13.6, 14.4, 15.2, 16.0, 16.8} {
+					\draw[thick, blue!60, domain=0:360, samples=20, smooth, variable=\v]
+					plot ({(2+sin(\v))*cos(\u r)}, {(2+sin(\v))*sin(\u r)}, {\u*0.3 + cos(\v)});
+				}
+		\end{tikzpicture}
+  \end{center}
+\end{example}
