@@ -19,12 +19,13 @@ A \emph{fluid flow velocity field} assigns each position a velocity vector:
 \end{center}
 \end{example}
 
-\begin{definition}{Vector Field on $\R^2$}{vector-field}
-Let $D\subseteq\R^2$. A \emph{vector field} on $\R^2$ is a function $\mathbf{F}$
-that assigns each point $(x,y)\in D$ a two-dimensional vector $\mathbf{F}(x,y)$:
+\begin{definition}{Vector Field}{vector-field}
+Let $D\subseteq\R^n$. A \emph{vector field} on $D$ is a function $\mathbf{F}$
+that assigns each point $\mathbf{x}\in D$ an $n$-dimensional vector $\mathbf{F}(\mathbf{x})$:
 \[
-    \mathbf{F}\colon \R^2\to\R^2
+    \mathbf{F}\colon D\subseteq\R^n\to\R^n
 \]
+The cases $n=2$ and $n=3$ are most common.
 \end{definition}
 
 \begin{example}[Vortex]
@@ -79,19 +80,19 @@ Place mass $M$ at the origin. The gravitational force on a mass $m$ at position 
 \end{tikzpicture}
 \end{center}
 
-The scalar potential is
+The scalar potential energy is
 \[
-    V(\mathbf{x}) = -\frac{MG}{\lVert\mathbf{x}\rVert}
+    V(\mathbf{x}) = -\frac{GMm}{\lVert\mathbf{x}\rVert}
 \]
 and the force is its negative gradient:
 \[
-    -\nabla V = \mathbf{F} = -\frac{MG}{\lVert\mathbf{x}\rVert^2}\,\hat{\mathbf{x}}
+    -\nabla V = \mathbf{F} = -\frac{GMm}{\lVert\mathbf{x}\rVert^2}\,\hat{\mathbf{x}}
 \]
 
 Justification: Let $r = \lVert\mathbf{x}\rVert$. By the chain rule,
 \[
-    -\nabla V = \nabla\!\left(\frac{MG}{r}\right)
-    = -\frac{MG}{r^2}\,\nabla r
+    -\nabla V = \nabla\!\left(\frac{GMm}{r}\right)
+    = -\frac{GMm}{r^2}\,\nabla r
 \]
 so it remains to show $\nabla r = \hat{\mathbf{x}}$. Two ways:
 
@@ -125,7 +126,7 @@ so it points radially outward.
 
 Either way,
 \[
-    -\nabla V = -\frac{MG}{r^2}\,\hat{\mathbf{x}} = \mathbf{F}
+    -\nabla V = -\frac{GMm}{r^2}\,\hat{\mathbf{x}} = \mathbf{F}
 \]
 \end{example}
 
@@ -535,11 +536,11 @@ Let $\mathbf{F}$ be continuous on an open connected region $D$. Then
 \end{theorem}
 
 \begin{remark}
+On an open connected domain $D$,
 \[
-    \mathbf{F} \text{ is conservative} \iff \int_C \mathbf{F} \cdot \dd{\mathbf{r}} \text{ is independent of path} \,, \forall \text{ path } C \iff \oint_C \mathbf{F} \cdot \dd{\mathbf{r}} = 0 \,, \forall \text{ loop } C 
+    \mathbf{F} \text{ is conservative} \iff \int_C \mathbf{F} \cdot \dd{\mathbf{r}} \text{ is independent of path} \,, \forall \text{ path } C \iff \oint_C \mathbf{F} \cdot \dd{\mathbf{r}} = 0 \,, \forall \text{ loop } C
 \]
-
-and $\implies P_y = Q_x$.
+and each of these implies $P_y = Q_x$ (with continuous first partials). The converse $P_y = Q_x \implies \mathbf{F}$ conservative holds when $D$ is simply connected.
 \end{remark}
 
 \begin{definition}{Simply Connected Region}{simply-connected}
@@ -1021,13 +1022,17 @@ Equivalently, for any loop $C$, $\oint_C \nabla f\cdot\dd{\mathbf{r}}=0$ (FTLI).
 \end{remark}
 
 \begin{theorem}{Zero Curl Implies Conservative}{zero-curl-conservative}
-Let $\mathbf{F}\colon\R^3\to\R^3$ with continuous partials 
-
+Let $\mathbf{F}$ be a vector field defined on all of $\R^3$ (or, more generally, on a simply connected open region in $\R^3$) whose component functions have continuous partial derivatives. Then
 \[
 \operatorname{curl}\mathbf{F}=\mathbf{0} \implies \mathbf{F} \text{ is conservative.}
 \]
-
 \end{theorem}
+
+\begin{remark}
+The simply-connected hypothesis is essential. The 3D embedding of the vortex
+$\mathbf{F}(x,y,z)=\ve{-y/(x^2+y^2),\,x/(x^2+y^2),\,0}$ on $\R^3\setminus\{z\text{-axis}\}$
+has $\operatorname{curl}\mathbf{F}=\mathbf{0}$ but is not conservative.
+\end{remark}
 
 \begin{theorem}{Divergence of a Curl}{div-curl-zero}
 For $\mathbf{F}\colon\R^3\to\R^3$ with continuous second partials,
