@@ -1,67 +1,67 @@
 \subsection{Linear Systems of Equations}
 
 \begin{definition}{Linear Equation}{lin-eq}
-A \textbf{linear equation} with $n$ unknowns $x_1, x_2, \ldots, x_n$ is an equation of the form
-\[
-  a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b,
-\]
-where $a_1, a_2, \ldots, a_n, b \in \mathbb{R}$ are given constants.
+  A \textbf{linear equation} with $n$ unknowns $x_1, x_2, \ldots, x_n$ is an equation of the form
+  \[
+    a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b,
+  \]
+  where $a_1, a_2, \ldots, a_n, b \in \mathbb{R}$ are given constants.
 \end{definition}
 
 \begin{definition}{$m \times n$ Linear System}{lin-sys}
-An $m \times n$ \textbf{linear system} consists of $m$ linear equations in $n$ unknowns:
-\[
-  \begin{cases}
-    a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
-    a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
-    \hspace{2em}\vdots \\
-    a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
-  \end{cases}
-\]
+  An $m \times n$ \textbf{linear system} consists of $m$ linear equations in $n$ unknowns:
+  \[
+    \begin{cases}
+      a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+      a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+      \hspace{2em}\vdots                               \\
+      a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+    \end{cases}
+  \]
 \end{definition}
 
 Any linear system has exactly one of three types of solution sets: no solution, exactly one solution, or infinitely many solutions. For a $2 \times 2$ system these correspond geometrically to two lines being parallel, intersecting, or identical.
 
 \begin{center}
-\begin{tikzpicture}
-  % No solution: parallel lines
-  \begin{scope}
-    \draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
-    \draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
-    \draw[blue,thick] (-1,-0.5)--(1,0.5);
-    \draw[red,thick]  (-1, 0.2)--(1,1.2);
-    \node[font=\small] at (0,-1.7) {no solution};
-  \end{scope}
-  % 1 solution: intersecting lines
-  \begin{scope}[xshift=4cm]
-    \draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
-    \draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
-    \draw[blue,thick] (-1,-1)--(1,1);
-    \draw[red,thick]  (-1,1)--(1,-1);
-    \filldraw[black] (0,0) circle (2pt);
-    \node[font=\small] at (0,-1.7) {$1$ solution};
-  \end{scope}
-  % Infinite solutions: same line
-  \begin{scope}[xshift=8cm]
-    \draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
-    \draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
-    \draw[blue,very thick] (-1,-0.5)--(1,0.5);
-    \draw[red,dashed,thick] (-0.9,-0.45)--(0.9,0.45);
-    \node[font=\small] at (0,-1.7) {$\infty$ solutions};
-  \end{scope}
-\end{tikzpicture}
+  \begin{tikzpicture}
+		% No solution: parallel lines
+		\begin{scope}
+			\draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
+			\draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
+			\draw[blue,thick] (-1,-0.5)--(1,0.5);
+			\draw[red,thick]  (-1, 0.2)--(1,1.2);
+			\node[font=\small] at (0,-1.7) {no solution};
+		\end{scope}
+		% 1 solution: intersecting lines
+		\begin{scope}[xshift=4cm]
+			\draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
+			\draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
+			\draw[blue,thick] (-1,-1)--(1,1);
+			\draw[red,thick]  (-1,1)--(1,-1);
+			\filldraw[black] (0,0) circle (2pt);
+			\node[font=\small] at (0,-1.7) {$1$ solution};
+		\end{scope}
+		% Infinite solutions: same line
+		\begin{scope}[xshift=8cm]
+			\draw[->] (-1.2,0)--(1.2,0) node[right,font=\tiny]{$x_1$};
+			\draw[->] (0,-1.2)--(0,1.2) node[above,font=\tiny]{$x_2$};
+			\draw[blue,very thick] (-1,-0.5)--(1,0.5);
+			\draw[red,dashed,thick] (-0.9,-0.45)--(0.9,0.45);
+			\node[font=\small] at (0,-1.7) {$\infty$ solutions};
+		\end{scope}
+	\end{tikzpicture}
 \end{center}
 
 \subsubsection{Row Operations}
 
 \begin{definition}{Elementary Row Operations}{elem-row-ops}
-The three \textbf{elementary row operations} on a linear system are:
-\begin{enumerate}
-  \item Multiply a row by a non-zero scalar.
-  \item Interchange two rows.
-  \item Replace a row with itself plus a scalar multiple of another row.
-\end{enumerate}
-Each operation produces an equivalent system (same solution set).
+  The three \textbf{elementary row operations} on a linear system are:
+  \begin{enumerate}
+    \item Multiply a row by a non-zero scalar.
+    \item Interchange two rows.
+    \item Replace a row with itself plus a scalar multiple of another row.
+  \end{enumerate}
+  Each operation produces an equivalent system (same solution set).
 \end{definition}
 
 \subsubsection{Augmented Matrix}
@@ -72,21 +72,21 @@ $\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$. Row operations are applied to this mat
 \subsubsection{Echelon Form}
 
 \begin{definition}{Echelon Form}{echelon}
-A matrix is in \textbf{echelon form} if:
-\begin{enumerate}
-  \item All zero rows are at the bottom of the matrix (if any).
-  \item Every pivot position is to the right of the pivot position in the row above.
-  \item Below each pivot position, all entries are zero.
-\end{enumerate}
-A \textbf{zero row} is a row consisting entirely of zeros. A \textbf{pivot position} is the first non-zero entry in a row.
+  A matrix is in \textbf{echelon form} if:
+  \begin{enumerate}
+    \item All zero rows are at the bottom of the matrix (if any).
+    \item Every pivot position is to the right of the pivot position in the row above.
+    \item Below each pivot position, all entries are zero.
+  \end{enumerate}
+  A \textbf{zero row} is a row consisting entirely of zeros. A \textbf{pivot position} is the first non-zero entry in a row.
 \end{definition}
 
 \begin{definition}{Reduced Echelon Form}{rref}
-A matrix is in \textbf{reduced echelon form} (RREF) if it is in echelon form and additionally:
-\begin{enumerate}
-  \item Every pivot is equal to $1$.
-  \item Above each pivot, all entries are zero.
-\end{enumerate}
+  A matrix is in \textbf{reduced echelon form} (RREF) if it is in echelon form and additionally:
+  \begin{enumerate}
+    \item Every pivot is equal to $1$.
+    \item Above each pivot, all entries are zero.
+  \end{enumerate}
 \end{definition}
 
 Once in echelon form, the unknowns are solved by back-substitution. Row reducing further to RREF reads off the solution directly.
@@ -95,7 +95,7 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
   Solve the $3 \times 3$ system
   \[
     \begin{cases}
-      x_1 + 2x_2 - x_3 = 2 \\
+      x_1 + 2x_2 - x_3 = 2  \\
       2x_1 + 3x_2 + x_3 = 9 \\
       3x_1 + 5x_2 + 2x_3 = 14
     \end{cases}
@@ -103,32 +103,40 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
 
   Augmented matrix:
   \[
-    \left[\begin{array}{ccc|c}
-      1 & 2 & -1 & 2 \\
-      2 & 3 &  1 & 9 \\
-      3 & 5 &  2 & 14
-    \end{array}\right]
-    \begin{matrix} R_1 \\ R_2 \\ R_3 \end{matrix}
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & -1 & 2  \\
+        2 & 3 & 1  & 9  \\
+        3 & 5 & 2  & 14
+      \end{array}
+      \right]
+    \begin{matrix}
+      R_1 \\ R_2 \\ R_3
+    \end{matrix}
   \]
 
   Apply $R_2 \leftarrow R_2 - 2R_1$ and $R_3 \leftarrow R_3 - 3R_1$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 &  2 & -1 & 2 \\
-      0 & -1 &  3 & 5 \\
-      0 & -1 &  5 & 8
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2  & -1 & 2 \\
+        0 & -1 & 3  & 5 \\
+        0 & -1 & 5  & 8
+      \end{array}
+      \right]
   \]
 
   Apply $R_3 \leftarrow R_3 - R_2$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 &  2 & -1 & 2 \\
-      0 & -1 &  3 & 5 \\
-      0 &  0 &  2 & 3
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2  & -1 & 2 \\
+        0 & -1 & 3  & 5 \\
+        0 & 0  & 2  & 3
+      \end{array}
+      \right]
   \]
 
   The system is now in triangular form; solve $x_3$, then $x_2$, then $x_1$ by back-substitution.
@@ -138,7 +146,7 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
   Solve the system (no solution):
   \[
     \begin{cases}
-      x_1 + 2x_2 - x_3 = 1 \\
+      x_1 + 2x_2 - x_3 = 1  \\
       2x_1 + 5x_2 + x_3 = 8 \\
       3x_1 + 7x_2 = 10
     \end{cases}
@@ -146,32 +154,40 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
 
   Augmented matrix:
   \[
-    \left[\begin{array}{ccc|c}
-      1 & 2 & -1 & 1 \\
-      2 & 5 &  1 & 8 \\
-      3 & 7 &  0 & 10
-    \end{array}\right]
-    \begin{matrix} R_1 \\ R_2 \\ R_3 \end{matrix}
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & -1 & 1  \\
+        2 & 5 & 1  & 8  \\
+        3 & 7 & 0  & 10
+      \end{array}
+      \right]
+    \begin{matrix}
+      R_1 \\ R_2 \\ R_3
+    \end{matrix}
   \]
 
   Apply $R_2 \leftarrow R_2 - 2R_1$ and $R_3 \leftarrow R_3 - 3R_1$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 2 & -1 & 1 \\
-      0 & 1 &  3 & 6 \\
-      0 & 1 &  3 & 7
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & -1 & 1 \\
+        0 & 1 & 3  & 6 \\
+        0 & 1 & 3  & 7
+      \end{array}
+      \right]
   \]
 
   Apply $R_3 \leftarrow R_3 - R_2$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 2 & -1 & 1 \\
-      0 & 1 &  3 & 6 \\
-      0 & 0 &  0 & 1
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & -1 & 1 \\
+        0 & 1 & 3  & 6 \\
+        0 & 0 & 0  & 1
+      \end{array}
+      \right]
   \]
 
   $R_3$ reads $0 = 1$, a contradiction --- the system is \textbf{inconsistent} (no solution).
@@ -181,7 +197,7 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
   Solve the system (infinitely many solutions):
   \[
     \begin{cases}
-      x_1 + 2x_2 + x_3 = 4 \\
+      x_1 + 2x_2 + x_3 = 4    \\
       2x_1 + 5x_2 + 3x_3 = 10 \\
       3x_1 + 7x_2 + 4x_3 = 14
     \end{cases}
@@ -189,17 +205,21 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
 
   Augmented matrix and row reduction:
   \[
-    \left[\begin{array}{ccc|c}
-      1 & 2 & 1 &  4 \\
-      2 & 5 & 3 & 10 \\
-      3 & 7 & 4 & 14
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & 1 & 4  \\
+        2 & 5 & 3 & 10 \\
+        3 & 7 & 4 & 14
+      \end{array}
+      \right]
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 2 & 1 & 4 \\
-      0 & 1 & 1 & 2 \\
-      0 & 0 & 0 & 0
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & 1 & 4 \\
+        0 & 1 & 1 & 2 \\
+        0 & 0 & 0 & 0
+      \end{array}
+      \right]
   \]
 
   $R_3$ reads $0 = 0$ and is ignored. The remaining system:
@@ -219,64 +239,74 @@ Once in echelon form, the unknowns are solved by back-substitution. Row reducing
 \begin{example}
   Convert from echelon form to reduced echelon form:
   \[
-    \left[\begin{array}{ccc|c}
-      1 &  2 & -1 &  2 \\
-      0 & -1 &  3 &  5 \\
-      0 &  0 &  2 &  3
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2  & -1 & 2 \\
+        0 & -1 & 3  & 5 \\
+        0 & 0  & 2  & 3
+      \end{array}
+      \right]
   \]
 
   Make all pivots $1$ via $R_2 \leftarrow -R_2$ and $R_3 \leftarrow \tfrac{1}{2}R_3$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 2 & -1 &  2 \\
-      0 & 1 & -3 & -5 \\
-      0 & 0 &  1 & \tfrac{3}{2}
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2 & -1 & 2            \\
+        0 & 1 & -3 & -5           \\
+        0 & 0 & 1  & \tfrac{3}{2}
+      \end{array}
+      \right]
   \]
 
   Eliminate above pivot in column $2$ via $R_1 \leftarrow R_1 - 2R_2$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 0 &  5 & 12 \\
-      0 & 1 & -3 & -5 \\
-      0 & 0 &  1 & \tfrac{3}{2}
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 0 & 5  & 12           \\
+        0 & 1 & -3 & -5           \\
+        0 & 0 & 1  & \tfrac{3}{2}
+      \end{array}
+      \right]
   \]
 
   Eliminate above pivot in column $3$ via $R_2 \leftarrow R_2 + 3R_3$ and $R_1 \leftarrow R_1 - 5R_3$:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 0 & 0 &  \tfrac{9}{2} \\
-      0 & 1 & 0 & -\tfrac{1}{2} \\
-      0 & 0 & 1 &  \tfrac{3}{2}
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 0 & 0 & \tfrac{9}{2}  \\
+        0 & 1 & 0 & -\tfrac{1}{2} \\
+        0 & 0 & 1 & \tfrac{3}{2}
+      \end{array}
+      \right]
   \]
 \end{example}
 
 \subsubsection{Basic and Free Variables}
 
 \begin{definition}{Basic and Free Variables}{basic-free-vars}
-Variables corresponding to pivot positions are called \textbf{basic variables}. Variables corresponding to non-pivot columns are called \textbf{free variables}.
+  Variables corresponding to pivot positions are called \textbf{basic variables}. Variables corresponding to non-pivot columns are called \textbf{free variables}.
 \end{definition}
 
 \begin{example}
   For the reduced echelon form
   \[
-    \left[\begin{array}{ccc|c}
-      \boxed{1} & 0 &  7 & 6 \\
-      0 & \boxed{1} & -6 & 5
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        \boxed{1} & 0         & 7  & 6 \\
+        0         & \boxed{1} & -6 & 5
+      \end{array}
+      \right]
   \]
   $x_1, x_2$ are basic variables and $x_3$ is a free variable.
 
   To solve: let $x_3 = t$.
   \begin{align*}
-    x_1 + 7t &= 6  & &\Longrightarrow & x_1 &= -7t + 6 \\
-    x_2 - 6t &= 5  & &\Longrightarrow & x_2 &= 6t + 5
+    x_1 + 7t & = 6 &  & \Longrightarrow & x_1 & = -7t + 6 \\
+    x_2 - 6t & = 5 &  & \Longrightarrow & x_2 & = 6t + 5
   \end{align*}
   \[
     (x_1,\, x_2,\, x_3) = (-7t + 6,\; 6t + 5,\; t)
@@ -286,30 +316,32 @@ Variables corresponding to pivot positions are called \textbf{basic variables}. 
 \subsubsection{Existence and Uniqueness of Solutions}
 
 \begin{theorem}{}{inconsistent}
-A system is inconsistent (no solutions) if and only if there exists a row of the form
-$\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b\,\bigr]$ with $b \neq 0$ in its echelon form.
+  A system is inconsistent (no solutions) if and only if there exists a row of the form
+  $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b\,\bigr]$ with $b \neq 0$ in its echelon form.
 \end{theorem}
 
 \begin{theorem}{}{unique-inf}
-Assuming the system is consistent:
-\begin{itemize}
-  \item The system has infinitely many solutions if and only if there exists at least one free variable.
-  \item The system has a unique solution if and only if there are no free variables.
-\end{itemize}
+  Assuming the system is consistent:
+  \begin{itemize}
+    \item The system has infinitely many solutions if and only if there exists at least one free variable.
+    \item The system has a unique solution if and only if there are no free variables.
+  \end{itemize}
 \end{theorem}
 
 \begin{remark}
-$\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of unknowns.
+  $\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of unknowns.
 \end{remark}
 
 \begin{example}
   The echelon form
   \[
-    \left[\begin{array}{ccc|c}
-      \boxed{2} & 3 & 5 & 8 \\
-      0 & \boxed{8} & 6 & 9 \\
-      0 & 0 & \boxed{1} & 6
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        \boxed{2} & 3         & 5         & 8 \\
+        0         & \boxed{8} & 6         & 9 \\
+        0         & 0         & \boxed{1} & 6
+      \end{array}
+      \right]
   \]
   has $3$ pivots and $3$ unknowns, so the number of free variables is $0$ --- the system has a unique solution.
 \end{example}
@@ -321,77 +353,109 @@ $\text{\# free variables} = n - \text{\# pivots}$, where $n$ is the number of un
 Recall $\R^2 = \{(x, y) \mid x, y \in \R\}$.
 
 \begin{center}
-\begin{tikzpicture}
-  \draw[->] (-0.5,0)--(3,0) node[right]{$x$};
-  \draw[->] (0,-0.5)--(0,2.5) node[above]{$y$};
-  \draw[->,thick,blue] (0,0)--(2,1.5) node[above right]{$\mathbf{v} \in \R^2$};
-\end{tikzpicture}
+  \begin{tikzpicture}
+		\draw[->] (-0.5,0)--(3,0) node[right]{$x$};
+		\draw[->] (0,-0.5)--(0,2.5) node[above]{$y$};
+		\draw[->,thick,blue] (0,0)--(2,1.5) node[above right]{$\mathbf{v} \in \R^2$};
+	\end{tikzpicture}
 \end{center}
 
-Vectors are denoted as column vectors $\begin{bmatrix} x \\ y \end{bmatrix}$ or row vectors $\ve{x, y}$.
+Vectors are denoted as column vectors $
+  \begin{bmatrix}
+    x \\ y
+  \end{bmatrix}
+$ or row vectors $\ve{x, y}$.
 
 \textbf{Vector addition:}
 \begin{itemize}
   \item \textbf{Algebraic:}
-    $\mathbf{v}_1 + \mathbf{v}_2
-      = \begin{bmatrix} x_1 + x_2 \\ y_1 + y_2 \end{bmatrix}$
+        $\mathbf{v}_1 + \mathbf{v}_2
+          =
+          \begin{bmatrix}
+            x_1 + x_2 \\ y_1 + y_2
+          \end{bmatrix}
+        $
   \item \textbf{Geometric:} parallelogram rule
 \end{itemize}
 
 \begin{center}
-\begin{tikzpicture}
-  \draw[->] (-0.5,0)--(4,0) node[right]{$x$};
-  \draw[->] (0,-0.5)--(0,3) node[above]{$y$};
-  \draw[->,thick,blue] (0,0)--(2,0.5) node[midway,below]{$\mathbf{v}_1$};
-  \draw[->,thick,red] (0,0)--(1,2) node[midway,left]{$\mathbf{v}_2$};
-  \draw[dashed,blue] (1,2)--(3,2.5);
-  \draw[dashed,red] (2,0.5)--(3,2.5);
-  \draw[->,thick,purple] (0,0)--(3,2.5) node[above right]{$\mathbf{v}_1 + \mathbf{v}_2$};
-\end{tikzpicture}
+  \begin{tikzpicture}
+		\draw[->] (-0.5,0)--(4,0) node[right]{$x$};
+		\draw[->] (0,-0.5)--(0,3) node[above]{$y$};
+		\draw[->,thick,blue] (0,0)--(2,0.5) node[midway,below]{$\mathbf{v}_1$};
+		\draw[->,thick,red] (0,0)--(1,2) node[midway,left]{$\mathbf{v}_2$};
+		\draw[dashed,blue] (1,2)--(3,2.5);
+		\draw[dashed,red] (2,0.5)--(3,2.5);
+		\draw[->,thick,purple] (0,0)--(3,2.5) node[above right]{$\mathbf{v}_1 + \mathbf{v}_2$};
+	\end{tikzpicture}
 \end{center}
 
 \textbf{Scalar multiplication:} for $\lambda \in \R$ and $\mathbf{v} \in \R^2$:
 \[
-  \lambda \mathbf{v} = \begin{bmatrix} \lambda x \\ \lambda y \end{bmatrix}
+  \lambda \mathbf{v} =
+  \begin{bmatrix}
+    \lambda x \\ \lambda y
+  \end{bmatrix}
 \]
 
 \begin{center}
-\begin{tikzpicture}
-  \draw[->] (-0.5,0)--(4.5,0) node[right]{$x$};
-  \draw[->] (0,-0.5)--(0,3) node[above]{$y$};
-  \draw[->,thick,blue] (0,0)--(1.5,1) node[midway,below right]{$\mathbf{v}$};
-  \draw[->,thick,red] (0,0)--(3,2) node[above left]{$\lambda\mathbf{v}$};
-\end{tikzpicture}
+  \begin{tikzpicture}
+		\draw[->] (-0.5,0)--(4.5,0) node[right]{$x$};
+		\draw[->] (0,-0.5)--(0,3) node[above]{$y$};
+		\draw[->,thick,blue] (0,0)--(1.5,1) node[midway,below right]{$\mathbf{v}$};
+		\draw[->,thick,red] (0,0)--(3,2) node[above left]{$\lambda\mathbf{v}$};
+	\end{tikzpicture}
 \end{center}
 
 \subsubsection{Linear Combinations}
 
 \begin{definition}{Linear Combination}{lin-combo}
-Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \ldots, c_p \in \R$. A \textbf{linear combination} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is a vector of the form
-\[
-  c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p.
-\]
+  Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \ldots, c_p \in \R$. A \textbf{linear combination} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is a vector of the form
+  \[
+    c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p.
+  \]
 \end{definition}
 
 \begin{example}
-  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$.
+  Let $\mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+  $.
   Show that all possible linear combinations of $\mathbf{v}_1, \mathbf{v}_2$ is $\R^2$.
 
   \begin{center}
-  \begin{tikzpicture}
-    \draw[->] (-1.5,0)--(2,0) node[right]{$x$};
-    \draw[->] (0,-1.5)--(0,2.5) node[above]{$y$};
-    \draw[->,thick,blue] (0,0)--(1,-1) node[below right]{$\mathbf{v}_1$};
-    \draw[->,thick,red] (0,0)--(1,2) node[above right]{$\mathbf{v}_2$};
-  \end{tikzpicture}
+    \begin{tikzpicture}
+			\draw[->] (-1.5,0)--(2,0) node[right]{$x$};
+			\draw[->] (0,-1.5)--(0,2.5) node[above]{$y$};
+			\draw[->,thick,blue] (0,0)--(1,-1) node[below right]{$\mathbf{v}_1$};
+			\draw[->,thick,red] (0,0)--(1,2) node[above right]{$\mathbf{v}_2$};
+		\end{tikzpicture}
   \end{center}
 
-  Let $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}$. Solve $\lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2 = \mathbf{b}$:
+  Let $\mathbf{b} =
+    \begin{bmatrix}
+      b_1 \\ b_2
+    \end{bmatrix}
+  $. Solve $\lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2 = \mathbf{b}$:
   \[
-    \lambda_1 \begin{bmatrix} 1 \\ -1 \end{bmatrix}
-    + \lambda_2 \begin{bmatrix} 1 \\ 2 \end{bmatrix}
-    = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}
+    \lambda_1
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+    + \lambda_2
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      b_1 \\ b_2
+    \end{bmatrix}
     \quad \Longrightarrow \quad
     \begin{cases}
       \lambda_1 + \lambda_2 = b_1 \\
@@ -401,39 +465,59 @@ Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \
 
   Augmented matrix and row reduction:
   \[
-    \left[\begin{array}{cc|c}
-      1 & 1 & b_1 \\
-      -1 & 2 & b_2
-    \end{array}\right]
+    \left[
+      \begin{array}{cc|c}
+        1  & 1 & b_1 \\
+        -1 & 2 & b_2
+      \end{array}
+      \right]
     \longrightarrow
-    \left[\begin{array}{cc|c}
-      1 & 1 & b_1 \\
-      0 & 3 & b_1 + b_2
-    \end{array}\right]
+    \left[
+      \begin{array}{cc|c}
+        1 & 1 & b_1       \\
+        0 & 3 & b_1 + b_2
+      \end{array}
+      \right]
   \]
 
   Consistent for all $\mathbf{b} \in \R^2$, and no free variables $\Longrightarrow$ unique solution.
 \end{example}
 
 \begin{example}
-  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}$,
-  $\mathbf{b} = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}$.
+  Let $\mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ 1 \\ -1
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      2 \\ 3 \\ 1
+    \end{bmatrix}
+  $,
+  $\mathbf{b} =
+    \begin{bmatrix}
+      1 \\ 1 \\ 2
+    \end{bmatrix}
+  $.
   Is $\mathbf{b}$ a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$?
 
   Solve $\mathbf{b} = \lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2$:
   \[
-    \left[\begin{array}{cc|c}
-      1 & 2 & 1 \\
-      1 & 3 & 1 \\
-      -1 & 1 & 2
-    \end{array}\right]
+    \left[
+      \begin{array}{cc|c}
+        1  & 2 & 1 \\
+        1  & 3 & 1 \\
+        -1 & 1 & 2
+      \end{array}
+      \right]
     \longrightarrow
-    \left[\begin{array}{cc|c}
-      1 & 2 & 1 \\
-      0 & 1 & 0 \\
-      0 & 0 & 3
-    \end{array}\right]
+    \left[
+      \begin{array}{cc|c}
+        1 & 2 & 1 \\
+        0 & 1 & 0 \\
+        0 & 0 & 3
+      \end{array}
+      \right]
   \]
 
   $R_3$ reads $0 = 3$ --- inconsistent. $\mathbf{b}$ is \textbf{not} a linear combination of $\mathbf{v}_1$ and $\mathbf{v}_2$.
@@ -442,28 +526,36 @@ Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$ and $c_1, c_2, \
 \subsubsection{Span}
 
 \begin{definition}{Span}{span}
-Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{span} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is the set of all linear combinations of these vectors:
-\[
-  \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p\}
-  = \bigl\{\, c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p \;\bigm|\; c_1, c_2, \ldots, c_p \in \R \,\bigr\}.
-\]
+  Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p \in \R^n$. The \textbf{span} of $\mathbf{v}_1, \ldots, \mathbf{v}_p$ is the set of all linear combinations of these vectors:
+  \[
+    \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_p\}
+    = \bigl\{\, c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_p \mathbf{v}_p \;\bigm|\; c_1, c_2, \ldots, c_p \in \R \,\bigr\}.
+  \]
 \end{definition}
 
 \begin{example}
-  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 2 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \in \R^3$.
+  Let $\mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ 1 \\ 2
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      1 \\ 2 \\ 1
+    \end{bmatrix}
+    \in \R^3$.
   Then $\operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2\}$ is the set of all linear combinations of $\mathbf{v}_1$ and $\mathbf{v}_2$ --- geometrically, a plane through the origin.
 
   \begin{center}
-  \begin{tikzpicture}
-    % Plane as a filled parallelogram
-    \fill[blue!10] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
-    \draw[blue!40] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
-    % Vectors
-    \draw[->,thick,blue] (0,0)--(1.2,0.8) node[above right]{$\mathbf{v}_1$};
-    \draw[->,thick,red] (0,0)--(-0.8,1) node[above left]{$\mathbf{v}_2$};
-    \filldraw (0,0) circle (1.5pt);
-  \end{tikzpicture}
+    \begin{tikzpicture}
+			% Plane as a filled parallelogram
+			\fill[blue!10] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
+			\draw[blue!40] (-2.5,-1.5) -- (-0.5,1.5) -- (2.5,1.5) -- (0.5,-1.5) -- cycle;
+			% Vectors
+			\draw[->,thick,blue] (0,0)--(1.2,0.8) node[above right]{$\mathbf{v}_1$};
+			\draw[->,thick,red] (0,0)--(-0.8,1) node[above left]{$\mathbf{v}_2$};
+			\filldraw (0,0) circle (1.5pt);
+		\end{tikzpicture}
   \end{center}
 \end{example}
 
@@ -473,10 +565,26 @@ Given $\mathbf{b} \in \R^n$, the question ``is $\mathbf{b} \in \operatorname{Spa
 
 Writing out the vectors componentwise with
 \[
-  \mathbf{v}_1 = \begin{bmatrix} v_{11} \\ v_{12} \\ \vdots \\ v_{1n} \end{bmatrix}, \quad
-  \mathbf{v}_2 = \begin{bmatrix} v_{21} \\ v_{22} \\ \vdots \\ v_{2n} \end{bmatrix}, \quad \ldots, \quad
-  \mathbf{v}_p = \begin{bmatrix} v_{p1} \\ v_{p2} \\ \vdots \\ v_{pn} \end{bmatrix}, \quad
-  \mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix},
+  \mathbf{v}_1 =
+  \begin{bmatrix}
+    v_{11} \\ v_{12} \\ \vdots \\ v_{1n}
+  \end{bmatrix}
+  , \quad
+  \mathbf{v}_2 =
+  \begin{bmatrix}
+    v_{21} \\ v_{22} \\ \vdots \\ v_{2n}
+  \end{bmatrix}
+  , \quad \ldots, \quad
+  \mathbf{v}_p =
+  \begin{bmatrix}
+    v_{p1} \\ v_{p2} \\ \vdots \\ v_{pn}
+  \end{bmatrix}
+  , \quad
+  \mathbf{b} =
+  \begin{bmatrix}
+    b_1 \\ b_2 \\ \vdots \\ b_n
+  \end{bmatrix}
+  ,
 \]
 the equation $c_1 \mathbf{v}_1 + \cdots + c_p \mathbf{v}_p = \mathbf{b}$ becomes
 \[
@@ -488,12 +596,14 @@ the equation $c_1 \mathbf{v}_1 + \cdots + c_p \mathbf{v}_p = \mathbf{b}$ becomes
     c_p v_{p1} \\ c_p v_{p2} \\ \vdots \\ c_p v_{pn}
   \end{bmatrix}
   =
-  \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+  \begin{bmatrix}
+    b_1 \\ b_2 \\ \vdots \\ b_n
+  \end{bmatrix}
   \quad \Longrightarrow \quad
   \begin{cases}
     c_1 v_{11} + c_2 v_{21} + \cdots + c_p v_{p1} = b_1 \\
     c_1 v_{12} + c_2 v_{22} + \cdots + c_p v_{p2} = b_2 \\
-    \hspace{2em}\vdots \\
+    \hspace{2em}\vdots                                  \\
     c_1 v_{1n} + c_2 v_{2n} + \cdots + c_p v_{pn} = b_n
   \end{cases}
 \]
@@ -501,35 +611,57 @@ This system has the augmented matrix
 \[
   \left[\; \mathbf{v}_1 \;\; \mathbf{v}_2 \;\; \cdots \;\; \mathbf{v}_p \;\bigm|\; \mathbf{b} \;\right]
   =
-  \left[\begin{array}{cccc|c}
-    v_{11} & v_{21} & \cdots & v_{p1} & b_1 \\
-    v_{12} & v_{22} & \cdots & v_{p2} & b_2 \\
-    \vdots & \vdots & \ddots & \vdots & \vdots \\
-    v_{1n} & v_{2n} & \cdots & v_{pn} & b_n
-  \end{array}\right].
+  \left[
+    \begin{array}{cccc|c}
+      v_{11} & v_{21} & \cdots & v_{p1} & b_1    \\
+      v_{12} & v_{22} & \cdots & v_{p2} & b_2    \\
+      \vdots & \vdots & \ddots & \vdots & \vdots \\
+      v_{1n} & v_{2n} & \cdots & v_{pn} & b_n
+    \end{array}
+    \right].
 \]
 Therefore $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_p\}$ if and only if this augmented matrix row-reduces to a consistent system.
 
 \begin{example}
-  Let $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \\ -2 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 5 \\ -4 \\ -7 \end{bmatrix}$,
-  $\mathbf{v}_3 = \begin{bmatrix} -3 \\ 1 \\ 0 \end{bmatrix}$,
-  $\mathbf{b} = \begin{bmatrix} 3 \\ 3 \\ h \end{bmatrix}$.
+  Let $\mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ -1 \\ -2
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      5 \\ -4 \\ -7
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_3 =
+    \begin{bmatrix}
+      -3 \\ 1 \\ 0
+    \end{bmatrix}
+  $,
+  $\mathbf{b} =
+    \begin{bmatrix}
+      3 \\ 3 \\ h
+    \end{bmatrix}
+  $.
   Find $h$ such that $\mathbf{b} \in \operatorname{Span}\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$.
 
   Augmented matrix and row reduction:
   \[
-    \left[\begin{array}{ccc|c}
-       1 &  5 & -3 & 3 \\
-      -1 & -4 &  1 & 3 \\
-      -2 & -7 &  0 & h
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1  & 5  & -3 & 3 \\
+        -1 & -4 & 1  & 3 \\
+        -2 & -7 & 0  & h
+      \end{array}
+      \right]
     \longrightarrow
-    \left[\begin{array}{ccc|c}
-      1 & 5 & -3 & 3 \\
-      0 & 1 & -2 & 6 \\
-      0 & 0 &  0 & h - 12
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & 5 & -3 & 3      \\
+        0 & 1 & -2 & 6      \\
+        0 & 0 & 0  & h - 12
+      \end{array}
+      \right]
   \]
 
   Solution exists $\iff h - 12 = 0$, so $h = 12$.
@@ -542,23 +674,33 @@ An $m \times n$ linear system ($m$ equations, $n$ unknowns)
   \begin{cases}
     a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
     a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
-    \hspace{2em}\vdots \\
+    \hspace{2em}\vdots                               \\
     a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
   \end{cases}
 \]
 can be written compactly using:
 \begin{itemize}
   \item \textbf{Coefficient matrix:}
-    $\mathbf{A} = \begin{bmatrix}
-      a_{11} & a_{12} & \cdots & a_{1n} \\
-      a_{21} & a_{22} & \cdots & a_{2n} \\
-      \vdots & \vdots & \ddots & \vdots \\
-      a_{m1} & a_{m2} & \cdots & a_{mn}
-    \end{bmatrix} \in \R^{m \times n}$
+        $\mathbf{A} =
+          \begin{bmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+          \end{bmatrix}
+          \in \R^{m \times n}$
   \item \textbf{Vector of unknowns:}
-    $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \in \R^n$
+        $\mathbf{x} =
+          \begin{bmatrix}
+            x_1 \\ x_2 \\ \vdots \\ x_n
+          \end{bmatrix}
+          \in \R^n$
   \item \textbf{Right-hand side:}
-    $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{bmatrix} \in \R^m$
+        $\mathbf{b} =
+          \begin{bmatrix}
+            b_1 \\ b_2 \\ \vdots \\ b_m
+          \end{bmatrix}
+          \in \R^m$
 \end{itemize}
 
 The system is then written as the matrix equation
@@ -572,15 +714,20 @@ Expanding $\mathbf{A}\mathbf{x}$:
     \vdots & \ddots & \vdots \\
     a_{m1} & \cdots & a_{mn}
   \end{bmatrix}
-  \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix}
+  \begin{bmatrix}
+    x_1 \\ \vdots \\ x_n
+  \end{bmatrix}
   =
   \begin{bmatrix}
     a_{11}x_1 + \cdots + a_{1n}x_n \\
-    \vdots \\
+    \vdots                         \\
     a_{m1}x_1 + \cdots + a_{mn}x_n
   \end{bmatrix}
   =
-  \begin{bmatrix} b_1 \\ \vdots \\ b_m \end{bmatrix},
+  \begin{bmatrix}
+    b_1 \\ \vdots \\ b_m
+  \end{bmatrix}
+  ,
 \]
 recovers the original linear system.
 
@@ -594,193 +741,260 @@ Writing $\mathbf{A}$ by its columns as $\mathbf{A} = \bigl[\,\mathbf{a}_1 \;\; \
 \subsubsection{$\mathbf{A}\mathbf{x}$ as Row Products}
 
 Writing $\mathbf{A}$ by its rows as
-$\mathbf{A} = \begin{bmatrix} \mathbf{R}_1 \\ \mathbf{R}_2 \\ \vdots \\ \mathbf{R}_m \end{bmatrix}$,
+$\mathbf{A} =
+  \begin{bmatrix}
+    \mathbf{R}_1 \\ \mathbf{R}_2 \\ \vdots \\ \mathbf{R}_m
+  \end{bmatrix}
+$,
 the product $\mathbf{A}\mathbf{x}$ can also be computed as
 \[
   \mathbf{A}\mathbf{x}
-  = \begin{bmatrix}
+  =
+  \begin{bmatrix}
     \mathbf{R}_1 \cdot \mathbf{x} \\
     \mathbf{R}_2 \cdot \mathbf{x} \\
-    \vdots \\
+    \vdots                        \\
     \mathbf{R}_m \cdot \mathbf{x}
-  \end{bmatrix},
+  \end{bmatrix}
+  ,
 \]
 
 \begin{example}
-  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 1 \end{bmatrix}$,
-  $\mathbf{x} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$.
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 \\ 3 & 1
+    \end{bmatrix}
+  $,
+  $\mathbf{x} =
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+  $.
 
   \textbf{Column view:}
   \[
     \mathbf{A}\mathbf{x}
-    = 1 \begin{bmatrix} 1 \\ 3 \end{bmatrix}
-    + (-1) \begin{bmatrix} 2 \\ 1 \end{bmatrix}
-    = \begin{bmatrix} -1 \\ 2 \end{bmatrix}
+    = 1
+    \begin{bmatrix}
+      1 \\ 3
+    \end{bmatrix}
+    + (-1)
+    \begin{bmatrix}
+      2 \\ 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      -1 \\ 2
+    \end{bmatrix}
   \]
 
   \textbf{Row view:}
   \[
     \mathbf{A}\mathbf{x}
-    = \begin{bmatrix} 1 & 2 \\ 3 & 1 \end{bmatrix}
-    \begin{bmatrix} 1 \\ -1 \end{bmatrix}
-    = \begin{bmatrix} 1(1) + 2(-1) \\ 3(1) + 1(-1) \end{bmatrix}
-    = \begin{bmatrix} -1 \\ 2 \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 & 2 \\ 3 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1(1) + 2(-1) \\ 3(1) + 1(-1)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      -1 \\ 2
+    \end{bmatrix}
   \]
 \end{example}
 
 \subsection{Existence of Solutions}
 
 \begin{theorem}{}{existence}
-Let $\mathbf{A}$ be an $m \times n$ matrix with columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The following statements are equivalent:
-\begin{enumerate}
-  \item The linear system $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b} \in \R^m$.
-  \item Every $\mathbf{b} \in \R^m$ is a linear combination of the columns of $\mathbf{A}$.
-  \item The echelon form of $\mathbf{A}$ has a pivot in every row.
-\end{enumerate}
+  Let $\mathbf{A}$ be an $m \times n$ matrix with columns $\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n$. The following statements are equivalent:
+  \begin{enumerate}
+    \item The linear system $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b} \in \R^m$.
+    \item Every $\mathbf{b} \in \R^m$ is a linear combination of the columns of $\mathbf{A}$.
+    \item The echelon form of $\mathbf{A}$ has a pivot in every row.
+  \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 
-\textbf{(1) $\Leftrightarrow$ (2):} trivial.
+  \textbf{(1) $\Leftrightarrow$ (2):} trivial.
 
-\textbf{(1) $\Leftrightarrow$ (3):} Row reduce $\mathbf{A}$ to echelon form. In the augmented matrix $\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$, row reduction produces
-\[
-  \left[\begin{array}{cccc|c}
-    p_1 & * & \cdots & * & b_1' \\
-    0 & p_2 & \cdots & * & b_2' \\
-    \vdots & & \ddots & \vdots & \vdots \\
-    0 & 0 & \cdots & p_m & b_m'
-  \end{array}\right]
-\]
+  \textbf{(1) $\Leftrightarrow$ (3):} Row reduce $\mathbf{A}$ to echelon form. In the augmented matrix $\bigl[\mathbf{A} \mid \mathbf{b}\bigr]$, row reduction produces
+  \[
+    \left[
+      \begin{array}{cccc|c}
+        p_1    & *   & \cdots & *      & b_1'   \\
+        0      & p_2 & \cdots & *      & b_2'   \\
+        \vdots &     & \ddots & \vdots & \vdots \\
+        0      & 0   & \cdots & p_m    & b_m'
+      \end{array}
+      \right]
+  \]
 
-If the echelon form of $\mathbf{A}$ does \emph{not} have a pivot in every row, then some row of the augmented matrix has the form $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b_m'\,\bigr]$. Choosing $\mathbf{b}$ so that $b_m' \neq 0$ gives an inconsistent system.
+  If the echelon form of $\mathbf{A}$ does \emph{not} have a pivot in every row, then some row of the augmented matrix has the form $\bigl[\,0 \;\; 0 \;\; \cdots \;\; 0 \;\bigm|\; b_m'\,\bigr]$. Choosing $\mathbf{b}$ so that $b_m' \neq 0$ gives an inconsistent system.
 \end{proof}
 
 \subsection{Homogeneous and Non-Homogeneous Linear Systems}
 
 \begin{definition}{Homogeneous / Non-Homogeneous System}{homo-sys}
-A linear system is \textbf{homogeneous} if it has the form $\mathbf{A}\mathbf{x} = \mathbf{0}$.
-A system is \textbf{non-homogeneous} if $\mathbf{A}\mathbf{x} = \mathbf{b}$ with $\mathbf{b} \neq \mathbf{0}$.
+  A linear system is \textbf{homogeneous} if it has the form $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+  A system is \textbf{non-homogeneous} if $\mathbf{A}\mathbf{x} = \mathbf{b}$ with $\mathbf{b} \neq \mathbf{0}$.
 \end{definition}
 
 \begin{note}
-$\mathbf{A}\mathbf{x} = \mathbf{0}$ always has the \textbf{trivial solution} $\mathbf{x} = \mathbf{0}$.
+  $\mathbf{A}\mathbf{x} = \mathbf{0}$ always has the \textbf{trivial solution} $\mathbf{x} = \mathbf{0}$.
 \end{note}
 
 \begin{enumerate}
   \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions $\iff$ at least 1 free variable.
-  \begin{remark}
-  $\#\text{free variables} = n - \#\text{pivots} \geq 1$.
-  \end{remark}
+        \begin{remark}
+          $\#\text{free variables} = n - \#\text{pivots} \geq 1$.
+        \end{remark}
 
   \item $\mathbf{x} = \mathbf{0}$ is the only solution to $\mathbf{A}\mathbf{x} = \mathbf{0}$ $\iff$ $\#\text{pivots} = n$ (no free variables).
 \end{enumerate}
 
 \begin{example}[Homogeneous System]
-Let
-\[
-  \mathbf{A}
-  = \begin{bmatrix} 1 & 2 & 3 \\ 2 & -1 & 1 \\ 3 & 1 & 4 \end{bmatrix},
-  \quad \text{solve } \mathbf{A}\mathbf{x} = \mathbf{0}.
-\]
+  Let
+  \[
+    \mathbf{A}
+    =
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 2 & -1 & 1 \\ 3 & 1 & 4
+    \end{bmatrix}
+    ,
+    \quad \text{solve } \mathbf{A}\mathbf{x} = \mathbf{0}.
+  \]
 
-Row reduce $\mathbf{A}$:
-\[
-  \mathbf{A}
-  \xrightarrow{\text{row reduction}}
-  \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}
-\]
+  Row reduce $\mathbf{A}$:
+  \[
+    \mathbf{A}
+    \xrightarrow{\text{row reduction}}
+    \begin{bmatrix}
+      1 & 0 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0
+    \end{bmatrix}
+  \]
 
-There are 2 pivots and 1 free variable, so $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions.
+  There are 2 pivots and 1 free variable, so $\mathbf{A}\mathbf{x} = \mathbf{0}$ has infinitely many solutions.
 
-The system from the reduced form:
-\[
-  \begin{cases}
-    x_1 + x_3 = 0 \\
-    x_2 + x_3 = 0 \\
-    x_3 \text{ free}
-  \end{cases}
-\]
+  The system from the reduced form:
+  \[
+    \begin{cases}
+      x_1 + x_3 = 0 \\
+      x_2 + x_3 = 0 \\
+      x_3 \text{ free}
+    \end{cases}
+  \]
 
-Let $x_3 = t$. Then $x_1 = -t$ and $x_2 = -t$:
-\[
-  \mathbf{x}
-  = \begin{bmatrix} -t \\ -t \\ t \end{bmatrix}
-  = t \begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix}
-\]
+  Let $x_3 = t$. Then $x_1 = -t$ and $x_2 = -t$:
+  \[
+    \mathbf{x}
+    =
+    \begin{bmatrix}
+      -t \\ -t \\ t
+    \end{bmatrix}
+    = t
+    \begin{bmatrix}
+      -1 \\ -1 \\ 1
+    \end{bmatrix}
+  \]
 \end{example}
 
 \begin{example}[Non-Homogeneous System]
-Using the same $\mathbf{A}$, let
-$\mathbf{b} = \begin{bmatrix} 6 \\ 2 \\ 8 \end{bmatrix}$.
-Solve $\mathbf{A}\mathbf{x} = \mathbf{b}$.
+  Using the same $\mathbf{A}$, let
+  $\mathbf{b} =
+    \begin{bmatrix}
+      6 \\ 2 \\ 8
+    \end{bmatrix}
+  $.
+  Solve $\mathbf{A}\mathbf{x} = \mathbf{b}$.
 
-Augmented matrix and row reduction:
-\[
-  \left[\begin{array}{ccc|c}
-    1 &  2 & 3 & 6 \\
-    2 & -1 & 1 & 2 \\
-    3 &  1 & 4 & 8
-  \end{array}\right]
-  \xrightarrow{\text{row reduction}}
-  \left[\begin{array}{ccc|c}
-    1 & 0 & 1 & 2 \\
-    0 & 1 & 1 & 2 \\
-    0 & 0 & 0 & 0
-  \end{array}\right]
-\]
+  Augmented matrix and row reduction:
+  \[
+    \left[
+      \begin{array}{ccc|c}
+        1 & 2  & 3 & 6 \\
+        2 & -1 & 1 & 2 \\
+        3 & 1  & 4 & 8
+      \end{array}
+      \right]
+    \xrightarrow{\text{row reduction}}
+    \left[
+      \begin{array}{ccc|c}
+        1 & 0 & 1 & 2 \\
+        0 & 1 & 1 & 2 \\
+        0 & 0 & 0 & 0
+      \end{array}
+      \right]
+  \]
 
-The system from the reduced form:
-\[
-  \begin{cases}
-    x_1 + x_3 = 2 \\
-    x_2 + x_3 = 2 \\
-    x_3 \text{ free}
-  \end{cases}
-\]
+  The system from the reduced form:
+  \[
+    \begin{cases}
+      x_1 + x_3 = 2 \\
+      x_2 + x_3 = 2 \\
+      x_3 \text{ free}
+    \end{cases}
+  \]
 
-Let $x_3 = t$. Then $x_1 = 2 - t$ and $x_2 = 2 - t$:
-\[
-  \mathbf{x}
-  = \begin{bmatrix} 2 - t \\ 2 - t \\ t \end{bmatrix}
-  = \underbrace{\begin{bmatrix} 2 \\ 2 \\ 0 \end{bmatrix}}_{\mathbf{x}_p}
-  + \underbrace{t \begin{bmatrix} -1 \\ -1 \\ 1 \end{bmatrix}}_{\mathbf{x}_h}
-\]
+  Let $x_3 = t$. Then $x_1 = 2 - t$ and $x_2 = 2 - t$:
+  \[
+    \mathbf{x}
+    =
+    \begin{bmatrix}
+      2 - t \\ 2 - t \\ t
+    \end{bmatrix}
+    = \underbrace{
+      \begin{bmatrix}
+        2 \\ 2 \\ 0
+      \end{bmatrix}
+    }_{\mathbf{x}_p}
+    + \underbrace{t
+      \begin{bmatrix}
+        -1 \\ -1 \\ 1
+      \end{bmatrix}
+    }_{\mathbf{x}_h}
+  \]
 
-The solution decomposes into a particular solution $\mathbf{x}_p$ to $\mathbf{A}\mathbf{x} = \mathbf{b}$ plus the general solution $\mathbf{x}_h$ to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+  The solution decomposes into a particular solution $\mathbf{x}_p$ to $\mathbf{A}\mathbf{x} = \mathbf{b}$ plus the general solution $\mathbf{x}_h$ to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
 \end{example}
 
 \begin{theorem}{}{general-soln}
-Let $\mathbf{A} \in \R^{m \times n}$, $\mathbf{b} \in \R^m$. If $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a particular solution $\mathbf{x}_p$, then the general solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ is
-\[
-  \mathbf{x} = \mathbf{x}_p + \mathbf{x}_h,
-\]
-where $\mathbf{x}_h$ ranges over all solutions to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
+  Let $\mathbf{A} \in \R^{m \times n}$, $\mathbf{b} \in \R^m$. If $\mathbf{A}\mathbf{x} = \mathbf{b}$ has a particular solution $\mathbf{x}_p$, then the general solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ is
+  \[
+    \mathbf{x} = \mathbf{x}_p + \mathbf{x}_h,
+  \]
+  where $\mathbf{x}_h$ ranges over all solutions to the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.
 \end{theorem}
 
 \begin{proof}
-Let $\mathbf{x}$ be any solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$. Then
-\[
-  \mathbf{A}(\mathbf{x} - \mathbf{x}_p) = \mathbf{A}\mathbf{x} - \mathbf{A}\mathbf{x}_p = \mathbf{b} - \mathbf{b} = \mathbf{0},
-\]
-so $\mathbf{x}_h = \mathbf{x} - \mathbf{x}_p$ is a solution to the homogeneous system. Therefore $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h$.
+  Let $\mathbf{x}$ be any solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$. Then
+  \[
+    \mathbf{A}(\mathbf{x} - \mathbf{x}_p) = \mathbf{A}\mathbf{x} - \mathbf{A}\mathbf{x}_p = \mathbf{b} - \mathbf{b} = \mathbf{0},
+  \]
+  so $\mathbf{x}_h = \mathbf{x} - \mathbf{x}_p$ is a solution to the homogeneous system. Therefore $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h$.
 \end{proof}
 
 Geometrically, the solution set of $\mathbf{A}\mathbf{x} = \mathbf{b}$ is the homogeneous solution set shifted by $\mathbf{x}_p$:
 
 \begin{center}
-\begin{tikzpicture}
-  \draw[->] (-0.5,0)--(4,0);
-  \draw[->] (0,-0.5)--(0,4);
-  % Homogeneous solution set (line through origin)
-  \draw[blue,thick] (-1,-1)--(3,3) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{0}$};
-  % x_p vector
-  \draw[->,thick,red] (0,0)--(1,2) node[midway,left,font=\small]{$\mathbf{x}_p$};
-  % Shifted solution set
-  \draw[blue,thick,dashed] (-1,0)--(3,4) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{b}$};
-  \filldraw (0,0) circle (1.5pt);
-  \filldraw (1,2) circle (1.5pt);
-\end{tikzpicture}
+  \begin{tikzpicture}
+		\draw[->] (-0.5,0)--(4,0);
+		\draw[->] (0,-0.5)--(0,4);
+		% Homogeneous solution set (line through origin)
+		\draw[blue,thick] (-1,-1)--(3,3) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{0}$};
+		% x_p vector
+		\draw[->,thick,red] (0,0)--(1,2) node[midway,left,font=\small]{$\mathbf{x}_p$};
+		% Shifted solution set
+		\draw[blue,thick,dashed] (-1,0)--(3,4) node[right,font=\small]{$\mathbf{A}\mathbf{x}=\mathbf{b}$};
+		\filldraw (0,0) circle (1.5pt);
+		\filldraw (1,2) circle (1.5pt);
+	\end{tikzpicture}
 \end{center}
 
 \begin{example}
@@ -788,17 +1002,34 @@ Geometrically, the solution set of $\mathbf{A}\mathbf{x} = \mathbf{b}$ is the ho
 
   Augmented matrix row reduced:
   \[
-    \left[\begin{array}{ccc|c}
-      1 & \tfrac{3}{2} & -\tfrac{1}{2} & 2
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|c}
+        1 & \tfrac{3}{2} & -\tfrac{1}{2} & 2
+      \end{array}
+      \right]
   \]
 
   Free variables $x_2 = t_1$, $x_3 = t_2$, so $x_1 = -\tfrac{3}{2}t_1 + \tfrac{1}{2}t_2 + 2$. In vector form:
   \[
     \mathbf{x}
-    = \begin{bmatrix} -\tfrac{3}{2}t_1 + \tfrac{1}{2}t_2 + 2 \\ t_1 \\ t_2 \end{bmatrix}
-    = \underbrace{\begin{bmatrix} 2 \\ 0 \\ 0 \end{bmatrix}}_{\mathbf{x}_p}
-    + \underbrace{t_1 \begin{bmatrix} -\tfrac{3}{2} \\ 1 \\ 0 \end{bmatrix} + t_2 \begin{bmatrix} \tfrac{1}{2} \\ 0 \\ 1 \end{bmatrix}}_{\mathbf{x}_h}
+    =
+    \begin{bmatrix}
+      -\tfrac{3}{2}t_1 + \tfrac{1}{2}t_2 + 2 \\ t_1 \\ t_2
+    \end{bmatrix}
+    = \underbrace{
+      \begin{bmatrix}
+        2 \\ 0 \\ 0
+      \end{bmatrix}
+    }_{\mathbf{x}_p}
+    + \underbrace{t_1
+      \begin{bmatrix}
+        -\tfrac{3}{2} \\ 1 \\ 0
+      \end{bmatrix}
+      + t_2
+      \begin{bmatrix}
+        \tfrac{1}{2} \\ 0 \\ 1
+      \end{bmatrix}
+    }_{\mathbf{x}_h}
   \]
 
   $\mathbf{x}_h$ is a linear combination of two vectors whose span is a plane through the origin; $\mathbf{x}_p$ shifts that plane.
@@ -807,28 +1038,36 @@ Geometrically, the solution set of $\mathbf{A}\mathbf{x} = \mathbf{b}$ is the ho
 \subsection{Linear Independence}
 
 \begin{definition}{Linear Dependence / Independence}{lin-dep-indep}
-Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \in \R^m$. The vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are \textbf{linearly dependent} if and only if
-\[
-  x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n = \mathbf{0}
-\]
-has a non-trivial solution.
+  Let $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \in \R^m$. The vectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are \textbf{linearly dependent} if and only if
+  \[
+    x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n = \mathbf{0}
+  \]
+  has a non-trivial solution.
 
-The vectors are \textbf{linearly independent} if and only if the equation above has only the trivial solution $x_1 = x_2 = \cdots = x_n = 0$.
+  The vectors are \textbf{linearly independent} if and only if the equation above has only the trivial solution $x_1 = x_2 = \cdots = x_n = 0$.
 \end{definition}
 
 \begin{theorem}{Zero Vector Implies Dependence}{zero-vec-dep}
-If $\mathbf{v}_i = \mathbf{0}$ for some $i$, then $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
+  If $\mathbf{v}_i = \mathbf{0}$ for some $i$, then $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
 \end{theorem}
 
 \begin{proof}
-Take $x_i = 1$ and $x_j = 0$ for $j \neq i$. Then
-$x_1 \mathbf{v}_1 + \cdots + x_n \mathbf{v}_n = \mathbf{v}_i = \mathbf{0}$
-is a non-trivial solution.
+  Take $x_i = 1$ and $x_j = 0$ for $j \neq i$. Then
+  $x_1 \mathbf{v}_1 + \cdots + x_n \mathbf{v}_n = \mathbf{v}_i = \mathbf{0}$
+  is a non-trivial solution.
 \end{proof}
 
 \begin{example}
-  Let $\mathbf{v}_1 = \begin{bmatrix} -2 \\ 4 \\ 6 \\ 10 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 3 \\ -6 \\ -9 \\ -15 \end{bmatrix}$.
+  Let $\mathbf{v}_1 =
+    \begin{bmatrix}
+      -2 \\ 4 \\ 6 \\ 10
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      3 \\ -6 \\ -9 \\ -15
+    \end{bmatrix}
+  $.
   Since $\mathbf{v}_2 = -\tfrac{3}{2}\mathbf{v}_1$,
   \[
     \tfrac{3}{2}\mathbf{v}_1 + \mathbf{v}_2 = \mathbf{0}
@@ -846,9 +1085,21 @@ is a non-trivial solution.
 
 \begin{example}
   Let
-  $\mathbf{v}_1 = \begin{bmatrix} 1 \\ -1 \\ 2 \\ 0 \end{bmatrix}$,
-  $\mathbf{v}_2 = \begin{bmatrix} 2 \\ 1 \\ 3 \\ 4 \end{bmatrix}$,
-  $\mathbf{v}_3 = \begin{bmatrix} -1 \\ -2 \\ -1 \\ -4 \end{bmatrix}$.
+  $\mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ -1 \\ 2 \\ 0
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_2 =
+    \begin{bmatrix}
+      2 \\ 1 \\ 3 \\ 4
+    \end{bmatrix}
+  $,
+  $\mathbf{v}_3 =
+    \begin{bmatrix}
+      -1 \\ -2 \\ -1 \\ -4
+    \end{bmatrix}
+  $.
 
   \textbf{Observation:} $\mathbf{v}_1 - \mathbf{v}_2 - \mathbf{v}_3 = \mathbf{0}$ --- a non-trivial relation, so the vectors are linearly dependent.
 \end{example}
@@ -860,8 +1111,14 @@ To test whether $\mathbf{v}_1, \ldots, \mathbf{v}_n \in \R^m$ are linearly depen
   x_1 \mathbf{v}_1 + x_2 \mathbf{v}_2 + \cdots + x_n \mathbf{v}_n = \mathbf{0}
   \quad \Longleftrightarrow \quad
   \underbrace{\bigl[\,\mathbf{v}_1 \;\; \mathbf{v}_2 \;\; \cdots \;\; \mathbf{v}_n\,\bigr]}_{\mathbf{A}}
-  \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
-  = \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}.
+  \begin{bmatrix}
+    x_1 \\ x_2 \\ \vdots \\ x_n
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 \\ 0 \\ \vdots \\ 0
+  \end{bmatrix}
+  .
 \]
 Row reduce $\mathbf{A}$ to echelon form. A non-trivial solution exists $\iff$ there is at least one free variable $\iff$ the vectors are linearly dependent.
 
@@ -869,12 +1126,14 @@ Row reduce $\mathbf{A}$ to echelon form. A non-trivial solution exists $\iff$ th
   Using the three vectors from the previous example, form
   \[
     \mathbf{A} = \bigl[\,\mathbf{v}_1 \;\; \mathbf{v}_2 \;\; \mathbf{v}_3\,\bigr]
-    = \begin{bmatrix}
-       1 &  2 & -1 \\
-      -1 &  1 & -2 \\
-       2 &  3 & -1 \\
-       0 &  4 & -4
-    \end{bmatrix}.
+    =
+    \begin{bmatrix}
+      1  & 2 & -1 \\
+      -1 & 1 & -2 \\
+      2  & 3 & -1 \\
+      0  & 4 & -4
+    \end{bmatrix}
+    .
   \]
 
   Row reduce to echelon form:
@@ -884,25 +1143,25 @@ Row reduce $\mathbf{A}$ to echelon form. A non-trivial solution exists $\iff$ th
     \begin{bmatrix}
       1 & 2 & -1 \\
       0 & 1 & -1 \\
-      0 & 0 &  0 \\
-      0 & 0 &  0
+      0 & 0 & 0  \\
+      0 & 0 & 0
     \end{bmatrix}
   \]
   There are $2$ pivots and $3$ unknowns, so $x_3$ is a free variable $\Longrightarrow$ infinitely many solutions $\Longrightarrow$ a non-trivial solution exists $\Longrightarrow$ $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are linearly dependent.
 \end{example}
 
 \begin{theorem}{Too Many Vectors Are Dependent}{too-many-dep}
-Let $\mathbf{v}_1, \ldots, \mathbf{v}_n \in \R^m$. If $n > m$, then $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
+  Let $\mathbf{v}_1, \ldots, \mathbf{v}_n \in \R^m$. If $n > m$, then $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
 \end{theorem}
 
 \begin{proof}
-Form $\mathbf{A} = \bigl[\,\mathbf{v}_1 \;\; \cdots \;\; \mathbf{v}_n\,\bigr] \in \R^{m \times n}$, which has more columns than rows. Then
-\[
-  \#\text{pivots} \leq m < n
-  \;\Longrightarrow\; \#\text{free variables} = n - \#\text{pivots} > 0
-  \;\Longrightarrow\; \text{non-trivial solution exists}.
-\]
-Hence $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
+  Form $\mathbf{A} = \bigl[\,\mathbf{v}_1 \;\; \cdots \;\; \mathbf{v}_n\,\bigr] \in \R^{m \times n}$, which has more columns than rows. Then
+  \[
+    \#\text{pivots} \leq m < n
+    \;\Longrightarrow\; \#\text{free variables} = n - \#\text{pivots} > 0
+    \;\Longrightarrow\; \text{non-trivial solution exists}.
+  \]
+  Hence $\mathbf{v}_1, \ldots, \mathbf{v}_n$ are linearly dependent.
 \end{proof}
 
 \subsection{Linear Transformations}
@@ -914,30 +1173,46 @@ An $m \times n$ matrix $\mathbf{A}$ can be thought of as a map
 Think of $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ as a transformation.
 
 \begin{definition}{Linear Transformation}{lin-transf}
-A map $T: \R^n \to \R^m$ is a \textbf{linear transformation} if
-\begin{enumerate}
-  \item $T(c\mathbf{x}) = c\, T(\mathbf{x})$ for all $c \in \R$,
-  \item $T(\mathbf{x}_1 + \mathbf{x}_2) = T(\mathbf{x}_1) + T(\mathbf{x}_2)$ for all $\mathbf{x}_1, \mathbf{x}_2 \in \R^n$.
-\end{enumerate}
+  A map $T: \R^n \to \R^m$ is a \textbf{linear transformation} if
+  \begin{enumerate}
+    \item $T(c\mathbf{x}) = c\, T(\mathbf{x})$ for all $c \in \R$,
+    \item $T(\mathbf{x}_1 + \mathbf{x}_2) = T(\mathbf{x}_1) + T(\mathbf{x}_2)$ for all $\mathbf{x}_1, \mathbf{x}_2 \in \R^n$.
+  \end{enumerate}
 \end{definition}
 
 Matrix multiplication $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ satisfies both properties:
 \begin{align*}
-  \mathbf{A}(c\mathbf{x}) &= c\, \mathbf{A}\mathbf{x}, \\
-  \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) &= \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2.
+  \mathbf{A}(c\mathbf{x})                 & = c\, \mathbf{A}\mathbf{x},                        \\
+  \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) & = \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2.
 \end{align*}
 
 \begin{example}
   Let $T: \R^2 \to \R^2$ be defined by
   \[
-    T\!\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)
-    = \begin{bmatrix} x_1 + x_2 + 1 \\ 2x_1 - 3x_2 + 2 \end{bmatrix}.
+    T\!\left(
+    \begin{bmatrix}
+        x_1 \\ x_2
+      \end{bmatrix}
+    \right)
+    =
+    \begin{bmatrix}
+      x_1 + x_2 + 1 \\ 2x_1 - 3x_2 + 2
+    \end{bmatrix}
+    .
   \]
   Take $c = 0$. Then
   \[
-    T(c\mathbf{x}) = T(\mathbf{0}) = \begin{bmatrix} 1 \\ 2 \end{bmatrix},
+    T(c\mathbf{x}) = T(\mathbf{0}) =
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    ,
     \qquad
-    c\, T(\mathbf{x}) = \begin{bmatrix} 0 \\ 0 \end{bmatrix}.
+    c\, T(\mathbf{x}) =
+    \begin{bmatrix}
+      0 \\ 0
+    \end{bmatrix}
+    .
   \]
   Since $T(c\mathbf{x}) \neq c\, T(\mathbf{x})$, $T$ is \textbf{not} a linear transformation.
 \end{example}
@@ -954,39 +1229,64 @@ For $T: \R^n \to \R^m$:
 \begin{example}
   Let $T: \R^2 \to \R^2$ be defined by
   \[
-    T\!\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)
-    = \begin{bmatrix} x_1 + x_2 \\ 0 \end{bmatrix}
-    = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}
-      \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+    T\!\left(
+    \begin{bmatrix}
+        x_1 \\ x_2
+      \end{bmatrix}
+    \right)
+    =
+    \begin{bmatrix}
+      x_1 + x_2 \\ 0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 & 1 \\ 0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      x_1 \\ x_2
+    \end{bmatrix}
+    .
   \]
   Then
   \[
     \mathrm{Range}(T)
-    = \mathrm{span}\!\left\{\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \end{bmatrix}\right\}
-    = \left\{ \begin{bmatrix} t \\ 0 \end{bmatrix} \,\bigg|\, t \in \R \right\}.
+    = \mathrm{span}\!\left\{
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    \right\}
+    = \left\{
+    \begin{bmatrix}
+      t \\ 0
+    \end{bmatrix}
+    \,\bigg|\, t \in \R \right\}.
   \]
   Every input vector in $\R^2$ collapses onto the $x$-axis:
   \begin{center}
     \begin{tikzpicture}[scale=0.8]
-      % Domain
-      \draw[->] (-1.8,0) -- (1.8,0);
-      \draw[->] (0,-1.8) -- (0,1.8);
-      \foreach \a in {20,60,110,160,210,260,310,350} {
-        \draw[->, thick] (0,0) -- (\a:1.4);
-      }
-      \node at (0,-2.3) {domain $\R^2$};
-      % Arrow
-      \draw[->, very thick] (2.3,0) -- (4.3,0) node[midway, above] {$T$};
-      % Codomain
-      \begin{scope}[xshift=6.6cm]
-        \draw[->] (-1.8,0) -- (1.8,0);
-        \draw[->] (0,-1.8) -- (0,1.8);
-        \draw[->, thick] (0,0) -- (1.4,0);
-        \draw[->, thick] (0,0) -- (-1.4,0);
-        \node[right] at (1.5,0.3) {$\begin{bmatrix} x_1+x_2 \\ 0 \end{bmatrix}$};
-        \node at (0,-2.3) {codomain $\R^2$};
-      \end{scope}
-    \end{tikzpicture}
+			% Domain
+			\draw[->] (-1.8,0) -- (1.8,0);
+			\draw[->] (0,-1.8) -- (0,1.8);
+			\foreach \a in {20,60,110,160,210,260,310,350} {
+					\draw[->, thick] (0,0) -- (\a:1.4);
+				}
+			\node at (0,-2.3) {domain $\R^2$};
+			% Arrow
+			\draw[->, very thick] (2.3,0) -- (4.3,0) node[midway, above] {$T$};
+			% Codomain
+			\begin{scope}[xshift=6.6cm]
+				\draw[->] (-1.8,0) -- (1.8,0);
+				\draw[->] (0,-1.8) -- (0,1.8);
+				\draw[->, thick] (0,0) -- (1.4,0);
+				\draw[->, thick] (0,0) -- (-1.4,0);
+				\node[right] at (1.5,0.3) {$\begin{bmatrix} x_1+x_2 \\ 0 \end{bmatrix}$};
+				\node at (0,-2.3) {codomain $\R^2$};
+			\end{scope}
+		\end{tikzpicture}
   \end{center}
   $T$ is \textbf{not onto} ($\mathrm{Range}(T) \neq \R^2$) and \textbf{not one-to-one} ($T(\mathbf{x}_1) = T(\mathbf{x}_2) \not\Rightarrow \mathbf{x}_1 = \mathbf{x}_2$).
 \end{example}
@@ -994,48 +1294,62 @@ For $T: \R^n \to \R^m$:
 \subsubsection{Standard Matrix of a Linear Transformation}
 
 \begin{theorem}{Standard Matrix}{std-matrix}
-If $T: \R^n \to \R^m$ is a linear transformation, then
-\[
-  T(\mathbf{x}) = \mathbf{A}\mathbf{x}, \qquad \mathbf{A} \in \R^{m \times n},
-\]
-where
-\[
-  \mathbf{A} = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr].
-\]
-Here $\mathbf{e}_j = \begin{bmatrix} 0 \\ \vdots \\ 1 \\ \vdots \\ 0 \end{bmatrix}$ is the unit vector with $1$ only at position $j$.
+  If $T: \R^n \to \R^m$ is a linear transformation, then
+  \[
+    T(\mathbf{x}) = \mathbf{A}\mathbf{x}, \qquad \mathbf{A} \in \R^{m \times n},
+  \]
+  where
+  \[
+    \mathbf{A} = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr].
+  \]
+  Here $\mathbf{e}_j =
+    \begin{bmatrix}
+      0 \\ \vdots \\ 1 \\ \vdots \\ 0
+    \end{bmatrix}
+  $ is the unit vector with $1$ only at position $j$.
 \end{theorem}
 
 \begin{proof}
-Let $\mathbf{x} = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} = x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n$. Then
-\begin{align*}
-  T(\mathbf{x})
-  &= T(x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n) \\
-  &= x_1 T(\mathbf{e}_1) + x_2 T(\mathbf{e}_2) + \cdots + x_n T(\mathbf{e}_n)
-     \quad \text{(by linearity of } T\text{)} \\
-  &= \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr]
-     \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix} \\
-  &= \mathbf{A}\mathbf{x}.
-\end{align*}
+  Let $\mathbf{x} =
+    \begin{bmatrix}
+      x_1 \\ \vdots \\ x_n
+    \end{bmatrix}
+    = x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n$. Then
+  \begin{align*}
+    T(\mathbf{x})
+     & = T(x_1 \mathbf{e}_1 + x_2 \mathbf{e}_2 + \cdots + x_n \mathbf{e}_n)                      \\
+     & = x_1 T(\mathbf{e}_1) + x_2 T(\mathbf{e}_2) + \cdots + x_n T(\mathbf{e}_n)
+    \quad \text{(by linearity of } T\text{)}                                                     \\
+     & = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \;\; \cdots \;\; T(\mathbf{e}_n) \,\bigr]
+    \begin{bmatrix}
+      x_1 \\ \vdots \\ x_n
+    \end{bmatrix}
+    \\
+     & = \mathbf{A}\mathbf{x}.
+  \end{align*}
 \end{proof}
 
 \begin{example}[Rotation]
   Let $T: \R^2 \to \R^2$ rotate $\mathbf{x}$ by $\theta$ counterclockwise.
 
   \begin{center}
-  \begin{tikzpicture}
-    \draw[->] (-1.5,0)--(2,0);
-    \draw[->] (0,-0.5)--(0,2);
-    \draw[->,thick,blue] (0,0)--(1.5,0.6) node[right]{$\mathbf{x}$};
-    \draw[->,thick,red] (0,0)--(0.4,1.5) node[above]{$T(\mathbf{x})$};
-    \draw (0.8,0.32) arc[start angle=21.8, end angle=75, radius=0.86];
-    \node at (0.85,0.85) {$\theta$};
-  \end{tikzpicture}
+    \begin{tikzpicture}
+			\draw[->] (-1.5,0)--(2,0);
+			\draw[->] (0,-0.5)--(0,2);
+			\draw[->,thick,blue] (0,0)--(1.5,0.6) node[right]{$\mathbf{x}$};
+			\draw[->,thick,red] (0,0)--(0.4,1.5) node[above]{$T(\mathbf{x})$};
+			\draw (0.8,0.32) arc[start angle=21.8, end angle=75, radius=0.86];
+			\node at (0.85,0.85) {$\theta$};
+		\end{tikzpicture}
   \end{center}
 
   \[
     \mathbf{A}
     = \bigl[\, T(\mathbf{e}_1) \;\; T(\mathbf{e}_2) \,\bigr]
-    = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+    \end{bmatrix}
   \]
 \end{example}
 \subsubsection{Identity Map}
@@ -1047,16 +1361,18 @@ Its matrix is obtained column-by-column from the standard basis vectors $\mathbf
   T = \mathbf{A}
   = \bigl[\,T(\mathbf{e}_1) \;\bigm|\; \cdots \;\bigm|\; T(\mathbf{e}_n)\,\bigr]
   = \bigl[\,\mathbf{e}_1 \;\bigm|\; \cdots \;\bigm|\; \mathbf{e}_n\,\bigr]
-  = \begin{bmatrix}
-    1 & 0 & \cdots & 0 \\
-    0 & 1 & \cdots & 0 \\
+  =
+  \begin{bmatrix}
+    1      & 0      & \cdots & 0      \\
+    0      & 1      & \cdots & 0      \\
     \vdots & \vdots & \ddots & \vdots \\
-    0 & 0 & \cdots & 1
-  \end{bmatrix}.
+    0      & 0      & \cdots & 1
+  \end{bmatrix}
+  .
 \]
 
 \begin{definition}{Identity Matrix}{identity-matrix}
-The \textbf{identity matrix} $\mathbf{I}_n \in \R^{n \times n}$ is the square matrix with all ones on the diagonal and zeros elsewhere.
+  The \textbf{identity matrix} $\mathbf{I}_n \in \R^{n \times n}$ is the square matrix with all ones on the diagonal and zeros elsewhere.
 \end{definition}
 
 \subsection{One-to-One and Onto Linear Transformations}
@@ -1064,80 +1380,82 @@ The \textbf{identity matrix} $\mathbf{I}_n \in \R^{n \times n}$ is the square ma
 Let $T: \R^n \to \R^m$ be a linear transformation.
 
 \begin{definition}{One-to-One}{one-to-one}
-$T$ is \textbf{one-to-one} if
-\[
-  T(\mathbf{x}_1) = T(\mathbf{x}_2) \;\Longrightarrow\; \mathbf{x}_1 = \mathbf{x}_2.
-\]
+  $T$ is \textbf{one-to-one} if
+  \[
+    T(\mathbf{x}_1) = T(\mathbf{x}_2) \;\Longrightarrow\; \mathbf{x}_1 = \mathbf{x}_2.
+  \]
 \end{definition}
 
 \begin{definition}{Onto}{onto}
-$T$ is \textbf{onto} if for every $\mathbf{y} \in \R^m$ there exists $\mathbf{x} \in \R^n$ such that
-\[
-  T(\mathbf{x}) = \mathbf{y}.
-\]
+  $T$ is \textbf{onto} if for every $\mathbf{y} \in \R^m$ there exists $\mathbf{x} \in \R^n$ such that
+  \[
+    T(\mathbf{x}) = \mathbf{y}.
+  \]
 \end{definition}
 
 \begin{remark}
-Reframing via the equation $T(\mathbf{x}) = \mathbf{y}$:
-\begin{itemize}
-  \item $T$ is one-to-one $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\leq 1$ solution for every $\mathbf{y} \in \R^m$.
-  \item $T$ is onto $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\geq 1$ solution for every $\mathbf{y} \in \R^m$.
-\end{itemize}
+  Reframing via the equation $T(\mathbf{x}) = \mathbf{y}$:
+  \begin{itemize}
+    \item $T$ is one-to-one $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\leq 1$ solution for every $\mathbf{y} \in \R^m$.
+    \item $T$ is onto $\iff$ $T(\mathbf{x}) = \mathbf{y}$ has $\geq 1$ solution for every $\mathbf{y} \in \R^m$.
+  \end{itemize}
 \end{remark}
 
 \begin{theorem}{One-to-One via Trivial Solution}{one-to-one-trivial}
-Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
-\[
-  T \text{ is one-to-one} \iff T(\mathbf{x}) = \mathbf{0} \text{ has only the trivial solution}.
-\]
+  Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
+  \[
+    T \text{ is one-to-one} \iff T(\mathbf{x}) = \mathbf{0} \text{ has only the trivial solution}.
+  \]
 \end{theorem}
 
 \begin{remark}
-$T$ is one-to-one $\iff$ $\mathbf{A}$ has no free variables.
+  $T$ is one-to-one $\iff$ $\mathbf{A}$ has no free variables.
 \end{remark}
 
 \begin{proof}
-\textbf{($\Rightarrow$)} Assume $T(\mathbf{x}) = \mathbf{0}$ has only the trivial solution $\mathbf{x} = \mathbf{0}$. Suppose $T(\mathbf{x}_1) = T(\mathbf{x}_2)$. Then
-\begin{align*}
-  T(\mathbf{x}_1) - T(\mathbf{x}_2) &= \mathbf{0} \\
-  T(\mathbf{x}_1 - \mathbf{x}_2) &= \mathbf{0} && \text{(linearity of } T\text{)} \\
-  \mathbf{x}_1 - \mathbf{x}_2 &= \mathbf{0} && \text{(assumption)} \\
-  \mathbf{x}_1 &= \mathbf{x}_2,
-\end{align*}
-so $T$ is one-to-one.
+  \textbf{($\Rightarrow$)} Assume $T(\mathbf{x}) = \mathbf{0}$ has only the trivial solution $\mathbf{x} = \mathbf{0}$. Suppose $T(\mathbf{x}_1) = T(\mathbf{x}_2)$. Then
+  \begin{align*}
+    T(\mathbf{x}_1) - T(\mathbf{x}_2) & = \mathbf{0}                                         \\
+    T(\mathbf{x}_1 - \mathbf{x}_2)    & = \mathbf{0}    &  & \text{(linearity of } T\text{)} \\
+    \mathbf{x}_1 - \mathbf{x}_2       & = \mathbf{0}    &  & \text{(assumption)}             \\
+    \mathbf{x}_1                      & = \mathbf{x}_2,
+  \end{align*}
+  so $T$ is one-to-one.
 
-\textbf{($\Leftarrow$)} Suppose $T$ is one-to-one. Since $T(\mathbf{0}) = \mathbf{0}$, if $T(\mathbf{x}) = \mathbf{0} = T(\mathbf{0})$ then $\mathbf{x} = \mathbf{0}$ by the one-to-one definition.
+  \textbf{($\Leftarrow$)} Suppose $T$ is one-to-one. Since $T(\mathbf{0}) = \mathbf{0}$, if $T(\mathbf{x}) = \mathbf{0} = T(\mathbf{0})$ then $\mathbf{x} = \mathbf{0}$ by the one-to-one definition.
 \end{proof}
 
 \begin{theorem}{Onto via Pivot in Every Row}{onto-pivot}
-Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
-\[
-  T \text{ is onto} \iff \text{the echelon form of } \mathbf{A} \text{ has a pivot in every row}.
-\]
+  Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$. Then
+  \[
+    T \text{ is onto} \iff \text{the echelon form of } \mathbf{A} \text{ has a pivot in every row}.
+  \]
 \end{theorem}
 
 \begin{remark}
-$T$ is onto $\iff$ $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent for every $\mathbf{y} \in \R^m$.
+  $T$ is onto $\iff$ $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent for every $\mathbf{y} \in \R^m$.
 \end{remark}
 
 \begin{proof}
-\textbf{($\Rightarrow$)} Contrapositive: suppose the echelon form of $\mathbf{A}$ is missing a pivot in some row. Then the augmented matrix $[\mathbf{A} \mid \mathbf{y}]$ row-reduces to
-\[
-  \left[\begin{array}{cccc|c}
-    * & * & \cdots & * & * \\
-    \vdots & & & \vdots & \vdots \\
-    0 & 0 & \cdots & 0 & b
-  \end{array}\right].
-\]
-Choose $\mathbf{y}$ so that $b \neq 0$; then the system is inconsistent, so $T$ is not onto.
+  \textbf{($\Rightarrow$)} Contrapositive: suppose the echelon form of $\mathbf{A}$ is missing a pivot in some row. Then the augmented matrix $[\mathbf{A} \mid \mathbf{y}]$ row-reduces to
+  \[
+    \left[
+      \begin{array}{cccc|c}
+        *      & * & \cdots & *      & *      \\
+        \vdots &   &        & \vdots & \vdots \\
+        0      & 0 & \cdots & 0      & b
+      \end{array}
+      \right].
+  \]
+  Choose $\mathbf{y}$ so that $b \neq 0$; then the system is inconsistent, so $T$ is not onto.
 
-\textbf{($\Leftarrow$)} Suppose the echelon form of $\mathbf{A}$ has a pivot in every row. After row-reduction, no row of the form $[\,0\;\cdots\;0 \mid b\,]$ with $b \neq 0$ can occur, so $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent by \ref{thm:inconsistent}. Hence $T$ is onto.
+  \textbf{($\Leftarrow$)} Suppose the echelon form of $\mathbf{A}$ has a pivot in every row. After row-reduction, no row of the form $[\,0\;\cdots\;0 \mid b\,]$ with $b \neq 0$ can occur, so $\mathbf{A}\mathbf{x} = \mathbf{y}$ is consistent by \ref{thm:inconsistent}. Hence $T$ is onto.
 \end{proof}
 
 \begin{theorem}{One-to-One/Onto via Columns}{one-to-one-onto-cols}
-Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$.
-\begin{enumerate}
-  \item $T$ is one-to-one $\iff$ the columns of $\mathbf{A}$ are linearly independent.
-  \item $T$ is onto $\iff$ the columns of $\mathbf{A}$ span $\R^m$.
-\end{enumerate}
+  Let $T: \R^n \to \R^m$ be a linear transformation with standard matrix $\mathbf{A}$.
+  \begin{enumerate}
+    \item $T$ is one-to-one $\iff$ the columns of $\mathbf{A}$ are linearly independent.
+    \item $T$ is onto $\iff$ the columns of $\mathbf{A}$ span $\R^m$.
+  \end{enumerate}
 \end{theorem}

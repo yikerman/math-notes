@@ -1,0 +1,40 @@
+defaultIndent: "  "
+
+removeTrailingWhitespace:
+  beforeProcessing: 1
+  afterProcessing: 1
+
+condenseMultipleBlankLinesInto: 1
+
+noAdditionalIndent:
+  document: 1
+
+verbatimEnvironments:
+  tikzpicture: 1
+  lstlisting: 1
+  minted: 1
+
+lookForAlignDelims:
+  align: 1
+  align*: 1
+  aligned: 1
+  alignat: 1
+  alignat*: 1
+  array: 1
+  matrix: 1
+  bmatrix: 1
+  pmatrix: 1
+  vmatrix: 1
+  Bmatrix: 1
+  Vmatrix: 1
+  cases: 1
+  cases*: 1
+  tabular: 1
+  tabular*: 1
+
+modifyLineBreaks:
+  environments:
+    BeginStartsOnOwnLine: 1
+    BodyStartsOnOwnLine: 1
+    EndStartsOnOwnLine: 1
+    EndFinishesWithLineBreak: 1

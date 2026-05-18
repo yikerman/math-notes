@@ -1,74 +1,86 @@
 \subsection{Determinants}
 
 \begin{definition}{Minor Submatrix}{minor-submatrix}
-For $\mathbf{A} \in \R^{n \times n}$, let $\mathbf{A}_{ij} \in \R^{(n-1) \times (n-1)}$ denote the submatrix obtained from $\mathbf{A}$ by removing the $i$-th row and $j$-th column.
+  For $\mathbf{A} \in \R^{n \times n}$, let $\mathbf{A}_{ij} \in \R^{(n-1) \times (n-1)}$ denote the submatrix obtained from $\mathbf{A}$ by removing the $i$-th row and $j$-th column.
 \end{definition}
 
 \begin{definition}{Determinant}{determinant}
-Let $\mathbf{A} \in \R^{n \times n}$. The \textbf{determinant} $\det(\mathbf{A}) \in \R$ is defined inductively:
-\begin{itemize}
-  \item $n = 1$: $\det(\mathbf{A}) = a_{11}$.
-  \item $n = 2$: $\det(\mathbf{A}) = a_{11} a_{22} - a_{12} a_{21}$.
-  \item $n = 3$:
+  Let $\mathbf{A} \in \R^{n \times n}$. The \textbf{determinant} $\det(\mathbf{A}) \in \R$ is defined inductively:
+  \begin{itemize}
+    \item $n = 1$: $\det(\mathbf{A}) = a_{11}$.
+    \item $n = 2$: $\det(\mathbf{A}) = a_{11} a_{22} - a_{12} a_{21}$.
+    \item $n = 3$:
+          \[
+            \det(\mathbf{A})
+            = a_{11} \det
+            \begin{bmatrix}
+              a_{22} & a_{23} \\ a_{32} & a_{33}
+            \end{bmatrix}
+            - a_{12} \det
+            \begin{bmatrix}
+              a_{21} & a_{23} \\ a_{31} & a_{33}
+            \end{bmatrix}
+            + a_{13} \det
+            \begin{bmatrix}
+              a_{21} & a_{22} \\ a_{31} & a_{32}
+            \end{bmatrix}
+            .
+          \]
+  \end{itemize}
+
+  And for general $n$, expanding along the first row:
   \[
     \det(\mathbf{A})
-    = a_{11} \det\begin{bmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{bmatrix}
-    - a_{12} \det\begin{bmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{bmatrix}
-    + a_{13} \det\begin{bmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{bmatrix}.
+    = a_{11} \det(\mathbf{A}_{11})
+    - a_{12} \det(\mathbf{A}_{12})
+    + a_{13} \det(\mathbf{A}_{13})
+    - a_{14} \det(\mathbf{A}_{14})
+    + \cdots
+    + (-1)^{n+1} a_{1n} \det(\mathbf{A}_{1n})
   \]
-\end{itemize}
-
-And for general $n$, expanding along the first row:
-\[
-  \det(\mathbf{A})
-  = a_{11} \det(\mathbf{A}_{11})
-  - a_{12} \det(\mathbf{A}_{12})
-  + a_{13} \det(\mathbf{A}_{13})
-  - a_{14} \det(\mathbf{A}_{14})
-  + \cdots
-  + (-1)^{n+1} a_{1n} \det(\mathbf{A}_{1n})
-\]
 
 \end{definition}
-
-
 
 \subsubsection{Cofactor Expansion Along Any Row}
 
 \begin{definition}{Cofactor}{cofactor}
-For $\mathbf{A} \in \R^{n \times n}$, the \textbf{$(i,j)$ cofactor} is
-\[
-  C_{ij} = (-1)^{i+j} \det(\mathbf{A}_{ij}).
-\]
+  For $\mathbf{A} \in \R^{n \times n}$, the \textbf{$(i,j)$ cofactor} is
+  \[
+    C_{ij} = (-1)^{i+j} \det(\mathbf{A}_{ij}).
+  \]
 \end{definition}
 
 \begin{theorem}{Cofactor Expansion}{cofactor-expansion}
-For any row $i$ of $\mathbf{A} \in \R^{n \times n}$,
-\[
-  \det(\mathbf{A}) = a_{i1} C_{i1} + a_{i2} C_{i2} + \cdots + a_{in} C_{in}.
-\]
+  For any row $i$ of $\mathbf{A} \in \R^{n \times n}$,
+  \[
+    \det(\mathbf{A}) = a_{i1} C_{i1} + a_{i2} C_{i2} + \cdots + a_{in} C_{in}.
+  \]
 \end{theorem}
 
 \begin{example}
   Let
   \[
-    \mathbf{A} = \begin{bmatrix}
-      2 & 3 & 1 & 4 & 5 \\
+    \mathbf{A} =
+    \begin{bmatrix}
+      2 & 3 & 1 & 4 & 5  \\
       0 & 3 & 1 & 0 & -2 \\
-      0 & 0 & 2 & 0 & 5 \\
+      0 & 0 & 2 & 0 & 5  \\
       0 & 0 & 0 & 4 & -1 \\
       0 & 0 & 0 & 0 & -1
-    \end{bmatrix}.
+    \end{bmatrix}
+    .
   \]
   Expand along row $5$: only $a_{55} = -1$ is non-zero, so
   \[
     \det(\mathbf{A}) = a_{55} C_{55} = (-1) \det(\mathbf{A}_{55})
-    = -\det\begin{bmatrix}
+    = -\det
+    \begin{bmatrix}
       2 & 3 & 1 & 4 \\
       0 & 3 & 1 & 0 \\
       0 & 0 & 2 & 0 \\
       0 & 0 & 0 & 4
-    \end{bmatrix}.
+    \end{bmatrix}
+    .
   \]
   Repeatedly expanding along the last row of each successive submatrix,
   \[
@@ -78,11 +90,11 @@ For any row $i$ of $\mathbf{A} \in \R^{n \times n}$,
 \end{example}
 
 \begin{theorem}{Determinant of a Triangular Matrix}{triangular-det}
-If $\mathbf{A} \in \R^{n \times n}$ is upper or lower triangular, then
-\[
-  \det(\mathbf{A}) = a_{11} a_{22} \cdots a_{nn},
-\]
-the product of its diagonal entries.
+  If $\mathbf{A} \in \R^{n \times n}$ is upper or lower triangular, then
+  \[
+    \det(\mathbf{A}) = a_{11} a_{22} \cdots a_{nn},
+  \]
+  the product of its diagonal entries.
 \end{theorem}
 
 \subsection{Properties of Determinants}
@@ -90,68 +102,98 @@ the product of its diagonal entries.
 Let $\mathbf{A} \in \R^{n \times n}$ with rows $\mathbf{R}_1, \dots, \mathbf{R}_n$.
 
 \begin{theorem}{Row Operations and the Determinant}{row-ops-det}
-\begin{enumerate}
-  \item \textbf{Swap.} Swapping two rows flips the sign:
-  \[
-    \det\begin{bmatrix} \vdots \\ \mathbf{R}_i \\ \vdots \\ \mathbf{R}_j \\ \vdots \end{bmatrix}
-    = -\det\begin{bmatrix} \vdots \\ \mathbf{R}_j \\ \vdots \\ \mathbf{R}_i \\ \vdots \end{bmatrix}.
-  \]
-  \item \textbf{Scale.} Multiplying one row by $\lambda$ multiplies the determinant by $\lambda$:
-  \[
-    \det\begin{bmatrix} \vdots \\ \lambda \mathbf{R}_i \\ \vdots \end{bmatrix}
-    = \lambda \det\begin{bmatrix} \vdots \\ \mathbf{R}_i \\ \vdots \end{bmatrix}.
-  \]
-  \item \textbf{Replace.} Adding a multiple of one row to another leaves the determinant unchanged:
-  \[
-    \det\begin{bmatrix} \vdots \\ \mathbf{R}_i + \lambda \mathbf{R}_j \\ \vdots \end{bmatrix}
-    = \det\begin{bmatrix} \vdots \\ \mathbf{R}_i \\ \vdots \end{bmatrix}.
-  \]
-\end{enumerate}
+  \begin{enumerate}
+    \item \textbf{Swap.} Swapping two rows flips the sign:
+          \[
+            \det
+            \begin{bmatrix}
+              \vdots \\ \mathbf{R}_i \\ \vdots \\ \mathbf{R}_j \\ \vdots
+            \end{bmatrix}
+            = -\det
+            \begin{bmatrix}
+              \vdots \\ \mathbf{R}_j \\ \vdots \\ \mathbf{R}_i \\ \vdots
+            \end{bmatrix}
+            .
+          \]
+    \item \textbf{Scale.} Multiplying one row by $\lambda$ multiplies the determinant by $\lambda$:
+          \[
+            \det
+            \begin{bmatrix}
+              \vdots \\ \lambda \mathbf{R}_i \\ \vdots
+            \end{bmatrix}
+            = \lambda \det
+            \begin{bmatrix}
+              \vdots \\ \mathbf{R}_i \\ \vdots
+            \end{bmatrix}
+            .
+          \]
+    \item \textbf{Replace.} Adding a multiple of one row to another leaves the determinant unchanged:
+          \[
+            \det
+            \begin{bmatrix}
+              \vdots \\ \mathbf{R}_i + \lambda \mathbf{R}_j \\ \vdots
+            \end{bmatrix}
+            = \det
+            \begin{bmatrix}
+              \vdots \\ \mathbf{R}_i \\ \vdots
+            \end{bmatrix}
+            .
+          \]
+  \end{enumerate}
 \end{theorem}
 
 \begin{example}
   Reduce to triangular form to evaluate
   \[
-    \det\begin{bmatrix}
-      0 & 1 & 2 & 1 \\
-      2 & 1 & -1 & 3 \\
-      1 & 3 & 0 & -1 \\
-      -1 & 4 & 1 & 5
-    \end{bmatrix}.
+    \det
+    \begin{bmatrix}
+      0  & 1 & 2  & 1  \\
+      2  & 1 & -1 & 3  \\
+      1  & 3 & 0  & -1 \\
+      -1 & 4 & 1  & 5
+    \end{bmatrix}
+    .
   \]
   Swap $\mathbf{R}_1 \leftrightarrow \mathbf{R}_3$:
   \[
-    = -\det\begin{bmatrix}
-      1 & 3 & 0 & -1 \\
-      2 & 1 & -1 & 3 \\
-      0 & 1 & 2 & 1 \\
-      -1 & 4 & 1 & 5
-    \end{bmatrix}.
+    = -\det
+    \begin{bmatrix}
+      1  & 3 & 0  & -1 \\
+      2  & 1 & -1 & 3  \\
+      0  & 1 & 2  & 1  \\
+      -1 & 4 & 1  & 5
+    \end{bmatrix}
+    .
   \]
   $\mathbf{R}_2 \to \mathbf{R}_2 - 2\mathbf{R}_1$, $\mathbf{R}_4 \to \mathbf{R}_4 + \mathbf{R}_1$:
   \[
-    = -\det\begin{bmatrix}
-      1 & 3 & 0 & -1 \\
-      0 & -5 & -1 & 5 \\
-      0 & 1 & 2 & 1 \\
-      0 & 7 & 1 & 4
-    \end{bmatrix}.
+    = -\det
+    \begin{bmatrix}
+      1 & 3  & 0  & -1 \\
+      0 & -5 & -1 & 5  \\
+      0 & 1  & 2  & 1  \\
+      0 & 7  & 1  & 4
+    \end{bmatrix}
+    .
   \]
   Swap $\mathbf{R}_2 \leftrightarrow \mathbf{R}_3$:
   \[
-    = \det\begin{bmatrix}
-      1 & 3 & 0 & -1 \\
-      0 & 1 & 2 & 1 \\
-      0 & -5 & -1 & 5 \\
-      0 & 7 & 1 & 4
-    \end{bmatrix}.
+    = \det
+    \begin{bmatrix}
+      1 & 3  & 0  & -1 \\
+      0 & 1  & 2  & 1  \\
+      0 & -5 & -1 & 5  \\
+      0 & 7  & 1  & 4
+    \end{bmatrix}
+    .
   \]
   $\mathbf{R}_3 \to \mathbf{R}_3 + 5\mathbf{R}_2$, $\mathbf{R}_4 \to \mathbf{R}_4 - 7\mathbf{R}_2$, then $\mathbf{R}_4 \to \mathbf{R}_4 + \tfrac{13}{9}\mathbf{R}_3$:
   \[
-    = \det\begin{bmatrix}
-      1 & 3 & 0 & -1 \\
-      0 & 1 & 2 & 1 \\
-      0 & 0 & 9 & 10 \\
+    = \det
+    \begin{bmatrix}
+      1 & 3 & 0 & -1             \\
+      0 & 1 & 2 & 1              \\
+      0 & 0 & 9 & 10             \\
       0 & 0 & 0 & \tfrac{103}{9}
     \end{bmatrix}
     = (1)(1)(9)\!\left(\tfrac{103}{9}\right) = 103.
@@ -161,40 +203,48 @@ Let $\mathbf{A} \in \R^{n \times n}$ with rows $\mathbf{R}_1, \dots, \mathbf{R}_
 \subsubsection{Invertibility and Determinants}
 
 \begin{theorem}{Invertibility Criterion}{det-invertible}
-$\mathbf{A} \in \R^{n \times n}$ is invertible $\iff \det(\mathbf{A}) \neq 0$.
+  $\mathbf{A} \in \R^{n \times n}$ is invertible $\iff \det(\mathbf{A}) \neq 0$.
 \end{theorem}
 
 \begin{definition}{Singular Matrix}{singular}
-$\mathbf{A} \in \R^{n \times n}$ is \textbf{singular} (non-invertible) if $\det(\mathbf{A}) = 0$.
+  $\mathbf{A} \in \R^{n \times n}$ is \textbf{singular} (non-invertible) if $\det(\mathbf{A}) = 0$.
 \end{definition}
 
 \begin{theorem}{Determinant and Linear Independence}{det-lin-indep}
-The columns of $\mathbf{A} \in \R^{n \times n}$ are linearly independent $\iff \det(\mathbf{A}) \neq 0$.
+  The columns of $\mathbf{A} \in \R^{n \times n}$ are linearly independent $\iff \det(\mathbf{A}) \neq 0$.
 \end{theorem}
 
 \begin{remark}
-Two immediate consequences:
-\begin{enumerate}
-  \item If $\mathbf{A}$ has two identical rows (or columns), then $\det(\mathbf{A}) = 0$.
-  \item If $\mathbf{A}$ has a zero row (or column), then $\det(\mathbf{A}) = 0$.
-\end{enumerate}
+  Two immediate consequences:
+  \begin{enumerate}
+    \item If $\mathbf{A}$ has two identical rows (or columns), then $\det(\mathbf{A}) = 0$.
+    \item If $\mathbf{A}$ has a zero row (or column), then $\det(\mathbf{A}) = 0$.
+  \end{enumerate}
 \end{remark}
 
 \subsubsection{Multiplicativity and Linearity}
 
 \begin{theorem}{Product Rule}{det-product}
-For $\mathbf{A}, \mathbf{B} \in \R^{n \times n}$,
-\[
-  \det(\mathbf{A}\mathbf{B}) = \det(\mathbf{A}) \det(\mathbf{B}).
-\]
+  For $\mathbf{A}, \mathbf{B} \in \R^{n \times n}$,
+  \[
+    \det(\mathbf{A}\mathbf{B}) = \det(\mathbf{A}) \det(\mathbf{B}).
+  \]
 \end{theorem}
 
 \begin{remark}
-$\det(\mathbf{A} + \mathbf{B})$ is \emph{not} generally equal to $\det(\mathbf{A}) + \det(\mathbf{B})$.
+  $\det(\mathbf{A} + \mathbf{B})$ is \emph{not} generally equal to $\det(\mathbf{A}) + \det(\mathbf{B})$.
 \end{remark}
 
 \begin{example}
-  Take $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, $\mathbf{B} = \begin{bmatrix} -1 & -2 \\ -3 & -4 \end{bmatrix}$. Then $\mathbf{A} + \mathbf{B} = \mathbf{0}$, so
+  Take $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 \\ 3 & 4
+    \end{bmatrix}
+  $, $\mathbf{B} =
+    \begin{bmatrix}
+      -1 & -2 \\ -3 & -4
+    \end{bmatrix}
+  $. Then $\mathbf{A} + \mathbf{B} = \mathbf{0}$, so
   \[
     \det(\mathbf{A} + \mathbf{B}) = 0,
     \quad
@@ -203,18 +253,40 @@ $\det(\mathbf{A} + \mathbf{B})$ is \emph{not} generally equal to $\det(\mathbf{A
 \end{example}
 
 \begin{theorem}{Determinant is Linear in Each Column}{det-column-linear}
-Write $\mathbf{A} = [\mathbf{a}_1 \mid \cdots \mid \mathbf{a}_{i-1} \mid \mathbf{x} \mid \mathbf{a}_{i+1} \mid \cdots \mid \mathbf{a}_n]$ with the $i$-th column variable. Define $T : \R^n \to \R$ by
-\[
-  T(\mathbf{x}) = \det[\mathbf{a}_1 \mid \cdots \mid \mathbf{x} \mid \cdots \mid \mathbf{a}_n].
-\]
-Then $T$ is a linear transformation.
+  Write $\mathbf{A} = [\mathbf{a}_1 \mid \cdots \mid \mathbf{a}_{i-1} \mid \mathbf{x} \mid \mathbf{a}_{i+1} \mid \cdots \mid \mathbf{a}_n]$ with the $i$-th column variable. Define $T : \R^n \to \R$ by
+  \[
+    T(\mathbf{x}) = \det[\mathbf{a}_1 \mid \cdots \mid \mathbf{x} \mid \cdots \mid \mathbf{a}_n].
+  \]
+  Then $T$ is a linear transformation.
 \end{theorem}
 
 \begin{example}
-  Splitting the second column $\begin{bmatrix} 2 \\ 3 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 1 \\ 3 \end{bmatrix}$:
+  Splitting the second column $
+    \begin{bmatrix}
+      2 \\ 3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+      1 \\ 3
+    \end{bmatrix}
+  $:
   \[
-    \det\begin{bmatrix} 2 & 2 \\ 3 & 3 \end{bmatrix}
-    = \det\begin{bmatrix} 2 & 1 \\ 3 & 0 \end{bmatrix} + \det\begin{bmatrix} 2 & 1 \\ 3 & 3 \end{bmatrix}
+    \det
+    \begin{bmatrix}
+      2 & 2 \\ 3 & 3
+    \end{bmatrix}
+    = \det
+    \begin{bmatrix}
+      2 & 1 \\ 3 & 0
+    \end{bmatrix}
+    + \det
+    \begin{bmatrix}
+      2 & 1 \\ 3 & 3
+    \end{bmatrix}
     = (-3) + 3 = 0.
   \]
 
@@ -223,43 +295,85 @@ Then $T$ is a linear transformation.
 \begin{example}
   In general, for $2 \times 2$ matrices,
   \begin{align*}
-    \det\begin{bmatrix} a + a' & b + b' \\ c + c' & d + d' \end{bmatrix}
-    &= \det\begin{bmatrix} a + a' & b \\ c + c' & d \end{bmatrix} + \det\begin{bmatrix} a + a' & b' \\ c + c' & d' \end{bmatrix} \\
-    &= \det\begin{bmatrix} a & b \\ c & d \end{bmatrix} + \det\begin{bmatrix} a' & b \\ c' & d \end{bmatrix} + \det\begin{bmatrix} a & b' \\ c & d' \end{bmatrix} + \det\begin{bmatrix} a' & b' \\ c' & d' \end{bmatrix}
+    \det
+    \begin{bmatrix}
+      a + a' & b + b' \\ c + c' & d + d'
+    \end{bmatrix}
+     & = \det
+    \begin{bmatrix}
+      a + a' & b \\ c + c' & d
+    \end{bmatrix}
+    + \det
+    \begin{bmatrix}
+      a + a' & b' \\ c + c' & d'
+    \end{bmatrix}
+    \\
+     & = \det
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+    + \det
+    \begin{bmatrix}
+      a' & b \\ c' & d
+    \end{bmatrix}
+    + \det
+    \begin{bmatrix}
+      a & b' \\ c & d'
+    \end{bmatrix}
+    + \det
+    \begin{bmatrix}
+      a' & b' \\ c' & d'
+    \end{bmatrix}
   \end{align*}
 \end{example}
 
 \subsubsection{Transpose and Cramer's Rule}
 
 \begin{theorem}{Determinant of Transpose}{det-transpose}
-For $\mathbf{A} \in \R^{n \times n}$,
-\[
-  \det(\mathbf{A}^T) = \det(\mathbf{A}).
-\]
+  For $\mathbf{A} \in \R^{n \times n}$,
+  \[
+    \det(\mathbf{A}^T) = \det(\mathbf{A}).
+  \]
 \end{theorem}
 
 A row operation on $\mathbf{A}$ is a column operation on $\mathbf{A}^T$, so column operations obey the same rules as row operations.
 
 \begin{theorem}{Cramer's Rule}{cramers-rule}
-Let $\mathbf{A} \in \R^{n \times n}$ be invertible and $\mathbf{b} \in \R^n$. The unique solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ has components
-\[
-  x_j = \frac{\det(\mathbf{A}_j(\mathbf{b}))}{\det(\mathbf{A})},
-\]
-where $\mathbf{A}_j(\mathbf{b})$ is the matrix obtained by replacing the $j$-th column of $\mathbf{A}$ with $\mathbf{b}$.
+  Let $\mathbf{A} \in \R^{n \times n}$ be invertible and $\mathbf{b} \in \R^n$. The unique solution to $\mathbf{A}\mathbf{x} = \mathbf{b}$ has components
+  \[
+    x_j = \frac{\det(\mathbf{A}_j(\mathbf{b}))}{\det(\mathbf{A})},
+  \]
+  where $\mathbf{A}_j(\mathbf{b})$ is the matrix obtained by replacing the $j$-th column of $\mathbf{A}$ with $\mathbf{b}$.
 \end{theorem}
 
 \begin{example}
   Solve $\mathbf{A}\mathbf{x} = \mathbf{b}$ for
   \[
-    \mathbf{A} = \begin{bmatrix} 2 & 3 \\ 4 & -1 \end{bmatrix},\quad
-    \mathbf{b} = \begin{bmatrix} 1 \\ 5 \end{bmatrix}.
+    \mathbf{A} =
+    \begin{bmatrix}
+      2 & 3 \\ 4 & -1
+    \end{bmatrix}
+    ,\quad
+    \mathbf{b} =
+    \begin{bmatrix}
+      1 \\ 5
+    \end{bmatrix}
+    .
   \]
   $\det(\mathbf{A}) = -2 - 12 = -14$, so
   \[
-    x_1 = \frac{\det\begin{bmatrix} 1 & 3 \\ 5 & -1 \end{bmatrix}}{\det(\mathbf{A})}
+    x_1 = \frac{\det
+      \begin{bmatrix}
+        1 & 3 \\ 5 & -1
+      \end{bmatrix}
+    }{\det(\mathbf{A})}
     = \frac{-16}{-14} = \frac{8}{7},
     \quad
-    x_2 = \frac{\det\begin{bmatrix} 2 & 1 \\ 4 & 5 \end{bmatrix}}{\det(\mathbf{A})}
+    x_2 = \frac{\det
+      \begin{bmatrix}
+        2 & 1 \\ 4 & 5
+      \end{bmatrix}
+    }{\det(\mathbf{A})}
     = \frac{6}{-14} = -\frac{3}{7}.
   \]
 \end{example}

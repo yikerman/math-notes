@@ -1,0 +1,18 @@
+TEX = pdflatex
+FLAGS = -interaction=nonstopmode
+SRC = main.tex
+OUT = main.pdf
+
+.PHONY: all clean format
+
+all: $(OUT)
+
+$(OUT): $(SRC) ../preamble.tex $(wildcard sections/*.tex)
+	$(TEX) $(FLAGS) $(SRC)
+	$(TEX) $(FLAGS) $(SRC)
+
+format:
+	latexindent -s -wd -m -c=/tmp/ -l=../latexindent.yaml $(SRC) $(wildcard sections/*.tex)
+
+clean:
+	rm -f *.aux *.log *.out *.toc *.pdf

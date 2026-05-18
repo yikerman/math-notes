@@ -3,7 +3,8 @@
 An $m \times n$ matrix $\mathbf{A}$ has entries $a_{ij}$ with $i$ the row index and $j$ the column index:
 \[
   \mathbf{A}
-  = \begin{bmatrix}
+  =
+  \begin{bmatrix}
     a_{11} & a_{12} & \cdots & a_{1n} \\
     a_{21} & a_{22} & \cdots & a_{2n} \\
     \vdots & \vdots & \ddots & \vdots \\
@@ -15,17 +16,17 @@ An $m \times n$ matrix $\mathbf{A}$ has entries $a_{ij}$ with $i$ the row index 
 \subsubsection{Trivial Addition and Scalar Multiplication}
 
 \begin{definition}{Matrix Addition}{mat-add}
-Let $\mathbf{A}, \mathbf{B} \in \R^{m \times n}$. Their \textbf{sum} $\mathbf{A} + \mathbf{B} \in \R^{m \times n}$ is defined entrywise by
-\[
-  (\mathbf{A} + \mathbf{B})_{ij} = \mathbf{A}_{ij} + \mathbf{B}_{ij}.
-\]
+  Let $\mathbf{A}, \mathbf{B} \in \R^{m \times n}$. Their \textbf{sum} $\mathbf{A} + \mathbf{B} \in \R^{m \times n}$ is defined entrywise by
+  \[
+    (\mathbf{A} + \mathbf{B})_{ij} = \mathbf{A}_{ij} + \mathbf{B}_{ij}.
+  \]
 \end{definition}
 
 \begin{definition}{Scalar Multiplication}{scalar-mul}
-Let $\mathbf{A} \in \R^{m \times n}$ and $\lambda \in \R$. Then $\lambda \mathbf{A} \in \R^{m \times n}$ is defined entrywise by
-\[
-  (\lambda \mathbf{A})_{ij} = \lambda \mathbf{A}_{ij}.
-\]
+  Let $\mathbf{A} \in \R^{m \times n}$ and $\lambda \in \R$. Then $\lambda \mathbf{A} \in \R^{m \times n}$ is defined entrywise by
+  \[
+    (\lambda \mathbf{A})_{ij} = \lambda \mathbf{A}_{ij}.
+  \]
 \end{definition}
 
 \textbf{Properties.} For $\mathbf{A}, \mathbf{B}, \mathbf{C} \in \R^{m \times n}$ and scalars $\lambda, \delta \in \R$:
@@ -39,92 +40,167 @@ Let $\mathbf{A} \in \R^{m \times n}$ and $\lambda \in \R$. Then $\lambda \mathbf
 \subsubsection{Matrix Multiplication}
 
 \begin{definition}{Matrix Multiplication}{mat-mul}
-Let $\mathbf{A} \in \R^{m \times n}$ and $\mathbf{B} \in \R^{n \times p}$ with $\mathbf{B}$ written by columns as $\mathbf{B} = \bigl[\,\mathbf{b}_1 \;\bigm|\; \mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{b}_p\,\bigr]$. The \textbf{product} $\mathbf{A}\mathbf{B} \in \R^{m \times p}$ is
-\[
-  \mathbf{A}\mathbf{B}
-  = \bigl[\,\mathbf{A}\mathbf{b}_1 \;\bigm|\; \mathbf{A}\mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{A}\mathbf{b}_p\,\bigr].
-\]
+  Let $\mathbf{A} \in \R^{m \times n}$ and $\mathbf{B} \in \R^{n \times p}$ with $\mathbf{B}$ written by columns as $\mathbf{B} = \bigl[\,\mathbf{b}_1 \;\bigm|\; \mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{b}_p\,\bigr]$. The \textbf{product} $\mathbf{A}\mathbf{B} \in \R^{m \times p}$ is
+  \[
+    \mathbf{A}\mathbf{B}
+    = \bigl[\,\mathbf{A}\mathbf{b}_1 \;\bigm|\; \mathbf{A}\mathbf{b}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{A}\mathbf{b}_p\,\bigr].
+  \]
 \end{definition}
 
 \begin{example}
   Let
-  $\mathbf{A} = \begin{bmatrix} 2 & 1 & -1 \\ 1 & 0 & -3 \end{bmatrix}$ ($2 \times 3$),
-  $\mathbf{B} = \begin{bmatrix} 1 & -2 \\ 1 & 3 \\ 1 & 0 \end{bmatrix}$ ($3 \times 2$).
+  $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 & -1 \\ 1 & 0 & -3
+    \end{bmatrix}
+  $ ($2 \times 3$),
+  $\mathbf{B} =
+    \begin{bmatrix}
+      1 & -2 \\ 1 & 3 \\ 1 & 0
+    \end{bmatrix}
+  $ ($3 \times 2$).
   Then $\mathbf{A}\mathbf{B}$ is $2 \times 2$:
   \[
     \mathbf{A}\mathbf{B}
-    = \left[\,\mathbf{A}\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \;\bigm|\; \mathbf{A}\begin{bmatrix} -2 \\ 3 \\ 0 \end{bmatrix}\,\right]
-    = \begin{bmatrix} 2 & -1 \\ -2 & -2 \end{bmatrix}.
+    = \left[\,\mathbf{A}
+      \begin{bmatrix}
+        1 \\ 1 \\ 1
+      \end{bmatrix}
+      \;\bigm|\; \mathbf{A}
+      \begin{bmatrix}
+        -2 \\ 3 \\ 0
+      \end{bmatrix}
+      \,\right]
+    =
+    \begin{bmatrix}
+      2 & -1 \\ -2 & -2
+    \end{bmatrix}
+    .
   \]
 \end{example}
 
 \begin{remark}
-Matrix multiplication is \textbf{not commutative}. Using the same $\mathbf{A}, \mathbf{B}$ as above, $\mathbf{B}\mathbf{A}$ is $3 \times 3$:
-\[
-  \mathbf{B}\mathbf{A}
-  = \begin{bmatrix} 1 & -2 \\ 1 & 3 \\ 1 & 0 \end{bmatrix}
-    \begin{bmatrix} 2 & 1 & -1 \\ 1 & 0 & -3 \end{bmatrix}
-  = \begin{bmatrix} 0 & 1 & 5 \\ 5 & 1 & -10 \\ 2 & 1 & -1 \end{bmatrix}.
-\]
-$\mathbf{A}\mathbf{B}$ and $\mathbf{B}\mathbf{A}$ are not even the same size.
+  Matrix multiplication is \textbf{not commutative}. Using the same $\mathbf{A}, \mathbf{B}$ as above, $\mathbf{B}\mathbf{A}$ is $3 \times 3$:
+  \[
+    \mathbf{B}\mathbf{A}
+    =
+    \begin{bmatrix}
+      1 & -2 \\ 1 & 3 \\ 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      2 & 1 & -1 \\ 1 & 0 & -3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0 & 1 & 5 \\ 5 & 1 & -10 \\ 2 & 1 & -1
+    \end{bmatrix}
+    .
+  \]
+  $\mathbf{A}\mathbf{B}$ and $\mathbf{B}\mathbf{A}$ are not even the same size.
 \end{remark}
 
 \subsubsection{Row-Column View of Matrix Multiplication}
 
 The $(i, j)$ entry of $\mathbf{A}\mathbf{B}$ comes from row $i$ of $\mathbf{A}$ paired with column $j$ of $\mathbf{B}$, and lives at row $i$, column $j$ of $\mathbf{A}\mathbf{B}$:
 \[
-  \underbrace{\begin{bmatrix}
-    i\; \text{row} \quad \vdots \\
-    \boxed{a_{i1}\;\; a_{i2}\;\; \cdots\;\; a_{in}} \\
-    \vdots
-  \end{bmatrix}}_{\mathbf{A}}
+  \underbrace{
+    \begin{bmatrix}
+      i\; \text{row} \quad \vdots                     \\
+      \boxed{a_{i1}\;\; a_{i2}\;\; \cdots\;\; a_{in}} \\
+      \vdots
+    \end{bmatrix}
+  }_{\mathbf{A}}
   \;\times\;
-  \underbrace{\begin{bmatrix}
-    j\; \text{col} \quad \cdots &
-    \boxed{\begin{matrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{matrix}} &
-    \cdots
-  \end{bmatrix}}_{\mathbf{B}}
+  \underbrace{
+    \begin{bmatrix}
+      j\; \text{col} \quad \cdots &
+      \boxed{
+        \begin{matrix}
+          b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj}
+        \end{matrix}
+      }                           &
+      \cdots
+    \end{bmatrix}
+  }_{\mathbf{B}}
   \;=\;
-  \underbrace{\left[\begin{array}{c|c|c}
-    & i\; \text{row} \quad \vdots & \\ \hline
-    j\; \text{col} \quad \cdots & (\mathbf{A}\mathbf{B})_{ij} & \cdots \\ \hline
-    & \vdots &
-  \end{array}\right]}_{\mathbf{A}\mathbf{B}}
+  \underbrace{\left[
+      \begin{array}{c|c|c}
+                                    & i\; \text{row} \quad \vdots &        \\ \hline
+        j\; \text{col} \quad \cdots & (\mathbf{A}\mathbf{B})_{ij} & \cdots \\ \hline
+                                    & \vdots                      &
+      \end{array}
+      \right]}_{\mathbf{A}\mathbf{B}}
 \]
 Taking the dot product of these strips:
 \[
   (\mathbf{A}\mathbf{B})_{ij}
-  = \begin{bmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{bmatrix}
-    \begin{bmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{bmatrix}
+  =
+  \begin{bmatrix}
+    a_{i1} & a_{i2} & \cdots & a_{in}
+  \end{bmatrix}
+  \begin{bmatrix}
+    b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj}
+  \end{bmatrix}
   = a_{i1} b_{1j} + a_{i2} b_{2j} + \cdots + a_{in} b_{nj}.
 \]
 
 \begin{example}
   Compute $(\mathbf{B}\mathbf{A})_{33}$ for the $\mathbf{A}, \mathbf{B}$ above. Box row $3$ of $\mathbf{B}$ and column $3$ of $\mathbf{A}$:
   \[
-    \underbrace{\begin{bmatrix}
-      \begin{matrix} 1 & -2 \end{matrix} \\
-      \begin{matrix} 1 & \phantom{-}3 \end{matrix} \\
-      \boxed{\begin{matrix} 1 & \phantom{-}0 \end{matrix}}
-    \end{bmatrix}}_{\mathbf{B}}
+    \underbrace{
+      \begin{bmatrix}
+        \begin{matrix}
+          1 & -2
+        \end{matrix}
+        \\
+        \begin{matrix}
+          1 & \phantom{-}3
+        \end{matrix}
+        \\
+        \boxed{
+          \begin{matrix}
+            1 & \phantom{-}0
+          \end{matrix}
+        }
+      \end{bmatrix}
+    }_{\mathbf{B}}
     \;\times\;
-    \underbrace{\begin{bmatrix}
-      \begin{matrix} 2 \\ 1 \end{matrix} &
-      \begin{matrix} 1 \\ 0 \end{matrix} &
-      \boxed{\begin{matrix} -1 \\ -3 \end{matrix}}
-    \end{bmatrix}}_{\mathbf{A}}
+    \underbrace{
+      \begin{bmatrix}
+        \begin{matrix}
+          2 \\ 1
+        \end{matrix}
+         &
+        \begin{matrix}
+          1 \\ 0
+        \end{matrix}
+         &
+        \boxed{
+          \begin{matrix}
+            -1 \\ -3
+          \end{matrix}
+        }
+      \end{bmatrix}
+    }_{\mathbf{A}}
     \;=\;
-    \underbrace{\left[\begin{array}{cc|c}
-      \cdot & \cdot & \vdots \\
-      \cdot & \cdot & \vdots \\ \hline
-      \cdots & \cdots & -1
-    \end{array}\right]}_{\mathbf{B}\mathbf{A}}
+    \underbrace{\left[
+        \begin{array}{cc|c}
+          \cdot  & \cdot  & \vdots \\
+          \cdot  & \cdot  & \vdots \\ \hline
+          \cdots & \cdots & -1
+        \end{array}
+        \right]}_{\mathbf{B}\mathbf{A}}
   \]
   Taking the dot product:
   \[
     (\mathbf{B}\mathbf{A})_{33}
-    = \begin{bmatrix} 1 & 0 \end{bmatrix}
-      \begin{bmatrix} -1 \\ -3 \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      -1 \\ -3
+    \end{bmatrix}
     = (1)(-1) + (0)(-3) = -1.
   \]
 \end{example}
@@ -143,24 +219,42 @@ For $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\lambda \in \R$ (matrix sizes
 \subsection{Transpose}
 
 \begin{definition}{Matrix Transpose}{transpose}
-Let $\mathbf{A} \in \R^{m \times n}$. The \textbf{transpose} $\mathbf{A}^T \in \R^{n \times m}$ is the matrix whose rows are the columns of $\mathbf{A}$:
-\[
-  \mathbf{A} = \bigl[\,\mathbf{a}_1 \;\bigm|\; \mathbf{a}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{a}_n\,\bigr]
-  \quad\Longrightarrow\quad
-  \mathbf{A}^T = \begin{bmatrix} \mathbf{a}_1 \\ \mathbf{a}_2 \\ \vdots \\ \mathbf{a}_n \end{bmatrix}.
-\]
+  Let $\mathbf{A} \in \R^{m \times n}$. The \textbf{transpose} $\mathbf{A}^T \in \R^{n \times m}$ is the matrix whose rows are the columns of $\mathbf{A}$:
+  \[
+    \mathbf{A} = \bigl[\,\mathbf{a}_1 \;\bigm|\; \mathbf{a}_2 \;\bigm|\; \cdots \;\bigm|\; \mathbf{a}_n\,\bigr]
+    \quad\Longrightarrow\quad
+    \mathbf{A}^T =
+    \begin{bmatrix}
+      \mathbf{a}_1 \\ \mathbf{a}_2 \\ \vdots \\ \mathbf{a}_n
+    \end{bmatrix}
+    .
+  \]
 \end{definition}
 
 \begin{example}
   \[
-    \mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 3 & -5 \\ 1 & -1 & 2 \end{bmatrix}
+    \mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 0 & 3 & -5 \\ 1 & -1 & 2
+    \end{bmatrix}
     \quad\Longrightarrow\quad
-    \mathbf{A}^T = \begin{bmatrix} 1 & 0 & 1 \\ 2 & 3 & -1 \\ 3 & -5 & 2 \end{bmatrix}.
+    \mathbf{A}^T =
+    \begin{bmatrix}
+      1 & 0 & 1 \\ 2 & 3 & -1 \\ 3 & -5 & 2
+    \end{bmatrix}
+    .
   \]
   \[
-    \mathbf{B} = \begin{bmatrix} 1 & 3 & -1 \\ 2 & 5 & 1 \end{bmatrix}
+    \mathbf{B} =
+    \begin{bmatrix}
+      1 & 3 & -1 \\ 2 & 5 & 1
+    \end{bmatrix}
     \quad\Longrightarrow\quad
-    \mathbf{B}^T = \begin{bmatrix} 1 & 2 \\ 3 & 5 \\ -1 & 1 \end{bmatrix}.
+    \mathbf{B}^T =
+    \begin{bmatrix}
+      1 & 2 \\ 3 & 5 \\ -1 & 1
+    \end{bmatrix}
+    .
   \]
 \end{example}
 
@@ -172,16 +266,44 @@ Let $\mathbf{A} \in \R^{m \times n}$. The \textbf{transpose} $\mathbf{A}^T \in \
 \end{itemize}
 
 \begin{example}
-  Let $\mathbf{x} = \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix}$. Then $\mathbf{x}^T = \begin{bmatrix} 3 & -2 & 2 \end{bmatrix}$, and
+  Let $\mathbf{x} =
+    \begin{bmatrix}
+      3 \\ -2 \\ 2
+    \end{bmatrix}
+  $. Then $\mathbf{x}^T =
+    \begin{bmatrix}
+      3 & -2 & 2
+    \end{bmatrix}
+  $, and
   \[
     \mathbf{x}^T \mathbf{x}
-    = \begin{bmatrix} 3 & -2 & 2 \end{bmatrix} \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix}
-    = \begin{bmatrix} 17 \end{bmatrix},
+    =
+    \begin{bmatrix}
+      3 & -2 & 2
+    \end{bmatrix}
+    \begin{bmatrix}
+      3 \\ -2 \\ 2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      17
+    \end{bmatrix}
+    ,
   \]
   \[
     \mathbf{x}\mathbf{x}^T
-    = \begin{bmatrix} 3 \\ -2 \\ 2 \end{bmatrix} \begin{bmatrix} 3 & -2 & 2 \end{bmatrix}
-    = \begin{bmatrix} 9 & -6 & 6 \\ -6 & 4 & -4 \\ 6 & -4 & 4 \end{bmatrix}.
+    =
+    \begin{bmatrix}
+      3 \\ -2 \\ 2
+    \end{bmatrix}
+    \begin{bmatrix}
+      3 & -2 & 2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      9 & -6 & 6 \\ -6 & 4 & -4 \\ 6 & -4 & 4
+    \end{bmatrix}
+    .
   \]
 \end{example}
 
@@ -195,97 +317,167 @@ Let $\mathbf{A} \in \R^{m \times n}$. The \textbf{transpose} $\mathbf{A}^T \in \
 \]
 
 \begin{definition}{Matrix Inverse}{mat-inv}
-Let $\mathbf{A} \in \R^{n \times n}$ be a square matrix. A matrix $\mathbf{B}$ is an \textbf{inverse} of $\mathbf{A}$ if
-\[
-  \mathbf{B}\mathbf{A} = \mathbf{I}_n
-  \quad\text{and}\quad
-  \mathbf{A}\mathbf{B} = \mathbf{I}_n.
-\]
-We denote $\mathbf{A}^{-1} = \mathbf{B}$.
+  Let $\mathbf{A} \in \R^{n \times n}$ be a square matrix. A matrix $\mathbf{B}$ is an \textbf{inverse} of $\mathbf{A}$ if
+  \[
+    \mathbf{B}\mathbf{A} = \mathbf{I}_n
+    \quad\text{and}\quad
+    \mathbf{A}\mathbf{B} = \mathbf{I}_n.
+  \]
+  We denote $\mathbf{A}^{-1} = \mathbf{B}$.
 \end{definition}
 
 \begin{remark}
-Some matrices don't have inverses, such as the zero matrix $\mathbf{0}$: for any $\mathbf{B}$, $\mathbf{0}\mathbf{B} = \mathbf{0} \neq \mathbf{I}_n$.
+  Some matrices don't have inverses, such as the zero matrix $\mathbf{0}$: for any $\mathbf{B}$, $\mathbf{0}\mathbf{B} = \mathbf{0} \neq \mathbf{I}_n$.
 \end{remark}
 
 \begin{example}
-  Let $\mathbf{A} = \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix}$ and $\mathbf{B} = \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix}$. Then
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 5 \\ 1 & 3
+    \end{bmatrix}
+  $ and $\mathbf{B} =
+    \begin{bmatrix}
+      3 & -5 \\ -1 & 2
+    \end{bmatrix}
+  $. Then
   \[
     \mathbf{A}\mathbf{B}
-    = \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix} \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix}
-    = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    =
+    \begin{bmatrix}
+      2 & 5 \\ 1 & 3
+    \end{bmatrix}
+    \begin{bmatrix}
+      3 & -5 \\ -1 & 2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 & 0 \\ 0 & 1
+    \end{bmatrix}
+    ,
     \quad
     \mathbf{B}\mathbf{A}
-    = \begin{bmatrix} 3 & -5 \\ -1 & 2 \end{bmatrix} \begin{bmatrix} 2 & 5 \\ 1 & 3 \end{bmatrix}
-    = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    =
+    \begin{bmatrix}
+      3 & -5 \\ -1 & 2
+    \end{bmatrix}
+    \begin{bmatrix}
+      2 & 5 \\ 1 & 3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 & 0 \\ 0 & 1
+    \end{bmatrix}
+    ,
   \]
   so $\mathbf{B}$ is the inverse of $\mathbf{A}$.
 \end{example}
 
 \begin{theorem}{Uniqueness of Inverse}{inv-unique}
-If $\mathbf{A}$ is invertible, then its inverse is unique.
+  If $\mathbf{A}$ is invertible, then its inverse is unique.
 \end{theorem}
 
 \begin{proof}
-By contradiction. Assume $\mathbf{B} \neq \mathbf{C}$ are both inverses of $\mathbf{A}$, so
-\[
-  \mathbf{B}\mathbf{A} = \mathbf{A}\mathbf{B} = \mathbf{I},
-  \qquad
-  \mathbf{C}\mathbf{A} = \mathbf{A}\mathbf{C} = \mathbf{I}.
-\]
-Then
-\[
-  \mathbf{C}
-  = \mathbf{C}\mathbf{I}
-  = \mathbf{C}(\mathbf{A}\mathbf{B})
-  = (\mathbf{C}\mathbf{A})\mathbf{B}
-  = \mathbf{I}\mathbf{B}
-  = \mathbf{B},
-\]
-contradicting $\mathbf{B} \neq \mathbf{C}$.
+  By contradiction. Assume $\mathbf{B} \neq \mathbf{C}$ are both inverses of $\mathbf{A}$, so
+  \[
+    \mathbf{B}\mathbf{A} = \mathbf{A}\mathbf{B} = \mathbf{I},
+    \qquad
+    \mathbf{C}\mathbf{A} = \mathbf{A}\mathbf{C} = \mathbf{I}.
+  \]
+  Then
+  \[
+    \mathbf{C}
+    = \mathbf{C}\mathbf{I}
+    = \mathbf{C}(\mathbf{A}\mathbf{B})
+    = (\mathbf{C}\mathbf{A})\mathbf{B}
+    = \mathbf{I}\mathbf{B}
+    = \mathbf{B},
+  \]
+  contradicting $\mathbf{B} \neq \mathbf{C}$.
 \end{proof}
 
 \begin{theorem}{$2 \times 2$ Inverse Formula}{inv-2x2}
-Let $\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ with $ad - bc \neq 0$. Then
-\[
-  \mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}.
-\]
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+  $ with $ad - bc \neq 0$. Then
+  \[
+    \mathbf{A}^{-1} = \frac{1}{ad - bc}
+    \begin{bmatrix}
+      d & -b \\ -c & a
+    \end{bmatrix}
+    .
+  \]
 \end{theorem}
 
 \begin{proof}
-\[
-  \mathbf{A}\mathbf{A}^{-1}
-  = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \cdot \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
-  = \frac{1}{ad - bc} \begin{bmatrix} ad - bc & 0 \\ 0 & ad - bc \end{bmatrix}
-  = \mathbf{I}_2. \qedhere
-\]
+  \[
+    \mathbf{A}\mathbf{A}^{-1}
+    =
+    \begin{bmatrix}
+      a & b \\ c & d
+    \end{bmatrix}
+    \cdot \frac{1}{ad - bc}
+    \begin{bmatrix}
+      d & -b \\ -c & a
+    \end{bmatrix}
+    = \frac{1}{ad - bc}
+    \begin{bmatrix}
+      ad - bc & 0 \\ 0 & ad - bc
+    \end{bmatrix}
+    = \mathbf{I}_2. \qedhere
+  \]
 \end{proof}
 
 \subsubsection{Elementary Matrices}
 
 \begin{definition}{Elementary Matrix}{elem-mat}
-An \textbf{elementary matrix} is a matrix obtained from an identity matrix by applying a single row operation.
+  An \textbf{elementary matrix} is a matrix obtained from an identity matrix by applying a single row operation.
 \end{definition}
 
 \begin{example}
-  Starting from $\mathbf{I}_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$:
+  Starting from $\mathbf{I}_3 =
+    \begin{bmatrix}
+      1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+    \end{bmatrix}
+  $:
   \begin{align*}
-    R_2 &\leftarrow 5 R_2: & \begin{bmatrix} 1 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 1 \end{bmatrix}, \\
-    R_1 &\leftrightarrow R_3: & \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}, \\
-    R_3 &\leftarrow R_3 + b R_1: & \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ b & 0 & 1 \end{bmatrix}.
+    R_2 & \leftarrow 5 R_2:       &
+    \begin{bmatrix}
+      1 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 1
+    \end{bmatrix}
+    ,                               \\
+    R_1 & \leftrightarrow R_3:    &
+    \begin{bmatrix}
+      0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0
+    \end{bmatrix}
+    ,                               \\
+    R_3 & \leftarrow R_3 + b R_1: &
+    \begin{bmatrix}
+      1 & 0 & 0 \\ 0 & 1 & 0 \\ b & 0 & 1
+    \end{bmatrix}
+    .
   \end{align*}
 \end{example}
 
 \begin{theorem}{Row Operation as Elementary Matrix Multiplication}{row-op-elem}
-Let $\mathbf{A} \in \R^{n \times n}$ and $\mathbf{E} \in \R^{n \times n}$ an elementary matrix. Then $\mathbf{E}\mathbf{A}$ is the matrix obtained from $\mathbf{A}$ by applying the same row operation that produced $\mathbf{E}$ from $\mathbf{I}_n$.
+  Let $\mathbf{A} \in \R^{n \times n}$ and $\mathbf{E} \in \R^{n \times n}$ an elementary matrix. Then $\mathbf{E}\mathbf{A}$ is the matrix obtained from $\mathbf{A}$ by applying the same row operation that produced $\mathbf{E}$ from $\mathbf{I}_n$.
 \end{theorem}
 
 \begin{example}
   Swapping rows $1$ and $3$:
   \[
-    \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}
-    \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}
-    = \begin{bmatrix} 7 & 8 & 9 \\ 4 & 5 & 6 \\ 1 & 2 & 3 \end{bmatrix}.
+    \begin{bmatrix}
+      0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      7 & 8 & 9 \\ 4 & 5 & 6 \\ 1 & 2 & 3
+    \end{bmatrix}
+    .
   \]
 \end{example}
 
@@ -307,84 +499,102 @@ So finding $\mathbf{A}^{-1}$ becomes finding row operations that reduce $\mathbf
 \]
 
 \begin{example}
-  Find the inverse of $\mathbf{A} = \begin{bmatrix} 2 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 2 \end{bmatrix}$.
+  Find the inverse of $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 2
+    \end{bmatrix}
+  $.
 
   Augmented matrix:
   \[
-    \left[\begin{array}{ccc|ccc}
-      2 & 1 & 1 & 1 & 0 & 0 \\
-      0 & 1 & 2 & 0 & 1 & 0 \\
-      0 & 0 & 2 & 0 & 0 & 1
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|ccc}
+        2 & 1 & 1 & 1 & 0 & 0 \\
+        0 & 1 & 2 & 0 & 1 & 0 \\
+        0 & 0 & 2 & 0 & 0 & 1
+      \end{array}
+      \right]
     \xrightarrow{R_1 \leftarrow \frac{1}{2} R_1,\; R_3 \leftarrow \frac{1}{2} R_3}
-    \left[\begin{array}{ccc|ccc}
-      1 & 1/2 & 1/2 & 1/2 & 0 & 0 \\
-      0 & 1 & 2 & 0 & 1 & 0 \\
-      0 & 0 & 1 & 0 & 0 & 1/2
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|ccc}
+        1 & 1/2 & 1/2 & 1/2 & 0 & 0   \\
+        0 & 1   & 2   & 0   & 1 & 0   \\
+        0 & 0   & 1   & 0   & 0 & 1/2
+      \end{array}
+      \right]
   \]
   Continue to reduced row echelon form:
   \[
     \longrightarrow
-    \left[\begin{array}{ccc|ccc}
-      1 & 0 & 0 & 1/2 & -1/2 & 3/4 \\
-      0 & 1 & 0 & 0 & 1 & -1 \\
-      0 & 0 & 1 & 0 & 0 & 1/2
-    \end{array}\right]
+    \left[
+      \begin{array}{ccc|ccc}
+        1 & 0 & 0 & 1/2 & -1/2 & 3/4 \\
+        0 & 1 & 0 & 0   & 1    & -1  \\
+        0 & 0 & 1 & 0   & 0    & 1/2
+      \end{array}
+      \right]
   \]
   The right block is
   \[
-    \mathbf{A}^{-1} = \begin{bmatrix} 1/2 & -1/2 & 3/4 \\ 0 & 1 & -1 \\ 0 & 0 & 1/2 \end{bmatrix}.
+    \mathbf{A}^{-1} =
+    \begin{bmatrix}
+      1/2 & -1/2 & 3/4 \\ 0 & 1 & -1 \\ 0 & 0 & 1/2
+    \end{bmatrix}
+    .
   \]
 \end{example}
 
 \subsection{The Invertible Matrix Theorem}
 
 \begin{theorem}{Invertible Matrix Theorem}{imt}
-Let $\mathbf{A} \in \R^{n \times n}$. The following statements are equivalent:
-\begin{enumerate}[label=(\alph*)]
-  \item $\mathbf{A}$ is invertible.
-  \item $\mathbf{A}$ is row equivalent to $\mathbf{I}_n$ (i.e.\ can be row reduced to $\mathbf{I}_n$).
-  \item $\mathbf{A}$ has $n$ pivots.
-  \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has only the trivial solution.
-  \item The columns of $\mathbf{A}$ are linearly independent.
-  \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is one-to-one.
-  \item $\mathbf{A}\mathbf{x} = \mathbf{b}$ has at least one solution for every $\mathbf{b} \in \R^n$.
-  \item $\operatorname{span}\{\text{columns of }\mathbf{A}\} = \R^n$.
-  \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is onto $\R^n$.
-  \item There exists $\mathbf{C}$ such that $\mathbf{C}\mathbf{A} = \mathbf{I}_n$.
-  \item There exists $\mathbf{B}$ such that $\mathbf{A}\mathbf{B} = \mathbf{I}_n$.
-  \item $\mathbf{A}^T$ is invertible.
-\end{enumerate}
+  Let $\mathbf{A} \in \R^{n \times n}$. The following statements are equivalent:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\mathbf{A}$ is invertible.
+    \item $\mathbf{A}$ is row equivalent to $\mathbf{I}_n$ (i.e.\ can be row reduced to $\mathbf{I}_n$).
+    \item $\mathbf{A}$ has $n$ pivots.
+    \item $\mathbf{A}\mathbf{x} = \mathbf{0}$ has only the trivial solution.
+    \item The columns of $\mathbf{A}$ are linearly independent.
+    \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is one-to-one.
+    \item $\mathbf{A}\mathbf{x} = \mathbf{b}$ has at least one solution for every $\mathbf{b} \in \R^n$.
+    \item $\operatorname{span}\{\text{columns of }\mathbf{A}\} = \R^n$.
+    \item The linear transformation $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$ is onto $\R^n$.
+    \item There exists $\mathbf{C}$ such that $\mathbf{C}\mathbf{A} = \mathbf{I}_n$.
+    \item There exists $\mathbf{B}$ such that $\mathbf{A}\mathbf{B} = \mathbf{I}_n$.
+    \item $\mathbf{A}^T$ is invertible.
+  \end{enumerate}
 \end{theorem}
 
 \begin{remark}
-A proof sketch establishes the cycle
-\[
-  (a) \Longrightarrow (d) \Longrightarrow (c) \Longrightarrow (b) \Longrightarrow (a),
-\]
-which makes (a)--(d) equivalent. The remaining statements connect to these by similar implications.
+  A proof sketch establishes the cycle
+  \[
+    (a) \Longrightarrow (d) \Longrightarrow (c) \Longrightarrow (b) \Longrightarrow (a),
+  \]
+  which makes (a)--(d) equivalent. The remaining statements connect to these by similar implications.
 \end{remark}
 
 \subsection{Linear Subspace of $\R^n$}
 
 \begin{definition}{Linear Subspace}{lin-subspace}
-A subset $V \subseteq \R^n$ is a \textbf{linear subspace} if:
-\begin{enumerate}
-  \item $\mathbf{0} \in V$ (contains the zero vector);
-  \item $\forall \mathbf{v}_1, \mathbf{v}_2 \in V$, $\mathbf{v}_1 + \mathbf{v}_2 \in V$ (closed under addition);
-  \item $\forall c \in \R$, $\mathbf{v} \in V$, $c\mathbf{v} \in V$ (closed under scalar multiplication).
-\end{enumerate}
+  A subset $V \subseteq \R^n$ is a \textbf{linear subspace} if:
+  \begin{enumerate}
+    \item $\mathbf{0} \in V$ (contains the zero vector);
+    \item $\forall \mathbf{v}_1, \mathbf{v}_2 \in V$, $\mathbf{v}_1 + \mathbf{v}_2 \in V$ (closed under addition);
+    \item $\forall c \in \R$, $\mathbf{v} \in V$, $c\mathbf{v} \in V$ (closed under scalar multiplication).
+  \end{enumerate}
 \end{definition}
 
 \begin{remark}
-Condition 3 implies condition 1 (take $c = 0$) provided $V$ is non-empty; condition 1 is included for emphasis.
+  Condition 3 implies condition 1 (take $c = 0$) provided $V$ is non-empty; condition 1 is included for emphasis.
 \end{remark}
 
 \begin{example}
   Let
   \[
-    V = \left\{ \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \;\Bigm|\; x_1 + x_2 - 2x_3 = 1 \right\} \subseteq \R^3.
+    V = \left\{
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}
+    \;\Bigm|\; x_1 + x_2 - 2x_3 = 1 \right\} \subseteq \R^3.
   \]
   Then $\mathbf{0} \notin V$, so $V$ is \textbf{not} a linear subspace. ($V$ is a plane that does not pass through the origin.)
 \end{example}
@@ -392,15 +602,31 @@ Condition 3 implies condition 1 (take $c = 0$) provided $V$ is non-empty; condit
 \begin{example}
   Let
   \[
-    V = \left\{ \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \;\Bigm|\; x_1 + x_2 - 2x_3 = 0 \right\} \subseteq \R^3.
+    V = \left\{
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ x_3
+    \end{bmatrix}
+    \;\Bigm|\; x_1 + x_2 - 2x_3 = 0 \right\} \subseteq \R^3.
   \]
-  Take $\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}$, $\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix} \in V$.
+  Take $\mathbf{a} =
+    \begin{bmatrix}
+      a_1 \\ a_2 \\ a_3
+    \end{bmatrix}
+  $, $\mathbf{b} =
+    \begin{bmatrix}
+      b_1 \\ b_2 \\ b_3
+    \end{bmatrix}
+    \in V$.
 
   \textbf{Closed under addition:}
   \[
     (a_1 + b_1) + (a_2 + b_2) - 2(a_3 + b_3) = (a_1 + a_2 - 2a_3) + (b_1 + b_2 - 2b_3) = 0,
   \]
-  so $\mathbf{a} + \mathbf{b} = \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ a_3 + b_3 \end{bmatrix} \in V$.
+  so $\mathbf{a} + \mathbf{b} =
+    \begin{bmatrix}
+      a_1 + b_1 \\ a_2 + b_2 \\ a_3 + b_3
+    \end{bmatrix}
+    \in V$.
 
   \textbf{Closed under scalar multiplication:} for $c \in \R$,
   \[
@@ -417,27 +643,27 @@ For $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$,
 \]
 
 \begin{theorem}{Span Is a Linear Subspace}{span-subspace}
-For all $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$, $V = \operatorname{span}\{\mathbf{v}_1, \mathbf{v}_2\}$ is a linear subspace of $\R^n$.
+  For all $\mathbf{v}_1, \mathbf{v}_2 \in \R^n$, $V = \operatorname{span}\{\mathbf{v}_1, \mathbf{v}_2\}$ is a linear subspace of $\R^n$.
 \end{theorem}
 
 \begin{proof}
-\textbf{(1) Closed under addition.} Let $\mathbf{w}_1 = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2$, $\mathbf{w}_2 = d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2 \in V$. Then
-\[
-  \mathbf{w}_1 + \mathbf{w}_2
-  = (c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) + (d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2)
-  = (c_1 + d_1) \mathbf{v}_1 + (c_2 + d_2) \mathbf{v}_2
-\]
-is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $\mathbf{w}_1 + \mathbf{w}_2 \in V$.
+  \textbf{(1) Closed under addition.} Let $\mathbf{w}_1 = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2$, $\mathbf{w}_2 = d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2 \in V$. Then
+  \[
+    \mathbf{w}_1 + \mathbf{w}_2
+    = (c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) + (d_1 \mathbf{v}_1 + d_2 \mathbf{v}_2)
+    = (c_1 + d_1) \mathbf{v}_1 + (c_2 + d_2) \mathbf{v}_2
+  \]
+  is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $\mathbf{w}_1 + \mathbf{w}_2 \in V$.
 
-\textbf{(2) Closed under scalar multiplication.} Let $\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 \in V$. For $c \in \R$,
-\[
-  c\mathbf{w} = c(c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) = (c c_1) \mathbf{v}_1 + (c c_2) \mathbf{v}_2
-\]
-is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $c\mathbf{w} \in V$.
+  \textbf{(2) Closed under scalar multiplication.} Let $\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 \in V$. For $c \in \R$,
+  \[
+    c\mathbf{w} = c(c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2) = (c c_1) \mathbf{v}_1 + (c c_2) \mathbf{v}_2
+  \]
+  is a linear combination of $\mathbf{v}_1, \mathbf{v}_2$, so $c\mathbf{w} \in V$.
 \end{proof}
 
 \begin{theorem}{Generalized Span Is a Linear Subspace}{span-subspace-gen}
-For $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in \R^n$, $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ is a linear subspace of $\R^n$.
+  For $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in \R^n$, $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ is a linear subspace of $\R^n$.
 \end{theorem}
 
 \subsubsection{Null Space and Column Space}
@@ -445,40 +671,40 @@ For $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in \R^n$, $\operatorname{
 Let $\mathbf{A} \in \R^{m \times n}$.
 
 \begin{definition}{Null Space}{null-space}
-The \textbf{null space} of $\mathbf{A}$ is
-\[
-  \operatorname{Null}(\mathbf{A}) = \{\, \mathbf{x} \in \R^n \mid \mathbf{A}\mathbf{x} = \mathbf{0} \,\}.
-\]
-(The solution set of the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.)
+  The \textbf{null space} of $\mathbf{A}$ is
+  \[
+    \operatorname{Null}(\mathbf{A}) = \{\, \mathbf{x} \in \R^n \mid \mathbf{A}\mathbf{x} = \mathbf{0} \,\}.
+  \]
+  (The solution set of the homogeneous system $\mathbf{A}\mathbf{x} = \mathbf{0}$.)
 \end{definition}
 
 \begin{definition}{Column Space}{col-space}
-Writing $\mathbf{A} = [\,\mathbf{a}_1 \mid \mathbf{a}_2 \mid \cdots \mid \mathbf{a}_n\,]$, the \textbf{column space} of $\mathbf{A}$ is
-\[
-  \operatorname{Col}(\mathbf{A}) = \operatorname{span}\{\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n\}.
-\]
+  Writing $\mathbf{A} = [\,\mathbf{a}_1 \mid \mathbf{a}_2 \mid \cdots \mid \mathbf{a}_n\,]$, the \textbf{column space} of $\mathbf{A}$ is
+  \[
+    \operatorname{Col}(\mathbf{A}) = \operatorname{span}\{\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n\}.
+  \]
 \end{definition}
 
 \begin{theorem}{Null and Column Spaces Are Subspaces}{null-col-subspace}
-$\operatorname{Null}(\mathbf{A})$ is a linear subspace of $\R^n$, and $\operatorname{Col}(\mathbf{A})$ is a linear subspace of $\R^m$.
+  $\operatorname{Null}(\mathbf{A})$ is a linear subspace of $\R^n$, and $\operatorname{Col}(\mathbf{A})$ is a linear subspace of $\R^m$.
 \end{theorem}
 
 \begin{proof}
-$\operatorname{Col}(\mathbf{A})$ is a span, hence a linear subspace by Theorem~\ref{thm:span-subspace-gen}.
+  $\operatorname{Col}(\mathbf{A})$ is a span, hence a linear subspace by Theorem~\ref{thm:span-subspace-gen}.
 
-For $\operatorname{Null}(\mathbf{A})$:
+  For $\operatorname{Null}(\mathbf{A})$:
 
-\textbf{(1) Closed under addition.} For $\mathbf{x}_1, \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$, $\mathbf{A}\mathbf{x}_1 = \mathbf{0}$ and $\mathbf{A}\mathbf{x}_2 = \mathbf{0}$, so
-\[
-  \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) = \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2 = \mathbf{0},
-\]
-hence $\mathbf{x}_1 + \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$.
+  \textbf{(1) Closed under addition.} For $\mathbf{x}_1, \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$, $\mathbf{A}\mathbf{x}_1 = \mathbf{0}$ and $\mathbf{A}\mathbf{x}_2 = \mathbf{0}$, so
+  \[
+    \mathbf{A}(\mathbf{x}_1 + \mathbf{x}_2) = \mathbf{A}\mathbf{x}_1 + \mathbf{A}\mathbf{x}_2 = \mathbf{0},
+  \]
+  hence $\mathbf{x}_1 + \mathbf{x}_2 \in \operatorname{Null}(\mathbf{A})$.
 
-\textbf{(2) Closed under scalar multiplication.} For $c \in \R$ and $\mathbf{x} \in \operatorname{Null}(\mathbf{A})$,
-\[
-  \mathbf{A}(c\mathbf{x}) = c(\mathbf{A}\mathbf{x}) = c \cdot \mathbf{0} = \mathbf{0},
-\]
-hence $c\mathbf{x} \in \operatorname{Null}(\mathbf{A})$.
+  \textbf{(2) Closed under scalar multiplication.} For $c \in \R$ and $\mathbf{x} \in \operatorname{Null}(\mathbf{A})$,
+  \[
+    \mathbf{A}(c\mathbf{x}) = c(\mathbf{A}\mathbf{x}) = c \cdot \mathbf{0} = \mathbf{0},
+  \]
+  hence $c\mathbf{x} \in \operatorname{Null}(\mathbf{A})$.
 \end{proof}
 
 \subsection{Basis of a Linear Subspace}
@@ -486,26 +712,58 @@ hence $c\mathbf{x} \in \operatorname{Null}(\mathbf{A})$.
 Let $V \subseteq \R^n$ be a linear subspace.
 
 \begin{definition}{Basis}{basis}
-A set $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ is a \textbf{basis} of $V$ if:
-\begin{enumerate}
-  \item $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = V$;
-  \item $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}$ are linearly independent.
-\end{enumerate}
+  A set $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ is a \textbf{basis} of $V$ if:
+  \begin{enumerate}
+    \item $\operatorname{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = V$;
+    \item $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\}$ are linearly independent.
+  \end{enumerate}
 \end{definition}
 
 \begin{example}
-  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$.
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 2 & 4 & 6
+    \end{bmatrix}
+  $.
   \[
     \operatorname{Col}(\mathbf{A})
-    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 2 \\ 4 \end{bmatrix}, \begin{bmatrix} 3 \\ 6 \end{bmatrix} \right\}
-    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix} \right\},
+    = \operatorname{span}\left\{
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      2 \\ 4
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      3 \\ 6
+    \end{bmatrix}
+    \right\}
+    = \operatorname{span}\left\{
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    \right\},
   \]
-  so $\left\{ \begin{bmatrix} 1 \\ 2 \end{bmatrix} \right\}$ is a basis for $\operatorname{Col}(\mathbf{A})$.
+  so $\left\{
+    \begin{bmatrix}
+      1 \\ 2
+    \end{bmatrix}
+    \right\}$ is a basis for $\operatorname{Col}(\mathbf{A})$.
 
   For the null space, $\mathbf{A}\mathbf{x} = \mathbf{0}$ reduces to $x_1 + 2 x_2 + 3 x_3 = 0$, so $x_1 = -2 x_2 - 3 x_3$ with $x_2, x_3$ free. Then
   \[
     \operatorname{Null}(\mathbf{A})
-    = \operatorname{span}\left\{ \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix} \right\},
+    = \operatorname{span}\left\{
+    \begin{bmatrix}
+      -2 \\ 1 \\ 0
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      -3 \\ 0 \\ 1
+    \end{bmatrix}
+    \right\},
   \]
   and these two vectors form a basis for $\operatorname{Null}(\mathbf{A})$.
 \end{example}
@@ -513,15 +771,19 @@ A set $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} \subseteq V$ is a \t
 \subsection{Dimension}
 
 \begin{theorem}{Bases Have the Same Size}{basis-size}
-If $B$ and $B'$ are both bases of a linear subspace $V$, then $B$ and $B'$ have the same number of vectors.
+  If $B$ and $B'$ are both bases of a linear subspace $V$, then $B$ and $B'$ have the same number of vectors.
 \end{theorem}
 
 \begin{definition}{Dimension}{dimension}
-Let $V$ be a linear subspace of $\R^n$ with basis $B$. The \textbf{dimension} of $V$, written $\dim(V)$, is the number of vectors in $B$.
+  Let $V$ be a linear subspace of $\R^n$ with basis $B$. The \textbf{dimension} of $V$, written $\dim(V)$, is the number of vectors in $B$.
 \end{definition}
 
 \begin{example}
-  For $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$, $\dim(\operatorname{Null}(\mathbf{A})) = 2$.
+  For $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 2 & 4 & 6
+    \end{bmatrix}
+  $, $\dim(\operatorname{Null}(\mathbf{A})) = 2$.
 \end{example}
 
 \begin{example}
@@ -531,35 +793,46 @@ Let $V$ be a linear subspace of $\R^n$ with basis $B$. The \textbf{dimension} of
 \subsection{Rank-Nullity Theorem}
 
 \begin{theorem}{Rank-Nullity}{rank-nullity}
-Let $\mathbf{A} \in \R^{m \times n}$. Then
-\[
-  \dim(\operatorname{Null}(\mathbf{A})) + \dim(\operatorname{Col}(\mathbf{A})) = n.
-\]
+  Let $\mathbf{A} \in \R^{m \times n}$. Then
+  \[
+    \dim(\operatorname{Null}(\mathbf{A})) + \dim(\operatorname{Col}(\mathbf{A})) = n.
+  \]
 \end{theorem}
 
 \begin{definition}{Rank and Nullity}{rank-nullity-def}
-For $\mathbf{A} \in \R^{m \times n}$,
-\[
-  \operatorname{nullity}(\mathbf{A}) = \dim(\operatorname{Null}(\mathbf{A})),
-  \qquad
-  \operatorname{rank}(\mathbf{A}) = \dim(\operatorname{Col}(\mathbf{A})).
-\]
+  For $\mathbf{A} \in \R^{m \times n}$,
+  \[
+    \operatorname{nullity}(\mathbf{A}) = \dim(\operatorname{Null}(\mathbf{A})),
+    \qquad
+    \operatorname{rank}(\mathbf{A}) = \dim(\operatorname{Col}(\mathbf{A})).
+  \]
 \end{definition}
 
 \begin{example}
-  Let $\mathbf{A} = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix} \in \R^{2 \times 3}$. From the previous bases, $\operatorname{rank}(\mathbf{A}) = 1$ and $\operatorname{nullity}(\mathbf{A}) = 2$, and $1 + 2 = 3 = n$.
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 & 3 \\ 2 & 4 & 6
+    \end{bmatrix}
+    \in \R^{2 \times 3}$. From the previous bases, $\operatorname{rank}(\mathbf{A}) = 1$ and $\operatorname{nullity}(\mathbf{A}) = 2$, and $1 + 2 = 3 = n$.
 \end{example}
 
 \begin{example}
   Let
   \[
-    \mathbf{A} = \begin{bmatrix} 1 & 2 & -3 & 4 & 1 \\ 2 & -1 & 3 & 1 & 0 \\ 3 & 1 & 0 & 5 & 1 \end{bmatrix} \in \R^{3 \times 5}.
+    \mathbf{A} =
+    \begin{bmatrix}
+      1 & 2 & -3 & 4 & 1 \\ 2 & -1 & 3 & 1 & 0 \\ 3 & 1 & 0 & 5 & 1
+    \end{bmatrix}
+    \in \R^{3 \times 5}.
   \]
   Row reduce:
   \[
     \mathbf{A}
     \;\rightarrow\;
-    \begin{bmatrix} 1 & 2 & -3 & 4 & 1 \\ 0 & -5 & 9 & -7 & -2 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
+    \begin{bmatrix}
+      1 & 2 & -3 & 4 & 1 \\ 0 & -5 & 9 & -7 & -2 \\ 0 & 0 & 0 & 0 & 0
+    \end{bmatrix}
+    .
   \]
   Pivots are in columns $1$ and $2$, so $\#\text{pivots} = 2$, $\#\text{free vars} = 3$, $\operatorname{rank}(\mathbf{A}) = 2$, and by Theorem~\ref{thm:rank-nullity}, $\operatorname{nullity}(\mathbf{A}) = 5 - 2 = 3$.
 
@@ -567,24 +840,57 @@ For $\mathbf{A} \in \R^{m \times n}$,
   \[
     \mathbf{A}
     \;\rightarrow\;
-    \begin{bmatrix} 1 & 0 & 3/5 & 6/5 & 1/5 \\ 0 & 1 & -9/5 & 7/5 & 2/5 \\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}.
+    \begin{bmatrix}
+      1 & 0 & 3/5 & 6/5 & 1/5 \\ 0 & 1 & -9/5 & 7/5 & 2/5 \\ 0 & 0 & 0 & 0 & 0
+    \end{bmatrix}
+    .
   \]
   Setting $x_3 = s$, $x_4 = t$, $x_5 = u$, $\mathbf{A}\mathbf{x} = \mathbf{0}$ gives
   \[
     \mathbf{x}
-    = s \begin{bmatrix} -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0 \end{bmatrix}
-    + t \begin{bmatrix} -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0 \end{bmatrix}
-    + u \begin{bmatrix} -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1 \end{bmatrix},
+    = s
+    \begin{bmatrix}
+      -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0
+    \end{bmatrix}
+    + t
+    \begin{bmatrix}
+      -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0
+    \end{bmatrix}
+    + u
+    \begin{bmatrix}
+      -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1
+    \end{bmatrix}
+    ,
   \]
   so
   \[
     \operatorname{Null}(\mathbf{A})
-    = \operatorname{span}\underbrace{\left\{ \begin{bmatrix} -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0 \end{bmatrix}, \begin{bmatrix} -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1 \end{bmatrix} \right\}}_{\text{basis}}.
+    = \operatorname{span}\underbrace{\left\{
+      \begin{bmatrix}
+        -3/5 \\ 9/5 \\ 1 \\ 0 \\ 0
+      \end{bmatrix}
+      ,
+      \begin{bmatrix}
+        -6/5 \\ -7/5 \\ 0 \\ 1 \\ 0
+      \end{bmatrix}
+      ,
+      \begin{bmatrix}
+        -1/5 \\ -2/5 \\ 0 \\ 0 \\ 1
+      \end{bmatrix}
+      \right\}}_{\text{basis}}.
   \]
   The column space is spanned by the pivot columns of the original $\mathbf{A}$:
   \[
     \operatorname{Col}(\mathbf{A})
     = \operatorname{span}\{\text{pivot cols}\}
-    = \operatorname{span}\left\{ \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 2 \\ -1 \\ 1 \end{bmatrix} \right\}.
+    = \operatorname{span}\left\{
+    \begin{bmatrix}
+      1 \\ 2 \\ 3
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      2 \\ -1 \\ 1
+    \end{bmatrix}
+    \right\}.
   \]
 \end{example}
