@@ -1,0 +1,127 @@
+\subsection{Eigenvalues and Eigenvectors}
+
+\begin{definition}{Eigenvalue and Eigenvector}{eigen}
+  Let $\mathbf{A} \in \R^{n \times n}$. A vector $\mathbf{v} \in \R^n$ is an \textbf{eigenvector} of $\mathbf{A}$ with \textbf{eigenvalue} $\lambda \in \R$ if
+  \begin{enumerate}
+    \item $\mathbf{v} \neq \mathbf{0}$, and
+    \item $\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+  $. Is $\mathbf{v} = \ve{2, 3}$ an eigenvector? Compute
+  \[
+    \mathbf{A}\mathbf{v} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+    \begin{bmatrix}
+      2 \\ 3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      7 \\ 8
+    \end{bmatrix}
+    ,
+  \]
+  which is not a scalar multiple of $\ve{2, 3}$, so $\mathbf{v}$ is not an eigenvector.
+\end{example}
+
+\subsubsection{Geometric Meaning}
+
+Identify $\mathbf{A}$ with the linear map $T(\mathbf{x}) = \mathbf{A}\mathbf{x}$. An eigenvector $\mathbf{v}$ is a direction preserved by $T$: $T(\mathbf{v})$ lies on the same line through the origin as $\mathbf{v}$, scaled by $\lambda$.
+
+\begin{center}
+  \begin{tikzpicture}[scale=0.9]
+    \begin{scope}
+      \draw[->, thick] (0,0) -- (1.5,0) node[below] {$\mathbf{e}_1$};
+      \draw[->, thick] (0,0) -- (0,1.5) node[left] {$\mathbf{e}_2$};
+      \draw[->, very thick, blue] (0,0) -- (1.5,1.2) node[above right] {$\mathbf{v}$};
+    \end{scope}
+    \draw[->, thick] (2.5,0.75) -- (4,0.75) node[midway, above] {$T$};
+    \begin{scope}[xshift=5cm]
+      \draw[->, thick] (0,0) -- (1.6,-0.4) node[below] {$T(\mathbf{e}_1)$};
+      \draw[->, thick] (0,0) -- (0.4,1.6) node[left] {$T(\mathbf{e}_2)$};
+      \draw[->, very thick, blue] (0,0) -- (2.0,1.2) node[above right] {$T(\mathbf{v})$};
+    \end{scope}
+    \node at (8.7,0.75) {$\mathbf{v}$ not same direction};
+  \end{tikzpicture}
+\end{center}
+
+\subsubsection{Finding Eigenvalues}
+
+Rearranging $\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$ with $\mathbf{v} \neq \mathbf{0}$:
+\[
+  \mathbf{A}\mathbf{v} = \lambda \mathbf{I} \mathbf{v}
+  \iff (\mathbf{A} - \lambda \mathbf{I})\mathbf{v} = \mathbf{0}.
+\]
+Since this homogeneous system has a non-trivial solution, $\mathbf{A} - \lambda \mathbf{I}$ must be singular:
+\[
+  \det(\mathbf{A} - \lambda \mathbf{I}) = 0.
+\]
+
+\begin{definition}{Characteristic Equation}{characteristic-eq}
+  The eigenvalues of $\mathbf{A} \in \R^{n \times n}$ are the roots of the \textbf{characteristic equation}
+  \[
+    \det(\mathbf{A} - \lambda \mathbf{I}) = 0.
+  \]
+\end{definition}
+
+\begin{example}
+  Find the eigenvalues and eigenvectors of $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+  $.
+
+  \medskip
+
+  \emph{Eigenvalues.}
+  \[
+    \mathbf{A} - \lambda \mathbf{I} =
+    \begin{bmatrix}
+      2 - \lambda & 1           \\
+      1           & 2 - \lambda
+    \end{bmatrix}
+    ,
+    \quad
+    \det(\mathbf{A} - \lambda \mathbf{I}) = (2 - \lambda)^2 - 1 = 0.
+  \]
+  Solving, $(2 - \lambda)^2 = 1$ gives $\lambda_1 = 3$, $\lambda_2 = 1$.
+
+  \medskip
+
+  \emph{Eigenvector for $\lambda_1 = 3$.} Solve $(\mathbf{A} - 3\mathbf{I})\mathbf{v} = \mathbf{0}$:
+  \[
+    \begin{bmatrix}
+      -1 & 1  \\
+      1  & -1
+    \end{bmatrix}
+    \mathbf{v} = \mathbf{0}
+    \implies v_1 = v_2
+    \implies \mathbf{v} =
+    \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}
+    .
+  \]
+
+  \emph{Eigenvector for $\lambda_2 = 1$.} Solve $(\mathbf{A} - \mathbf{I})\mathbf{v} = \mathbf{0}$:
+  \[
+    \begin{bmatrix}
+      1 & 1 \\
+      1 & 1
+    \end{bmatrix}
+    \mathbf{v} = \mathbf{0}
+    \implies v_1 = -v_2
+    \implies \mathbf{v} =
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+    .
+  \]
+\end{example}
