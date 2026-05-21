@@ -377,3 +377,47 @@ A row operation on $\mathbf{A}$ is a column operation on $\mathbf{A}^T$, so colu
     = \frac{6}{-14} = -\frac{3}{7}.
   \]
 \end{example}
+
+\subsubsection{Adjugate Formula for the Inverse}
+
+\begin{definition}{Adjugate}{adjugate}
+  For $\mathbf{A} \in \R^{n \times n}$, the \textbf{adjugate} of $\mathbf{A}$ is the transpose of the cofactor matrix:
+  \[
+    \operatorname{adj}(\mathbf{A}) = [C_{ij}]^T =
+    \begin{bmatrix}
+      C_{11} & C_{21} & \cdots & C_{n1} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      C_{1n} & C_{2n} & \cdots & C_{nn}
+    \end{bmatrix}
+    ,
+  \]
+  where $C_{ij} = (-1)^{i+j} \det(\mathbf{A}_{ij})$ is the $(i,j)$ cofactor.
+\end{definition}
+
+\begin{theorem}{Adjugate Formula for the Inverse}{adj-inverse}
+  If $\mathbf{A} \in \R^{n \times n}$ is invertible, then
+  \[
+    \mathbf{A}^{-1} = \frac{\operatorname{adj}(\mathbf{A})}{\det(\mathbf{A})}.
+  \]
+\end{theorem}
+
+\begin{theorem}{Determinant of the Adjugate}{det-adjugate}
+  For $\mathbf{A} \in \R^{n \times n}$ invertible,
+  \[
+    \det(\operatorname{adj}(\mathbf{A})) = (\det(\mathbf{A}))^{n-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Taking determinants of both sides of $\mathbf{A}^{-1} = \tfrac{1}{\det(\mathbf{A})} \operatorname{adj}(\mathbf{A})$,
+  \[
+    \det(\mathbf{A}^{-1})
+    = \det\!\left(\tfrac{1}{\det(\mathbf{A})} \operatorname{adj}(\mathbf{A})\right).
+  \]
+  The left side equals $\tfrac{1}{\det(\mathbf{A})}$. On the right, scaling all $n$ columns by $\tfrac{1}{\det(\mathbf{A})}$ pulls out $\left(\tfrac{1}{\det(\mathbf{A})}\right)^n$ by linearity in each column:
+  \[
+    \frac{1}{\det(\mathbf{A})}
+    = \left(\frac{1}{\det(\mathbf{A})}\right)^n \det(\operatorname{adj}(\mathbf{A})).
+  \]
+  Solving gives $\det(\operatorname{adj}(\mathbf{A})) = (\det(\mathbf{A}))^{n-1}$.
+\end{proof}
