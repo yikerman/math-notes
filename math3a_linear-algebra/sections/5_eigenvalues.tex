@@ -101,27 +101,193 @@ Since this homogeneous system has a non-trivial solution, $\mathbf{A} - \lambda 
       -1 & 1  \\
       1  & -1
     \end{bmatrix}
-    \mathbf{v} = \mathbf{0}
-    \implies v_1 = v_2
-    \implies \mathbf{v} =
+    \mathbf{v}_1 = \mathbf{0}
+    \implies \{\mathbf{v}_1\} = \operatorname{span}\left\{
     \begin{bmatrix}
       1 \\ 1
     \end{bmatrix}
+    \right\}
     .
   \]
 
-  \emph{Eigenvector for $\lambda_2 = 1$.} Solve $(\mathbf{A} - \mathbf{I})\mathbf{v} = \mathbf{0}$:
+  \emph{Eigenvector for $\lambda_2 = 1$.} Solve $(\mathbf{A} - \mathbf{I})\mathbf{v}_2 = \mathbf{0}$:
   \[
     \begin{bmatrix}
       1 & 1 \\
       1 & 1
     \end{bmatrix}
-    \mathbf{v} = \mathbf{0}
-    \implies v_1 = -v_2
-    \implies \mathbf{v} =
+    \mathbf{v}_2 = \mathbf{0}
+    \implies \{\mathbf{v}_2\} = \operatorname{span}\left\{
     \begin{bmatrix}
       1 \\ -1
+    \end{bmatrix}
+    \right\}
+    .
+  \]
+\end{example}
+
+\subsection{Eigenbasis}
+
+\begin{definition}{Eigenbasis}{eigenbasis}
+  Let $\mathbf{A} \in \R^{n \times n}$. An \textbf{eigenbasis} for $\R^n$ is a basis $\beta = \{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ whose every vector is an eigenvector of $\mathbf{A}$:
+  \[
+    \operatorname{span}(\beta) = \R^n,
+    \quad
+    \mathbf{A}\mathbf{v}_j = \lambda_j \mathbf{v}_j \text{ for } j \in \{1, \ldots, n\}.
+  \]
+\end{definition}
+
+\begin{remark}
+  Spanning $\R^n$ with $n$ vectors already forces $\mathbf{v}_1, \ldots, \mathbf{v}_n$ to be linearly independent, so no separate check is needed.
+\end{remark}
+
+\begin{example}
+  Continuing $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+  $ from the previous example, the eigenvectors
+  \[
+    \mathbf{v}_1 =
+    \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}
+    ,
+    \quad
+    \mathbf{v}_2 =
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+  \]
+  span $\R^2$, so $\beta = \{\mathbf{v}_1, \mathbf{v}_2\}$ is an eigenbasis.
+\end{example}
+
+\subsection{Diagonalization}
+
+\begin{definition}{Diagonal Matrix}{diag-matrix}
+  A \textbf{diagonal matrix} has nonzero entries only on its main diagonal:
+  \[
+    \mathbf{D} =
+    \begin{bmatrix}
+      \lambda_1 &        & 0         \\
+                & \ddots &           \\
+      0         &        & \lambda_n
+    \end{bmatrix}
+    .
+  \]
+\end{definition}
+
+The eigenvalues of $\mathbf{D}$ are exactly its diagonal entries:
+\[
+  \det(\mathbf{D} - \lambda \mathbf{I}) =
+  \det
+  \begin{bmatrix}
+    \lambda_1 - \lambda &        & 0                   \\
+                        & \ddots &                     \\
+    0                   &        & \lambda_n - \lambda
+  \end{bmatrix}
+  = \prod_{i=1}^{n} (\lambda_i - \lambda),
+\]
+so $\lambda = \lambda_1, \ldots, \lambda_n$.
+
+\begin{definition}{Diagonalizable Matrix}{diagonalizable}
+  $\mathbf{A} \in \R^{n \times n}$ is \textbf{diagonalizable} if there exist a diagonal $\mathbf{D} \in \R^{n \times n}$ and an invertible $\mathbf{P} \in \R^{n \times n}$ such that
+  \[
+    \mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \mathbf{D}.
+  \]
+\end{definition}
+
+\begin{remark}
+  The columns of $\mathbf{P}$ form an eigenbasis for $\mathbf{A}$. Left-multiplying $\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$ by $\mathbf{P}$ gives $\mathbf{A}\mathbf{P} = \mathbf{P}\mathbf{D}$. Writing $\mathbf{P} = [\mathbf{v}_1 \mid \cdots \mid \mathbf{v}_n]$,
+  \[
+    [\mathbf{A}\mathbf{v}_1 \mid \cdots \mid \mathbf{A}\mathbf{v}_n]
+    = [\lambda_1 \mathbf{v}_1 \mid \cdots \mid \lambda_n \mathbf{v}_n],
+  \]
+  so $\mathbf{A}\mathbf{v}_j = \lambda_j \mathbf{v}_j$ for each $j$.
+\end{remark}
+
+\begin{theorem}{Diagonalizability Criterion}{diagonalizable-iff}
+  $\mathbf{A} \in \R^{n \times n}$ is diagonalizable iff there exist $n$ linearly independent eigenvectors $\mathbf{v}_1, \ldots, \mathbf{v}_n$ of $\mathbf{A}$. In that case
+  \[
+    \mathbf{P} = [\mathbf{v}_1 \mid \cdots \mid \mathbf{v}_n],
+    \quad
+    \mathbf{D} =
+    \begin{bmatrix}
+      \lambda_1 &        & 0         \\
+                & \ddots &           \\
+      0         &        & \lambda_n
+    \end{bmatrix}
+    .
+  \]
+\end{theorem}
+
+\begin{remark}[Eigenbasis language]
+  The essence of diagonalization is rewriting vectors in the \emph{eigenbasis language}. Given an eigenbasis $\beta = \{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$, any $\mathbf{x} \in \R^n$ has a unique expansion $\mathbf{x} = c_1 \mathbf{v}_1 + \cdots + c_n \mathbf{v}_n$, with coordinate vector $[\mathbf{x}]_\beta = \mathbf{P}^{-1}\mathbf{x}$. In this new language $\mathbf{A}$ acts as the diagonal matrix $\mathbf{D}$:
+  \[
+    \mathbf{A}\mathbf{x} = c_1 \lambda_1 \mathbf{v}_1 + \cdots + c_n \lambda_n \mathbf{v}_n
+    \implies [\mathbf{A}\mathbf{x}]_\beta = \mathbf{D}\,[\mathbf{x}]_\beta,
+  \]
+  which is exactly the statement $\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$.
+\end{remark}
+
+\begin{example}
+  Is $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+  $ diagonalizable? From the previous example, $\lambda_1 = 3$ and $\lambda_2 = 1$ with eigenvectors
+  \[
+    \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}
+    \text{ at } \lambda_1,
+    \quad
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+    \text{ at } \lambda_2.
+  \]
+  These are linearly independent, so $\beta = \left\{
+    \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      1 \\ -1
+    \end{bmatrix}
+    \right\}$ is an eigenbasis and
+  \[
+    \mathbf{P} =
+    \begin{bmatrix}
+      1 & 1  \\
+      1 & -1
+    \end{bmatrix}
+    ,
+    \quad
+    \mathbf{D} =
+    \begin{bmatrix}
+      3 & 0 \\
+      0 & 1
     \end{bmatrix}
     .
   \]
 \end{example}
+
+\begin{example}
+  Find the eigenvalues of $\mathbf{A} =
+    \begin{bmatrix}
+      6 & 7 \\ 6 & 7
+    \end{bmatrix}
+  $.
+  \[
+    \det(\mathbf{A} - \lambda \mathbf{I}) = (6 - \lambda)(7 - \lambda) - 42 = \lambda^2 - 13\lambda = 0,
+  \]
+  so $\lambda_1 = 0$ and $\lambda_2 = 13$.
+  \begin{remark}
+    $\lambda = 0$ is an eigenvalue of $\mathbf{A}$ $\iff$ $\mathbf{A}$ is non-invertible.
+  \end{remark}
+\end{example}
+
+\begin{theorem}{Independence from Distinct Eigenvalues}{distinct-eigvals-indep}
+  Eigenvectors of $\mathbf{A}$ corresponding to distinct eigenvalues are linearly independent.
+\end{theorem}
