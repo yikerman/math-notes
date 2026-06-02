@@ -291,3 +291,257 @@ so $\lambda = \lambda_1, \ldots, \lambda_n$.
 \begin{theorem}{Independence from Distinct Eigenvalues}{distinct-eigvals-indep}
   Eigenvectors of $\mathbf{A}$ corresponding to distinct eigenvalues are linearly independent.
 \end{theorem}
+
+\begin{example}[Non-diagonalizable]
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 1 \\ 0 & 1
+    \end{bmatrix}
+  $. Then
+  \[
+    \det(\mathbf{A} - \lambda \mathbf{I}) = (1 - \lambda)^2 = 0,
+  \]
+  so $\lambda_1 = \lambda_2 = 1$ is a repeated root. Solving $(\mathbf{A} - \mathbf{I})\mathbf{v} = \mathbf{0}$:
+  \[
+    \begin{bmatrix}
+      0 & 1 \\ 0 & 0
+    \end{bmatrix}
+    \mathbf{v} = \mathbf{0}
+    \implies \{\mathbf{v}_1\} = \{\mathbf{v}_2\} = \operatorname{span}\left\{
+    \begin{bmatrix}
+      1 \\ 0
+    \end{bmatrix}
+    \right\}
+    .
+  \]
+  Only a $1$-dimensional space of eigenvectors, so $\mathbf{A}$ has no eigenbasis.
+\end{example}
+
+\begin{definition}{Eigenspace}{eigenspace}
+  For $\mathbf{A} \in \R^{n \times n}$ and an eigenvalue $\lambda$ of $\mathbf{A}$, the \textbf{eigenspace} of $\lambda$ is
+  \[
+    E_\lambda = \operatorname{Null}(\mathbf{A} - \lambda \mathbf{I})
+    = \{\text{all eigenvectors of $\lambda$}\} \cup \{\mathbf{0}\}.
+  \]
+\end{definition}
+
+\begin{theorem}{Diagonalizability via Eigenspaces}{diagonalizable-dim-sum}
+  Let $\mathbf{A} \in \R^{n \times n}$ have distinct eigenvalues $\lambda_1, \ldots, \lambda_k$ (with $k \leq n$). Then $\mathbf{A}$ is diagonalizable iff
+  \[
+    \dim E_{\lambda_1} + \dim E_{\lambda_2} + \cdots + \dim E_{\lambda_k} = n.
+  \]
+\end{theorem}
+
+\begin{example}
+  $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 \\ 1 & 2
+    \end{bmatrix}
+  $ has $\lambda_1 = 3$, $\lambda_2 = 1$ with $\dim E_{\lambda_1} = 1$, $\dim E_{\lambda_2} = 1$. Sum of dimensions $= 2 = n$, so $\mathbf{A}$ is diagonalizable.
+\end{example}
+
+\begin{example}
+  $\mathbf{A} =
+    \begin{bmatrix}
+      1 & 1 \\ 0 & 1
+    \end{bmatrix}
+  $ has $\lambda_1 = 1$ with $\dim E_{\lambda_1} = 1$. Sum of dimensions $= 1 \neq 2$, so $\mathbf{A}$ is not diagonalizable.
+\end{example}
+
+\begin{example}
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 2 & 2 \\
+      2 & 2 & 2 \\
+      2 & 2 & 2
+    \end{bmatrix}
+  $. Row-reducing:
+  \[
+    \det(\mathbf{A} - \lambda \mathbf{I})
+    = \det
+    \begin{bmatrix}
+      2 - \lambda & 2           & 2           \\
+      2           & 2 - \lambda & 2           \\
+      2           & 2           & 2 - \lambda
+    \end{bmatrix}
+    = \det
+    \begin{bmatrix}
+      2 - \lambda & 2           & 2        \\
+      2           & 2 - \lambda & 2        \\
+      0           & \lambda     & -\lambda
+    \end{bmatrix}
+    .
+  \]
+  Cofactor expansion along the bottom row:
+  \begin{align*}
+    \det(\mathbf{A} - \lambda \mathbf{I})
+     & = -\lambda \det
+    \begin{bmatrix}
+      2 - \lambda & 2 \\
+      2           & 2
+    \end{bmatrix}
+    + (-\lambda) \det
+    \begin{bmatrix}
+      2 - \lambda & 2           \\
+      2           & 2 - \lambda
+    \end{bmatrix}
+    \\
+     & = -\lambda (2(2-\lambda) - 4) - \lambda ((2-\lambda)^2 - 4) \\
+     & = \lambda^2 (6 - \lambda) = 0.
+  \end{align*}
+  So $\lambda_1 = 0$ (repeated) and $\lambda_2 = 6$.
+  \[
+    \dim E_{\lambda_1} = \dim \operatorname{Null}(\mathbf{A} - 0\mathbf{I}) = 2,
+    \quad
+    \dim E_{\lambda_2} = \dim \operatorname{Null}
+    \begin{bmatrix}
+      -4 & 2  & 2  \\
+      2  & -4 & 2  \\
+      2  & 2  & -4
+    \end{bmatrix}
+    = 1.
+  \]
+  Sum of dimensions $= 3 = n$, so $\mathbf{A}$ is diagonalizable.
+\end{example}
+
+\begin{example}
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      2 & 1 & 0 \\
+      0 & 2 & 0 \\
+      0 & 0 & 5
+    \end{bmatrix}
+  $. Then
+  \[
+    \det(\mathbf{A} - \lambda \mathbf{I}) = (2 - \lambda)^2 (5 - \lambda) = 0,
+  \]
+  so $\lambda_1 = 2$ (repeated) and $\lambda_2 = 5$.
+  \[
+    \dim E_{\lambda_1} = \dim \operatorname{Null}
+    \begin{bmatrix}
+      0 & 1 & 0 \\
+      0 & 0 & 0 \\
+      0 & 0 & 3
+    \end{bmatrix}
+    = 1,
+    \quad
+    \dim E_{\lambda_2} = \dim \operatorname{Null}
+    \begin{bmatrix}
+      -3 & 1  & 0 \\
+      0  & -3 & 0 \\
+      0  & 0  & 0
+    \end{bmatrix}
+    = 1.
+  \]
+  Sum of dimensions $= 2 \neq 3$, so $\mathbf{A}$ is not diagonalizable.
+\end{example}
+
+\subsection{Trace}
+
+\begin{definition}{Trace}{trace}
+  The \textbf{trace} of $\mathbf{A} \in \R^{n \times n}$ is the sum of its diagonal entries:
+  \[
+    \operatorname{tr}(\mathbf{A}) = \sum_{i=1}^{n} a_{ii}.
+  \]
+\end{definition}
+
+For $\mathbf{A} =
+  \begin{bmatrix}
+    a & b \\ c & d
+  \end{bmatrix}
+$, $\operatorname{tr}(\mathbf{A}) = a + d$ and $\det(\mathbf{A}) = ad - bc$. The characteristic equation factors neatly:
+\[
+  \det(\mathbf{A} - \lambda \mathbf{I}) = \lambda^2 - \operatorname{tr}(\mathbf{A})\lambda + \det(\mathbf{A}) = 0.
+\]
+By Vieta's formulas,
+\[
+  \begin{cases}
+    \lambda_1 + \lambda_2 = \operatorname{tr}(\mathbf{A}), \\
+    \lambda_1 \lambda_2 = \det(\mathbf{A}).
+  \end{cases}
+\]
+
+\subsection{Complex Eigenvalues}
+
+\begin{example}
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      0 & 1 \\ -1 & 0
+    \end{bmatrix}
+  $. Then
+  \[
+    \lambda^2 - \operatorname{tr}(\mathbf{A})\lambda + \det(\mathbf{A}) = \lambda^2 + 1 = 0
+    \implies \lambda = \pm i.
+  \]
+\end{example}
+
+\paragraph{Recall: complex conjugates.} For $z = x + iy$, the \textbf{conjugate} is $\bar z = x - iy$.
+
+\begin{theorem}{Modulus from Conjugate}{conjugate-modulus}
+  $z \bar z \in \R$ for all $z \in \C$:
+  \[
+    z \bar z = (x + iy)(x - iy) = x^2 + y^2 = \abs{z}^2.
+  \]
+  Consequently, $\dfrac{1}{z} = \dfrac{\bar z}{z \bar z} = \dfrac{\bar z}{\abs{z}^2}$.
+\end{theorem}
+
+The quadratic formula extends to complex coefficients: for $az^2 + bz + c = 0$,
+\[
+  z = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+\]
+
+\begin{example}
+  Let $\mathbf{A} =
+    \begin{bmatrix}
+      1 & -4 \\ 4 & 1
+    \end{bmatrix}
+  $. Then
+  \[
+    \lambda^2 - \operatorname{tr}(\mathbf{A})\lambda + \det(\mathbf{A}) = \lambda^2 - 2\lambda + 17 = 0
+    \implies \lambda = 1 \pm 4i.
+  \]
+\end{example}
+
+\begin{theorem}{Conjugate Eigenvalue}{conjugate-eigenvalue}
+  Let $\mathbf{A} \in \R^{n \times n}$ be a real matrix. If $\lambda = a + bi$ is an eigenvalue of $\mathbf{A}$, then $\bar \lambda = a - bi$ is also an eigenvalue of $\mathbf{A}$.
+\end{theorem}
+
+\begin{theorem}{Conjugate Eigenvector}{conjugate-eigenvector}
+  Let $\mathbf{A} \in \R^{n \times n}$ and let $\lambda = a + ib$ be an eigenvalue with $b \neq 0$. If $\mathbf{v}$ is an eigenvector for $\lambda$, then $\bar{\mathbf{v}}$ is an eigenvector for $\bar \lambda$.
+\end{theorem}
+
+\begin{example}
+  Find the eigenvectors of $\mathbf{A} =
+    \begin{bmatrix}
+      1 & -4 \\ 4 & 1
+    \end{bmatrix}
+  $. From the previous example, $\lambda_1 = 1 + 4i$ and $\lambda_2 = 1 - 4i$.
+
+  \medskip
+
+  \emph{Eigenvector for $\lambda_1 = 1 + 4i$.}
+  \[
+    E_{\lambda_1} = \operatorname{Null}(\mathbf{A} - \lambda_1 \mathbf{I})
+    = \operatorname{Null}
+    \begin{bmatrix}
+      -4i & -4  \\
+      4   & -4i
+    \end{bmatrix}
+    = \operatorname{span}\left\{
+    \begin{bmatrix}
+      i \\ 1
+    \end{bmatrix}
+    \right\}
+    .
+  \]
+
+  \emph{Eigenvector for $\lambda_2 = 1 - 4i$.} By \ref{thm:conjugate-eigenvector},
+  \[
+    E_{\lambda_2} = \operatorname{span}\left\{
+    \begin{bmatrix}
+      -i \\ 1
+    \end{bmatrix}
+    \right\}
+    .
+  \]
+\end{example}
