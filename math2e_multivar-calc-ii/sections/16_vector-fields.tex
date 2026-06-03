@@ -70,9 +70,9 @@
 					1/-2,1/-1,1/0,1/1,1/2,%
 					2/-2,2/-1,2/0,2/1,2/2%
 				} {
-					\pgfmathsetmacro{\rsq}{\x*\x+\y*\y}
-					\pgfmathsetmacro{\dx}{-\x*0.8/\rsq}
-					\pgfmathsetmacro{\dy}{-\y*0.8/\rsq}
+					\pgfmathsetmacro{\rcubed}{(\x*\x+\y*\y)*sqrt(\x*\x+\y*\y)}
+					\pgfmathsetmacro{\dx}{-\x*0.8/\rcubed}
+					\pgfmathsetmacro{\dy}{-\y*0.8/\rcubed}
 					\draw[->, thick, red!70] (\x,\y) -- ++(\dx,\dy);
 				}
 			\fill (0,0) circle (0.08);

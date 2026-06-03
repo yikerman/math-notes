@@ -461,6 +461,39 @@ By Vieta's formulas,
   \end{cases}
 \]
 
+\subsection{Similar Matrices}
+
+\begin{definition}{Similar Matrices}{similar}
+  Let $\mathbf{A}, \mathbf{B} \in \R^{n \times n}$. $\mathbf{A}$ is \textbf{similar} to $\mathbf{B}$, denoted $\mathbf{A} \sim \mathbf{B}$, if there exists an invertible $\mathbf{P} \in \R^{n \times n}$ such that
+  \[
+    \mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \mathbf{B}.
+  \]
+\end{definition}
+
+\begin{remark}
+  By \ref{def:diagonalizable}, $\mathbf{A}$ is diagonalizable iff $\mathbf{A} \sim \mathbf{D}$ for some diagonal $\mathbf{D}$.
+\end{remark}
+
+\begin{theorem}{Invariants of Similarity}{similar-invariants}
+  If $\mathbf{A} \sim \mathbf{B}$, then
+  \begin{enumerate}
+    \item $\det(\mathbf{A}) = \det(\mathbf{B})$,
+    \item $\operatorname{tr}(\mathbf{A}) = \operatorname{tr}(\mathbf{B})$,
+    \item $\mathbf{A}$ and $\mathbf{B}$ have the same characteristic polynomial, hence the same eigenvalues.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of (3)]
+  With $\mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \mathbf{B}$,
+  \begin{align*}
+    \det(\mathbf{B} - \lambda \mathbf{I})
+     & = \det(\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda \mathbf{P}^{-1} \mathbf{I} \mathbf{P}) \\
+     & = \det(\mathbf{P}^{-1} (\mathbf{A} - \lambda \mathbf{I}) \mathbf{P})                          \\
+     & = \det(\mathbf{P}^{-1}) \det(\mathbf{A} - \lambda \mathbf{I}) \det(\mathbf{P})                \\
+     & = \det(\mathbf{A} - \lambda \mathbf{I}).
+  \end{align*}
+\end{proof}
+
 \subsection{Complex Eigenvalues}
 
 \begin{example}
