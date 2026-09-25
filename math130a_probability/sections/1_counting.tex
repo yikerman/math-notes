@@ -1,0 +1,84 @@
+\subsection{Basic Principle of Counting}
+
+\begin{theorem}{Basic Principle of Counting}{basic-counting-principle}
+  Suppose a first task can be performed in $m$ ways. Regardless of how the first task is performed, a second task can be performed in $n$ ways. Then both tasks can be performed in $mn$ ways.
+\end{theorem}
+
+The possible outcomes are ordered pairs:
+\[
+  \begin{array}{cccc}
+    (1,1)  & (1,2)  & \cdots & (1,n)  \\
+    (2,1)  & (2,2)  & \cdots & (2,n)  \\
+    \vdots & \vdots & \ddots & \vdots \\
+    (m,1)  & (m,2)  & \cdots & (m,n)
+  \end{array}
+\]
+
+\begin{example}[Seating Students]
+  How many arrangements are possible for $10$ students in a row of $10$ seats?
+  \[
+    \begin{array}{c|ccccc}
+      \text{Seat number} & 1  & 2 & 3 & \cdots & 10 \\
+      \text{Choices}     & 10 & 9 & 8 & \cdots & 1
+    \end{array}
+  \]
+  By repeated application of \ref{thm:basic-counting-principle}, the total number of arrangements is
+  \[
+    10 \cdot 9 \cdot 8 \cdots 1 = 10!.
+  \]
+\end{example}
+
+\subsection{Arrangements with Repeated Objects}
+
+\begin{example}[Arranging MISSISSIPPI]
+  How many distinguishable words can be formed using all the letters of \texttt{MISSISSIPPI}?
+
+  Label the repeated letters:
+  \[
+    M,\ I_1,I_2,I_3,I_4,\ S_1,S_2,S_3,S_4,\ P_1,P_2.
+  \]
+  There are $11!$ arrangements of the labeled letters. Each word is counted $4!\,4!\,2!\,1!$ times, since permuting labels among identical letters leaves the word unchanged. Thus the number of distinguishable words is
+  \[
+    \frac{11!}{4!\,4!\,2!\,1!}.
+  \]
+\end{example}
+
+\begin{theorem}{Arrangements with Repeated Objects}{repeated-object-arrangements}
+  Suppose $n$ objects consist of $r$ distinct types, with $n_i$ identical objects of type $i$, where
+  \[
+    n_1+n_2+\cdots+n_r=n.
+  \]
+  The number of distinguishable arrangements is
+  \[
+    \frac{n!}{n_1!\,n_2!\cdots n_r!}
+    = \binom{n}{n_1,n_2,\ldots,n_r}.
+  \]
+\end{theorem}
+
+\subsection{Combinations}
+
+\begin{example}[Choosing a Committee]
+  How many $4$-person committees can be formed from a group of $10$ people?
+
+  There are $10\cdot9\cdot8\cdot7$ ordered selections. Each committee is counted $4!$ times, so the number of committees is
+  \[
+    \frac{10\cdot9\cdot8\cdot7}{4!}
+    = \frac{10!}{4!\,6!}
+    = \binom{10}{6}
+    = \binom{10}{4}.
+  \]
+\end{example}
+
+To choose $k$ objects from $n$ distinct objects without replacement:
+\[
+  \begin{array}{c|cccc}
+    \text{Selection number} & 1 & 2   & \cdots & k       \\
+    \text{Choices}          & n & n-1 & \cdots & n-(k-1)
+  \end{array}
+\]
+Each unordered selection occurs in $k!$ orders. Hence the number of selections is
+\[
+  \frac{n(n-1)\cdots(n-(k-1))}{k!}
+  = \frac{n!}{k!\,(n-k)!}
+  = \binom{n}{k}.
+\]
