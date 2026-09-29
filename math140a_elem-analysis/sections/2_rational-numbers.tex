@@ -1,0 +1,78 @@
+\subsection{From Natural Numbers to Rational Numbers}
+
+Starting from $\N$, we can construct:
+\begin{enumerate}
+  \item The integers $\Z$, by adjoining an additive identity $0$ and additive inverses.
+  \item The rational numbers
+        \[
+          \Q=\left\{\frac{n}{m} : n,m\in\Z,\ m\ne0\right\}.
+        \]
+\end{enumerate}
+We assume the basic arithmetic properties of $\Z$ and $\Q$ have been established.
+Our goal is to define $\R$. Why do we need $\R$?
+
+\subsection{Algebraic Numbers}
+
+\begin{definition}{Algebraic Number}{algebraic-number}
+  A number $x$ is \textbf{algebraic} if it satisfies a polynomial equation
+  \[
+    c_nx^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0
+    =\sum_{k=0}^{n}c_kx^k=0,
+  \]
+  where $c_k\in\Z$, $c_n\ne0$, and $n\ge1$.
+\end{definition}
+
+\begin{theorem}{Rational Numbers Are Algebraic}{rationals-are-algebraic}
+  Every rational number is algebraic.
+\end{theorem}
+
+\begin{proof}
+  Let $r=m/n\in\Q$, where $m,n\in\Z$ and $n\ne0$.
+  Then $r$ satisfies $nx-m=0$, so it is algebraic by Definition~\ref{def:algebraic-number}.
+\end{proof}
+
+\begin{definition}{Divisibility}{divisibility}
+  For $k,m\in\Z$, we say \textbf{$k$ divides $m$}, written $k\mid m$, if
+  \[
+    \exists n\in\Z\text{ such that }m=kn.
+  \]
+\end{definition}
+
+\subsection{The Rational Zeros Theorem}
+
+\begin{theorem}{Rational Zeros Theorem}{rational-zeros}
+  Suppose $r\in\Q$ satisfies
+  \[
+    \sum_{k=0}^{n}c_k r^k=0,
+    \qquad c_k\in\Z,\quad c_n\ne0,\quad n\ge1.
+  \]
+  Write $r=c/d$ in lowest terms, where $c,d\in\Z$, $d\ne0$, and $c,d$ have no common factor other than $\pm1$.
+  Then
+  \[
+    c\mid c_0,\qquad d\mid c_n.
+  \]
+\end{theorem}
+
+\begin{theorem}{Corollary: No Rational Square Root of Two}{no-rational-square-root-two}
+  The equation $x^2-2=0$ has no rational solution.
+\end{theorem}
+
+\begin{proof}
+  If $r=c/d\in\Q$ in lowest terms were a solution, Theorem~\ref{thm:rational-zeros} would give
+  \[
+    c\mid -2,\qquad d\mid 1.
+  \]
+  Thus $r$ would have to be $\pm1$ or $\pm2$, none of which is a solution.
+\end{proof}
+
+\begin{theorem}{Not Every Algebraic Number Is Rational}{algebraic-not-rational}
+  The rational numbers form a proper subset of the algebraic numbers.
+\end{theorem}
+
+\begin{proof}
+  Every rational number is algebraic by Theorem~\ref{thm:rationals-are-algebraic}.
+  The number $\sqrt{2}$ is algebraic because it satisfies $x^2-2=0$, but it is not rational by Corollary~\ref{thm:no-rational-square-root-two}.
+\end{proof}
+
+\subsubsection{Proof of the Rational Zeros Theorem}
+% To be continued in the next lecture.

@@ -75,3 +75,22 @@ How do we rigorously define numbers? Numbers are defined by their properties.
         & = 5.
   \end{align*}
 \end{example}
+
+\subsection{Proof by Induction}
+
+Axiom (4) in Definition~\ref{def:natural-numbers} is the basis for proof by induction.
+
+\begin{theorem}{Principle of Mathematical Induction}{mathematical-induction}
+  Suppose $P_1,P_2,\ldots,P_n,\ldots$ is a sequence of propositions such that
+  \begin{enumerate}
+    \item $P_1$ is true;
+    \item $P_n\implies P_{n+1}$ for every $n\in\N$.
+  \end{enumerate}
+  Then $P_n$ is true for every $n\in\N$.
+\end{theorem}
+
+\begin{proof}
+  Define $A=\{n\in\N : P_n\text{ is true}\}$.
+  The hypotheses give $1\in A$ and $n\in A\implies S(n)=n+1\in A$.
+  By axiom (4), $A=\N$.
+\end{proof}
