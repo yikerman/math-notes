@@ -123,3 +123,160 @@ has solution
     y(x)=7e^{x-1}.
   \]
 \end{example}
+
+\subsection{Slope Fields}
+
+For a first-order ODE
+\[
+  \frac{dy}{dx}=f(x,y),
+\]
+the value $f(a,b)$ gives the slope of a solution curve passing through $(a,b)$.
+
+\begin{example}[Slope at a Point]
+  For $y'=y$, a solution passing through $(1,1)$ has slope $1$ there.
+  \begin{center}
+    \begin{tikzpicture}[>=latex]
+      \draw[->] (-0.6,0) -- (2.3,0) node[right] {$x$};
+      \draw[->] (0,-0.5) -- (0,2.2) node[above] {$y$};
+      \draw (1,0.06) -- (1,-0.06) node[below] {$1$};
+      \draw (0.06,1) -- (-0.06,1) node[left] {$1$};
+      \draw[->,thick,blue!70] (0.65,0.65) -- (1.35,1.35);
+      \fill (1,1) circle (2pt);
+      \node[right] at (1.4,1) {slope $1$};
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{definition}{Slope Field}{slope-field}
+  For $y'=f(x,y)$, a \textbf{slope field} assigns the direction
+  \[
+    \mathbf{F}(x,y)=
+    \begin{bmatrix}
+      1 \\f(x,y)
+    \end{bmatrix}
+  \]
+  at each point where $f$ is defined. Solution curves are tangent to these directions.
+\end{definition}
+
+The plots below use equal-length arrows in the direction $\ve{1,f(x,y)}$ to show slopes clearly.
+
+\begin{example}[Slope Field for $y'=y$]
+  Slopes are constant along horizontal lines. The solution $y=e^x$ is tangent to the field.
+  \begin{center}
+    \begin{tikzpicture}[scale=1.05,>=latex]
+      \draw[->] (-2.7,0) -- (2.7,0) node[right] {$x$};
+      \draw[->] (0,-2.2) -- (0,3.2) node[above] {$y$};
+      \foreach \x in {-2,-1,1,2}
+        \draw (\x,0.05) -- (\x,-0.05) node[below] {$\x$};
+      \foreach \y in {-2,-1,1,2,3}
+        \draw (0.05,\y) -- (-0.05,\y) node[left] {$\y$};
+      \foreach \x in {-2.4,-1.8,...,2.4} {
+        \foreach \y in {-1.8,-1.2,...,3} {
+          \pgfmathsetmacro{\dx}{0.2/sqrt(1+\y*\y)}
+          \pgfmathsetmacro{\dy}{\y*\dx}
+          \draw[->,blue!60] ({\x-\dx},{\y-\dy}) -- ({\x+\dx},{\y+\dy});
+        }
+      }
+      \begin{scope}
+        \clip (-2.5,-2) rectangle (2.5,3.1);
+        \draw[red!75!black,thick,domain=-2.5:1.14,samples=100] plot (\x,{exp(\x)});
+      \end{scope}
+      \node[red!75!black,right] at (1.15,2.8) {$y=e^x$};
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{example}[Slope Field for $y'=y-x$]
+  Slopes are zero on $y=x$, positive above it, and negative below it.
+  The plotted solution curves have the form $y=x+1+Ce^x$.
+  \begin{center}
+    \begin{tikzpicture}[scale=1.05,>=latex]
+      \draw[->] (-2.7,0) -- (2.7,0) node[right] {$x$};
+      \draw[->] (0,-2.7) -- (0,3.3) node[above] {$y$};
+      \foreach \x in {-2,-1,1,2}
+        \draw (\x,0.05) -- (\x,-0.05) node[below] {$\x$};
+      \foreach \y in {-2,-1,1,2,3}
+        \draw (0.05,\y) -- (-0.05,\y) node[left] {$\y$};
+      \foreach \x in {-2.4,-1.8,...,2.4} {
+        \foreach \y in {-2.4,-1.8,...,3} {
+          \pgfmathsetmacro{\slope}{\y-\x}
+          \pgfmathsetmacro{\dx}{0.2/sqrt(1+\slope*\slope)}
+          \pgfmathsetmacro{\dy}{\slope*\dx}
+          \draw[->,blue!60] ({\x-\dx},{\y-\dy}) -- ({\x+\dx},{\y+\dy});
+        }
+      }
+      \begin{scope}
+        \clip (-2.5,-2.5) rectangle (2.5,3.1);
+        \foreach \c in {-1,0,1}
+          \draw[red!75!black,thick,domain=-2.5:2.5,samples=120] plot (\x,{\x+1+\c*exp(\x)});
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\subsubsection{Existence and Uniqueness}
+
+\begin{theorem}{Picard's Theorem}{picard}
+  Consider the IVP
+  \[
+    \begin{cases}
+      \dfrac{dy}{dx}=f(x,y), \\
+      y(a)=b.
+    \end{cases}
+  \]
+  If $f$ and $\pd{f}{y}$ are continuous on a neighborhood of $(a,b)$, then the IVP has a unique solution on some open interval containing $x=a$.
+\end{theorem}
+
+These conditions are sufficient, not necessary. The proof is reserved for an upper-division course.
+
+\begin{example}[Applying Picard's Theorem]
+  Consider
+  \[
+    \begin{cases}
+      \dfrac{dy}{dx}=2\sin(xy), \\
+      y(-1)=1.
+    \end{cases}
+  \]
+  Both
+  \[
+    f(x,y)=2\sin(xy),\qquad \pd{f}{y}=2x\cos(xy)
+  \]
+  are continuous everywhere. By Theorem~\ref{thm:picard}, there is a unique local solution passing through $(-1,1)$.
+\end{example}
+
+\begin{example}[An Undefined Right-Hand Side]
+  Consider
+  \[
+    \begin{cases}
+      \dfrac{dy}{dx}=\dfrac{1}{2y}, \\
+      y(0)=0.
+    \end{cases}
+  \]
+  The function $f(x,y)=1/(2y)$ is undefined at $y=0$, so Theorem~\ref{thm:picard} does not apply.
+
+  The curves $y=\pm\sqrt{x}$ solve the ODE for $x>0$ and approach $(0,0)$. They are not classical solutions of the stated IVP: the ODE is undefined at the initial point, and neither curve has a finite derivative there.
+  \begin{center}
+    \begin{tikzpicture}[scale=1.2,>=latex]
+      \draw[->] (-0.5,0) -- (3.6,0) node[right] {$x$};
+      \draw[->] (0,-2.2) -- (0,2.2) node[above] {$y$};
+      \foreach \x in {1,2,3}
+        \draw (\x,0.05) -- (\x,-0.05) node[below] {$\x$};
+      \foreach \y in {-2,-1,1,2}
+        \draw (0.05,\y) -- (-0.05,\y) node[left] {$\y$};
+      \foreach \x in {0,0.6,...,3} {
+        \foreach \y in {-1.8,-1.2,-0.6,-0.25,0.25,0.6,1.2,1.8} {
+          \pgfmathsetmacro{\slope}{1/(2*\y)}
+          \pgfmathsetmacro{\dx}{0.18/sqrt(1+\slope*\slope)}
+          \pgfmathsetmacro{\dy}{\slope*\dx}
+          \draw[->,blue!60] ({\x-\dx},{\y-\dy}) -- ({\x+\dx},{\y+\dy});
+        }
+      }
+      \draw[red!75!black,thick,domain=0:1.8,samples=100,variable=\t] plot ({\t*\t},\t);
+      \draw[red!75!black,thick,domain=0:1.8,samples=100,variable=\t] plot ({\t*\t},{-\t});
+      \draw[red!75!black,fill=white] (0,0) circle (2pt);
+      \node[red!75!black,right] at (3.3,1.8) {$y=\sqrt{x}$};
+      \node[red!75!black,right] at (3.3,-1.8) {$y=-\sqrt{x}$};
+    \end{tikzpicture}
+  \end{center}
+  No field arrows are drawn on $y=0$; the open circle marks the excluded point $(0,0)$.
+\end{example}
