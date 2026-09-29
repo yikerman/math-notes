@@ -252,9 +252,9 @@ These conditions are sufficient, not necessary. The proof is reserved for an upp
       y(0)=0.
     \end{cases}
   \]
-  The function $f(x,y)=1/(2y)$ is undefined at $y=0$, so Theorem~\ref{thm:picard} does not apply.
+  The function $f(x,y)=1/(2y)$ is undefined at $y=0$, so Picard's Theorem (\ref{thm:picard}) does not apply.
 
-  The curves $y=\pm\sqrt{x}$ solve the ODE for $x>0$ and approach $(0,0)$. They are not classical solutions of the stated IVP: the ODE is undefined at the initial point, and neither curve has a finite derivative there.
+  However, the curves $y=\pm\sqrt{x}$ solve the ODE for $x>0$ and approach $(0,0)$.
   \begin{center}
     \begin{tikzpicture}[scale=1.2,>=latex]
       \draw[->] (-0.5,0) -- (3.6,0) node[right] {$x$};
@@ -278,5 +278,4 @@ These conditions are sufficient, not necessary. The proof is reserved for an upp
       \node[red!75!black,right] at (3.3,-1.8) {$y=-\sqrt{x}$};
     \end{tikzpicture}
   \end{center}
-  No field arrows are drawn on $y=0$; the open circle marks the excluded point $(0,0)$.
 \end{example}
