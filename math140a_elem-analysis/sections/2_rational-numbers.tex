@@ -75,4 +75,28 @@ Our goal is to define $\R$. Why do we need $\R$?
 \end{proof}
 
 \subsubsection{Proof of the Rational Zeros Theorem}
-% To be continued in the next lecture.
+
+\begin{proof}[Proof of Theorem~\ref{thm:rational-zeros}]
+  By assumption,
+  \[
+    c_n\left(\frac{c}{d}\right)^n+\cdots+c_1\left(\frac{c}{d}\right)+c_0=0.
+  \]
+  Multiplying by $d^n$ gives
+  \[
+    c_nc^n+c_{n-1}c^{n-1}d+\cdots+c_1cd^{n-1}+c_0d^n=0.
+  \]
+  \begin{enumerate}
+    \item
+          \begin{align*}
+            c_0d^n & = -(c_nc^n+\cdots+c_1cd^{n-1})      \\
+                   & = -c(c_nc^{n-1}+\cdots+c_1d^{n-1}).
+          \end{align*}
+          Thus $c\mid c_0d^n$. Since $c,d$ are coprime by assumption, $c\mid c_0$.
+    \item
+          \begin{align*}
+            c_nc^n & = -(c_{n-1}c^{n-1}d+\cdots+c_0d^n)      \\
+                   & = -d(c_{n-1}c^{n-1}+\cdots+c_0d^{n-1}).
+          \end{align*}
+          Thus $d\mid c_nc^n$. Similarly, $d\mid c_n$.
+  \end{enumerate}
+\end{proof}

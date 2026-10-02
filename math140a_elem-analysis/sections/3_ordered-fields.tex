@@ -1,0 +1,83 @@
+Likewise, define properties/axioms for the structure of $\R$.
+
+\subsection{Fields}
+
+\begin{definition}{Field}{field}
+  A \textbf{field} is a set $\mathbb{F}$ with two binary operations:
+  \[
+    +\colon\mathbb{F}\times\mathbb{F}\to\mathbb{F}
+    \quad\text{(plus)},\qquad
+    \cdot\colon\mathbb{F}\times\mathbb{F}\to\mathbb{F}
+    \quad\text{(times)},
+  \]
+  with axioms:
+  \begin{enumerate}[leftmargin=3em]
+    \item[(A1)] \textbf{Additive associativity:}
+          \[
+            a+(b+c)=(a+b)+c\qquad\forall a,b,c\in\mathbb{F}.
+          \]
+    \item[(A2)] \textbf{Additive commutativity:}
+          \[
+            a+b=b+a\qquad\forall a,b\in\mathbb{F}.
+          \]
+    \item[(A3)] \textbf{Additive identity:}
+          \[
+            \exists 0\in\mathbb{F}\text{ such that }\forall a\in\mathbb{F},\quad a+0=a.
+          \]
+    \item[(A4)] \textbf{Additive inverses:}
+          \[
+            \forall a\in\mathbb{F},\quad\exists -a\in\mathbb{F}\text{ such that }a+(-a)=0.
+          \]
+    \item[(M1)] \textbf{Multiplicative associativity:}
+          \[
+            a\cdot(b\cdot c)=(a\cdot b)\cdot c\qquad\forall a,b,c\in\mathbb{F}.
+          \]
+    \item[(M2)] \textbf{Multiplicative commutativity:}
+          \[
+            a\cdot b=b\cdot a\qquad\forall a,b\in\mathbb{F}.
+          \]
+    \item[(M3)] \textbf{Multiplicative identity:}
+          \[
+            \exists 1\in\mathbb{F}\text{ such that }\forall a\in\mathbb{F},\quad a\cdot1=a.
+          \]
+    \item[(M4)] \textbf{Multiplicative inverses:}
+          \[
+            \forall a\in\mathbb{F},\quad a\ne0\implies
+            \exists a^{-1}\in\mathbb{F}\text{ such that }a\cdot a^{-1}=1.
+          \]
+    \item[(D)] \textbf{Distributivity:}
+          \[
+            a\cdot(b+c)=(a\cdot b)+(a\cdot c)\qquad\forall a,b,c\in\mathbb{F}.
+          \]
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  \begin{itemize}
+    \item $(\Q,+,\cdot)$ is a field.
+    \item $(\N,+,\cdot)$ is not a field: it fails (A3), (A4), and (M4).
+    \item $(\Z\bmod 2,+,\cdot)$ is a field.
+  \end{itemize}
+\end{example}
+
+\begin{example}[Multiplication by Zero]
+  For a field $(\mathbb{F},+,\cdot)$,
+  \[
+    \forall a\in\mathbb{F},\qquad a\cdot0=0.
+  \]
+  \begin{proof}
+    (i)
+    \begin{align*}
+      a\cdot0 & = a\cdot(0+0)     &  & \text{(additive identity)} \\
+              & = a\cdot0+a\cdot0 &  & \text{(distributivity)}
+    \end{align*}
+    (ii)
+    \begin{align*}
+      0 & = (a\cdot0)+(-(a\cdot0))             &  & \text{(additive inverse)}           \\
+        & = ((a\cdot0)+(a\cdot0))+(-(a\cdot0)) &  & \text{(i)}                          \\
+        & = (a\cdot0)+((a\cdot0)+(-(a\cdot0))) &  & \text{(additive associativity)}     \\
+        & = (a\cdot0)+0                        &  & \text{(additive inverse)}           \\
+        & = a\cdot0                            &  & \text{(additive identity).}\qedhere
+    \end{align*}
+  \end{proof}
+\end{example}
