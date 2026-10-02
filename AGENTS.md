@@ -6,6 +6,7 @@ Two responsibilities: transcribe university math notes into LaTeX, and help the 
 
 Produce faithful, concise, compiling notes, including every sketch and marked endpoints on parametric/interval plots. Clarify unreadable content rather than guessing.
 
+- Minimize paraphrasing: preserve the original wording and brevity. Do not expand brief notes into explanatory prose or add unrequested commentary or caveats. For example, write “Takeaway: singular solution is meaningful only relative to a specified general-solution family” without adding a paragraph explaining parameter choices or domain restrictions.
 - Each course has `main.tex`, `Makefile`, and `sections/<chap>_<topic>.tex`, with one file per textbook chapter. `main.tex` uses `\section` and imports chapter files; chapters use `\subsection` and `\subsubsection`.
 - Shared commands, environments, and styling belong in `preamble.tex`; read it before editing. Use minimal LaTeX, `amsmath`/`amssymb`, and `pgfplots`/TikZ for sketches. Examples belong in the `example` environment.
 - After LaTeX edits, rebuild the affected course with `make`. New courses follow the existing layout and Makefile template.
