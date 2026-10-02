@@ -279,3 +279,227 @@ These conditions are sufficient, not necessary. The proof is reserved for an upp
     \end{tikzpicture}
   \end{center}
 \end{example}
+
+\subsection{Separation of Variables}
+
+\begin{definition}{Separable ODE}{separable-ode}
+  An ODE is \textbf{separable} if it can be written in the form
+  \[
+    \frac{dy}{dx}=g(x)h(y).
+  \]
+\end{definition}
+
+\subsubsection{Method}
+
+For a separable ODE (Definition~\ref{def:separable-ode}):
+\begin{enumerate}
+  \item Separate the variables, assuming $h(y)\ne0$:
+        \[
+          \frac{dy}{h(y)}=g(x)\dd{x}.
+        \]
+  \item Integrate both sides:
+        \[
+          \int\frac{1}{h(y)}\dd{y}=\int g(x)\dd{x}.
+        \]
+  \item Compute the integrals to obtain an implicit solution:
+        \[
+          H(y)=G(x)+C.
+        \]
+  \item If possible, solve explicitly for $y$ as a function of $x$.
+\end{enumerate}
+Check separately for constant solutions at zeros of $h$, since division by $h(y)$ excludes them.
+
+\begin{example}[Justifying Separation by Substitution]
+  Consider
+  \[
+    \frac{dy}{dx}=x^2y^3.
+  \]
+  The constant function $y(x)=0$ is a solution. For $y\ne0$, divide by $y^3$ and integrate with respect to $x$:
+  \[
+    y^{-3}\frac{dy}{dx}=x^2
+    \quad\Longrightarrow\quad
+    \int y^{-3}\frac{dy}{dx}\dd{x}=\int x^2\dd{x}.
+  \]
+  Substitution on the left gives
+  \[
+    \int y^{-3}\dd{y}=\int x^2\dd{x}
+    \quad\Longrightarrow\quad
+    -\frac12 y^{-2}=\frac13 x^3+C.
+  \]
+\end{example}
+
+\begin{definition}{General and Singular Solutions}{general-singular-solutions}
+  A \textbf{general solution} is a family of solutions involving arbitrary constants (one constant for the first-order equations considered here).
+  Relative to a given general-solution family, a \textbf{singular solution} is a solution that cannot be obtained by choosing values of those constants.
+\end{definition}
+
+In the preceding example, $-\tfrac12 y^{-2}=\tfrac13 x^3+C$ is the general solution, and $y(x)=0$ is a singular solution in the sense of Definition~\ref{def:general-singular-solutions}.
+
+\begin{example}[Absorbing a Constant Solution into the Family]
+  Solve
+  \[
+    \frac{dy}{dx}=3x^2y.
+  \]
+  Either $y(x)=0$, or separation gives
+  \begin{align*}
+    \int y^{-1}\dd{y} & = \int 3x^2\dd{x},                \\
+    \ln\abs{y}        & = x^3+C,                          \\
+    \abs{y}           & = e^{x^3+C}=Ae^{x^3}, \qquad A>0.
+  \end{align*}
+  Allowing either sign gives $y=Ae^{x^3}$ for $A\ne0$. Including $A=0$ incorporates the constant solution, so
+  \[
+    y(x)=Ae^{x^3},\qquad A\in\R.
+  \]
+\end{example}
+
+\begin{example}[Spotting a Solution to an IVP]
+  Find a particular solution of
+  \[
+    \begin{cases}
+      \dfrac{dy}{dx}=y^3\tan(x^2), \\
+      y(1)=0.
+    \end{cases}
+  \]
+  By inspection, $y(x)=0$ is a solution on an interval about $x=1$ where $\tan(x^2)$ is defined.
+  Both $f(x,y)=y^3\tan(x^2)$ and $\pd{f}{y}=3y^2\tan(x^2)$ are continuous near $(1,0)$, so Picard's Theorem (\ref{thm:picard}) guarantees local uniqueness.
+\end{example}
+
+\begin{example}[Partial Fractions and the Choice of Parameter]
+  Solve
+  \[
+    \frac{dy}{dx}=2xy(y-1).
+  \]
+  First note the constant solutions $y=0$ and $y=1$. For $y\ne0,1$, separate variables and use partial fractions:
+  \begin{align*}
+    \int\frac{1}{y(y-1)}\dd{y}                       & = \int 2x\dd{x}, \\
+    \int\left(\frac{1}{y-1}-\frac{1}{y}\right)\dd{y} & = \int 2x\dd{x}, \\
+    \ln\abs{y-1}-\ln\abs{y}                          & = x^2+C,         \\
+    \ln\abs{\frac{y-1}{y}}                           & = x^2+C,         \\
+    \frac{y-1}{y}                                    & = Ae^{x^2}.
+  \end{align*}
+  Hence
+  \[
+    y(x)=\frac{1}{1-Ae^{x^2}}.
+  \]
+  Extending the parameter to $A=0$ includes $y=1$, whereas $y=0$ is singular relative to this family.
+
+  Alternatively, for $A\ne0$, let $B=A^{-1}$. Then
+  \[
+    y(x)=\frac{1}{1-B^{-1}e^{x^2}}
+    =\frac{B}{B-e^{x^2}}.
+  \]
+  Extending the latter family to $B=0$ includes $y=0$, whereas $y=1$ is singular relative to this family. In each form, solutions are taken on intervals where the denominator is nonzero.
+
+  Thus the term \emph{singular solution}, as used here, is meaningful only relative to a specified general-solution family.
+\end{example}
+
+\subsection{Linear First-Order Equations}
+
+\begin{definition}{Linear First-Order ODE}{linear-first-order-ode}
+  A \textbf{linear first-order ODE} has the form
+  \[
+    \frac{dy}{dx}+p(x)y=f(x),
+  \]
+  where $p$ and $f$ are given functions. The unknown function $y$ and its derivative $y'$ appear linearly.
+\end{definition}
+
+\begin{example}[Recognizing Linearity]
+  The equation $y'+17x^2y=e^x$ is linear and first-order.
+  The equation $y'+y^2=3$ is first-order but is not linear.
+\end{example}
+
+\subsubsection{The Integrating Factor Method}
+
+\begin{example}[Turning the Left-Hand Side into a Product Derivative]
+  Solve $y'+7y=x$. Multiply both sides by $e^{7x}$:
+  \[
+    e^{7x}y'+7e^{7x}y=xe^{7x}.
+  \]
+  By the product rule, the left-hand side is $\dfrac{d}{dx}(e^{7x}y)$, so
+  \[
+    \frac{d}{dx}(e^{7x}y)=xe^{7x}.
+  \]
+  Integrating by parts gives
+  \begin{align*}
+    e^{7x}y & = \int xe^{7x}\dd{x}                       \\
+            & = \frac17 xe^{7x}-\int\frac17 e^{7x}\dd{x} \\
+            & = \frac17 xe^{7x}-\frac1{49}e^{7x}+C.
+  \end{align*}
+  Thus
+  \[
+    y(x)=\frac{x}{7}-\frac1{49}+Ce^{-7x}.
+  \]
+\end{example}
+
+\begin{definition}{Integrating Factor}{integrating-factor}
+  For $y'+p(x)y=f(x)$, choose an \textbf{integrating factor}
+  \[
+    r(x)=e^{\int p(x)\dd{x}},
+  \]
+  using any one antiderivative of $p$ in the exponent.
+\end{definition}
+
+To justify the method, differentiate the integrating factor from Definition~\ref{def:integrating-factor}:
+\[
+  r'(x)=\frac{d}{dx}e^{\int p(x)\dd{x}}
+  =p(x)e^{\int p(x)\dd{x}}=p(x)r(x).
+\]
+Multiplying the ODE by $r(x)$ therefore yields
+\[
+  ry'+rpy=ry'+r'y=\frac{d}{dx}(ry)=r(x)f(x).
+\]
+Integrate and divide by $r(x)$ to obtain
+\[
+  r(x)y=\int r(x)f(x)\dd{x}+C,
+  \qquad
+  y(x)=\frac{1}{r(x)}\left(\int r(x)f(x)\dd{x}+C\right).
+\]
+
+\begin{example}[A Variable Coefficient]
+  Solve
+  \[
+    \frac{dy}{dx}-3x^2y=x^2.
+  \]
+  The integrating factor is
+  \[
+    r(x)=e^{\int -3x^2\dd{x}}=e^{-x^3}.
+  \]
+  Thus
+  \begin{align*}
+    e^{-x^3}y & = \int e^{-x^3}x^2\dd{x}+C
+    =-\frac13 e^{-x^3}+C,                                 \\
+    y(x)      & = e^{x^3}\left(-\frac13 e^{-x^3}+C\right)
+    =-\frac13+Ce^{x^3}.
+  \end{align*}
+\end{example}
+
+\begin{example}[An Initial Value Problem]
+  Solve
+  \[
+    \begin{cases}
+      xy'+7y=x^2, \\
+      y(1)=2.
+    \end{cases}
+  \]
+  Divide by $x$ to put the equation in standard form:
+  \[
+    y'+\frac7x y=x.
+  \]
+  An integrating factor is
+  \[
+    r(x)=e^{\int (7/x)\dd{x}}=e^{7\ln\abs{x}}=\abs{x}^7.
+  \]
+  We work on $x>0$, the interval containing the initial point $x=1$ on which the coefficients are continuous. Hence $r(x)=x^7$, and
+  \[
+    y(x)=\frac{1}{x^7}\left(\int x^8\dd{x}+C\right)
+    =\frac{x^2}{9}+Cx^{-7}.
+  \]
+  The initial condition gives $2=\tfrac19+C$, so $C=\tfrac{17}{9}$ and
+  \[
+    y(x)=\frac19\left(x^2+17x^{-7}\right),\qquad x>0.
+  \]
+  Alternatively, incorporate the initial condition directly using a definite integral:
+  \[
+    y(x)=\frac{1}{x^7}\left(\int_1^x t^8\dd{t}+2\right).
+  \]
+\end{example}
