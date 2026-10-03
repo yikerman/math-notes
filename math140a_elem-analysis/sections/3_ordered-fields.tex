@@ -81,3 +81,92 @@ Likewise, define properties/axioms for the structure of $\R$.
     \end{align*}
   \end{proof}
 \end{example}
+
+\subsection{Ordering}
+
+\begin{definition}{Ordered Field}{ordered-field}
+  An \textbf{ordered field} is a field $\mathbb{F}$ with a relation $\le$ satisfying:
+  \begin{enumerate}[leftmargin=3em]
+    \item[(O1)] $\forall a,b\in\mathbb{F},\quad a\le b\text{ or }b\le a$.
+    \item[(O2)] $a\le b\text{ and }b\le a\implies a=b$.
+    \item[(O3)] $a\le b\text{ and }b\le c\implies a\le c$.
+    \item[(O4)] $a\le b\implies\forall c\in\mathbb{F},\quad a+c\le b+c$.
+    \item[(O5)] $a\le b\text{ and }0\le c\implies ac\le bc$.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  $(\Q,+,\cdot,\le)$ is an ordered field.
+  $(\R,+,\cdot,\le)$ is an ordered field (more later).
+\end{example}
+
+In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
+
+\begin{theorem}{Negation Reverses Order}{negation-reverses-order}
+  Let $(\mathbb{F},+,\cdot,\le)$ be an ordered field. Then
+  \[
+    \forall a,b\in\mathbb{F},\qquad a\le b\implies -b\le-a.
+  \]
+\end{theorem}
+
+\begin{proof}
+  By (O4) of Definition~\ref{def:ordered-field},
+  \[
+    a\le b\implies a+(-a+(-b))\le b+(-a+(-b)).
+  \]
+  Using the field axioms (details skipped),
+  \begin{align*}
+    (a+(-a))+(-b) & \le(b+(-b))+(-a), \\
+    0+(-b)        & \le0+(-a),        \\
+    -b            & \le-a.\qedhere
+  \end{align*}
+\end{proof}
+
+\subsection{Absolute Value}
+
+\begin{definition}{Absolute Value}{absolute-value}
+  For an ordered field $(\mathbb{F},+,\cdot,\le)$ and any $a\in\mathbb{F}$, the \textbf{absolute value} is
+  \[
+    \abs{a}:=
+    \begin{cases}
+      a,  & a\ge0,            \\
+      -a, & \text{otherwise}.
+    \end{cases}
+  \]
+\end{definition}
+
+Intuition: $\abs{a}$ means the distance from $a$ to $0$.
+\begin{center}
+  \begin{tikzpicture}[>=latex]
+    \draw[<->] (-2.5,0) -- (2.5,0) node[right] {$\mathbb{F}$};
+    \draw (-0.8,0) -- (-0.8,0.15);
+    \draw (0.8,0) -- (0.8,0.15);
+    \node[below] at (-0.8,0) {$a$};
+    \node[below] at (0.8,0) {$0$};
+    \node at (0,-0.65) {$\underbrace{\hspace{1.6cm}}_{\abs{a}}$};
+  \end{tikzpicture}
+\end{center}
+
+$\abs{a-b}$ means the distance from $a$ to $b$.
+\begin{center}
+  \begin{tikzpicture}[>=latex]
+    \draw[<->] (-2.5,0) -- (2.5,0) node[right] {$\mathbb{F}$};
+    \draw (-0.8,0) -- (-0.8,0.15);
+    \draw (0.8,0) -- (0.8,0.15);
+    \node[below] at (-0.8,0) {$a$};
+    \node[below] at (0.8,0) {$b$};
+    \node at (0,-0.65) {$\underbrace{\hspace{1.6cm}}_{\abs{a-b}}$};
+  \end{tikzpicture}
+\end{center}
+
+\begin{theorem}{Properties of Absolute Value}{absolute-value-properties}
+  For an ordered field $(\mathbb{F},+,\cdot,\le)$:
+  \begin{enumerate}[label=(\roman*)]
+    \item $\abs{a}\ge0,\quad\forall a\in\mathbb{F}$.
+    \item $\abs{ab}=\abs{a}\cdot\abs{b},\quad\forall a,b\in\mathbb{F}$.
+    \item \textbf{Important (triangle inequality):}
+          \[
+            \abs{a+b}\le\abs{a}+\abs{b},\qquad\forall a,b\in\mathbb{F}.
+          \]
+  \end{enumerate}
+\end{theorem}
