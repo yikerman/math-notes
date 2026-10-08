@@ -135,31 +135,26 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
   \]
 \end{definition}
 
-Intuition: $\abs{a}$ means the distance from $a$ to $0$.
-\begin{center}
-  \begin{tikzpicture}[>=latex]
-    \draw[<->] (-2.5,0) -- (2.5,0) node[right] {$\mathbb{F}$};
-    \draw (-0.8,0) -- (-0.8,0.15);
-    \draw (0.8,0) -- (0.8,0.15);
-    \node[below] at (-0.8,0) {$a$};
-    \node[below] at (0.8,0) {$0$};
-    \node at (0,-0.65) {$\underbrace{\hspace{1.6cm}}_{\abs{a}}$};
-  \end{tikzpicture}
-\end{center}
+\begin{intuition}[Absolute Value as Distance]
+  $\abs{a}$ means the distance from $a$ to $0$.
+  $\abs{a-b}$ means the distance from $a$ to $b$.
+  \begin{center}
+    \begin{tikzpicture}
+      \foreach \offset/\endpoint/\distance in {0/0/\abs{a},6/b/\abs{a-b}} {
+        \begin{scope}[xshift=\offset cm]
+          \draw[number line] (-2,0) -- (2,0) node[right] {$\mathbb{F}$};
+          \draw[sketch accent] (-1,0) -- (1,0);
+          \draw (-1,-0.1) -- (-1,0.1) node[above] {$a$};
+          \draw (1,-0.1) -- (1,0.1) node[above] {$\endpoint$};
+          \draw[decorate,decoration={brace,mirror,amplitude=5pt}]
+            (-1,-0.2) -- (1,-0.2) node[midway,below=7pt] {$\distance$};
+        \end{scope}
+      }
+    \end{tikzpicture}
+  \end{center}
+\end{intuition}
 
-$\abs{a-b}$ means the distance from $a$ to $b$.
-\begin{center}
-  \begin{tikzpicture}[>=latex]
-    \draw[<->] (-2.5,0) -- (2.5,0) node[right] {$\mathbb{F}$};
-    \draw (-0.8,0) -- (-0.8,0.15);
-    \draw (0.8,0) -- (0.8,0.15);
-    \node[below] at (-0.8,0) {$a$};
-    \node[below] at (0.8,0) {$b$};
-    \node at (0,-0.65) {$\underbrace{\hspace{1.6cm}}_{\abs{a-b}}$};
-  \end{tikzpicture}
-\end{center}
-
-\begin{theorem}{Properties of Absolute Value}{absolute-value-properties}
+\begin{theorem}{Absolute Value and Order Properties}{absolute-value-properties}
   For an ordered field $(\mathbb{F},+,\cdot,\le)$:
   \begin{enumerate}[label=(\roman*)]
     \item $\abs{a}\ge0,\quad\forall a\in\mathbb{F}$.
@@ -168,5 +163,43 @@ $\abs{a-b}$ means the distance from $a$ to $b$.
           \[
             \abs{a+b}\le\abs{a}+\abs{b},\qquad\forall a,b\in\mathbb{F}.
           \]
+    \item \textbf{Reverse triangle inequality:}
+          $\bigl|\abs{a}-\abs{b}\bigr|\le\abs{a-b}$.
+    \item $0<1$.
+    \item $0<a<b\implies 0<b^{-1}<a^{-1}$.
   \end{enumerate}
 \end{theorem}
+
+\begin{proof}[Proof of (iii)]
+  Easy to show: $-\abs{a}\le a\le\abs{a}$ and
+  \[
+    -\abs{x}\le y\le\abs{x}\iff\abs{y}\le\abs{x}.
+  \]
+  Hence
+  \[
+    -(\abs{a}+\abs{b})\le a+b\le\abs{a}+\abs{b},
+  \]
+  so $\abs{a+b}\le\bigl|\abs{a}+\abs{b}\bigr|=\abs{a}+\abs{b}$.
+\end{proof}
+
+\begin{intuition}
+  Takeaway: a lot of analysis is adding zero and multiplying by one cleverly.
+\end{intuition}
+
+\begin{proof}[Proof of (v)]
+  Assume $1<0$. Then
+  \[
+    1+(-1)<0+(-1)\implies 0<-1
+    \implies 0(-1)<(-1)(-1)=1,
+  \]
+  a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of (vi)]
+  Lemma: $a>0\implies a^{-1}>0$.
+  Thus $a^{-1},b^{-1}>0$, so $a^{-1}b^{-1}>0$ and
+  \[
+    a<b\implies a(a^{-1}b^{-1})<b(a^{-1}b^{-1})
+    \implies 0<b^{-1}<a^{-1}.\qedhere
+  \]
+\end{proof}

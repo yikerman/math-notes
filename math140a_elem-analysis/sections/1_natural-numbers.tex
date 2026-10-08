@@ -33,13 +33,14 @@ How do we rigorously define numbers? Numbers are defined by their properties.
   \end{enumerate}
 \end{definition}
 
-\begin{itemize}
-  \item For (1)--(3) in Definition~\ref{def:natural-numbers}, think of $S(n)=n+1$, although addition is not yet defined.
-  \item Condition (4) rules out extra elements outside the successor chain starting at $1$, such as the separate cycle below.
-\end{itemize}
+\begin{intuition}
+  \begin{itemize}
+    \item For (1)--(3) in Definition~\ref{def:natural-numbers}, think of $S(n)=n+1$, although addition is not yet defined.
+    \item Condition (4) rules out extra elements outside the successor chain starting at $1$, such as the separate cycle below.
+  \end{itemize}
 
-\begin{center}
-  \begin{tikzpicture}
+  \begin{center}
+    \begin{tikzpicture}
     \node (one) at (0,0) {$1$};
     \node (two) at (1.5,0) {$2$};
     \node (three) at (3,0) {$3$};
@@ -52,7 +53,8 @@ How do we rigorously define numbers? Numbers are defined by their properties.
     \draw[->] (alpha) to[bend left=45] node[above] {$S$} (beta);
     \draw[->] (beta) to[bend left=45] node[below] {$S$} (alpha);
   \end{tikzpicture}
-\end{center}
+  \end{center}
+\end{intuition}
 
 \subsection{Addition}
 

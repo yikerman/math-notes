@@ -12,6 +12,12 @@
 \usepackage{tikz-3dplot}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
+\tikzset{
+  number line/.style={<->, >=latex, semithick},
+  sketch accent/.style={orange!75!black, thick},
+  sketch point/.style={circle, fill=orange!75!black, inner sep=1.8pt}
+}
 
 % --- Boxes ---
 \usepackage{tcolorbox}
@@ -39,6 +45,14 @@
   breakable
 }
 
+% Intuition — amber box; keep short remarks and their sketches together
+\NewTColorBox{intuition}{ o }{%
+  colback=orange!5,
+  colframe=orange!65!black,
+  fonttitle=\bfseries,
+  title={Intuition\IfValueTF{#1}{: #1}{}}
+}
+
 % Theorem — blue box, uses shared counter
 \newtcbtheorem[number within=section]{theorem}{Theorem}{%
   colback=blue!3, colframe=blue!40,
@@ -63,4 +77,3 @@
 \newcommand{\dd}[1]{\,\mathrm{d}#1}       % differential
 \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}  % partial derivative
 \newcommand{\xmark}{\ding{55}}
-

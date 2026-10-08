@@ -1,0 +1,300 @@
+\begin{intuition}[Motivation]
+  By Corollary~\ref{thm:no-rational-square-root-two}, $\sqrt{2}\notin\Q$:
+  $\Q$ has ``holes.''
+
+  Goal: define $\R$ as an ordered field satisfying the completeness axiom.
+\end{intuition}
+
+\subsection{Maxima, Minima, and Bounds}
+
+\begin{definition}{Maximum and Minimum}{maximum-minimum}
+  Let $(\mathbb{F},+,\cdot,\le)$ be an ordered field and
+  $\varnothing\ne S\subseteq\mathbb{F}$.
+  \begin{enumerate}[label=(\roman*)]
+    \item $s_0\in S$ is the \textbf{maximum}, denoted $s_0=\max S$, if
+          $s\le s_0$ for every $s\in S$.
+    \item $s_0\in S$ is the \textbf{minimum}, denoted $s_0=\min S$, if
+          $s\ge s_0$ for every $s\in S$.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}{Extrema of Finite Sets}{finite-set-extrema}
+  Every finite, nonempty subset of an ordered field has a maximum and a minimum.
+\end{theorem}
+
+\begin{theorem}{Extrema of the Natural Numbers}{natural-number-extrema}
+  $\N\subseteq\Q$ has minimum $1$ but no maximum.
+\end{theorem}
+
+\begin{theorem}{No Extrema in an Open Rational Interval}{open-rational-interval-extrema}
+  $S=\{r\in\Q:0<r<1\}$ has no maximum or minimum.
+\end{theorem}
+
+\begin{proof}[Proof for the maximum]
+  Suppose $r_0=\max S$. Then
+  \[
+    r_1=\frac{r_0+1}{2}\in S,\qquad r_1>r_0,
+  \]
+  a contradiction.
+\end{proof}
+
+\begin{intuition}
+  For $S$, $0$ and $1$ feel like edges.
+\end{intuition}
+
+\begin{definition}{Upper Bound}{upper-bound}
+  Let $\mathbb{F}$ be an ordered field and $S\subseteq\mathbb{F}$.
+  An element $u\in\mathbb{F}$ is an \textbf{upper bound} of $S$ if
+  \[
+    \forall s\in S,\qquad s\le u.
+  \]
+  The set $S$ is \textbf{bounded above} if it has an upper bound.
+\end{definition}
+
+\begin{definition}{Lower Bound}{lower-bound}
+  Let $\mathbb{F}$ be an ordered field and $S\subseteq\mathbb{F}$.
+  An element $\ell\in\mathbb{F}$ is a \textbf{lower bound} of $S$ if
+  \[
+    \forall s\in S,\qquad \ell\le s.
+  \]
+  The set $S$ is \textbf{bounded below} if it has a lower bound.
+\end{definition}
+
+\begin{definition}{Supremum and Infimum}{supremum-infimum}
+  \textbf{Important!} Let $(\mathbb{F},+,\cdot,\le)$ be an ordered field and
+  $\varnothing\ne S\subseteq\mathbb{F}$.
+  \begin{enumerate}[label=(\roman*)]
+    \item $r\in\mathbb{F}$ is the \textbf{supremum}, denoted $r=\sup S$, if:
+          \begin{enumerate}[label=(\alph*)]
+            \item $r$ is an upper bound of $S$ (Definition~\ref{def:upper-bound});
+            \item $r\le t$ for every upper bound $t\in\mathbb{F}$ of $S$.
+          \end{enumerate}
+          Thus $\sup S$ is the \textbf{least upper bound}.
+    \item $r\in\mathbb{F}$ is the \textbf{infimum}, denoted $r=\inf S$, if:
+          \begin{enumerate}[label=(\alph*)]
+            \item $r$ is a lower bound of $S$ (Definition~\ref{def:lower-bound});
+            \item $t\le r$ for every lower bound $t\in\mathbb{F}$ of $S$.
+          \end{enumerate}
+          Thus $\inf S$ is the \textbf{greatest lower bound}.
+  \end{enumerate}
+\end{definition}
+
+\begin{note}
+  $\sup S$ and $\inf S$ need not belong to $S$.
+\end{note}
+
+\begin{example}
+  Take $\mathbb{F}=\Q$ and $S=\{r\in\Q:0<r<1\}$. Then
+  \[
+    \sup S=1,\qquad\inf S=0.
+  \]
+  \begin{proof}[Proof that $\sup S=1$]
+    \begin{enumerate}[label=(\roman*)]
+      \item $1$ is an upper bound by the definition of $S$.
+      \item Let $t\in\Q$ be any upper bound. We want $1\le t$.
+            Prove the contrapositive: $t<1\implies t$ is not an upper bound.
+            Borrow the argument from Theorem~\ref{thm:open-rational-interval-extrema}:
+            if $0<t<1$, then $(t+1)/2\in S$ and $(t+1)/2>t$;
+            if $t\le0$, then $1/2\in S$ and $1/2>t$.
+    \end{enumerate}
+    So $1$ is indeed the least upper bound.
+  \end{proof}
+\end{example}
+
+\begin{theorem}{Extrema and Bounds}{extrema-and-bounds}
+  If $\max S$ exists, then $\max S=\sup S$.
+  If $\min S$ exists, then $\min S=\inf S$.
+\end{theorem}
+
+\begin{theorem}{Infimum Is at Most Supremum}{infimum-at-most-supremum}
+  If $S\ne\varnothing$ and $\inf S,\sup S$ exist, then $\inf S\le\sup S$.
+\end{theorem}
+
+\begin{proof}
+  Choose $t\in S$. By Definition~\ref{def:supremum-infimum},
+  \[
+    \inf S\le t\le\sup S.\qedhere
+  \]
+\end{proof}
+
+\begin{theorem}{Equal Infimum and Supremum}{equal-infimum-supremum}
+  For nonempty $S$ with an infimum and supremum,
+  \[
+    \inf S=\sup S\iff S=\{a\}\text{ for some }a\in\mathbb{F}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  $(\Leftarrow)$ Trivial.
+
+  $(\Rightarrow)$ By contradiction: suppose $S$ has more than one element.
+  Choose $t_1,t_2\in S$ with $t_1\ne t_2$; say $t_1<t_2$. Then
+  \[
+    \inf S\le t_1<t_2\le\sup S,
+  \]
+  contradicting $\inf S=\sup S$.
+\end{proof}
+
+\subsection{Completeness of the Real Numbers}
+
+\begin{example}
+  $S=\{r\in\Q:r^2<2\}$ is bounded above, but has no supremum in $\Q$.
+\end{example}
+
+\begin{theorem}{Existence of the Real Numbers}{existence-real-numbers}
+  There exists an ordered field $\R$, the \textbf{real numbers}, satisfying the
+  \textbf{completeness axiom}:
+  \[
+    S\subseteq\R,\quad S\ne\varnothing,\quad S\text{ bounded above}
+    \implies\exists\sup S\in\R.
+  \]
+\end{theorem}
+
+Hard to prove! We view $\N\subseteq\Z\subseteq\Q\subseteq\R$.
+
+\begin{intuition}
+  Uniqueness is always a good thing to ask about after existence.
+\end{intuition}
+
+\begin{theorem}{Uniqueness of the Real Numbers}{uniqueness-real-numbers}
+  If ordered fields $\mathbb{F}$ and $\R$ both satisfy the completeness axiom,
+  then they are isomorphic.
+\end{theorem}
+
+Hard to prove!
+
+\begin{theorem}{Existence of Infima}{existence-infima}
+  Let $\varnothing\ne S\subseteq\R$ be bounded below. Then $\inf S$ exists.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+  Consider $-S:=\{-s:s\in S\}$.
+  Show $\sup(-S)$ exists, and show $-\sup(-S)=\inf S$.
+\end{proof}
+
+\subsection{The Archimedean Property}
+
+\begin{theorem}{Archimedean Property}{archimedean-property}
+  Let $a,b\in\R$ with $a,b>0$. Then
+  \[
+    \exists n\in\N\text{ such that }na>b.
+  \]
+\end{theorem}
+
+\begin{intuition}
+  Weird things do not happen far out.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[number line] (-0.5,0) -- (10,0);
+      \foreach \x/\label in {0/0,1.2/a,2.4/2a,3.6/3a,7.7/b,9/na} {
+        \draw (\x,-0.1) -- (\x,0.1) node[below=5pt] {$\label$};
+      }
+      \node[fill=orange!5,inner sep=4pt] at (5.7,0) {$\cdots$};
+      \foreach \x in {0,1.2,2.4} {
+        \draw[->,>=latex,sketch accent] (\x,0.15) to[bend left=40] (\x+1.2,0.15);
+      }
+      \node[sketch point] at (9,0) {};
+    \end{tikzpicture}
+  \end{center}
+\end{intuition}
+
+\begin{note}
+  \begin{enumerate}
+    \item For $\Q$, this can be proved without the completeness axiom.
+    \item There are ordered fields where this fails (e.g. rational functions).
+    \item For $\R$, it is harder: we only know the completeness axiom so far.
+  \end{enumerate}
+\end{note}
+
+\begin{proof}
+  By contradiction, assume there are $a,b>0$ such that $na\le b$ for all $n\in\N$.
+  Let $S=\{na:n\in\N\}$. Then $b$ is an upper bound for $S$, so
+  $\sup S$ exists by Theorem~\ref{thm:existence-real-numbers}.
+
+  Since $a>0$, $\sup S-a<\sup S$, so $\sup S-a$ is not an upper bound.
+  Thus there is $s\in S$ with $\sup S-a<s$.
+  Write $s=na$ for some $n\in\N$. Then
+  \[
+    \sup S-a<na\iff\sup S<(n+1)a.
+  \]
+  But $(n+1)a\in S$, contradicting that $\sup S$ is an upper bound.
+\end{proof}
+
+\begin{intuition}
+  What if $b$ is so far away? If $S=\{na:n\in\N\}$ were bounded,
+  there would be some limit $\sup S$. But we can go over it.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[number line] (-0.5,0) -- (10.5,0);
+      \foreach \x in {0.2,1.1,2} {\draw (\x,-0.08) -- (\x,0.08);}
+      \node at (2.9,0.2) {$\cdots$};
+      \draw (3.6,-0.1) -- (3.6,0.1) node[below=5pt] {$\sup S-a$};
+      \node[sketch point,label=above:{$na$}] at (4.8,0) {};
+      \draw[dashed] (6,-0.65) -- (6,0.85);
+      \node[below] at (6,-0.65) {$\sup S$};
+      \node[sketch point,label=below:{$(n+1)a$}] at (7.2,0) {};
+      \draw (9.5,-0.1) -- (9.5,0.1) node[below=5pt] {$b$};
+      \draw[->,>=latex,sketch accent] (4.8,0.25) to[bend left=40]
+        node[above] {can go over} (7.2,0.25);
+      \draw[decorate,decoration={brace,mirror,amplitude=4pt}]
+        (3.6,-1.25) -- (6,-1.25) node[midway,below=6pt] {gap $a$};
+    \end{tikzpicture}
+  \end{center}
+\end{intuition}
+
+\subsection{Density of the Rational Numbers}
+
+\begin{theorem}{Density of $\Q$ in $\R$}{density-rationals}
+  For $a,b\in\R$ with $a<b$,
+  \[
+    \exists r\in\Q\text{ such that }a<r<b.
+  \]
+\end{theorem}
+
+\begin{intuition}
+  Weird things do not happen when we zoom in on $\R$.
+  We want $a<m/n<b$, or $na<m<nb$.
+  Scale $a$ and $b$ by a large enough $n$ so that the gap $nb-na>1$;
+  then an integer lands in the gap.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[number line] (-0.5,0) -- (10.5,0);
+      \draw[sketch accent] (5.1,0) -- (7.8,0);
+      \foreach \x in {0,1.5,3,4.5,9,10} {
+        \draw (\x,-0.08) -- (\x,0.08);
+      }
+      \foreach \x in {0,3,4.5} {
+        \draw[->,>=latex,sketch accent] (\x,0.15) to[bend left=45]
+          node[above,font=\scriptsize] {$1$} (\x+1.5,0.15);
+      }
+      \node[below=5pt] at (0,0) {$-k$};
+      \node[below=5pt] at (10,0) {$k$};
+      \node[below=5pt] at (3,0) {$j?$};
+      \node[below=5pt] at (2.25,0) {$\cdots$};
+      \node[below=5pt] at (8.7,0) {$\cdots$};
+      \draw (5.1,-0.12) -- (5.1,0.12) node[below=5pt] {$na$};
+      \node[sketch point,label=below:{$m$}] at (6,0) {};
+      \draw (7.8,-0.12) -- (7.8,0.12) node[below=5pt] {$nb$};
+      \node[above] (lands) at (7,1.1) {integer in the gap};
+      \draw[->,>=latex] (lands) -- (6,0.15);
+    \end{tikzpicture}
+  \end{center}
+\end{intuition}
+
+\begin{proof}
+  By the Archimedean property (Theorem~\ref{thm:archimedean-property}),
+  there is $n\in\N$ such that
+  \[
+    n(b-a)>1\iff nb-na>1.
+  \]
+  Again by the Archimedean property, choose $k\in\N$ with
+  $k>\max\{\abs{na},\abs{nb}\}$. Then $-k<na<nb<k$. Let
+  \[
+    m=\min\{j\in\Z:-k\le j\le k,\ na<j\}.
+  \]
+  This set is finite and nonempty. By minimality,
+  \[
+    m-1\le na\implies m\le na+1<nb.
+  \]
+  Hence $na<m<nb$, so $a<m/n<b$ with $m/n\in\Q$.
+\end{proof}
