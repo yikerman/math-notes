@@ -1,0 +1,56 @@
+\subsection{Linear Second-Order Equations}
+
+\begin{definition}{Second-Order ODE}{second-order-ode}
+  A \textbf{second-order ODE} has highest derivative $d^2y/dx^2$.
+  A \textbf{linear second-order ODE} has the form
+  \[
+    y''+p(x)y'+q(x)y=f(x).
+  \]
+  It is \textbf{homogeneous} if $f(x)=0$.
+\end{definition}
+
+\begin{example}[Classifying Second-Order Equations]
+  The equation
+  \[
+    \frac{d^2y}{dx^2}+(\sin x)\frac{dy}{dx}+e^{3x^2}y=4\tan x
+  \]
+  is a nonhomogeneous linear second-order differential equation.
+  The equation $y''+yy'=0$ is nonlinear and second-order.
+\end{example}
+
+\begin{theorem}{Existence and Uniqueness for Linear Second-Order Equations}{linear-second-order-existence-uniqueness}
+  Consider the IVP
+  \[
+    \begin{cases}
+      y''+p(x)y'+q(x)y=f(x), \\
+      y(a)=b_0,\qquad y'(a)=b_1.
+    \end{cases}
+  \]
+  If $p$, $q$, and $f$ are continuous on an interval $I$ containing $a$,
+  then the IVP has a unique solution on $I$.
+\end{theorem}
+
+\begin{example}[Solutions by Inspection]
+  For $y''-4y=0$, the functions $e^{2x}$ and $e^{-2x}$ are solutions.
+  Every solution has the form
+  \[
+    y(x)=C_1e^{2x}+C_2e^{-2x}.
+  \]
+\end{example}
+
+\begin{definition}{Independent Solutions}{independent-solutions}
+  Two nonzero solutions $y_1$ and $y_2$ are \textbf{independent} if neither
+  is a constant multiple of the other.
+\end{definition}
+
+\begin{theorem}{Superposition Theorem}{superposition}
+  Suppose $p$ and $q$ are continuous on an interval $I$, and $y_1$, $y_2$
+  are independent solutions (Definition~\ref{def:independent-solutions}) of
+  \[
+    y''+p(x)y'+q(x)y=0.
+  \]
+  Then all solutions on $I$ have the form
+  \[
+    y(x)=C_1y_1(x)+C_2y_2(x),\qquad C_1,C_2\in\R.
+  \]
+\end{theorem}

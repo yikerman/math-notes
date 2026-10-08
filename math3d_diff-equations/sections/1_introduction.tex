@@ -503,3 +503,188 @@ Integrate and divide by $r(x)$ to obtain
     y(x)=\frac{1}{x^7}\left(\int_1^x t^8\dd{t}+2\right).
   \]
 \end{example}
+
+\begin{example}[The Reservoir Problem]
+  A reservoir has volume $W_0=160{,}000$ and initial pollution concentration
+  $P_0=0.25\%$. Every day, $W_1=10{,}000$ of water with concentration
+  $P_1=0.05\%$ flows in, is well mixed, and $10{,}000$ flows out.
+  When is the concentration $P=0.1\%$?
+
+  \begin{center}
+    \begin{tikzpicture}[>=latex]
+      \fill[blue!8] (0,0) rectangle (4,1.5);
+      \draw[thick] (0,2) -- (0,0) -- (4,0) -- (4,2);
+      \draw[blue!60] (0,1.5) -- (4,1.5);
+      \node[align=center] at (2,0.75) {$W_0=160{,}000$\\well mixed};
+      \draw[->,thick] (-1.7,2.1) -- (0.6,2.1) -- (0.6,1.6);
+      \node[align=center,above] at (-0.4,2.1) {$10{,}000$/day\\$P_1=0.05\%$};
+      \draw[->,thick] (4,0.5) -- (7.3,0.5);
+      \node[align=left,anchor=west] at (4.3,1) {$10{,}000$/day\\$P(t)=V(t)/W_0$};
+    \end{tikzpicture}
+  \end{center}
+
+  Let $V(t)$ be the volume of pollutant in the reservoir at $t$ days. Then
+  \[
+    V=PW_0,\qquad V(0)=P_0W_0=400.
+  \]
+  Over a short time $dt$, treat $V$ as constant. The rate in minus the rate out gives
+  \[
+    \frac{dV}{dt}=P_1W_1-\frac{V}{W_0}W_1
+    =0.05\%\times10{,}000-\frac{V}{160{,}000}\,10{,}000
+    =5-\frac{V}{16}.
+  \]
+  Thus the IVP is
+  \[
+    \begin{cases}
+      V'+\dfrac1{16}V=5, \\
+      V(0)=400.
+    \end{cases}
+  \]
+  With integrating factor $r(t)=e^{t/16}$,
+  \[
+    V(t)=e^{-t/16}\left(\int 5e^{t/16}\dd{t}+C\right)
+    =80+Ce^{-t/16}=80+320e^{-t/16}.
+  \]
+\end{example}
+
+\subsection{Autonomous Equations}
+
+\begin{definition}{Autonomous First-Order ODE}{autonomous-first-order-ode}
+  An equation of the form
+  \[
+    \frac{dx}{dt}=f(x),
+  \]
+  with right-hand side independent of $t$, is an \textbf{autonomous first-order ODE}.
+\end{definition}
+
+Always separable: where $f(x)\ne0$,
+\[
+  \int\frac{1}{f(x)}\dd{x}=t+C.
+\]
+
+\begin{definition}{Equilibrium Solution}{equilibrium-solution}
+  If $f(c)=0$, then $x(t)\equiv c$ is a constant or \textbf{equilibrium solution}.
+  The value $c$ is a \textbf{critical point}.
+\end{definition}
+
+\begin{definition}{Stable and Unstable Equilibria}{equilibrium-stability}
+  An equilibrium $x(t)\equiv c$ is \textbf{stable} if every solution starting
+  sufficiently near $c$ stays near $c$ as $t$ increases. Otherwise, it is \textbf{unstable}.
+\end{definition}
+
+\begin{example}[A Cubic Autonomous Equation]
+  Consider
+  \[
+    \frac{dx}{dt}=x(x-1)(x-3).
+  \]
+  The equilibrium solutions are $x(t)\equiv0,1,3$.
+  The equilibrium $1$ is stable; $0$ and $3$ are unstable.
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=11cm,height=7cm,
+        axis lines=left,xlabel={$t$},ylabel={$x$},
+        xmin=0,xmax=3,ymin=-1,ymax=4.1,
+        xtick={0,1,2,3},ytick={-1,0,1,2,3,4},
+        unbounded coords=jump,clip mode=individual,
+      ]
+        \pgfplotsextra{
+          \foreach \t in {0.15,0.4,...,2.9} {
+            \foreach \z in {-0.75,-0.5,...,3.75} {
+              \pgfmathsetmacro{\slope}{\z*(\z-1)*(\z-3)}
+              \pgfmathsetmacro{\dt}{0.065/sqrt(1+(\slope/2.8)^2)}
+              \pgfmathsetmacro{\dz}{\slope*\dt}
+              \draw[black!20,thin]
+                (axis cs:{\t-\dt},{\z-\dz}) --
+                (axis cs:{\t+\dt},{\z+\dz});
+            }
+          }
+        }
+        \foreach \i in {0,...,6} {
+          \addplot[blue!75!black,thick,no marks]
+            table[x=t,y=x\i] {plots/autonomous-cubic.dat};
+        }
+        \addplot[red!75!black,thick,domain=0:3] {0};
+        \addplot[green!40!black,thick,domain=0:3] {1};
+        \addplot[red!75!black,thick,domain=0:3] {3};
+        \addplot[only marks,mark=*,black,mark size=1.8pt] coordinates {(0,1)};
+        \node[right,red!75!black] at (axis cs:3,0) {unstable};
+        \node[right,green!40!black] at (axis cs:3,1) {stable};
+        \node[right,red!75!black] at (axis cs:3,3) {unstable};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{example}[A Sine Autonomous Equation]
+  Consider $dx/dt=\sin x$. Critical points and stability:
+  \[
+    \sin x=0\quad\Longrightarrow\quad x=n\pi,\qquad n\in\Z.
+  \]
+  The equilibrium $x(t)\equiv n\pi$ is stable for odd $n$ and unstable for even $n$.
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=11cm,height=9cm,
+        axis lines=left,xlabel={$t$},ylabel={$x$},
+        xmin=0,xmax=6,ymin=-2.2,ymax=3.95,
+        xtick={0,2,4,6},ytick={-2,-1,0,1,2,3},
+        yticklabels={$-2\pi$,$-\pi$,$0$,$\pi$,$2\pi$,$3\pi$},
+        clip=false,
+      ]
+        \pgfplotsextra{
+          \foreach \t in {0.25,0.75,...,5.75} {
+            \foreach \z in {-2,-1.75,...,3.75} {
+              % Since z=x/pi, dz/dt=sin(pi*z)/pi.
+              \pgfmathsetmacro{\slope}{sin(deg(pi*\z))/pi}
+              \pgfmathsetmacro{\dt}{0.12/sqrt(1+\slope^2)}
+              \pgfmathsetmacro{\dz}{\slope*\dt}
+              \draw[black!20,thin]
+                (axis cs:{\t-\dt},{\z-\dz}) --
+                (axis cs:{\t+\dt},{\z+\dz});
+            }
+          }
+        }
+        % Vertical coordinates are x/pi; these are exact solution curves.
+        \foreach \c in {-1,1,3} {
+          \foreach \d in {-0.9,0.9} {
+            \addplot[blue!75!black,thick,domain=0:6,samples=120]
+              {\c+2/pi*rad(atan(tan(deg(\d*pi/2))*exp(-x)))};
+          }
+          \addplot[green!40!black,thick,domain=0:6] {\c};
+        }
+        \foreach \c in {-2,0,2} {
+          \addplot[red!75!black,thick,domain=0:6] {\c};
+        }
+        \node[right,green!40!black] at (axis cs:6,-1) {stable};
+        \node[right,green!40!black] at (axis cs:6,1) {stable};
+        \node[right,green!40!black] at (axis cs:6,3) {stable};
+        \node[right,red!75!black] at (axis cs:6,-2) {unstable};
+        \node[right,red!75!black] at (axis cs:6,0) {unstable};
+        \node[right,red!75!black] at (axis cs:6,2) {unstable};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\subsubsection{Population Models}
+
+\begin{example}[Natural Growth and Decay]
+  Suppose the population is $P(t)$, with birth rate $\beta$ and death rate $\delta$
+  (per member per unit time). Then
+  \[
+    \frac{dP}{dt}=(\beta-\delta)P.
+  \]
+  If $\beta$ and $\delta$ are constant, let $k=\beta-\delta$. Separation gives
+  \[
+    \frac{dP}{dt}=kP,\qquad \ln\abs{P}=kt+C,\qquad P(t)=P_0e^{kt}.
+  \]
+\end{example}
+
+\begin{example}[The Logistic Model]
+  Suppose $\beta-\delta=k(M-P(t))$, a decreasing linear function of $P(t)$.
+  Then
+  \[
+    \frac{dP}{dt}=kP(M-P).
+  \]
+\end{example}
