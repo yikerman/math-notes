@@ -131,3 +131,195 @@ Many times it is reasonable to consider all outcomes equally likely. Then
     P(\text{a color arrangement})=\frac{m!\,n!}{(m+n)!}.
   \]
 \end{example}
+
+\subsection{Set Identities}
+
+\begin{theorem}{Distributive Laws}{set-distributive-laws}
+  \[
+    \left(\bigcup_{i=1}^{\infty}E_i\right)F
+    =\bigcup_{i=1}^{\infty}E_iF,
+    \qquad
+    \left(\bigcap_{i=1}^{\infty}E_i\right)\cup F
+    =\bigcap_{i=1}^{\infty}(E_i\cup F).
+  \]
+\end{theorem}
+
+\begin{proof}
+  For the first identity:
+  \begin{enumerate}[label=(\roman*)]
+    \item Suppose $x\in\left(\bigcup_{i=1}^{\infty}E_i\right)F$.
+          Then $x\in\bigcup_{i=1}^{\infty}E_i$ and $x\in F$.
+          Thus there exists $i$ with $x\in E_i$ and $x\in F$, so
+          \[
+            x\in E_iF\subseteq\bigcup_{i=1}^{\infty}E_iF.
+          \]
+          Hence $\left(\bigcup_{i=1}^{\infty}E_i\right)F
+            \subseteq\bigcup_{i=1}^{\infty}E_iF$.
+    \item Suppose $x\in\bigcup_{i=1}^{\infty}E_iF$.
+          Then there exists $i$ with $x\in E_iF$, so $x\in E_i$ and $x\in F$.
+          Since $E_i\subseteq\bigcup_{i=1}^{\infty}E_i$,
+          \[
+            x\in\bigcup_{i=1}^{\infty}E_i\quad\text{and}\quad x\in F
+            \implies x\in\left(\bigcup_{i=1}^{\infty}E_i\right)F.
+          \]
+          Hence $\bigcup_{i=1}^{\infty}E_iF
+            \subseteq\left(\bigcup_{i=1}^{\infty}E_i\right)F$.
+  \end{enumerate}
+  For the second identity:
+  \begin{enumerate}[label=(\roman*)]
+    \item Suppose $x\in\left(\bigcap_{i=1}^{\infty}E_i\right)\cup F$.
+          Then $x\in\bigcap_{i=1}^{\infty}E_i$ or $x\in F$.
+          Thus, for every $i$, $x\in E_i\cup F$, so
+          \[
+            x\in\bigcap_{i=1}^{\infty}(E_i\cup F).
+          \]
+          Hence $\left(\bigcap_{i=1}^{\infty}E_i\right)\cup F
+            \subseteq\bigcap_{i=1}^{\infty}(E_i\cup F)$.
+    \item Vice versa.\qedhere
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}{De Morgan's Law}{de-morgan-law}
+  \[
+    (A\cup B)^c=A^c\cap B^c.
+  \]
+  More generally,
+  \[
+    \left(\bigcup_{i=1}^n E_i\right)^c
+    =\bigcap_{i=1}^n E_i^c.
+  \]
+\end{theorem}
+
+\begin{center}
+  \begin{tikzpicture}
+    \fill[gray!20] (-1.2,-1.1) rectangle (2.2,1.1);
+    \fill[white] (0,0) circle (0.8);
+    \fill[white] (1,0) circle (0.8);
+    \draw (0,0) circle (0.8);
+    \draw (1,0) circle (0.8);
+    \node at (-0.3,-0.4) {$A$};
+    \node at (1.3,-0.4) {$B$};
+  \end{tikzpicture}
+\end{center}
+
+\begin{proof}
+  \begin{align*}
+    x\in(A\cup B)^c
+     & \iff x\notin A\cup B                \\
+     & \iff x\notin A\text{ and }x\notin B \\
+     & \iff x\in A^c\text{ and }x\in B^c   \\
+     & \iff x\in A^c\cap B^c.
+  \end{align*}
+  For the general identity, use induction on $n$.
+\end{proof}
+
+\newpage
+\subsection{Birthday Paradox and Random Matching}
+
+\begin{example}[Birthday Paradox]
+  In a group of $n$ people, what is the probability that no two people have the same birthday?
+  \[
+    \#S=365^n,\qquad
+    \#\{\text{no overlap}\}
+    =365\cdot364\cdots(365-(n-1))
+    =\prod_{i=0}^{n-1}(365-i).
+  \]
+  Thus
+  \[
+    p=\frac{\#\{\text{no overlap}\}}{\#S}
+    =\prod_{i=0}^{n-1}\frac{365-i}{365}
+    =\prod_{i=0}^{n-1}\left(1-\frac{i}{365}\right).
+  \]
+  This gets small fast: when $n=23$, $p<\frac12$.
+\end{example}
+
+\begin{example}[Drawing Keys: No One Gets the Right Key]
+  $n$ people put their keys in a basket and draw them out randomly.
+  What is the probability that no one gets the right key?
+
+  Let $E_i=\{\text{person }i\text{ gets the right key}\}$.
+  By Theorem~\ref{thm:de-morgan-law},
+  \[
+    P\left(\bigcap_{i=1}^n E_i^c\right)
+    =P\left(\left(\bigcup_{i=1}^n E_i\right)^c\right)
+    =1-P\left(\bigcup_{i=1}^n E_i\right).
+  \]
+  No one gets it right $=1-\text{some get it right}$.
+
+  By Theorem~\ref{thm:inclusion-exclusion},
+  \[
+    P\left(\bigcup_{i=1}^n E_i\right)
+    =\sum_{i=1}^n P(E_i)-\sum_{i<j}P(E_iE_j)
+    +\sum_{i<j<k}P(E_iE_jE_k)-\cdots.
+  \]
+  There are $n!$ equally likely assignments of keys to people.
+  For $E_i$, person $i$ receives their own key in one way, and the remaining
+  $n-1$ keys can be assigned in $(n-1)!$ ways. Thus
+  \[
+    P(E_i)=\frac{1\cdot(n-1)!}{n!}=\frac1n.
+  \]
+  For distinct $i,j$, $E_iE_j$ means both people $i,j$ get their own keys.
+  Each of these two keys is fixed in one way. There is no constraint on the
+  remaining $n-2$ people: they may get their own keys or someone else's.
+  Their keys can therefore be assigned in $(n-2)!$ ways, giving
+  \[
+    P(E_iE_j)=\frac{1\cdot1\cdot(n-2)!}{n!}
+    =\frac{(n-2)!}{n(n-1)(n-2)!}
+    =\frac{1}{n(n-1)}.
+  \]
+  Similarly, fixing the keys of three distinct people leaves $(n-3)!$ assignments:
+  \[
+    P(E_iE_jE_k)=\frac{(n-3)!}{n!}
+    =\frac{1}{n(n-1)(n-2)}.
+  \]
+  There are $n$ single events, $\binom n2$ pairs, $\binom n3$ triples, and so on.
+  Hence
+  \begin{align*}
+    P\left(\bigcup_{i=1}^n E_i\right)
+     & =n\cdot\frac1n-\binom n2\frac{1}{n(n-1)}
+    +\binom n3\frac{1}{n(n-1)(n-2)}-\cdots        \\
+     & =1-\frac1{2!}+\frac1{3!}-\frac1{4!}+\cdots
+    =\sum_{i=1}^n\frac{(-1)^{i+1}}{i!}.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    P\left(\bigcap_{i=1}^n E_i^c\right)
+     & =1-P\left(\bigcup_{i=1}^n E_i\right) \\
+     & =1-1+\frac1{2!}-\frac1{3!}+\cdots
+    =\sum_{k=0}^n\frac{(-1)^k}{k!}.
+  \end{align*}
+  Recall $e^x=\sum_{m=0}^{\infty}\frac{x^m}{m!}$. As $n\to\infty$,
+  \[
+    P\left(\bigcap_{i=1}^n E_i^c\right)\longrightarrow e^{-1}.
+  \]
+
+\end{example}
+
+\begin{example}[Drawing Keys: Exactly $k$ People Get the Right Key]
+  Let $r_n$ be the number of ways no one gets the right key, so
+  $r_n/n!=P\left(\bigcap_{i=1}^n E_i^c\right)$.
+  Choose the one person who gets it right in $\binom n1$ ways;
+  the remaining people must all get wrong keys, in $r_{n-1}$ ways. Then
+  \[
+    P(\text{exactly one gets the right key})
+    =\frac{\binom n1 r_{n-1}}{n!}
+    =\frac{r_{n-1}}{(n-1)!}.
+  \]
+  As $n\to\infty$,
+  \[
+    P(\text{exactly one gets the right key})\longrightarrow e^{-1}.
+  \]
+  More generally, choose the $k$ people who get their own keys in $\binom nk$ ways.
+  The remaining $n-k$ people must all get wrong keys, in $r_{n-k}$ ways. Thus
+  \begin{align*}
+    P(\text{exactly }k\text{ get the right key})
+     & =\frac{\binom nk r_{n-k}}{n!}
+    =\frac{n!\,r_{n-k}}{k!\,(n-k)!\,n!}   \\
+     & =\frac1{k!}\frac{r_{n-k}}{(n-k)!}.
+  \end{align*}
+  As $n\to\infty$ with $k$ fixed,
+  \[
+    P(\text{exactly }k\text{ get the right key})
+    \longrightarrow\frac{e^{-1}}{k!}.
+  \]
+\end{example}
