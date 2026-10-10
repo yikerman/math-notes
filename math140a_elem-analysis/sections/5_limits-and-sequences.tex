@@ -1,0 +1,116 @@
+\begin{remark}
+  From now on, assume basic arithmetic/algebraic properties of $\R$.
+\end{remark}
+
+\subsection{Sequences}
+
+\begin{definition}{Sequence}{sequence}
+  A \textbf{sequence} is a function $S:\N\to\R$.
+  \begin{flushleft}
+    Notation: $S(n)$ or $S_n$\\
+    or $(S_n)_{n=1}^{\infty}$ or $(S_n)_{n\in\N}$.
+  \end{flushleft}
+\end{definition}
+
+\begin{example}
+  \begin{gather*}
+    S=\left(\frac1n\right)_{n\in\N}
+    =\left(1,\frac12,\frac13,\ldots\right),\\
+    S=\bigl((-1)^n\bigr)_{n\in\N}=(-1,1,-1,1,\ldots).
+  \end{gather*}
+\end{example}
+
+\begin{note}
+  Notation: $(\,)$ sequences, $\{\,\}$ sets.\\
+  $(1,-1)$ is not $\{1,-1\}$.
+\end{note}
+
+\subsection{Convergence}
+
+\begin{definition}{Convergence}{sequence-convergence}
+  \textbf{Important!}
+  \begin{flushleft}
+    Let $S:\N\to\R$ be a sequence,\\
+    let $t\in\R$.\\[0.5em]
+    $S$ \textbf{converges to $t$}, or $S\to t$,
+    or $\lim_{n\to\infty}S_n=t$,
+  \end{flushleft}
+  means
+  \[
+    \begin{gathered}
+      \forall\varepsilon\in\R,\ \varepsilon>0,\\[0.5em]
+      \exists N\in\N\text{ s.t.}\\[0.5em]
+      n>N\implies\abs{S_n-t}<\varepsilon.
+    \end{gathered}
+  \]
+\end{definition}
+
+\begin{intuition}
+  \begin{flushleft}
+    $S_n\to t\iff$\\[0.5em]
+    for every $\varepsilon>0$ (small window) challenging our assertion,\\[0.5em]
+    we can find a $N\in\N$ (concrete index)\\[0.5em]
+    such that for every $n>N$, $S_n$
+    has sequence output: $\abs{S_n-t}<\varepsilon$.\\[0.5em]
+    Distance $S_n\leftrightarrow t$
+    is smaller than $\varepsilon$ window.
+  \end{flushleft}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[number line] (-3,0) -- (3,0);
+      \draw[sketch accent] (-1.8,0) -- (1.8,0);
+      \foreach \x/\label in {-1.8/{t-\varepsilon},1.8/{t+\varepsilon}} {
+        \draw[orange!75!black,thick,fill=orange!5] (\x,0) circle (2.5pt);
+        \node[above=6pt] at (\x,0) {$\label$};
+      }
+      \draw (0,-0.1) -- (0,0.1) node[below=5pt] {$t$};
+      \node[sketch point] at (0.8,0) {};
+      \node[below] (sn) at (1.4,-0.65) {$S_n$};
+      \draw[->,>=latex] (sn) -- (0.8,-0.1);
+    \end{tikzpicture}
+  \end{center}
+\end{intuition}
+
+\begin{example}[$1/n\to0$]
+  For $S=(1/n)_{n\in\N}$:
+  \begin{center}
+    \begin{tikzpicture}[x=6cm]
+      \draw[number line] (-0.15,0) -- (1.2,0);
+      \draw (0,-0.1) -- (0,0.1) node[below=5pt] {$0$};
+      \foreach \n in {1,...,12} {
+        \draw ({1/\n},-0.08) -- ({1/\n},0.12);
+      }
+      \foreach \n in {1,2,3,4} {
+        \node[below=5pt] at ({1/\n},0) {$\frac1{\n}$};
+      }
+      \node[above] at (0.04,0.05) {$\cdots$};
+      \draw[->,>=latex,sketch accent] (0.4,0.5) -- (0.08,0.5);
+    \end{tikzpicture}
+  \end{center}
+
+  $S_n\to0$: looks like so on the graph.
+
+  \textbf{Sketch (intuition).} WTS
+  (Definition~\ref{def:sequence-convergence}):
+  \[
+    \begin{gathered}
+      \forall\varepsilon>0,\quad\exists N\in\N,\\[0.5em]
+      \forall n>N,\quad\left|\frac1n-0\right|<\varepsilon.
+    \end{gathered}
+  \]
+  \begin{flushleft}
+    Want to construct $N$ to
+    answer challenging $\varepsilon$\\
+    by showing $\abs{1/n}<\varepsilon$ for $n>N$.
+  \end{flushleft}
+
+  \begin{proof}
+    $\forall\varepsilon>0$:\\
+    Choose $N\in\N$ s.t.\ $1/N<\varepsilon$.
+    Archimedean property (Theorem~\ref{thm:archimedean-property}).\\
+    Also, if $n>N>0$, then $1/n<1/N$.
+    \[
+      \left|\frac1n-0\right|=\frac1n<\frac1N<\varepsilon.\qedhere
+    \]
+  \end{proof}
+\end{example}

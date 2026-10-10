@@ -38,7 +38,8 @@ Likewise, define properties/axioms for the structure of $\R$.
           \]
     \item[(M3)] \textbf{Multiplicative identity:}
           \[
-            \exists 1\in\mathbb{F}\text{ such that }\forall a\in\mathbb{F},\quad a\cdot1=a.
+            \exists 1\in\mathbb{F},\quad 1\ne0,\quad
+            \text{such that }\forall a\in\mathbb{F},\quad a\cdot1=a.
           \]
     \item[(M4)] \textbf{Multiplicative inverses:}
           \[
@@ -136,8 +137,8 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
 \end{definition}
 
 \begin{intuition}[Absolute Value as Distance]
-  $\abs{a}$ means the distance from $a$ to $0$.
-  $\abs{a-b}$ means the distance from $a$ to $b$.
+  $\abs{a}$ means the distance from $a$ to $0$.\\
+  $\abs{a-b}$ means distance from $a$ to $b$.
   \begin{center}
     \begin{tikzpicture}
       \foreach \offset/\endpoint/\distance in {0/0/\abs{a},6/b/\abs{a-b}} {
@@ -158,12 +159,12 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
   For an ordered field $(\mathbb{F},+,\cdot,\le)$:
   \begin{enumerate}[label=(\roman*)]
     \item $\abs{a}\ge0,\quad\forall a\in\mathbb{F}$.
-    \item $\abs{ab}=\abs{a}\cdot\abs{b},\quad\forall a,b\in\mathbb{F}$.
+    \item $\abs{ab}=\abs{a}\abs{b},\quad\forall a,b\in\mathbb{F}$.
     \item \textbf{Important (triangle inequality):}
           \[
             \abs{a+b}\le\abs{a}+\abs{b},\qquad\forall a,b\in\mathbb{F}.
           \]
-    \item \textbf{Reverse triangle inequality:}
+    \item \textbf{Inverse triangle inequality:}
           $\bigl|\abs{a}-\abs{b}\bigr|\le\abs{a-b}$.
     \item $0<1$.
     \item $0<a<b\implies 0<b^{-1}<a^{-1}$.
@@ -175,31 +176,33 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
   \[
     -\abs{x}\le y\le\abs{x}\iff\abs{y}\le\abs{x}.
   \]
-  Hence
   \[
     -(\abs{a}+\abs{b})\le a+b\le\abs{a}+\abs{b},
   \]
-  so $\abs{a+b}\le\bigl|\abs{a}+\abs{b}\bigr|=\abs{a}+\abs{b}$.
+  \[
+    \boxed{\abs{a+b}\le\bigl|\abs{a}+\abs{b}\bigr|}=\abs{a}+\abs{b}.\qedhere
+  \]
 \end{proof}
 
 \begin{intuition}
-  Takeaway: a lot of analysis is adding zero and multiplying by one cleverly.
+  Takeaway: a lot of analysis is adding zero
+  and multiplying by one cleverly.
 \end{intuition}
 
 \begin{proof}[Proof of (v)]
-  Assume $1<0$. Then
-  \[
-    1+(-1)<0+(-1)\implies 0<-1
-    \implies 0(-1)<(-1)(-1)=1,
-  \]
-  a contradiction.
+  Assume $1<0$.
+  \begin{align*}
+     & \implies 1+(-1)<0+(-1)\implies 0<-1,            \\
+     & \implies 0(-1)<(-1)(-1),                        \\
+     & \implies 0<1\qquad\text{contradiction.}\qedhere
+  \end{align*}
 \end{proof}
 
 \begin{proof}[Proof of (vi)]
-  Lemma: $a>0\implies a^{-1}>0$.
-  Thus $a^{-1},b^{-1}>0$, so $a^{-1}b^{-1}>0$ and
-  \[
-    a<b\implies a(a^{-1}b^{-1})<b(a^{-1}b^{-1})
-    \implies 0<b^{-1}<a^{-1}.\qedhere
-  \]
+  Lemma: $a>0\implies a^{-1}>0$. $\ldots$
+  \begin{gather*}
+    a^{-1},b^{-1}>0\implies a^{-1}b^{-1}>0,\\
+    a<b\implies a(a^{-1}b^{-1})<b(a^{-1}b^{-1}),\\
+    0<b^{-1}<a^{-1}.\qedhere
+  \end{gather*}
 \end{proof}
