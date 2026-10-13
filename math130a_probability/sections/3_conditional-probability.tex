@@ -1,0 +1,231 @@
+\subsection{Conditional Probability and the Multiplication Rule}
+
+\begin{definition}{Conditional Probability}{conditional-probability}
+  $E,F$ events, $P(F)>0$:
+  \[
+    P(E\mid F)=\frac{P(EF)}{P(F)}.
+  \]
+\end{definition}
+
+\begin{thinking}
+  Suppose $F$. Probability of $E$?
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{scope}
+        \clip (1,0) circle (0.8);
+        \fill[orange!35] (0,0) circle (0.8);
+      \end{scope}
+      \draw (0,0) circle (0.8);
+      \draw (1,0) circle (0.8);
+      \node at (-0.3,-1.05) {$E$};
+      \node at (1.3,-1.05) {$F$};
+      \draw[->,thick] (0.5,-1.35) -- (0.5,-1.85);
+      \draw[gray] (-0.6,-2.9) circle (0.65);
+      \draw[gray] (-1.15,-2.35) -- (-0.05,-3.45);
+      \begin{scope}
+        \clip (1,-2.9) circle (0.8);
+        \fill[orange!35] (0,-2.9) circle (0.8);
+      \end{scope}
+      \draw (1,-2.9) circle (0.8);
+      \node at (1.3,-3.95) {$F$};
+    \end{tikzpicture}
+  \end{center}
+\end{thinking}
+
+\[
+  \implies P(EF)=P(E\mid F)P(F).
+\]
+
+\begin{example}[Two Red Balls]
+  $10$ red, $6$ white balls in an urn. Two balls selected from the urn without replacement.
+  Probability both red?
+  \begin{align*}
+    R_1 & =\{\text{first ball is red}\},  \\
+    R_2 & =\{\text{second ball is red}\}.
+  \end{align*}
+  \[
+    P(R_1R_2)=P(R_2\mid R_1)P(R_1)
+    =\underbrace{\frac9{15}}_{\text{no replacement}}\cdot\frac{10}{16}.
+  \]
+\end{example}
+
+\begin{theorem}{Multiplication Rule}{multiplication-rule}
+  For $\forall E_1,E_2,\ldots,E_n$ events with $P(E_1\cdots E_{n-1})>0$,
+  \begin{align*}
+    P(E_1E_2\cdots E_n)
+     & =P(E_n\mid E_1E_2\cdots E_{n-1})P(E_1\cdots E_{n-1}) \\
+     & =P(E_n\mid E_1\cdots E_{n-1})                        \\
+     & \quad\cdot P(E_{n-1}\mid E_1\cdots E_{n-2})          \\
+     & \quad\cdots                                          \\
+     & \quad\cdot P(E_2\mid E_1)                            \\
+     & \quad\cdot P(E_1).
+  \end{align*}
+\end{theorem}
+
+\begin{example}[Back to the Matching Problem]
+  Recall $n$ keys matching $n$ people.
+  \[
+    E_i=\{\text{person }i\text{ gets it right}\}.
+  \]
+  Suppose $i_1,i_2,\ldots,i_k$ get their keys right and no one else does.
+  \[
+    G=\{\text{everyone else gets it wrong}\}.
+  \]
+  \[
+    P(E_{i_1}E_{i_2}\cdots E_{i_k}G)
+    =P(G\mid E_{i_1}\cdots E_{i_k})P(E_{i_1}\cdots E_{i_k}).
+  \]
+  Recall
+  \[
+    e^x=\sum_{j=0}^{\infty}\frac{x^j}{j!},\qquad
+    e^{-1}=\sum_{j=0}^{\infty}\frac{(-1)^j}{j!}.
+  \]
+  Let
+  \[
+    p_n=\sum_{j=0}^{n}\frac{(-1)^j}{j!}.
+  \]
+  \[
+    P(\text{no matching of }n\text{ people})=p_n.
+  \]
+  Let $E=E_{i_1}\cdots E_{i_k}$. Then
+  \[
+    P(G\mid E)=p_{n-k},\qquad P(EG)=P(G\mid E)P(E).
+  \]
+  By Theorem~\ref{thm:multiplication-rule},
+  \begin{align*}
+    P(E) & =P(E_{i_k}\mid E_{i_1}\cdots E_{i_{k-1}})P(E_{i_1}\cdots E_{i_{k-1}}) \\
+         & =\cdots,
+  \end{align*}
+  in which
+  \[
+    P(E_{i_1})=\frac1n,\qquad P(E_{i_2}\mid E_{i_1})=\frac1{n-1}.
+  \]
+  Thus
+  \[
+    P(E)=\frac1n\frac1{n-1}\cdots\frac1{n-k+1}=\frac{(n-k)!}{n!},
+  \]
+  \[
+    P(EG)=P(G\mid E)P(E)=p_{n-k}\frac{(n-k)!}{n!}.
+  \]
+  \begin{align*}
+    P(\text{exactly }k\text{ people get it right})
+     & =\sum_{1\le i_1<\cdots<i_k\le n}P(E_{i_1}\cdots E_{i_k}G) \\
+     & =\binom nk p_{n-k}\frac{(n-k)!}{n!}                       \\
+     & =\frac1{k!}p_{n-k}.
+  \end{align*}
+\end{example}
+
+\subsection{Conditioning on Cases}
+
+$E,F$ two events:
+\[
+  E=EF\cup EF^c,\qquad EF\cap EF^c=\varnothing.
+\]
+\begin{center}
+  \begin{tikzpicture}
+    \fill[orange!15] (0,0) circle (0.8);
+    \begin{scope}
+      \clip (1,0) circle (0.8);
+      \fill[orange!45] (0,0) circle (0.8);
+    \end{scope}
+    \draw (0,0) circle (0.8);
+    \draw (1,0) circle (0.8);
+    \node at (-0.3,-1.05) {$E$};
+    \node at (1.3,-1.05) {$F$};
+  \end{tikzpicture}
+\end{center}
+For $0<P(F)<1$,
+\begin{align*}
+  P(E) & =P(EF)+P(EF^c)                      \\
+       & =P(E\mid F)P(F)+P(E\mid F^c)P(F^c).
+\end{align*}
+
+\begin{example}[Three Cards]
+  Three cards: $RR$, $RB$, $BB$. $R$: a red side is showing.
+  \begin{align*}
+    P(RB\mid R) & =\frac{P(RB\cap R)}{P(R)}       \\
+                & =\frac{P(R\mid RB)P(RB)}{P(R)}.
+  \end{align*}
+  \[
+    R=(R\cap RR)\cup(R\cap RB),
+  \]
+  so
+  \[
+    P(R)=P(R\mid RR)P(RR)+P(R\mid RB)P(RB).
+  \]
+  \begin{align*}
+    P(RB\mid R)
+     & =\frac{P(R\mid RB)P(RB)}{P(R\mid RR)P(RR)+P(R\mid RB)P(RB)}    \\
+     & =\frac{\frac12\cdot\frac13}{1\cdot\frac13+\frac12\cdot\frac13}
+    =\frac13.
+  \end{align*}
+\end{example}
+
+\subsection{Total Probability}
+
+Recall Definition~\ref{def:conditional-probability}:
+\[
+  P(E\mid F)=\frac{P(EF)}{P(F)}.
+\]
+For $0<P(F)<1$,
+\[
+  P(E)=P(E\mid F)P(F)+P(E\mid F^c)P(F^c).
+\]
+Generalized:
+\begin{center}
+  \begin{tikzpicture}
+    \draw (0,0) rectangle (4,2);
+    \draw (0.85,0) .. controls (1.2,0.8) and (0.6,1.3) .. (0.85,2);
+    \draw (1.75,0) .. controls (1.5,0.8) and (1.65,1.3) .. (1.9,2);
+    \draw (2.8,0) .. controls (3.05,0.8) and (2.65,1.3) .. (3,2);
+    \draw (3.7,0) .. controls (4,0.8) and (3.4,1.3) .. (3.8,2);
+    \draw (1.9,1.1) ellipse (1.3 and 0.55);
+    \node at (3.35,1.55) {$E$};
+    \node at (0.4,-0.3) {$F_1$};
+    \node at (1.3,-0.3) {$F_2$};
+    \node at (2.6,-0.3) {$\cdots$};
+    \node at (3.85,-0.3) {$F_n$};
+  \end{tikzpicture}
+\end{center}
+
+\begin{theorem}{Law of Total Probability}{total-probability}
+  For $F_1,F_2,\ldots,F_n$ disjoint, $\bigcup_{i=1}^n F_i=S$, and $P(F_i)>0$,
+  \[
+    P(E)=\sum_{i=1}^n P(E\mid F_i)P(F_i).
+  \]
+\end{theorem}
+
+\begin{example}[Two Types of Coins]
+  An urn has type $A,B$ coins. $\frac23$ are $A$, $\frac13$ are $B$.
+  \begin{align*}
+    P(H\mid A) & =0.6, \\
+    P(H\mid B) & =0.4.
+  \end{align*}
+  \begin{align*}
+    P(H) & =P(H\mid A)P(A)+P(H\mid B)P(B)                    \\
+         & =\frac23\times0.6+0.4\times\frac13=\frac{1.6}{3}.
+  \end{align*}
+  \begin{align*}
+    P(A\mid H) & =\frac{P(AH)}{P(H)}=\frac{P(H\mid A)P(A)}{P(H)} \\
+               & =\frac{0.6\times\frac23}{\frac{1.6}{3}}.
+  \end{align*}
+\end{example}
+
+\begin{example}[Three Types of Flashlights]
+  A bin has three types of flashlights:
+  \[
+    \begin{array}{c|c|c}
+      \text{Type} & \text{Proportion} & P(\text{lasts}>100\text{ hrs}\mid\text{type}) \\ \hline
+      1           & 20\%              & 0.7                                           \\
+      2           & 30\%              & 0.4                                           \\
+      3           & 50\%              & 0.3
+    \end{array}
+  \]
+  Select at random. If it lasts $>100$ hrs, probability of type $1$?
+  \begin{align*}
+    P(\text{type }1\mid{}>100\text{ hrs})
+     & =\frac{P(\text{type }1\cap\{\text{lasts}>100\text{ hrs}\})}{P(>100\text{ hrs})} \\
+     & =\frac{P(>100\text{ hrs}\mid\text{type }1)P(\text{type }1)}
+    {\displaystyle\sum_{x=1}^3 P(>100\text{ hrs}\mid\text{type }x)P(\text{type }x)}.
+  \end{align*}
+\end{example}

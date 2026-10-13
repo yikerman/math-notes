@@ -102,6 +102,25 @@ Write $EF=E\cap F$ for intersection.
   \end{align*}
 \end{theorem}
 
+\begin{example}[Students Taking Languages]
+  $100$ students.
+  \begin{align*}
+    S & =\{\text{students taking Spanish}\}, & \#S & =28, \\
+    F & =\{\text{students taking French}\},  & \#F & =26, \\
+    G & =\{\text{students taking German}\},  & \#G & =16.
+  \end{align*}
+  \[
+    \#SF=12,\qquad \#FG=4,\qquad \#SG=6,\qquad \#SFG=2.
+  \]
+  Don't take any? By Theorem~\ref{thm:inclusion-exclusion},
+  \begin{align*}
+    P(S^cF^cG^c) & =1-P(S\cup F\cup G)                   \\
+                 & =1-\bigl(P(S)+P(F)+P(G)               \\
+                 & \qquad-P(SF)-P(SG)-P(FG)+P(SFG)\bigr) \\
+                 & =1-\frac{28+26+16-12-4-6+2}{100}.
+  \end{align*}
+\end{example}
+
 \subsection{Equally Likely Outcomes}
 
 Let $\#S$ denote the number of elements in $S$. We usually have $\#S<\infty$.
