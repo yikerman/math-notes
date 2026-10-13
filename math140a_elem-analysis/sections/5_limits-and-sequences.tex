@@ -45,7 +45,7 @@
   \]
 \end{definition}
 
-\begin{intuition}
+\begin{thinking}
   \begin{flushleft}
     $S_n\to t\iff$\\[0.5em]
     for every $\varepsilon>0$ (small window) challenging our assertion,\\[0.5em]
@@ -69,7 +69,7 @@
       \draw[->,>=latex] (sn) -- (0.8,-0.1);
     \end{tikzpicture}
   \end{center}
-\end{intuition}
+\end{thinking}
 
 \begin{example}[$1/n\to0$]
   For $S=(1/n)_{n\in\N}$:
@@ -90,19 +90,21 @@
 
   $S_n\to0$: looks like so on the graph.
 
-  \textbf{Sketch (intuition).} WTS
-  (Definition~\ref{def:sequence-convergence}):
-  \[
-    \begin{gathered}
-      \forall\varepsilon>0,\quad\exists N\in\N,\\[0.5em]
-      \forall n>N,\quad\left|\frac1n-0\right|<\varepsilon.
-    \end{gathered}
-  \]
-  \begin{flushleft}
-    Want to construct $N$ to
-    answer challenging $\varepsilon$\\
-    by showing $\abs{1/n}<\varepsilon$ for $n>N$.
-  \end{flushleft}
+  \begin{thinking}[Sketch (intuition)]
+    WTS
+    (Definition~\ref{def:sequence-convergence}):
+    \[
+      \begin{gathered}
+        \forall\varepsilon>0,\quad\exists N\in\N,\\[0.5em]
+        \forall n>N,\quad\left|\frac1n-0\right|<\varepsilon.
+      \end{gathered}
+    \]
+    \begin{flushleft}
+      Want to construct $N$ to
+      answer challenging $\varepsilon$\\
+      by showing $\abs{1/n}<\varepsilon$ for $n>N$.
+    \end{flushleft}
+  \end{thinking}
 
   \begin{proof}
     $\forall\varepsilon>0$:\\
@@ -114,3 +116,113 @@
     \]
   \end{proof}
 \end{example}
+
+\newpage
+\begin{example}[$1/n^2\to0$]
+  Prove $\displaystyle\lim_{n\to\infty}\frac1{n^2}=0$.
+
+  \begin{thinking}[Scratch work]
+    WTS (Definition~\ref{def:sequence-convergence}):
+    \[
+      \begin{gathered}
+        \forall\varepsilon>0,\quad\exists N\in\N\\
+        \text{s.t. }n>N\implies\left|\frac1{n^2}-0\right|<\varepsilon.
+      \end{gathered}
+    \]
+    Given $\varepsilon>0$, how to choose $N$?
+    \begin{align*}
+      \text{We need } & \frac1{n^2}<\varepsilon,    \\
+                      & \frac1\varepsilon<n^2,      \\
+                      & \frac1{\sqrt\varepsilon}<n.
+    \end{align*}
+    Need $N>\dfrac1{\sqrt\varepsilon}$.
+  \end{thinking}
+
+  \begin{proof}
+    For arbitrary $\varepsilon>0$:\\
+    Choose $N\in\N$, s.t.\ $N>\dfrac1{\sqrt\varepsilon}$.\\
+    If $n>N$, $n>\dfrac1{\sqrt\varepsilon}$, hence $\dfrac1{n^2}<\varepsilon$.
+    \[
+      \implies\left|\frac1{n^2}\right|<\varepsilon.\qedhere
+    \]
+  \end{proof}
+\end{example}
+
+\subsection{Uniqueness of Limits}
+
+\begin{theorem}{Uniqueness of Sequence Limits}{unique-sequence-limit}
+  For a sequence $(S_n)$,
+  \[
+    S_n\to t_1\text{ and }S_n\to t_2\implies t_1=t_2.
+  \]
+\end{theorem}
+
+\begin{theorem}{Lemma: Arbitrarily Small Distance}{arbitrarily-small-distance}
+  For $a,b\in\R$,
+  \[
+    \bigl(\abs{a-b}<\varepsilon\quad\forall\varepsilon>0\bigr)
+    \iff a=b.
+  \]
+\end{theorem}
+
+\begin{proof}
+  $(\Leftarrow)$ Trivial.
+
+  $(\Rightarrow)$ Contrapositive:
+  \[
+    a\ne b\implies\exists\varepsilon>0,\quad\abs{a-b}\ge\varepsilon.\qedhere
+  \]
+\end{proof}
+
+\newpage
+\begin{proof}[Proof of Theorem~\ref{thm:unique-sequence-limit}]
+  By assumption:
+  \begin{enumerate}
+    \item $\forall\varepsilon_1>0,\quad\exists N_1\in\N$, s.t.
+          \[
+            n>N_1\implies\abs{S_n-t_1}<\varepsilon_1.
+          \]
+    \item $\forall\varepsilon_2>0,\quad\exists N_2\in\N$, s.t.
+          \[
+            n>N_2\implies\abs{S_n-t_2}<\varepsilon_2.
+          \]
+  \end{enumerate}
+  WTS, by Lemma~\ref{thm:arbitrarily-small-distance},
+  \[
+    t_1=t_2\iff\forall\varepsilon>0,\quad\abs{t_1-t_2}<\varepsilon.
+  \]
+
+  \begin{thinking}[Trick (observation)]
+    Note that
+    \begin{align*}
+      \abs{t_1-t_2}
+       & \le\abs{(S_n-t_1)-(S_n-t_2)}                  \\
+       & \le\underbrace{\abs{S_n-t_1}+\abs{S_n-t_2}}_{
+        \text{can get arbitrarily small by assumption}}.
+    \end{align*}
+    \begin{center}
+      \begin{tikzpicture}
+        \node[sketch point,label=below:{$t_1$}] (t1) at (0,0) {};
+        \node[sketch point,label=above:{$S_n$}] (sn) at (1,1) {};
+        \node[sketch point,label=below:{$t_2$}] (t2) at (2,0) {};
+        \draw[->,>=latex,sketch accent] (0.15,0) -- (1.85,0);
+        \draw[->,>=latex,sketch accent] (0.15,0.15)
+          .. controls (0.5,1.28) and (1.5,1.28) .. (1.85,0.15);
+      \end{tikzpicture}
+    \end{center}
+  \end{thinking}
+
+  Let $\varepsilon>0$.\\
+  By assumption, choose
+  \begin{align*}
+    N_1\in\N, & \quad n>N_1\implies\abs{S_n-t_1}<\frac\varepsilon2, \\
+    N_2\in\N, & \quad n>N_2\implies\abs{S_n-t_2}<\frac\varepsilon2.
+  \end{align*}
+  Choose $n\in\N$ s.t.\ $n>\max\{N_1,N_2\}$.
+  \begin{align*}
+    \text{Since }\abs{t_1-t_2}
+     & \le\abs{S_n-t_1}+\abs{S_n-t_2}                    \\
+     & <\frac\varepsilon2+\frac\varepsilon2=\varepsilon.
+  \end{align*}
+  Proven.
+\end{proof}

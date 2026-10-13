@@ -45,12 +45,12 @@
   breakable
 }
 
-% Intuition — amber box; keep short remarks and their sketches together
-\NewTColorBox{intuition}{ o }{%
+% Thinking — amber box for intuition, proof sketches, and tricks; keep sketches with their text
+\NewTColorBox{thinking}{ o }{%
   colback=orange!5,
   colframe=orange!65!black,
   fonttitle=\bfseries,
-  title={Intuition\IfValueTF{#1}{: #1}{}}
+  title={Thinking\IfValueTF{#1}{: #1}{}}
 }
 
 % Theorem — blue box, uses shared counter

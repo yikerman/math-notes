@@ -1,10 +1,10 @@
-\begin{intuition}[Motivation]
+\begin{thinking}[Motivation]
   As seen in Corollary~\ref{thm:no-rational-square-root-two}, $\sqrt{2}$ is not
   in $\Q$: $\Q$ has ``holes.''
 
   Goal: define $\R$ as an ordered field $+$
   ``completeness axiom.''
-\end{intuition}
+\end{thinking}
 
 \subsection{Maxima, Minima, and Bounds}
 
@@ -43,9 +43,9 @@
   $r_0$ does not exist.
 \end{proof}
 
-\begin{intuition}
+\begin{thinking}
   For $S$, $0,1$ feel like some edge?
-\end{intuition}
+\end{thinking}
 
 \begin{definition}{Supremum and Infimum}{supremum-infimum}
   \textbf{Important!}\\
@@ -160,9 +160,9 @@ Hard to prove!
 
 We view $\N\subseteq\Z\subseteq\Q\subseteq\R$.
 
-\begin{intuition}
+\begin{thinking}
   Uniqueness of $\R$? Always a good thing to ask after existence.
-\end{intuition}
+\end{thinking}
 
 \begin{theorem}{Uniqueness of the Real Numbers}{uniqueness-real-numbers}
   Formally, ordered fields $\mathbb{F}$ and $\R$ both satisfy the completeness axiom\\
@@ -176,11 +176,11 @@ Hard to prove!
   then $\exists\inf S$.
 \end{theorem}
 
-\begin{proof}[Proof sketch]
+\begin{thinking}[Proof sketch]
   Consider $-S:=\{-s\mid s\in S\}$.\\
   Show $\sup(-S)$ exists\\
   and show $-\sup(-S)=\inf S$.
-\end{proof}
+\end{thinking}
 
 \subsection{The Archimedean Property}
 
@@ -191,7 +191,7 @@ Hard to prove!
   \]
 \end{theorem}
 
-\begin{intuition}
+\begin{thinking}
   Weird things don't happen far out.
   \begin{center}
     \begin{tikzpicture}
@@ -202,7 +202,7 @@ Hard to prove!
       \node[fill=orange!5,inner sep=4pt] at (5.7,0) {$\cdots$};
     \end{tikzpicture}
   \end{center}
-\end{intuition}
+\end{thinking}
 
 \begin{note}
   \begin{enumerate}
@@ -239,7 +239,7 @@ Hard to prove!
   Contradiction!
 \end{proof}
 
-\begin{intuition}
+\begin{thinking}
   What if $b$ is so far away?\\[0.5em]
   If that's the case, $S=\{na\mid n\in\N\}$ is bounded,\\
   there is some limit $\sup S$, that does not make sense.
@@ -261,7 +261,7 @@ Hard to prove!
       \node[below] at (6,-1.9) {assume bounded};
     \end{tikzpicture}
   \end{center}
-\end{intuition}
+\end{thinking}
 
 \subsection{Density of the Rational Numbers}
 
@@ -272,16 +272,16 @@ Hard to prove!
   \]
 \end{theorem}
 
-\begin{intuition}
+\begin{thinking}
   Weird things don't happen in $\R$ zoomed in.
-\end{intuition}
+\end{thinking}
 
-\begin{flushleft}
-  \textit{Proof sketch:} Want to show $a<\dfrac mn<b$.\\
-  WTS $na<m<nb$.
-\end{flushleft}
+\begin{thinking}[Proof sketch]
+  \begin{flushleft}
+    Want to show $a<\dfrac mn<b$.\\
+    WTS $na<m<nb$.
+  \end{flushleft}
 
-\begin{intuition}
   Take $n$ really big, that
   some integer finally lands here in the gap.
   \begin{center}
@@ -298,7 +298,7 @@ Hard to prove!
       \draw[->,>=latex] (4.5,1) -- (4.5,0.15);
     \end{tikzpicture}
   \end{center}
-\end{intuition}
+\end{thinking}
 
 \begin{proof}
   By the Archimedean property (Theorem~\ref{thm:archimedean-property}):
