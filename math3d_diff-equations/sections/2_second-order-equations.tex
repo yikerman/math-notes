@@ -403,3 +403,241 @@ if $y_1,\ldots,y_n$ are independent solutions of the homogeneous equation, the g
 \[
   y=C_1y_1+\cdots+C_ny_n.
 \]
+
+\subsection{Mechanical Vibrations}
+
+Model a spring attached to a fixed point and mass $m$.
+\begin{center}
+  \begin{tikzpicture}[>=latex]
+    \draw[thick] (0,-0.7) -- (0,0.7);
+    \draw[thick] (0,0) -- (0.4,0);
+    \draw[thick,domain=0:6*pi,samples=180,variable=\t]
+      plot ({0.4+0.15*\t-0.1*sin(\t r)},{0.18*sin(\t r)});
+    \draw[thick] ({0.4+0.9*pi},0) -- (3.6,0);
+    \draw[thick] (3.6,-0.25) rectangle (4.1,0.25);
+    \fill (3.85,0) circle (1.5pt);
+    \node[below] at (3.85,-0.25) {$m$};
+    \draw[<->] (3.4,-1) -- (4.3,-1) node[right] {$x(t)$};
+  \end{tikzpicture}
+\end{center}
+$x(t)$: extension of spring from equilibrium.
+
+Forces on mass:
+\begin{itemize}
+  \item Spring force: $F_S=-kx$ ($k>0$ constant, ``stiffness'').
+  \item Friction: $F_R=-cx'$ ($c\ge0$; magnitude proportional to speed).
+        (Actually, a bad model.)
+  \item External: $F_E=$ anything else\ldots?
+\end{itemize}
+Apply $F=ma$:
+\begin{align*}
+  mx''        & =-kx-cx'+F_E, \\
+  mx''+cx'+kx & =F_E.
+\end{align*}
+
+\begin{definition}{Free Motion}{free-motion}
+  For $F_E=0$,
+  \[
+    mx''+cx'+kx=0
+  \]
+  is homogeneous: called \textbf{free} or \textbf{unforced motion}.
+\end{definition}
+Easy to solve!
+
+\subsubsection{Simple Harmonic Motion}
+
+Easiest: $c=0$.
+\[
+  m\lambda^2+k=0\implies\lambda=\pm i\sqrt{\frac{k}{m}}.
+\]
+Let $\omega_0=\sqrt{k/m}$ be the natural frequency of the spring.
+
+General solution:
+\[
+  x=A\cos\omega_0t+B\sin\omega_0t
+  \qquad\text{(simple harmonic motion).}
+\]
+Period: $T=2\pi/\omega_0$, $f=1/T$.
+
+\subsubsection{Free Damped Motion}
+
+\[
+  mx''+cx'+kx=0,\qquad c>0.
+\]
+Characteristic equation:
+\[
+  m\lambda^2+c\lambda+k=0,
+  \qquad\lambda=\frac{-c\pm\sqrt{c^2-4mk}}{2m}.
+\]
+\begin{enumerate}
+  \item \textbf{Overdamping}: $c$ is big, $c^2>4km$.
+
+        Two real negative roots:
+        \[
+          0<c^2-4km<c^2\implies-c+\sqrt{c^2-4km}<0.
+        \]
+        Let $\lambda=-r_1,-r_2$ ($r_1,r_2>0$).
+        \[
+          x(t)=C_1e^{-r_1t}+C_2e^{-r_2t}.
+        \]
+  \item \textbf{Critical damping}: $c^2=4km$.
+        \[
+          \lambda=-\frac{c}{2m}\qquad\text{(two equal roots).}
+        \]
+        Let $p=c/(2m)$, so $\lambda=-p$.
+        \[
+          x(t)=(a+bt)e^{-pt}.
+        \]
+  \item \textbf{Underdamping}: $c^2<4km$.
+        \begin{align*}
+          \lambda & =-\frac{c}{2m}\pm i\frac{\sqrt{4km-c^2}}{2m} \\
+                  & =-p\pm i\sqrt{\frac{k}{m}-\frac{c^2}{4m^2}}.
+        \end{align*}
+        Let
+        \[
+          \omega_1=\sqrt{\frac{k}{m}-\frac{c^2}{4m^2}}
+          =\sqrt{\omega_0^2-\frac{c^2}{4m^2}}<\omega_0.
+        \]
+        \[
+          x(t)=Ae^{-pt}\cos\omega_1t+Be^{-pt}\sin\omega_1t,
+        \]
+        or
+        \[
+          x(t)=Re^{-pt}\cos(\omega_1t-\gamma),
+          \qquad\gamma:\text{ phase angle}.
+        \]
+\end{enumerate}
+\begin{center}
+  \begin{tikzpicture}[>=latex]
+    \draw[->] (-0.4,0) -- (7,0) node[right] {$t$};
+    \draw[->] (0,-1.6) -- (0,1.8) node[above] {$x$};
+    \draw[dashed,gray,domain=0:6.6,samples=80]
+      plot (\x,{1.4*exp(-0.4*\x)});
+    \draw[dashed,gray,domain=0:6.6,samples=80]
+      plot (\x,{-1.4*exp(-0.4*\x)});
+    \draw[blue!75!black,thick,domain=0:6.6,samples=240]
+      plot (\x,{1.4*exp(-0.4*\x)*sin(240*\x)});
+  \end{tikzpicture}
+\end{center}
+\begin{enumerate}
+  \item Sine wave asymptotically decays to $0$.
+  \item Frequency $\omega_1$ less than $\omega_0$.
+\end{enumerate}
+
+\newpage
+\subsection{Nonhomogeneous Equations}
+
+\begin{definition}{Linear Nonhomogeneous Equation}{linear-nonhomogeneous-equation}
+  A linear nonhomogeneous equation has the form
+  \[
+    y^{(n)}+p_{n-1}(x)y^{(n-1)}+\cdots+p_1(x)y'+p_0(x)y=f(x),
+  \]
+  where $f\not\equiv0$.
+\end{definition}
+
+Suppose $y_1$ and $y_2$ are both solutions to the equation above.
+Let $z(x)=y_1(x)-y_2(x)$.
+
+Since differentiation is linear:
+\[
+  \forall k\le n,\qquad z^{(k)}(x)=y_1^{(k)}(x)-y_2^{(k)}(x).
+\]
+\begin{align*}
+  z^{(n)}+p_{n-1}z^{(n-1)}+\cdots+p_0z
+   & =y_1^{(n)}+p_{n-1}y_1^{(n-1)}+\cdots+p_0y_1                  \\
+   & \quad-\bigl(y_2^{(n)}+p_{n-1}y_2^{(n-1)}+\cdots+p_0y_2\bigr) \\
+   & =f(x)-f(x)=0.
+\end{align*}
+
+\begin{theorem}{General Solution of a Nonhomogeneous Equation}{nonhomogeneous-general-solution}
+  If $y_c$ is the general solution to the corresponding linear homogeneous
+  equation and $y_p$ is any particular solution to the nonhomogeneous equation,
+  then the nonhomogeneous equation has general solution
+  \[
+    y(x)=\underbrace{y_c(x)}_{\text{complementary}}
+    +\underbrace{y_p(x)}_{\text{particular}}.
+  \]
+\end{theorem}
+
+\begin{example}[Constant Right-Hand Side]
+  Solve $y''+4y=1$.
+  \begin{enumerate}
+    \item $\lambda^2+4=0$, $\lambda=\pm2i$.
+          \[
+            y_c(x)=C_1\cos2x+C_2\sin2x.
+          \]
+    \item Guess $y_p(x)=\frac14$.
+    \item General solution:
+          \[
+            y(x)=y_c+y_p=C_1\cos2x+C_2\sin2x+\frac14.
+          \]
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Exponential Right-Hand Side]
+  Find the general solution to $y''+3y'+2y=e^x$.
+  \begin{enumerate}
+    \item For the homogeneous equation:
+          \[
+            \lambda^2+3\lambda+2=0,\qquad\lambda_1=-1,\quad\lambda_2=-2.
+          \]
+          \[
+            y_c(x)=C_1e^{-x}+C_2e^{-2x}.
+          \]
+    \item Trick: guess something like the right side and its derivatives.
+
+          Guess $y_p=ae^x$.
+          \[
+            y_p''+3y_p'+2y_p=e^x.
+          \]
+          Solve: $y_p=\frac16e^x$.
+    \item General solution:
+          \[
+            y(x)=C_1e^{-x}+C_2e^{-2x}+\frac16e^x.
+          \]
+  \end{enumerate}
+\end{example}
+
+\begin{example}[A Guess Already in the Complementary Solution]
+  \[
+    y''+3y'+2y=e^{-x}.
+  \]
+  \begin{enumerate}
+    \item $y_c=C_1e^{-x}+C_2e^{-2x}$.
+    \item Guess $y_p=ae^{-x}$: same basis as $y_c$.
+
+          $\implies$ Guess $y_p=axe^{-x}$.
+          \begin{align*}
+            y_p'  & =ae^{-x}(1-x),                 \\
+            y_p'' & =ae^{-x}(-1+x-1)=ae^{-x}(x-2).
+          \end{align*}
+          \begin{align*}
+            y_p''+3y_p'+2y_p                 & =e^{-x},         \\
+            ae^{-x}\bigl(x-2+3(1-x)+2x\bigr) & =ae^{-x}=e^{-x}, \\
+            a                                & =1.
+          \end{align*}
+          $y_p=xe^{-x}$.
+    \item $y(x)=C_1e^{-x}+C_2e^{-2x}+xe^{-x}$.
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Choosing Particular-Solution Guesses]
+  \[
+    y'''-3y''+3y'-y=f(x).
+  \]
+  \begin{enumerate}
+    \item $y_c=(C_1+C_2x+C_3x^2)e^x$.
+    \item For $f(x)=e^x$:
+          \[
+            ae^x\;\text{\xmark},\qquad axe^x\;\text{\xmark},\qquad
+            ax^2e^x\;\text{\xmark}.
+          \]
+          Guess $y_p=ax^3e^x$.
+          \[
+            \begin{array}{ll}
+              f(x)=3x^2+7  & : y_p=ax^2+bx+c,          \\[4pt]
+              f(x)=2\cos3x & : y_p(x)=a\cos3x+b\sin3x.
+            \end{array}
+          \]
+  \end{enumerate}
+\end{example}
