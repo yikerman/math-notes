@@ -226,3 +226,181 @@
   \end{align*}
   Proven.
 \end{proof}
+
+\subsection{Further Limit Examples}
+
+\begin{example}
+  \[
+    \lim_{n\to\infty}\frac{5n+1}{7n-3}=\frac57.
+  \]
+  \begin{thinking}[Proof sketch]
+    WTS:
+    \[
+      \forall\varepsilon>0,\quad\exists N\in\N,\quad
+      n>N\implies\left|\frac{5n+1}{7n-3}-\frac57\right|<\varepsilon.
+    \]
+    \begin{align*}
+      \left|\frac{5n+1}{7n-3}-\frac57\right|
+       & =\left|\frac{7(5n+1)-5(7n-3)}{7(7n-3)}\right|      \\
+       & =\left|\frac{22}{49n-21}\right|=\frac{22}{49n-21}.
+    \end{align*}
+    Find $n$ big enough s.t.
+    \begin{align*}
+      \frac{22}{49n-21}                      & <\varepsilon, \\
+      \frac{22}{\varepsilon}                 & <49n-21,      \\
+      \frac{22}{49\varepsilon}+\frac{21}{49} & <n.
+    \end{align*}
+  \end{thinking}
+  \begin{proof}
+    Let $\varepsilon>0$. Choose $N\in\N$ s.t.
+    \[
+      N>\frac{22}{49\varepsilon}+\frac{21}{49}.
+    \]
+    For $n>N$,
+    \[
+      \frac{22}{49\varepsilon}+\frac{21}{49}<n
+      \implies\frac{22}{49n-21}<\varepsilon.
+    \]
+    Also,
+    \[
+      \left|\frac{5n+1}{7n-3}-\frac57\right|
+      =\left|\frac{22}{49n-21}\right|
+      =\frac{22}{49n-21}<\varepsilon.\qedhere
+    \]
+  \end{proof}
+\end{example}
+
+\begin{example}[A divergent sequence]
+  $S_n=(-1)^n$, so $(S_n)=(-1,1,-1,1,\ldots)$, does not converge.
+
+  \begin{proof}
+    WTS: $\forall t\in\R,\ \neg(S_n\to t)$.
+    Fix $t\in\R$. WTS:
+    \begin{align*}
+             & \neg\bigl(\forall\varepsilon>0,\ \exists N\in\N,\
+      \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                            \\
+      \iff{} & \exists\varepsilon>0,\
+      \neg\bigl(\exists N\in\N,\ \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr) \\
+      \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
+      \neg\bigl(\forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                  \\
+      \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
+      \exists n>N,\ \abs{S_n-t}\ge\varepsilon.
+    \end{align*}
+    Let $\varepsilon=\frac12$. WTS:
+    \[
+      \forall N\in\N,\quad\exists n>N,\quad\abs{S_n-t}\ge\frac12.
+    \]
+    For $\forall N\in\N$:
+    \begin{enumerate}
+      \item Assume $N$ even. So $S_{N+1}=-1$.\\
+            WTS $\abs{-1-t}\ge\frac12$.\\
+            Suppose instead $\abs{-1-t}<\frac12$.
+            \begin{thinking}
+              \begin{center}
+                \begin{tikzpicture}[x=1.8cm]
+                  \draw[number line] (-2,0) -- (1.4,0);
+                  \draw[sketch accent] (-1.5,0) -- (-0.5,0);
+                  \foreach \x/\lab in {-1.5/{-\frac32},-0.5/{-\frac12}} {
+                    \draw[orange!75!black,thick,fill=orange!5] (\x,0) circle (2.5pt);
+                    \node[below=6pt] at (\x,0) {$\lab$};
+                  }
+                  \foreach \x in {-1,1} {
+                    \draw (\x,-0.1) -- (\x,0.1) node[below=5pt] {$\x$};
+                  }
+                  \node[sketch point] at (-0.8,0) {};
+                  \node (t) at (-0.35,0.65) {$t$};
+                  \draw[->,>=latex] (t) to[bend right] (-0.8,0.08);
+                \end{tikzpicture}
+              \end{center}
+              If $t$ inside, step out of window.
+            \end{thinking}
+            WTS: $\abs{S_{N+2}-t}\ge\frac12$.
+            \[
+              2=\abs{(1-t)-(-1-t)}
+              \le\abs{1-t}+\abs{-1-t}<\abs{1-t}+\frac12.
+            \]
+            Thus $\abs{S_{N+2}-t}=\abs{1-t}>\frac32>\frac12$.
+      \item $N$ odd: vice versa.
+    \end{enumerate}
+  \end{proof}
+\end{example}
+
+\subsection{Limits of Square Roots}
+
+\begin{theorem}{Limit of Square Roots}{limit-square-roots}
+  Let $(S_n)$ be a sequence s.t.\ $\forall n,\ S_n>0$ and $S_n\to t$.
+  Then
+  \[
+    \lim_{n\to\infty}\sqrt{S_n}=\sqrt{t}.
+  \]
+\end{theorem}
+
+\begin{thinking}[Proof sketch]
+  WTS:
+  \[
+    \forall\varepsilon>0,\quad\exists N\in\N\text{ s.t. }
+    n>N\implies\abs{\sqrt{S_n}-\sqrt{t}}<\varepsilon.
+  \]
+  \begin{flushleft}
+    We know $\abs{S_n-t}<\varepsilon$ for $n$ large.\\
+    Connect the two?
+  \end{flushleft}
+\end{thinking}
+\begin{thinking}[Trick]
+  \[
+    S_n-t=(\sqrt{S_n}-\sqrt{t})(\sqrt{S_n}+\sqrt{t}).
+  \]
+  So
+  \[
+    \sqrt{S_n}-\sqrt{t}
+    =\frac{\overbrace{S_n-t}^{\text{what we know}}}
+    {\underbrace{\sqrt{S_n}+\sqrt{t}}_{\text{some control?}}}.
+  \]
+  If $t>0$,
+  \[
+    \abs{\sqrt{S_n}-\sqrt{t}}
+    =\frac{\abs{S_n-t}}{\abs{\sqrt{S_n}+\sqrt{t}}}
+    <\frac{\varepsilon}{\sqrt{S_n}+\sqrt{t}}
+    \le\frac{\varepsilon}{\sqrt{t}}
+    \qquad(\sqrt{S_n}\text{ nonnegative}).
+  \]
+  \begin{flushleft}
+    If $t=0$: WTS $\abs{\sqrt{S_n}}<\varepsilon$ for large $n$.\\
+    If $\abs{S_n}<\varepsilon^2$, then $\abs{\sqrt{S_n}}=\sqrt{S_n}<\varepsilon$.\\
+    If $t<0$?
+  \end{flushleft}
+\end{thinking}
+
+\begin{theorem}{Lemma: Lower Bounds Pass to the Limit}{limit-lower-bound}
+  If $\lim_{n\to\infty}S_n=t$ and $\exists r\in\R$ s.t.\ $S_n\ge r\ \forall n$,
+  then $t\ge r$.
+\end{theorem}
+
+If every term is bounded below, the limit should not be smaller.
+
+\begin{proof}[Formal proof of Theorem~\ref{thm:limit-square-roots}]
+  By Lemma~\ref{thm:limit-lower-bound}, $t\ge0$.\\
+  Two cases: $t=0$ and $t>0$.
+  \begin{enumerate}
+    \item $t=0$. Let $\varepsilon$ be arbitrary $>0$.\\
+          Choose $N\in\N$ s.t.\ $n>N\implies\abs{S_n}<\varepsilon^2$\\
+          (we know this by definition of $S_n\to t$).\\
+          For $n>N$, we have
+          \[
+            \abs{\sqrt{S_n}-0}=\sqrt{S_n}<\sqrt{\varepsilon^2}=\varepsilon.
+          \]
+    \item $t>0$. Let arbitrary $\varepsilon>0$. Choose $N\in\N$ s.t.
+          \[
+            n>N\implies\abs{S_n-t}<\sqrt{t}\,\varepsilon.
+          \]
+          For $n>N$,
+          \begin{align*}
+            \abs{\sqrt{S_n}-\sqrt{t}}
+             & =\frac{\abs{S_n-t}}{\sqrt{S_n}+\sqrt{t}}              \\
+             & <\frac{\sqrt{t}\,\varepsilon}{\sqrt{S_n}+\sqrt{t}}    \\
+             & \le\frac{\sqrt{t}\,\varepsilon}{\sqrt{t}}=\varepsilon
+            \qquad(\sqrt{S_n}\ge0).
+          \end{align*}
+  \end{enumerate}
+  Both cases resolved.
+\end{proof}
