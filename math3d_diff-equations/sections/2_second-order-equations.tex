@@ -641,3 +641,108 @@ Since differentiation is linear:
           \]
   \end{enumerate}
 \end{example}
+
+\begin{example}[Nonhomogeneous IVP]
+  \[
+    \begin{cases}
+      y''+y=e^x, \\
+      y(0)=1,    \\
+      y'(0)=-2.
+    \end{cases}
+  \]
+  \begin{enumerate}
+    \item $y_c=C_1\cos x+C_2\sin x$.
+    \item Guess $y_p=ae^x$.
+
+          Sub:
+          \[
+            (ae^x)''+ae^x=e^x,\qquad a=\frac12.
+          \]
+          \[
+            y_p=\frac12e^x.
+          \]
+    \item $y(x)=y_c+y_p=C_1\cos x+C_2\sin x+\frac12e^x$.
+    \item IC:
+          \[
+            y(0)=C_1+\frac12=1,\qquad C_1=\frac12.
+          \]
+          \begin{align*}
+            y'(x) & =-C_1\sin x+C_2\cos x+\frac12e^x,    \\
+            y'(0) & =C_2+\frac12=-2,\qquad C_2=-\frac52.
+          \end{align*}
+          \[
+            y(x)=\frac12\bigl(\cos x-5\sin x+e^x\bigr).
+          \]
+  \end{enumerate}
+\end{example}
+
+\subsection{Forced Oscillations}
+
+\[
+  mx''+cx'+kx=F_E.
+\]
+
+\begin{example}[Damped Driven Oscillation]
+  \[
+    x''+3x'+2x=F_0\cos\omega t.
+  \]
+  \begin{enumerate}
+    \item Characteristic equation:
+          \[
+            \lambda^2+3\lambda+2=0
+            \qquad\text{(overdamped: $c^2>4km$).}
+          \]
+          \[
+            \lambda_1=-1,\qquad\lambda_2=-2.
+          \]
+          \[
+            x_c(t)=C_1e^{-t}+C_2e^{-2t}.
+          \]
+          ($x_c$ is transient: $x_c\to0$.)
+    \item Guess $x_p=a\cos\omega t+b\sin\omega t$.
+
+          Sub:
+          \begin{align*}
+             & (a\cos\omega t+b\sin\omega t)''
+            +3(a\cos\omega t+b\sin\omega t)'                          \\
+             & \qquad+2(a\cos\omega t+b\sin\omega t)=F_0\cos\omega t.
+          \end{align*}
+          \begin{align*}
+             & (2a+3b\omega-a\omega^2)\cos\omega t                         \\
+             & \qquad+(2b-3a\omega-b\omega^2)\sin\omega t=F_0\cos\omega t.
+          \end{align*}
+          \[
+            \implies
+            \begin{cases}
+              (2-\omega^2)a+3\omega b=F_0, \\
+              -3\omega a+(2-\omega^2)b=0.
+            \end{cases}
+          \]
+          \[
+            \begin{bmatrix}
+              2-\omega^2 & 3\omega    \\
+              -3\omega   & 2-\omega^2
+            \end{bmatrix}
+            \begin{bmatrix}
+              a \\b
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+              F_0 \\0
+            \end{bmatrix}
+            .
+          \]
+          \begin{align*}
+            x_p
+             & =\frac{F_0}{(2-\omega^2)^2+9\omega^2}
+            \bigl((2-\omega^2)\cos\omega t+3\omega\sin\omega t\bigr) \\
+             & =\frac{F_0}{\sqrt{(2-\omega^2)^2+9\omega^2}}
+            \left(
+            \frac{2-\omega^2}{\sqrt{(2-\omega^2)^2+9\omega^2}}\cos\omega t
+            +\frac{3\omega}{\sqrt{(2-\omega^2)^2+9\omega^2}}\sin\omega t
+            \right)                                                  \\
+             & =\frac{F_0}{\sqrt{(2-\omega^2)^2+9\omega^2}}
+            \cos(\omega t-\gamma)\qquad\text{for some $\gamma$.}
+          \end{align*}
+  \end{enumerate}
+\end{example}
