@@ -1,0 +1,310 @@
+\subsection{Method of Elimination}
+
+A system of two first-order ODEs:
+\[
+  \begin{cases}
+    \dfrac{dx}{dt}=f(x,y;t), \\[0.5em]
+    \dfrac{dy}{dt}=g(x,y;t).
+  \end{cases}
+\]
+\begin{definition}{Solution Curve}{system-solution-curve}
+  A solution curve is a function $\ve{x(t),y(t)}$ satisfying both equations.
+\end{definition}
+
+\begin{example}
+  \[
+    \begin{cases}
+      x'=-y, \\
+      y'=x
+    \end{cases}
+    \qquad\text{(autonomous system).}
+  \]
+  Spot:
+  \[
+    \begin{cases}
+      x(t)=\cos t, \\
+      y(t)=\sin t
+    \end{cases}
+  \]
+  is one solution curve.
+
+  Equivalent writing:
+  \[
+    \mathbf{r}(t)=
+    \begin{bmatrix}
+      x(t) \\y(t)
+    \end{bmatrix}
+    ,
+    \qquad\mathbf{r}'=
+    \begin{bmatrix}
+      0 & -1 \\1&0
+    \end{bmatrix}
+    \mathbf{r}.
+  \]
+\end{example}
+
+\begin{example}
+  \[
+    \begin{aligned}
+      x' & =5x+3y &  & \text{(1)} \\
+      y' & =2x    &  & \text{(2)}
+    \end{aligned}
+  \]
+  \begin{enumerate}
+    \item Differentiate (1): $x''=5x'+3y'$.
+    \item Sub for $y'$ with (2): $x''=5x'+6x$.
+    \item Solve $x''-5x'-6x=0$: $\lambda=-1,6$.
+          \[
+            x(t)=C_1e^{-t}+C_2e^{6t}.
+          \]
+    \item Don't want (2) because integration introduces an extra constant.\\
+          Instead, sub in (1):
+          \begin{align*}
+            3y & =x'-5x                                           \\
+               & =(-C_1e^{-t}+6C_2e^{6t})-5(C_1e^{-t}+C_2e^{6t}), \\
+            y  & =-2C_1e^{-t}+\frac13C_2e^{6t}.
+          \end{align*}
+  \end{enumerate}
+\end{example}
+
+\begin{thinking}
+  Order $\times$ number of unknowns $\implies$ number of arbitrary constants.
+\end{thinking}
+
+\begin{example}
+  \[
+    \begin{aligned}
+      x' & =5x+3y &  & \text{(1)} \\
+      y' & =2x-y  &  & \text{(2)}
+    \end{aligned}
+  \]
+  \begin{enumerate}
+    \item Differentiate (1): $x''=5x'+3y'$.
+    \item Sub with (2): $x''=5x'+3(2x-y)$.
+    \item Sub with (1): $x''=5x'+6x+5x-x'$.
+    \item Solve $x''-4x'-11x=0$.\\
+          Characteristic equation:
+          \[
+            \lambda^2-4\lambda-11=0,\qquad\lambda=2\pm\sqrt{15}.
+          \]
+          \[
+            x(t)=C_1e^{(2+\sqrt{15})t}+C_2e^{(2-\sqrt{15})t}.
+          \]
+    \item
+          \begin{align*}
+            y(t) & =\frac13(x'-5x)                            \\
+                 & =\frac{-3+\sqrt{15}}3C_1e^{(2+\sqrt{15})t}
+            +\frac{-3-\sqrt{15}}3C_2e^{(2-\sqrt{15})t}.
+          \end{align*}
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Initial Conditions]
+  \[
+    \begin{cases}
+      x'=5x+3y, \\
+      y'=2x,    \\
+      x(0)=1,\quad y(0)=7.
+    \end{cases}
+  \]
+  We know the general solution:
+  \[
+    \begin{cases}
+      x=C_1e^{-t}+C_2e^{6t}, \\
+      y=-2C_1e^{-t}+\frac13C_2e^{6t}.
+    \end{cases}
+  \]
+  Sub initial conditions:
+  \[
+    \begin{cases}
+      C_1+C_2=1, \\
+      -2C_1+\frac13C_2=7,
+    \end{cases}
+    \qquad
+    \begin{bmatrix}
+      1 & 1 \\-2&\frac13
+    \end{bmatrix}
+    \begin{bmatrix}
+      C_1 \\C_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 \\7
+    \end{bmatrix}
+    .
+  \]
+  \[
+    C_1=-\frac{20}7,\qquad C_2=\frac{27}7.
+  \]
+\end{example}
+
+\begin{example}
+  \[
+    \begin{cases}
+      x'=5x+3y, \\
+      y'=2x-y.
+    \end{cases}
+  \]
+  Do $y$ first?
+  \begin{align*}
+    y'' & =2x'-y'        \\
+        & =2(5x+3y)-y'   \\
+        & =5(y'+y)+6y-y' \\
+        & =4y'+11y.
+  \end{align*}
+  Exact same equation as for $x$!
+\end{example}
+
+\subsection{Linear Systems and Matrices}
+
+\begin{definition}{First-Order Linear System}{first-order-linear-system}
+  A first-order $n\times n$ linear system of ODEs for dependent variables
+  $x_1,x_2,\ldots,x_n$, functions of $t$:
+  \[
+    \begin{cases}
+      x_1'=a_{11}(t)x_1+a_{12}(t)x_2+\cdots+a_{1n}(t)x_n+f_1(t), \\
+      x_2'=a_{21}(t)x_1+a_{22}(t)x_2+\cdots+a_{2n}(t)x_n+f_2(t), \\
+      \hfill\vdots\hfill                                         \\
+      x_n'=a_{n1}(t)x_1+a_{n2}(t)x_2+\cdots+a_{nn}(t)x_n+f_n(t).
+    \end{cases}
+  \]
+  Easier in matrices:
+  \[
+    \mathbf{x}'=\mathbf{A}\mathbf{x}+\mathbf{f},
+  \]
+  where
+  \[
+    \mathbf{x}=
+    \begin{bmatrix}
+      x_1 \\\vdots\\x_n
+    \end{bmatrix}
+    ,\qquad
+    \mathbf{A}(t)=
+    \begin{bmatrix}
+      a_{11}(t) & \cdots & a_{1n}(t) \\
+      \vdots    & \ddots & \vdots    \\
+      a_{n1}(t) & \cdots & a_{nn}(t)
+    \end{bmatrix}
+    ,\qquad
+    \mathbf{f}(t)=
+    \begin{bmatrix}
+      f_1(t) \\f_2(t)\\\vdots\\f_n(t)
+    \end{bmatrix}
+    .
+  \]
+  The system is homogeneous iff $\mathbf{f}(t)\equiv\mathbf{0}$.
+\end{definition}
+
+(Most of the time, $\mathbf{A}$ is constant.)
+
+\begin{example}
+  Recall
+  \[
+    \begin{cases}
+      x'=5x+3y, \\
+      y'=2x.
+    \end{cases}
+  \]
+  Rewrite:
+  \[
+    \mathbf{x}=
+    \begin{bmatrix}
+      x \\y
+    \end{bmatrix}
+    ,\qquad
+    \mathbf{A}=
+    \begin{bmatrix}
+      5 & 3 \\2&0
+    \end{bmatrix}
+    ,\qquad
+    \mathbf{x}'=\mathbf{A}\mathbf{x}.
+  \]
+\end{example}
+
+\begin{definition}{Linear Combination of Vector-Valued Functions}{vector-function-linear-combination}
+  (Recall) A linear combination of vector-valued functions
+  $\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_n$ is an expression
+  \[
+    C_1\mathbf{x}_1+C_2\mathbf{x}_2+\cdots+C_n\mathbf{x}_n
+  \]
+  for $C_1,\ldots,C_n$ constant.
+\end{definition}
+
+\begin{definition}{Linear Independence of Vector-Valued Functions}{vector-function-linear-independence}
+  $\mathbf{x}_1,\ldots,\mathbf{x}_n$ are linearly independent iff
+  \[
+    C_1\mathbf{x}_1+\cdots+C_n\mathbf{x}_n\equiv\mathbf{0}
+    \implies C_1=\cdots=C_n=0.
+  \]
+\end{definition}
+
+\begin{theorem}{General Solution of a Homogeneous Linear System}{homogeneous-system-general-solution}
+  Suppose $\mathbf{x}'=\mathbf{A}(t)\mathbf{x}$ is an $n\times n$ homogeneous
+  system with $\mathbf{A}$ continuous on an interval.
+  If $\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_n$ are linearly independent solutions,
+  \[
+    \implies\text{general solution: }\quad
+    \mathbf{x}(t)=C_1\mathbf{x}_1(t)+C_2\mathbf{x}_2(t)+\cdots+C_n\mathbf{x}_n(t),
+  \]
+  where $C_1,\ldots,C_n$ are arbitrary constants.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+  For solutions $\mathbf{x}_j'=\mathbf{A}\mathbf{x}_j$, $\forall j$,
+  \begin{align*}
+    \mathbf{x}' & =C_1\mathbf{x}_1'+\cdots+C_n\mathbf{x}_n'
+                &                                                             & \text{(by linearity of differentiation)} \\
+                & =C_1\mathbf{A}\mathbf{x}_1+\cdots+C_n\mathbf{A}\mathbf{x}_n
+                &                                                             & \text{(assumption)}                      \\
+                & =\mathbf{A}(C_1\mathbf{x}_1+\cdots+C_n\mathbf{x}_n)
+    =\mathbf{A}\mathbf{x}.
+  \end{align*}
+  Also need to show no other solution, but it's hard.
+\end{proof}
+
+\begin{example}
+  \[
+    \mathbf{x}'=
+    \begin{bmatrix}
+      5 & 3 \\2&0
+    \end{bmatrix}
+    \mathbf{x},\qquad
+    \mathbf{x}=
+    \begin{bmatrix}
+      C_1e^{-t}+C_2e^{6t} \\
+      -2C_1e^{-t}+\frac13C_2e^{6t}
+    \end{bmatrix}
+    \quad\text{(elimination).}
+  \]
+  Alternatively,
+  \begin{align*}
+    \mathbf{x}(t) & =C_1
+                        \begin{bmatrix}
+                          e^{-t} \\-2e^{-t}
+                        \end{bmatrix}
+    +C_2
+        \begin{bmatrix}
+          e^{6t} \\\frac13e^{6t}
+        \end{bmatrix}
+    \\
+                  & =C_1\mathbf{x}_1+C_2\mathbf{x}_2.
+  \end{align*}
+  How to find $\mathbf{x}_1,\mathbf{x}_2$?
+\end{example}
+
+\begin{definition}{Eigenvector and Eigenvalue}{system-eigenvector-eigenvalue}
+  Suppose $\exists\mathbf{v}\ne\mathbf{0},\lambda$ such that
+  $\mathbf{A}\mathbf{v}=\lambda\mathbf{v}$.\\
+  $\implies$ eigenvector $\mathbf{v}$, eigenvalue $\lambda$.
+\end{definition}
+
+For constant $\mathbf{A}$, let $\mathbf{x}=e^{\lambda t}\mathbf{v}$.
+\begin{align*}
+  \mathbf{x}' & =\lambda e^{\lambda t}\mathbf{v}     \\
+              & =e^{\lambda t}(\lambda\mathbf{v})    \\
+              & =e^{\lambda t}\mathbf{A}\mathbf{v}   \\
+              & =\mathbf{A}(e^{\lambda t}\mathbf{v}) \\
+              & =\mathbf{A}\mathbf{x}.
+\end{align*}
+For eigenvalue $\lambda$ and eigenvector $\mathbf{v}$,
+$e^{\lambda t}\mathbf{v}$ is a solution.
