@@ -325,8 +325,6 @@
   \end{proof}
 \end{example}
 
-\subsection{Limits of Square Roots}
-
 \begin{theorem}{Limit of Square Roots}{limit-square-roots}
   Let $(S_n)$ be a sequence s.t.\ $\forall n,\ S_n>0$ and $S_n\to t$.
   Then
@@ -403,4 +401,112 @@ If every term is bounded below, the limit should not be smaller.
           \end{align*}
   \end{enumerate}
   Both cases resolved.
+\end{proof}
+
+\subsection{Limit Theorems for Sequences}
+
+\begin{definition}{Bounded Sequence}{bounded-sequence}
+  Sequence $(S_n)$ is bounded
+  \[
+    \iff\exists M\in\R\text{ s.t. }\abs{S_n}<M,\quad\forall n\in\N.
+  \]
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[number line] (-3.4,0) -- (3.4,0) node[right] {$\R$};
+      \draw (-2.6,0.4) -- (-2.8,0.4) -- (-2.8,-0.4) -- (-2.6,-0.4);
+      \draw (2.6,0.4) -- (2.8,0.4) -- (2.8,-0.4) -- (2.6,-0.4);
+      \node[below] at (-2.8,-0.4) {$-M$};
+      \node[below] at (2.8,-0.4) {$M$};
+      \foreach \x/\lab in {-2.1/{S_5},-1.5/{S_3},-0.8/{S_1},0/{0},0.9/{S_2},1.6/{S_4},2.2/{S_6}} {
+        \draw (\x,0) -- (\x,0.2);
+        \node[below=3pt] at (\x,0) {$\lab$};
+      }
+      \node[above] at (-2.35,0.2) {$\cdots$};
+      \node[above] at (2.4,0.2) {$\cdots$};
+    \end{tikzpicture}
+  \end{center}
+\end{definition}
+
+\begin{theorem}{Convergent Sequences Are Bounded}{convergent-sequence-bounded}
+  $(S_n)$ convergent $\implies (S_n)$ bounded.
+\end{theorem}
+
+\begin{proof}
+  \[
+    t=\lim_{n\to\infty}S_n
+    \implies\exists N\in\N\text{ s.t. }n>N\implies\abs{S_n-t}<1.
+  \]
+  \begin{thinking}[Why]
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[number line] (-3,0) -- (3,0);
+        \node at (-2,0) {$($};
+        \node at (2,0) {$)$};
+        \node[below=8pt] at (-2,0) {$t-1$};
+        \node[below=8pt] at (2,0) {$t+1$};
+        \foreach \x in {-0.85,-0.55,-0.4,-0.15,0.3,0.6} {
+          \draw (\x,-0.08) -- (\x,0.2);
+        }
+        \draw (0,-0.1) -- (0,0.2);
+        \node[below=8pt] at (0,0) {$t$};
+      \end{tikzpicture}
+    \end{center}
+    Finitely many points outside.
+  \end{thinking}
+  \[
+    \abs{S_n}=\abs{S_n-t+t}\le\abs{S_n-t}+\abs{t}.
+  \]
+  \[
+    n>N\implies\abs{S_n}<1+\abs{t}.
+  \]
+  Set $M=\max\{\abs{S_1},\abs{S_2},\ldots,\abs{S_N},\abs{t}+1\}$.
+  \[
+    \abs{S_n}\le M<2M.\qedhere
+  \]
+\end{proof}
+
+\begin{theorem}{Sequence Limit Laws}{sequence-limit-laws}
+  $(S_n)$, $(t_n)$ converge.
+  \begin{enumerate}[label=(\roman*)]
+    \item $\displaystyle\lim_{n\to\infty}(S_n+t_n)
+            =\lim_{n\to\infty}S_n+\lim_{n\to\infty}t_n$.
+    \item $\displaystyle\forall k\in\R,\quad\lim_{n\to\infty}(kS_n)
+            =k\lim_{n\to\infty}S_n$.
+    \item $\displaystyle\lim_{n\to\infty}(S_nt_n)
+            =\left(\lim_{n\to\infty}S_n\right)\cdot\left(\lim_{n\to\infty}t_n\right)$.
+    \item $\displaystyle S_n\ne0\text{ and }\lim_{n\to\infty}S_n\ne0$
+          \[
+            \implies\lim_{n\to\infty}\frac{t_n}{S_n}
+            =\frac{\lim_{n\to\infty}t_n}{\lim_{n\to\infty}S_n}.
+          \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sequence-limit-laws}(i)]
+  Let
+  \[
+    \lim_{n\to\infty}S_n=p,\qquad\lim_{n\to\infty}t_n=q.
+  \]
+  Let $\varepsilon>0$.\\
+  WTS $\abs{S_n+t_n-p-q}<\varepsilon$ for $n$ large.
+
+  Observe
+  \begin{align*}
+    \abs{S_n+t_n-(p+q)}
+     & =\abs{(S_n-p)+(t_n-q)}      \\
+     & \le\abs{S_n-p}+\abs{t_n-q}.
+  \end{align*}
+  Choose $N\in\N$ s.t.
+  \[
+    n>N\implies
+    \begin{cases}
+      \abs{S_n-p}<\varepsilon/2, \\
+      \abs{t_n-q}<\varepsilon/2.
+    \end{cases}
+  \]
+  $N$ exists by taking the maximum of the two convergence thresholds.
+  \[
+    \abs{S_n-p}+\abs{t_n-q}<\frac\varepsilon2+\frac\varepsilon2
+    =\varepsilon.\qedhere
+  \]
 \end{proof}
