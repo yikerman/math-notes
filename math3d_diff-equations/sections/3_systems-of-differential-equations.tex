@@ -279,13 +279,13 @@ A system of two first-order ODEs:
   Alternatively,
   \begin{align*}
     \mathbf{x}(t) & =C_1
-                        \begin{bmatrix}
-                          e^{-t} \\-2e^{-t}
-                        \end{bmatrix}
+    \begin{bmatrix}
+      e^{-t} \\-2e^{-t}
+    \end{bmatrix}
     +C_2
-        \begin{bmatrix}
-          e^{6t} \\\frac13e^{6t}
-        \end{bmatrix}
+    \begin{bmatrix}
+      e^{6t} \\\frac13e^{6t}
+    \end{bmatrix}
     \\
                   & =C_1\mathbf{x}_1+C_2\mathbf{x}_2.
   \end{align*}
@@ -308,3 +308,235 @@ For constant $\mathbf{A}$, let $\mathbf{x}=e^{\lambda t}\mathbf{v}$.
 \end{align*}
 For eigenvalue $\lambda$ and eigenvector $\mathbf{v}$,
 $e^{\lambda t}\mathbf{v}$ is a solution.
+
+\begin{theorem}{Eigenvalue Solutions}{eigenvalue-solutions}
+  $(\lambda,\mathbf{v})$ is an eigenvalue/eigenvector pair for $\mathbf{A}$
+  \[
+    \implies \mathbf{x}(t)=e^{\lambda t}\mathbf{v}
+    \text{ is a solution to }\mathbf{x}'=\mathbf{A}\mathbf{x}.
+  \]
+  For $\mathbf{A}$ with $(\lambda_1,\mathbf{v}_1),\ldots,(\lambda_n,\mathbf{v}_n)$
+  and linearly independent $\mathbf{v}_1,\ldots,\mathbf{v}_n$,
+  \[
+    \implies\text{general solution: }\quad
+    \mathbf{x}(t)=C_1e^{\lambda_1t}\mathbf{v}_1+\cdots+C_ne^{\lambda_nt}\mathbf{v}_n.
+  \]
+\end{theorem}
+
+\begin{example}
+  \[
+    \begin{cases}
+      x'=3x-4y, \\
+      y'=-x+3y
+    \end{cases}
+    \quad\implies\quad
+    \mathbf{x}'=
+    \begin{bmatrix}
+      3 & -4 \\-1&3
+    \end{bmatrix}
+    \mathbf{x}.
+  \]
+  Characteristic equation:
+  \[
+    \det
+    \begin{bmatrix}
+      3-\lambda & -4 \\-1&3-\lambda
+    \end{bmatrix}
+    =0,
+    \qquad \lambda_1=1,\quad\lambda_2=5.
+  \]
+  \[
+    \lambda_1=1,\qquad
+    E_1=\operatorname{Null}(\mathbf{A}-\lambda_1\mathbf{I})
+    =\operatorname{span}\left\{
+    \begin{bmatrix}
+      2 \\1
+    \end{bmatrix}
+    \right\}.
+  \]
+  Choose $\mathbf{v}_1=
+    \begin{bmatrix}
+      2 \\1
+    \end{bmatrix}
+    \in E_1$.
+  \[
+    \lambda_2=5,\qquad
+    E_2=\operatorname{Null}(\mathbf{A}-\lambda_2\mathbf{I})
+    =\operatorname{span}\left\{
+    \begin{bmatrix}
+      2 \\-1
+    \end{bmatrix}
+    \right\}.
+  \]
+  Choose $\mathbf{v}_2=
+    \begin{bmatrix}
+      2 \\-1
+    \end{bmatrix}
+    \in E_2$.
+  \[
+    \mathbf{x}(t)=C_1e^t
+    \begin{bmatrix}
+      2 \\1
+    \end{bmatrix}
+    +C_2e^{5t}
+    \begin{bmatrix}
+      2 \\-1
+    \end{bmatrix}
+    .
+  \]
+  In original form:
+  \[
+    \begin{cases}
+      x=2C_1e^t+2C_2e^{5t}, \\
+      y=C_1e^t-C_2e^{5t}.
+    \end{cases}
+  \]
+\end{example}
+
+Not enough eigenvectors? Use elimination.
+
+\begin{example}
+  \[
+    \mathbf{x}'=
+    \begin{bmatrix}
+      8 & 9 & 0 \\-6&-7&0\\3&3&-1
+    \end{bmatrix}
+    \mathbf{x}.
+  \]
+  \begin{align*}
+    \det
+        \begin{bmatrix}
+          8-\lambda & 9 & 0 \\-6&-7-\lambda&0\\3&3&-1-\lambda
+        \end{bmatrix}
+     & =0-0+(-\lambda-1)\det
+                            \begin{bmatrix}
+                              8-\lambda & 9 \\-6&-7-\lambda
+                            \end{bmatrix}
+    \\
+     & =-(1+\lambda)(\lambda^2-\lambda-2)             \\
+     & =-(1+\lambda)^2(\lambda-2).
+  \end{align*}
+  \[
+    \lambda_1=2,\qquad
+    E_1=\operatorname{Null}
+    \begin{bmatrix}
+      6 & 9 & 0 \\-6&-9&0\\3&3&-3
+    \end{bmatrix}
+    .
+  \]
+  Scratch work:
+  \[
+    \begin{cases}
+      6x+9y=0,  \\
+      -6x-9y=0, \\
+      3x+3y-3z=0.
+    \end{cases}
+    \qquad E_1=\operatorname{span}\left\{
+    \begin{bmatrix}
+      3 \\-2\\1
+    \end{bmatrix}
+    \right\}.
+  \]
+  \[
+    \lambda_2=-1,\qquad
+    E_2=\operatorname{Null}
+    \begin{bmatrix}
+      9 & 9 & 0 \\-6&-6&0\\3&3&0
+    \end{bmatrix}
+    =\operatorname{span}\left\{
+    \begin{bmatrix}
+      1 \\-1\\0
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+      0 \\0\\1
+    \end{bmatrix}
+    \right\}.
+  \]
+  General solution:
+  \[
+    \mathbf{x}(t)=C_1e^{2t}
+    \begin{bmatrix}
+      3 \\-2\\1
+    \end{bmatrix}
+    +C_2e^{-t}
+    \begin{bmatrix}
+      1 \\-1\\0
+    \end{bmatrix}
+    +C_3e^{-t}
+    \begin{bmatrix}
+      0 \\0\\1
+    \end{bmatrix}
+    .
+  \]
+\end{example}
+
+\begin{example}
+  \[
+    \mathbf{x}'=
+    \begin{bmatrix}
+      -2 & 8 \\-1&2
+    \end{bmatrix}
+    \mathbf{x},
+    \qquad
+    \begin{cases}
+      x'=-2x+8y, \\
+      y'=-x+2y.
+    \end{cases}
+  \]
+  Characteristic equation:
+  \[
+    \det
+    \begin{bmatrix}
+      -2-\lambda & 8 \\-1&2-\lambda
+    \end{bmatrix}
+    =0
+    \quad\implies\quad\lambda_1=2i,\quad\lambda_2=-2i.
+  \]
+  Easier way: pretend elimination.
+  \begin{align*}
+    x(t) & =C_1\cos 2t+C_2\sin 2t, \\
+    y(t) & =\frac18(x'+2x)
+    =\frac14(C_1+C_2)\cos 2t+\frac14(C_2-C_1)\sin 2t.
+  \end{align*}
+  Or:
+  \begin{align*}
+    \lambda_1 & =2i,                                                 &
+    E_1       & =\operatorname{Null}
+                                    \begin{bmatrix}
+                                      -2-2i & 8 \\-1&2-2i
+                                    \end{bmatrix}
+    =\operatorname{span}\left\{
+                               \begin{bmatrix}
+                                 2-2i \\1
+                               \end{bmatrix}
+    \right\},                                                          \\
+    \lambda_2 & =-2i,                                                &
+    E_2       & =\operatorname{span}\left\{\overline{
+                                                       \begin{bmatrix}
+                                                         2-2i \\1
+                                                       \end{bmatrix}
+    }\right\}
+    =\operatorname{span}\left\{
+                               \begin{bmatrix}
+                                 2+2i \\1
+                               \end{bmatrix}
+    \right\}.
+  \end{align*}
+  \begin{align*}
+    \mathbf{x}(t) & =ae^{2it}
+                             \begin{bmatrix}
+                               2-2i \\1
+                             \end{bmatrix}
+    +\overline{a}e^{-2it}
+                         \begin{bmatrix}
+                           2+2i \\1
+                         \end{bmatrix}
+    \\
+                  & =(p+iq)(\cos 2t+i\sin 2t)
+                                             \begin{bmatrix}
+                                               \cdots
+                                             \end{bmatrix}
+    +\cdots.
+  \end{align*}
+\end{example}
