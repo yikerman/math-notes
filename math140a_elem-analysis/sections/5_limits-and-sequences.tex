@@ -510,3 +510,399 @@ If every term is bounded below, the limit should not be smaller.
     =\varepsilon.\qedhere
   \]
 \end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sequence-limit-laws}(iv)]
+  Let $\lim_{n\to\infty}S_n=p$, $\lim_{n\to\infty}t_n=q$.
+  Enough to show
+  \[
+    \lim_{n\to\infty}\frac1{S_n}=\frac1p
+    \qquad\text{(by (iii)).}
+  \]
+  WTS: $\left|\dfrac1{S_n}-\dfrac1p\right|<\varepsilon$
+  for $\forall\varepsilon>0$ and $n$ large.
+  \[
+    \left|\frac1{S_n}-\frac1p\right|
+    =\left|\frac{S_n-p}{S_np}\right|
+    =\frac{\overbrace{\abs{S_n-p}}^{\text{can bound}}}
+    {\underbrace{\abs{S_np}}_{\text{???}}}.
+  \]
+
+  \begin{theorem}{Lemma: Bounded Away from Zero}{sequence-away-from-zero}
+    $\abs{S_n}\abs p$ bounded below by a positive number.\\
+    Formally, for $S_n\ne0$ and $\lim S_n=p\ne0$,
+    \[
+      \inf\{\abs{S_n}\mid n\in\N\}>0.
+    \]
+  \end{theorem}
+  \begin{thinking}
+    Important in a lot of proofs.\\
+    Let $S_n\to p\ne0$.
+    \begin{center}
+      \begin{tikzpicture}
+        \draw[number line] (-0.5,0) -- (4.5,0);
+        \draw (0,-0.1) -- (0,0.1) node[below=5pt] {$0$};
+        \draw (2.5,-0.1) -- (2.5,0.1) node[above=5pt] {$\abs p$};
+        \foreach \x in {1.5,3.5} {
+          \draw[orange!75!black,thick,fill=orange!5] (\x,0) circle (2.5pt);
+        }
+        \draw[decorate,decoration={brace,mirror,amplitude=5pt}]
+          (1.5,-0.25) -- (3.5,-0.25)
+          node[midway,below=8pt,align=center] {all but finitely many\\$\abs{S_n}$ here};
+      \end{tikzpicture}
+    \end{center}
+  \end{thinking}
+  Let $m=\inf\{\abs{S_n}\mid n\in\N\}>0$.\\
+  Can choose $N$ s.t.\ $n>N\implies\abs{S_n-p}<\varepsilon m\abs p$.
+  \[
+    \frac{\abs{S_n-p}}{\abs{S_n}\abs p}
+    \le\frac{\abs{S_n-p}}{m\abs p}
+    <\frac{\varepsilon m\abs p}{m\abs p}=\varepsilon.\qedhere
+  \]
+\end{proof}
+
+\subsubsection{More Limit Theorems}
+
+\begin{theorem}{Power and Root Limits}{power-root-limits}
+  \begin{enumerate}[label=(\roman*)]
+    \item $\displaystyle\lim_{n\to\infty}\frac1{n^p}=0$ for $\forall p>0$.
+    \item $\displaystyle\lim_{n\to\infty}a^n=0$ if $\abs a<1$.
+    \item $\displaystyle\lim_{n\to\infty}n^{1/n}=1$.
+    \item $\displaystyle\lim_{n\to\infty}a^{1/n}=1$, $\forall a>0$.
+  \end{enumerate}
+\end{theorem}
+
+\noindent\textit{Proof of (ii) (incomplete).}
+\begin{enumerate}
+  \item $\abs a=0$: trivial.
+  \item $\abs a>0$: WTS $\abs{a^n}$ is small for $n$ large.\\
+        Let $\varepsilon>0$.
+        \begin{align*}
+          \text{WTS }\abs{a^n}<\varepsilon
+           & \iff\abs a^n<\varepsilon
+          \iff\ln(\abs a^n)<\ln\varepsilon                    \\
+           & \iff n\ln\abs a<\ln\varepsilon\qquad\text{(???)} \\
+           & \iff n>\frac{\ln\varepsilon}{\ln\abs a}.
+        \end{align*}
+        For $\varepsilon$, choose $N\in\N$ s.t.\ $N>\dfrac{\ln\varepsilon}{\ln\abs a}$.
+        \[
+          n>N\implies\abs{a^n}<\varepsilon.
+        \]
+\end{enumerate}
+
+\noindent Proof of (ii) without undefined-yet functions:
+
+\begin{theorem}{Lemma: Binomial Theorem}{binomial-theorem}
+  $\forall a,b\in\R$, $n\in\N$,
+  \[
+    (a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k,
+    \qquad\text{where }\binom nk=\frac{n!}{k!(n-k)!}.
+  \]
+\end{theorem}
+\begin{proof}
+  Trivial.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:power-root-limits}(ii)]
+  Again, $\abs a=0$: trivial.\\
+  For $\abs a>0$: since $0<\abs a<1$, let $\abs a=\dfrac1{1+b}$ for $b>0$.
+  \[
+    \abs a^n=\frac1{(1+b)^n}.
+  \]
+  By the binomial theorem (Theorem~\ref{thm:binomial-theorem}),
+  \[
+    (1+b)^n=\sum_{k=0}^n\binom nk1^{n-k}b^k
+    \ge\binom n1 1^{n-1}b^1=nb.
+  \]
+  Choose $N\in\N$ s.t.\ $N>\dfrac1{\varepsilon b}\implies\dfrac1{Nb}<\varepsilon$.
+  For $n>N$,
+  \[
+    \abs{a^n}=\frac1{(1+b)^n}\le\frac1{nb}<\varepsilon.\qedhere
+  \]
+\end{proof}
+
+\subsection{Monotone and Cauchy Sequences}
+
+Goal: how to say $S_n$ converges without knowing the limit explicitly?
+\begin{example}
+  $\displaystyle S_n=\sum_{k=1}^n\frac{(-1)^k}{k}$: hard to calculate!
+\end{example}
+
+\subsubsection{Monotonicity}
+
+\begin{definition}{Monotone Sequence}{monotone-sequence}
+  $(S_n)$ a sequence.
+  \begin{align*}
+    (S_n)\text{ is increasing} & \iff\forall n\in\N,\quad S_n\le S_{n+1}, \\
+    (S_n)\text{ is decreasing} & \iff\forall n\in\N,\quad S_n\ge S_{n+1}.
+  \end{align*}
+  $(S_n)$ is monotonic $\iff$ increasing OR decreasing.
+\end{definition}
+
+\begin{example}
+  $S_n=1/n$: decreasing.\qquad $S_n=n^2$: increasing.\\
+  $S_n=(-1)^n/n$: not monotonic.
+\end{example}
+
+\begin{theorem}{Monotone Convergence Theorem}{monotone-convergence}
+  Sequence $(S_n)$ is bounded and monotonic $\implies(S_n)$ converges.
+\end{theorem}
+
+\begin{note}
+  Converse is not true.
+\end{note}
+\begin{example}[Counterexample]
+  $(-1)^n/n$ converges but is not monotonic.
+\end{example}
+
+\begin{note}
+  Statement is false in $\Q$.
+\end{note}
+\begin{example}[Counterexample]
+  $\sqrt2=1.41421\ldots$
+  \begin{flushleft}
+    $(S_n)=(1,1.4,1.41,1.414,1.4142,\ldots)$\\
+    is bounded and monotonic\\
+    but does not converge in $\Q$.
+  \end{flushleft}
+\end{example}
+(We need to use completeness of $\R$!)
+
+\begin{thinking}
+  \begin{center}
+    \begin{tikzpicture}[x=0.9cm,y=0.9cm]
+      \draw[->,>=latex] (-0.3,0) -- (3.8,0);
+      \draw[->,>=latex] (0,-0.2) -- (0,2.1);
+      \draw (-0.18,1.7) -- (0.18,1.7);
+      \draw (-0.18,0.3) -- (0.18,0.3);
+      \draw[dashed] (0.2,0.3) -- (3.5,0.3);
+      \draw[sketch accent,domain=0.5:3.5,samples=40] plot (\x,{0.3+2*exp(-\x)});
+      \foreach \x in {0.8,1.8,2.8} {
+        \node[sketch point] at (\x,{0.3+2*exp(-\x)}) {};
+      }
+      \begin{scope}[xshift=5cm]
+        \draw[->,>=latex] (-0.3,0) -- (3.8,0);
+        \draw[->,>=latex] (0,-0.2) -- (0,2.1);
+        \draw (-0.18,0.3) -- (0.18,0.3);
+        \draw (-0.18,1.7) -- (3.5,1.7) node[right] {$\sup S$};
+        \draw[sketch accent,domain=0:3.5,samples=40] plot (\x,{1.7-1.4*exp(-1.5*\x)});
+        \foreach \x in {0.5,1.5,2.5} {
+          \node[sketch point] at (\x,{1.7-1.4*exp(-1.5*\x)}) {};
+        }
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{thinking}
+
+\begin{proof}[Proof of Theorem~\ref{thm:monotone-convergence}]
+  Assume $S_n$ increasing.\\
+  Let $S=\{S_n\mid n\in\N\}$.
+  \[
+    S_n\text{ bounded and in }\R\implies\exists\sup S.
+  \]
+  WTS $S_n\to\sup S$.\\
+  WTS $N$, $n>N\implies\abs{S_n-\sup S}<\varepsilon$.
+
+  Let $\varepsilon>0$.\\
+  By definition of $\sup S$, $\sup S-\varepsilon$ is not an upper bound of $S$.
+  \[
+    \exists u\in S\text{ s.t. }\sup S-\varepsilon<u
+    \qquad\text{(negation of upper bound).}
+  \]
+  Let $N$ s.t.\ $u=S_N$.\\
+  For $n>N$, since $(S_n)$ increasing,
+  \[
+    \sup S-\varepsilon<S_N\le S_n.
+  \]
+  Also $S_n\le\sup S<\sup S+\varepsilon$.
+  \begin{gather*}
+    \sup S-\varepsilon<S_n<\sup S+\varepsilon,\\
+    \abs{S_n-\sup S}<\varepsilon.
+  \end{gather*}
+  For $(S_n)$ decreasing, apply previous argument to $(-S_n)$.
+\end{proof}
+
+\subsubsection{Cauchy Sequences}
+
+\begin{definition}{Cauchy Sequence}{cauchy-sequence}
+  $(S_n)$ is Cauchy $\iff$
+  \[
+    \forall\varepsilon>0,\quad\exists N\in\N\text{ s.t. }
+    n,m>N\implies\abs{S_n-S_m}<\varepsilon.
+  \]
+\end{definition}
+
+\begin{thinking}[Intuition]
+  As we go far in the sequence,\\
+  the terms are ``bunching up'': $\abs{S_n-S_m}$ becomes small.
+\end{thinking}
+
+\begin{theorem}{Cauchy Criterion}{cauchy-criterion}
+  $(S_n)$ converges $\iff(S_n)$ is Cauchy.
+\end{theorem}
+
+Upshot: to prove convergence, only need Cauchy.
+
+\begin{proof}[$(\Rightarrow)$]
+  For $S_n\to t$:\\
+  WTS $\forall\varepsilon>0$, $\exists N\in\N$ s.t.\ $m,n>N\implies\abs{S_n-S_m}<\varepsilon$.
+
+  Let $\varepsilon>0$ be arbitrary. Choose $N$ s.t.
+  \[
+    n>N\implies\abs{S_n-t}<\frac\varepsilon2.
+  \]
+  For $m,n>N$,
+  \begin{align*}
+    \abs{S_n-S_m} & =\abs{(S_n-t)-(S_m-t)}     \\
+                  & \le\abs{S_n-t}+\abs{S_m-t}
+    <\frac\varepsilon2+\frac\varepsilon2=\varepsilon.\qedhere
+  \end{align*}
+\end{proof}
+
+$(\Leftarrow)$: hard!
+
+\subsection{Limit Superior and Limit Inferior}
+
+\begin{definition}{Limit Superior and Limit Inferior}{limsup-liminf}
+  Auxiliary definition: $(S_n)$ a sequence.
+  \begin{enumerate}[label=(\roman*)]
+    \item Define $\displaystyle\limsup S_n:=\lim_{N\to\infty}\bigl(\sup\{S_n\mid n>N\}\bigr)$.
+    \item Define $\displaystyle\liminf S_n:=\lim_{N\to\infty}\bigl(\inf\{S_n\mid n>N\}\bigr)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{thinking}[Intuition]
+  Limit of $t_N=\sup\{S_n\mid n>N\}$:
+  \[
+    \limsup S_n=\lim t_N.
+  \]
+\end{thinking}
+
+\begin{example}
+  \[
+    S_n=\frac{(-1)^n}{n}+(-1)^n
+    \quad\text{or}\quad (-1)^n\left(1+\frac1n\right).
+  \]
+  \begin{center}
+    \begin{tikzpicture}[x=0.85cm,y=1.05cm]
+      \draw[->,>=latex] (-0.4,0) -- (6.8,0) node[right] {$n$};
+      \draw[->,>=latex] (0,-2.35) -- (0,1.95) node[above] {$S_n$};
+      \foreach \y in {-2,-1,1} {
+        \draw (0.08,\y) -- (-0.08,\y) node[left] {$\y$};
+        \draw[dashed,gray] (0.15,\y) -- (6.5,\y);
+      }
+      \foreach \n in {1,...,6} {
+        \draw (\n,0.08) -- (\n,-0.08) node[below] {$\n$};
+        \node[sketch point] at (\n,{(-1)^\n*(1+1/\n)}) {};
+      }
+    \end{tikzpicture}
+  \end{center}
+  \[
+    \limsup S_n=1,\qquad\liminf S_n=-1.
+  \]
+\end{example}
+
+\begin{example}
+  $S_n=n$. $\limsup S_n$ does not exist.
+\end{example}
+
+\begin{theorem}{Existence of Limit Superior and Limit Inferior}{bounded-limsup-liminf}
+  $(S_n)$ bounded $\implies\limsup S_n$ and $\liminf S_n$ exist.
+\end{theorem}
+
+\begin{proof}[Proof that $\limsup$ exists]
+  Let $t_N=\sup\{S_n\mid n>N\}$. WTS $\exists\lim_{N\to\infty}t_N$.
+
+  Use the monotone convergence theorem (Theorem~\ref{thm:monotone-convergence}):
+  WTS $t_N$ bounded and monotone.
+  \begin{gather*}
+    S_n\text{ bounded}:\quad\exists M>0\text{ s.t. }\abs{S_n}<M.\\
+    \text{So }t_N=\sup\{S_n\mid n>N\}\le M.\\
+    \text{Similarly, }t_N\ge-M.\\
+    \implies\abs{t_N}\le M.
+  \end{gather*}
+  $t_N$ monotone (decreasing), because
+  \[
+    \{S_n\mid n>N+1\}\subseteq\{S_n\mid n>N\}.
+  \]
+  \[
+    t_{N+1}=\sup\{S_n\mid n>N+1\}
+    \le\sup\{S_n\mid n>N\}=t_N.
+  \]
+  Note: $A\subseteq B\implies\sup A\le\sup B$.
+\end{proof}
+
+\begin{theorem}{Convergence and Limit Superior/Inferior}{convergence-limsup-liminf}
+  For sequence $(S_n)$:
+  \begin{gather*}
+    \exists\lim S_n\implies\limsup S_n=\liminf S_n=\lim S_n.\\
+    \limsup S_n=\liminf S_n\in\R\implies\exists\lim S_n\\
+    \text{and }\lim S_n=\limsup S_n=\liminf S_n.
+  \end{gather*}
+\end{theorem}
+
+\begin{theorem}{Lemmas for Convergence}{limsup-convergence-lemmas}
+  \begin{enumerate}[label=(\roman*)]
+    \item Assume $\lim S_n=p$. Then $\limsup S_n\le p$.
+    \item $\limsup S_n=\liminf S_n\in\R\implies\exists\lim S_n$,
+          and $\limsup S_n=\liminf S_n=\lim S_n$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of (i)]
+  For $S_n\to p$, WTS
+  \[
+    \limsup S_n\le p,\qquad\liminf S_n\ge p.
+  \]
+  To show $\limsup S_n\le p$, let $\varepsilon>0$. WTS
+  \[
+    \limsup S_n\le p+\varepsilon.
+  \]
+  Since $S_n\to p$, $\exists M\in\N$ s.t.
+  \[
+    n>M\implies\abs{S_n-p}<\varepsilon.
+  \]
+  (Note $n>M\implies S_n<p+\varepsilon$.)\\
+  Note that $p+\varepsilon$ is an upper bound for $\{S_n\mid n>M\}$.
+  \[
+    \implies\underbrace{t_M}_{\text{least upper bound}}
+    \le\underbrace{p+\varepsilon}_{\text{upper bound}}.
+  \]
+  Key: $(t_N)$ decreasing $\implies t_N\le p+\varepsilon$ for $\forall N\ge M$.
+  \[
+    \text{By now: }\lim t_N\le p+\varepsilon
+    \iff\limsup S_n\le p+\varepsilon.
+  \]
+  Showing $\liminf S_n\ge p$: similar.
+\end{proof}
+
+\begin{proof}[Proof of (ii)]
+  \[
+    \limsup S_n=\liminf S_n
+    \implies\limsup S_n=\liminf S_n=\lim S_n.
+  \]
+  Let
+  \begin{align*}
+    a_N & =\inf\{S_n\mid n\ge N\}, \\
+    b_N & =\sup\{S_n\mid n\ge N\}.
+  \end{align*}
+  \[
+    \implies a_N\le S_N\le b_N,\qquad\forall N\in\N.
+  \]
+  But
+  \[
+    \lim a_N=\liminf S_n=\limsup S_n=\lim b_N.
+  \]
+  By squeeze theorem,
+  \[
+    \lim S_N=\lim a_N=\lim b_N.\qedhere
+  \]
+\end{proof}
+
+\begin{theorem}{Cauchy Sequences Are Bounded}{cauchy-sequence-bounded}
+  $S_n$ Cauchy $\implies S_n$ bounded (finally).
+\end{theorem}
+
+\noindent Sketch: show $\limsup=\liminf$.
+
+\medskip
+\noindent\textit{Proof:}
