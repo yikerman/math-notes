@@ -157,13 +157,13 @@
   \]
 \end{theorem}
 
-\begin{theorem}{Lemma: Arbitrarily Small Distance}{arbitrarily-small-distance}
+\begin{lemma}{Arbitrarily Small Distance}{arbitrarily-small-distance}
   For $a,b\in\R$,
   \[
     \bigl(\abs{a-b}<\varepsilon\quad\forall\varepsilon>0\bigr)
     \iff a=b.
   \]
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
   $(\Leftarrow)$ Trivial.
@@ -187,7 +187,7 @@
             n>N_2\implies\abs{S_n-t_2}<\varepsilon_2.
           \]
   \end{enumerate}
-  WTS, by Lemma~\ref{thm:arbitrarily-small-distance},
+  WTS, by Lemma~\ref{lem:arbitrarily-small-distance},
   \[
     t_1=t_2\iff\forall\varepsilon>0,\quad\abs{t_1-t_2}<\varepsilon.
   \]
@@ -369,15 +369,15 @@
   \end{flushleft}
 \end{thinking}
 
-\begin{theorem}{Lemma: Lower Bounds Pass to the Limit}{limit-lower-bound}
+\begin{lemma}{Lower Bounds Pass to the Limit}{limit-lower-bound}
   If $\lim_{n\to\infty}S_n=t$ and $\exists r\in\R$ s.t.\ $S_n\ge r\ \forall n$,
   then $t\ge r$.
-\end{theorem}
+\end{lemma}
 
 If every term is bounded below, the limit should not be smaller.
 
 \begin{proof}[Formal proof of Theorem~\ref{thm:limit-square-roots}]
-  By Lemma~\ref{thm:limit-lower-bound}, $t\ge0$.\\
+  By Lemma~\ref{lem:limit-lower-bound}, $t\ge0$.\\
   Two cases: $t=0$ and $t>0$.
   \begin{enumerate}
     \item $t=0$. Let $\varepsilon$ be arbitrary $>0$.\\
@@ -527,13 +527,13 @@ If every term is bounded below, the limit should not be smaller.
     {\underbrace{\abs{S_np}}_{\text{???}}}.
   \]
 
-  \begin{theorem}{Lemma: Bounded Away from Zero}{sequence-away-from-zero}
+  \begin{lemma}{Bounded Away from Zero}{sequence-away-from-zero}
     $\abs{S_n}\abs p$ bounded below by a positive number.\\
     Formally, for $S_n\ne0$ and $\lim S_n=p\ne0$,
     \[
       \inf\{\abs{S_n}\mid n\in\N\}>0.
     \]
-  \end{theorem}
+  \end{lemma}
   \begin{thinking}
     Important in a lot of proofs.\\
     Let $S_n\to p\ne0$.
@@ -591,13 +591,13 @@ If every term is bounded below, the limit should not be smaller.
 
 \noindent Proof of (ii) without undefined-yet functions:
 
-\begin{theorem}{Lemma: Binomial Theorem}{binomial-theorem}
+\begin{lemma}{Binomial Theorem}{binomial-theorem}
   $\forall a,b\in\R$, $n\in\N$,
   \[
     (a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k,
     \qquad\text{where }\binom nk=\frac{n!}{k!(n-k)!}.
   \]
-\end{theorem}
+\end{lemma}
 \begin{proof}
   Trivial.
 \end{proof}
@@ -608,7 +608,7 @@ If every term is bounded below, the limit should not be smaller.
   \[
     \abs a^n=\frac1{(1+b)^n}.
   \]
-  By the binomial theorem (Theorem~\ref{thm:binomial-theorem}),
+  By the binomial theorem (Lemma~\ref{lem:binomial-theorem}),
   \[
     (1+b)^n=\sum_{k=0}^n\binom nk1^{n-k}b^k
     \ge\binom n1 1^{n-1}b^1=nb.
