@@ -840,15 +840,15 @@ $(\Leftarrow)$: hard!
   \end{gather*}
 \end{theorem}
 
-\begin{theorem}{Lemmas for Convergence}{limsup-convergence-lemmas}
+\begin{lemma}{Convergence via Limit Superior and Inferior}{limsup-convergence-lemmas}
   \begin{enumerate}[label=(\roman*)]
     \item Assume $\lim S_n=p$. Then $\limsup S_n\le p$.
     \item $\limsup S_n=\liminf S_n\in\R\implies\exists\lim S_n$,
           and $\limsup S_n=\liminf S_n=\lim S_n$.
   \end{enumerate}
-\end{theorem}
+\end{lemma}
 
-\begin{proof}[Proof of (i)]
+\begin{proof}[Proof of Lemma~\ref{lem:limsup-convergence-lemmas}(i)]
   For $S_n\to p$, WTS
   \[
     \limsup S_n\le p,\qquad\liminf S_n\ge p.
@@ -875,7 +875,7 @@ $(\Leftarrow)$: hard!
   Showing $\liminf S_n\ge p$: similar.
 \end{proof}
 
-\begin{proof}[Proof of (ii)]
+\begin{proof}[Proof of Lemma~\ref{lem:limsup-convergence-lemmas}(ii)]
   \[
     \limsup S_n=\liminf S_n
     \implies\limsup S_n=\liminf S_n=\lim S_n.
