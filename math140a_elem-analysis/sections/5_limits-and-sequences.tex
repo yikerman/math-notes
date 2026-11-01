@@ -899,10 +899,129 @@ $(\Leftarrow)$: hard!
 \end{proof}
 
 \begin{theorem}{Cauchy Sequences Are Bounded}{cauchy-sequence-bounded}
-  $S_n$ Cauchy $\implies S_n$ bounded (finally).
+  $S_n$ Cauchy $\implies S_n$ bounded.
 \end{theorem}
 
 \noindent Sketch: show $\limsup=\liminf$.
 
-\medskip
-\noindent\textit{Proof:}
+\begin{theorem}{Cauchy Sequences Converge}{cauchy-sequence-converges}
+  Cauchy $\implies$ convergence.
+\end{theorem}
+
+\begin{proof}
+  $S_n$ Cauchy $\implies S_n$ bounded
+  $\implies\exists\limsup S_n,\liminf S_n$.
+
+  Since $\limsup S_n\ge\liminf S_n$,\\
+  enough to show $\limsup S_n\le\liminf S_n$\\
+  (to make $\limsup S_n=\liminf S_n$).
+  \[
+    \text{ETS: }\forall\varepsilon>0,\quad
+    \limsup S_n\le\liminf S_n+\varepsilon.
+  \]
+  Let $\varepsilon>0$.
+  \begin{align*}
+    a_N & =\sup\{S_n\mid n>N\}, \\
+    b_N & =\inf\{S_n\mid n>N\}.
+  \end{align*}
+  \[
+    \implies\limsup S_n=\lim a_N,\qquad
+    \liminf S_n=\lim b_N
+    \quad\text{(by Definition~\ref{def:limsup-liminf}).}
+  \]
+  \[
+    (S_n)\text{ Cauchy}\implies\exists N_0,\quad
+    m,n>N_0\implies\abs{S_n-S_m}<\varepsilon.
+  \]
+  In particular, $n,m>N_0\implies S_n<S_m+\varepsilon$.\\
+  Or in other words,
+  \[
+    m>N_0\implies S_m+\varepsilon\text{ is an upper bound for }
+    \{S_n\mid n>N_0\}.
+  \]
+  \[
+    a_{N_0}=\sup\{S_n\mid n>N_0\}\le S_m+\varepsilon,
+    \qquad\forall m>N_0.
+  \]
+  \begin{align*}
+    \implies a_{N_0}-\varepsilon\le S_m
+     & \iff a_{N_0}-\varepsilon\text{ is a lower bound for }
+    \{S_m\mid m>N_0\},                                       \\
+    \implies a_{N_0}-\varepsilon
+     & \le\inf\{S_m\mid m>N_0\}=b_{N_0}.
+  \end{align*}
+  Since $(a_N)$ decreasing, $(b_N)$ increasing,
+  \[
+    \implies\limsup S_n\le a_{N_0}\le b_{N_0}+\varepsilon
+    \le\liminf S_n+\varepsilon.\qedhere
+  \]
+\end{proof}
+
+\subsection{Subsequences}
+
+\begin{definition}{Subsequence}{subsequence}
+  Let $(S_n)_{n\in\N}$ be a sequence.
+
+  A subsequence is $(t_k)_{k\in\N}$ s.t.\ $\forall k\in\N$,
+  $\exists n_k\in\N$ s.t.
+  \begin{enumerate}[label=(\roman*)]
+    \item $t_k=S_{n_k}$,
+    \item $\forall k,\quad n_k<n_{k+1}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{thinking}[Intuition]
+  $(t_k)$ has terms of $(S_n)$ in the same order.\\
+  $n$ is a remap of indices: $\forall k\in\N$ in $t$, $k\mapsto n_k$ for $S$.
+\end{thinking}
+
+\begin{example}
+  $S_n=\dfrac1n$; $t_k=\dfrac1{2k}$ with $n_k=2k$ is a subsequence of $(S_n)$.
+  \begin{center}
+    \begin{tikzpicture}
+      \node at (-2,1.2) {$(S_n):$};
+      \node at (-1,1.2) {$\bigl(1,$};
+      \node (s2) at (0,1.2) {$\frac12,$};
+      \node at (1,1.2) {$\frac13,$};
+      \node (s4) at (2,1.2) {$\frac14,$};
+      \node at (3,1.2) {$\ldots\bigr)$};
+      \node at (-2,0) {$(t_k):$};
+      \node at (-0.55,0) {$\bigl($};
+      \node (t1) at (0,0) {$\frac12,$};
+      \node (t2) at (2,0) {$\frac14,$};
+      \node at (3,0) {$\frac16,$};
+      \node at (4,0) {$\ldots\bigr)$};
+      \draw[->,>=latex] (t1.north) -- (s2.south);
+      \draw[->,>=latex] (t2.north) -- (s4.south);
+    \end{tikzpicture}
+  \end{center}
+  \begin{align*}
+    \left(1,\frac13,\frac12,\frac15,\ldots\right)
+     & : \text{wrong order, not a subsequence.} \\
+    \left(1,1,\frac12,\frac12,\ldots\right)
+     & : \text{repeat term, not a subsequence.}
+  \end{align*}
+\end{example}
+
+Next big goal: $\lim(S_n)$ and $\lim(t_k)$?
+
+\begin{theorem}{Limit of a Subsequence}{subsequence-limit}
+  $(t_k)$ a subsequence of $(S_n)$.
+  \[
+    (S_n)\text{ converges}\implies(t_k)\text{ also converges}
+    \quad\text{and}\quad\lim S_n=\lim t_k.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Suppose $\lim S_n=r$.\\
+  Let $\varepsilon>0$.
+  \[
+    \exists N\text{ s.t. }n>N\implies\abs{S_n-r}<\varepsilon.
+  \]
+  Suppose $k>N$. We know $\exists n_k$ s.t.\ $t_k=S_{n_k}$,
+  where $n_k\ge k>N$.
+  \[
+    \abs{t_k-r}=\abs{S_{n_k}-r}<\varepsilon.\qedhere
+  \]
+\end{proof}
