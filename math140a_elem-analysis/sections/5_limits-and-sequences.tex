@@ -1020,3 +1020,244 @@ Next big goal: $\lim(S_n)$ and $\lim(t_k)$?
     \abs{t_k-r}=\abs{S_{n_k}-r}<\varepsilon.\qedhere
   \]
 \end{proof}
+
+What if $(S_n)$ does not converge?
+
+\begin{example}
+  \begin{enumerate}
+    \item For $S_n=n$, $(S_n)$ has no convergent subsequences.
+    \item For $S_n=(-1)^n\left(1+\dfrac1n\right)$,
+          \begin{align*}
+            t_k & =S_{2k}=1+\frac1{2k}\to1,                    \\
+            r_k & =S_{2k+1}=-\left(1+\frac1{2k+1}\right)\to-1.
+          \end{align*}
+  \end{enumerate}
+\end{example}
+
+\begin{theorem}{Bolzano--Weierstrass Theorem}{bolzano-weierstrass}
+  $(S_n)$ bounded $\implies\exists$ convergent subsequence.
+\end{theorem}
+
+Enough to show:
+\begin{lemma}{Monotone Subsequence}{monotone-subsequence}
+  Any $(S_n)$ has a monotone subsequence.
+\end{lemma}
+
+\begin{definition}{Dominant Term}{dominant-term}
+  A term $S_n$ of $(S_n)$ is dominant $:\iff$
+  \[
+    m>n\implies S_m<S_n.
+  \]
+  ($S_n>$ any term after it.)
+\end{definition}
+
+\begin{proof}[Proof of Lemma~\ref{lem:monotone-subsequence}]
+  \begin{enumerate}
+    \item $(S_n)$ has infinitely many dominant terms.
+          \begin{center}
+            \begin{tikzpicture}[x=0.9cm,y=0.8cm]
+          \draw[->,>=latex] (0,0) -- (5.5,0) node[right] {$n$};
+          \draw[->,>=latex] (0,0) -- (0,3) node[above] {$S_n$};
+          \foreach \x/\y in {0.5/2.6,1/1.65,1.5/1.95,2/1.2,2.5/0.85,3/1.4,3.5/0.6,4/0.4,4.5/0.2} {
+            \fill (\x,\y) circle (1.5pt);
+          }
+          \foreach \x/\y in {0.5/2.6,1.5/1.95,3/1.4} {
+            \draw[sketch accent] (\x,\y) circle (0.16);
+          }
+          \node at (5,0.2) {$\cdots$};
+        \end{tikzpicture}
+          \end{center}
+          Let $(t_k)$ be any subsequence consisting of dominant terms.\\
+          $(t_k)$ is decreasing.
+
+    \item $(S_n)$ has finitely many dominant terms.
+          \[
+            \exists N\in\N\text{ s.t. }n>N\implies S_n\text{ is not dominant}.
+          \]
+          Let $n_1=N+1$, $t_1=S_{N+1}$. \hfill Base case
+
+          By $S_{N+1}$ not dominant,
+          \[
+            \exists n_2>N+1\text{ s.t. }S_{n_2}\ge S_{N+1}.
+          \]
+          Let $t_2=S_{n_2}$.
+
+          Formally, can construct $t_k$ inductively:\\
+          Assume $t_1,\ldots,t_k$ defined.\\
+          $t_k=S_{n_k}$ is not dominant, so
+          \[
+            \exists n_{k+1}>n_k\text{ s.t. }S_{n_{k+1}}\ge S_{n_k}=t_k.
+          \]
+          \[
+            t_{k+1}:=S_{n_{k+1}}\ge t_k.
+          \]
+          $(t_k)$ is increasing.
+  \end{enumerate}
+  Cases 1 and 2 are exhaustive.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:bolzano-weierstrass}]
+  By Lemma~\ref{lem:monotone-subsequence}, can find $(t_k)$ monotone,\\
+  and $(t_k)$ is bounded because $(S_n)$ is bounded.\\
+  Thus $(t_k)$ converges by Theorem~\ref{thm:monotone-convergence}.
+\end{proof}
+
+If $(S_n)$ converges, how many different limits of subsequences can it have?
+
+\begin{theorem}{Criterion for a Subsequential Limit}{subsequential-limit-criterion}
+  Let $(S_n)$ be a sequence, $r\in\R$.
+  \begin{gather*}
+    \exists\text{ subsequence }(t_k)\text{ s.t. }t_k\to r\\
+    \iff\forall\varepsilon>0,\quad
+    \{n\in\N\mid\abs{S_n-r}<\varepsilon\}\text{ is infinite}.
+  \end{gather*}
+\end{theorem}
+
+\begin{thinking}
+  \begin{center}
+    \begin{tikzpicture}[x=0.9cm,y=0.9cm]
+      \draw[->,>=latex] (0,0) -- (5.6,0) node[right] {$n$};
+      \draw[->,>=latex] (0,0) -- (0,3.4) node[above] {$S_n$};
+      \draw (0.5,1.8) -- (5,1.8) node[right] {$r$};
+      \draw (0.5,1.1) -- (4.8,1.1);
+      \draw (0.5,2.5) -- (4.8,2.5);
+      \draw[<->,>=latex] (4.9,1.1) -- (4.9,1.8)
+        node[midway,right] {$\varepsilon$};
+      \draw[<->,>=latex] (4.9,1.8) -- (4.9,2.5)
+        node[midway,right] {$\varepsilon$};
+      \foreach \x/\y in {1.3/3,2.3/2.8,2.9/3.05,3.7/2.7,4.2/3.1} {
+        \fill (\x,\y) circle (1.5pt);
+      }
+      \foreach \x/\y in {1.8/2.1,3.2/2.05,4.3/2.15} {
+        \node[orange!75!black] at (\x,\y) {$\times$};
+      }
+      \node at (4.7,1.9) {$\cdots$};
+      \node[align=left,right] at (6,1.8)
+        {Infinitely many $\times$ in window,\\for arbitrarily small $\varepsilon$ window.};
+    \end{tikzpicture}
+  \end{center}
+\end{thinking}
+
+\begin{proof}[$(\Leftarrow)$]
+  Suppose $\forall\varepsilon>0$, $\{n\in\N\mid\abs{S_n-r}<\varepsilon\}$ is infinite.\\
+  Build $(t_k)$ by induction:
+
+  Let $\varepsilon=1$. $\{n\in\N\mid\abs{S_n-r}<1\}$ is infinite.\\
+  Pick some $n_1$ in this set; let $t_1=S_{n_1}$. \hfill Base case
+
+  Suppose $t_1,\ldots,t_k$ have been chosen s.t.
+  \[
+    \abs{t_m-r}<\frac1m,\qquad\forall\,1\le m\le k.
+  \]
+  Then $\left\{n\in\N\mid\abs{S_n-r}<\dfrac1{k+1}\right\}$ is infinite,
+  \[
+    \implies\exists n_{k+1}>n_k\text{ s.t. }
+    \abs{S_{n_{k+1}}-r}<\frac1{k+1}.
+  \]
+  Let $t_{k+1}=S_{n_{k+1}}$. Then
+  \[
+    r-\frac1k<t_k<r+\frac1k,\qquad\forall k\in\N.
+  \]
+  By squeeze, $t_k\to r$.
+\end{proof}
+
+\begin{example}[Fun consequence]
+  \begin{center}
+    \begin{tikzpicture}[x=1.15cm,y=1.05cm,>=latex]
+      \foreach \x/\v in {-3/-3,-2/-2,-1/-1,0/0,1/1,2/2,3/3} {
+        \node (a\x) at (\x,0) {$\v$};
+      }
+      \foreach \x in {-3,-2,-1,1,2,3} {
+        \node (b\x) at (\x,-1) {$\frac{\x}{2}$};
+        \node (c\x) at (\x,-2) {$\frac{\x}{3}$};
+      }
+      \node (b0) at (0,-1) {$0$};
+      \node (c0) at (0,-2) {$0$};
+      \node[above] at (a0.north) {$S_n$};
+      \foreach \a/\b in {a0/a1,a1/b1,b1/b0,b0/b-1,b-1/a-1,a-1/a-2,a-2/b-2,b-2/c-2,c-2/c-1,c-1/c0,c0/c1,c1/c2,c2/b2,b2/a2,a2/a3,a3/b3,b3/c3} {
+        \draw[->] (\a) -- (\b);
+      }
+      \node (d3) at (3,-2.8) {$\vdots$};
+      \node (d-3) at (-3,-2.8) {$\vdots$};
+      \node at (0,-2.8) {$\vdots$};
+      \draw[->] (c3) -- (d3);
+      \draw[->] (d-3) -- (c-3);
+      \draw[->] (c-3) -- (b-3);
+      \draw[->] (b-3) -- (a-3);
+      \draw[->] (a-3) -- (-3.8,0);
+    \end{tikzpicture}
+  \end{center}
+  Every $q\in\Q$ is in $(S_n)$.\\
+  Have a subsequence converging to $\forall r\in\R$.
+\end{example}
+
+\newpage
+\begin{theorem}{Limit Superior and Inferior as Subsequential Limits}{limsup-liminf-subsequences}
+  $(S_n)$ bounded $\implies\exists$ subsequences $(t_k)$, $(r_k)$ s.t.
+  \[
+    t_k\to\limsup S_n,\qquad r_k\to\liminf S_n.
+  \]
+\end{theorem}
+
+\begin{proof}[Proof of the $\limsup$ subsequence]
+  Note: we know $\forall$ sequences, there is a monotone subsequence.
+
+  By Theorem~\ref{thm:subsequential-limit-criterion}, ETS
+  \[
+    \forall\varepsilon>0,\quad
+    \{n\in\N\mid\abs{S_n-\limsup S_n}<\varepsilon\}\text{ is infinite}.
+  \]
+  For $\forall\varepsilon>0$, since
+  \[
+    \limsup S_n=\lim_{N\to\infty}\sup\{S_n\mid n>N\},
+    \qquad t_N=\sup\{S_n\mid n>N\},
+  \]
+  \[
+    \exists N_0\in\N\text{ s.t. }N\ge N_0
+    \implies\abs{t_N-\limsup S_n}<\varepsilon.
+  \]
+  \[
+    S_n<\limsup S_n+\varepsilon,\qquad\forall n>N_0.
+  \]
+  Suppose for contradiction that
+  $\{n\in\N\mid\abs{S_n-\limsup S_n}<\varepsilon\}$ is finite.
+
+  It must be that $\exists N_1\ge N_0$ s.t.
+  \[
+    S_n\le\limsup S_n-\varepsilon,\qquad\forall n>N_1.
+  \]
+
+  \begin{thinking}
+    \begin{center}
+      \begin{tikzpicture}[x=1cm,y=1cm,>=latex]
+      \draw[number line] (-5,0) -- (4.6,0);
+      \node at (-1.8,0) {\large$( $};
+      \node at (1.8,0) {\large$ )$};
+      \draw (0,-0.08) -- (0,0.08);
+      \node[above left] at (-1.8,0.25) {$\limsup S_n-\varepsilon$};
+      \node[above] at (0,0.25) {$\limsup S_n$};
+      \node[above right] at (1.8,0.25) {$\limsup S_n+\varepsilon$};
+      \draw[decorate,decoration={brace,mirror,amplitude=5pt}]
+        (-1.7,-0.3) -- (1.7,-0.3)
+        node[midway,below=7pt] {Finitely many $S_n$};
+      \draw[decorate,decoration={brace,mirror,amplitude=5pt}]
+        (-4.7,-1.15) -- (1.8,-1.15)
+        node[midway,below=7pt] {All but finitely many $S_n$};
+      \draw[decorate,decoration={brace,mirror,amplitude=5pt}]
+        (-4.7,-2.1) -- (-1.8,-2.1)
+        node[midway,below=7pt,align=center]
+        {All but finitely many $S_n$\\must be here};
+      \node[align=left,anchor=west] (upper) at (0.3,-2.7)
+        {$\limsup S_n-\varepsilon$ is eventually\\an upper bound of the sequence,\\but it cannot be.};
+      \draw[->] (upper.south west) -- (0,-3.5) -- (-5.2,-3.5)
+        -- (-5.2,-0.3) -- (-4.8,-0.05);
+    \end{tikzpicture}
+    \end{center}
+  \end{thinking}
+
+  Since $n>N_1\implies S_n\le\limsup S_n-\varepsilon$,
+  \[
+    \implies\limsup S_n\le\limsup S_n-\varepsilon.
+  \]
+  Contradiction.
+\end{proof}
