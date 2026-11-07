@@ -1261,3 +1261,123 @@ If $(S_n)$ converges, how many different limits of subsequences can it have?
   \]
   Contradiction.
 \end{proof}
+
+\subsection{Series}
+
+\begin{definition}{Sum of a Series}{series-sum}
+  For seq. $(a_n)$ and $r\in\R$,
+  \[
+    \sum_{n=1}^{\infty}a_n=r
+    \iff \lim_{n\to\infty}\left(\sum_{k=1}^{n}a_k\right)=r.
+  \]
+\end{definition}
+
+Other perspective:
+\[
+  \left(a_1,\ a_1+a_2,\ \ldots,\ \sum_{k=1}^{n}a_k,\ \ldots\right)
+  \quad\text{seq. conv. to }r.
+\]
+
+\begin{definition}{Infinite Sum}{series-infinite-sum}
+  \[
+    \sum_{n=1}^{\infty}a_n=+\infty
+    \iff \lim_{n\to\infty}\sum_{k=1}^{n}a_k=+\infty.
+  \]
+  Similarly for $-\infty$.
+\end{definition}
+
+Shorthand:
+\[
+  \sum a_n\text{ converges}
+  \iff \sum_{n=1}^{\infty}a_n=r\text{ for some }r\in\R.
+\]
+
+Question: For $(a_n)$, $\sum a_n$ conv.?
+
+\begin{theorem}{Necessary Condition for Series Convergence}{series-terms-zero}
+  \[
+    \sum a_n\text{ converges}\implies a_n\to0.
+  \]
+\end{theorem}
+
+\begin{example}
+  $\sum (1+\frac1n)$ does not converge.
+
+  Proof: By Theorem~\ref{thm:series-terms-zero},
+  $1+\frac1n\to1\implies$ does not converge.\\
+  (Trivial application of necessary condition.)
+\end{example}
+
+\begin{proof}[Proof of Theorem~\ref{thm:series-terms-zero}]
+  Let $S_n=\sum_{k=1}^{n}a_k$. $S_n$ conv.
+
+  WTS $a_n\to0$.
+
+  Let $\varepsilon>0$. WTS $\exists N,\ n>N\implies\abs{a_n}<\varepsilon$.
+  \[
+    S_n\text{ conv.}\iff S_n\text{ Cauchy}.
+  \]
+  \[
+    \exists N,\quad m,n>N\implies\abs{S_n-S_m}<\varepsilon.
+  \]
+  For $n>m$, observe (more generalized)
+  \[
+    \abs{S_n-S_m}
+    =\left|\sum_{k=1}^{n}a_k-\sum_{k=1}^{m}a_k\right|
+    =\left|\sum_{k=m+1}^{n}a_k\right|.
+  \]
+  For $n>N+1>N$,
+  \[
+    \abs{a_n}=\abs{S_n-S_{n-1}}<\varepsilon.
+  \]
+\end{proof}
+
+\subsubsection{Geometric Series}
+
+For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
+
+\begin{theorem}{Geometric Series}{geometric-series}
+  \begin{enumerate}[label=(\roman*)]
+    \item $\abs{r}<1\implies\sum_{n=0}^{\infty}ar^n$ converges to $\frac{a}{1-r}$.
+    \item $\abs{r}\ge1\implies\sum_{n=0}^{\infty}ar^n$ does not converge.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}[Easy one: proof of (ii)]
+  WTS $ar^n\not\to0$.\\
+  Easy to show.
+\end{proof}
+
+\begin{proof}[Harder one: proof of (i)]
+  Suppose $\abs{r}<1$.
+
+  ETS:
+  \[
+    \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
+  \]
+  By
+  \[
+    \lim_{n\to\infty}a\frac{1-r^{n+1}}{1-r}
+    =a\frac{1-\lim_{n\to\infty}r^{n+1}}{1-r}
+    =a\frac{1}{1-r}.
+  \]
+  WTS:
+  \[
+    \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
+  \]
+  Observe that
+  \[
+    \begin{aligned}
+      (1-r)\sum_{k=0}^{n}ar^k
+       & =\left(\sum_{k=0}^{n}ar^k\right)
+      -\left(\sum_{k=0}^{n}ar^{k+1}\right) \\
+       & =a-ar^{n+1}.
+    \end{aligned}
+  \]
+\end{proof}
+
+\begin{theorem}{$p$-Series Test}{p-series-test}
+  \[
+    \sum_{n=1}^{\infty}\frac{1}{n^p}\text{ conv.}\iff p>1.
+  \]
+\end{theorem}
