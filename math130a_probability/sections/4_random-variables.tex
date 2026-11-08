@@ -275,3 +275,195 @@ Till now, only countable sets and discrete random variables.
     \left(\frac{r-\ell}{r}\right)^n.
   \end{align*}
 \end{example}
+
+\subsection{Variance}
+
+\begin{definition}{Variance}{variance}
+  If $X$ is a random variable with finite mean, its variance is
+  \[
+    \operatorname{Var}(X)=E[(X-EX)^2].
+  \]
+\end{definition}
+
+Note: for $p(x)=P(X=x)$,
+\[
+  E[X]=\sum_x xp(x),\qquad E[f(X)]=\sum_x f(x)p(x).
+\]
+For finite second moment,
+\begin{align*}
+  \operatorname{Var}(X) & =E[(X-EX)^2]                                      \\
+                        & =\sum_x(x-EX)^2p(x)                               \\
+                        & =\sum_x\bigl(x^2-2EX\cdot x+(EX)^2\bigr)p(x)      \\
+                        & =\sum_x x^2p(x)-2EX\sum_x xp(x)+(EX)^2\sum_x p(x) \\
+                        & =E[X^2]-2E[X]^2+E[X]^2                            \\
+                        & =E[X^2]-E[X]^2.
+\end{align*}
+
+\begin{example}[Bernoulli Variance]
+  Parameter $p$: probability.
+  \begin{gather*}
+    p(0)=P(X=0)=1-p,\qquad p(1)=P(X=1)=p,\\
+    E[X]=0\cdot(1-p)+1\cdot p=p,\\
+    E[X^2]=0^2\cdot(1-p)+1^2\cdot p=p,\\
+    \operatorname{Var}(X)=E[X^2]-E[X]^2=p-p^2.
+  \end{gather*}
+  \begin{center}
+    \begin{tikzpicture}[x=4cm,y=5cm]
+      \draw[->] (-.08,0)--(1.15,0) node[right] {$p$};
+      \draw[->] (0,-.02)--(0,.34) node[above] {$\operatorname{Var}(X)$};
+      \draw[blue,thick,domain=0:1,samples=60] plot (\x,{\x*(1-\x)});
+      \draw (.5,.012)--(.5,-.012) node[below] {$\frac12$};
+      \draw (1,.012)--(1,-.012) node[below] {$1$};
+      \fill (.5,.25) circle[radius=1.5pt];
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{example}[Discrete Uniform Variance]
+  Uniform distribution on $\{1,2,\ldots,n\}$:
+  \[
+    P(X=j)=\frac1n\qquad\text{for }j=1,2,\ldots,n.
+  \]
+  \begin{align*}
+    E[X]                  & =\sum_{j=1}^n j\cdot\frac1n
+    =\frac1n\frac{n(n+1)}2=\frac{n+1}2,                                 \\
+    E[X^2]                & =\sum_{j=1}^n j^2\cdot\frac1n
+    =\frac1n\frac{n(n+1)(2n+1)}6=\frac{(n+1)(2n+1)}6,                   \\
+    \operatorname{Var}(X) & =E[(X-EX)^2]=E[X^2]-E[X]^2                  \\
+                          & =(n+1)\left(\frac{2n+1}6-\frac{n+1}4\right)
+    =\frac{(n+1)(n-1)}{12}=\frac{n^2-1}{12}.
+  \end{align*}
+\end{example}
+
+\begin{example}[Poisson Variance]
+  Parameter $\lambda$: expected count in a time interval.
+  \[
+    p(n)=P(X=n)=\frac{\lambda^n}{n!}e^{-\lambda}.
+  \]
+  \begin{gather*}
+    E[X]=\sum_{j=0}^{\infty}j\frac{\lambda^j}{j!}e^{-\lambda}
+    =e^{-\lambda}\lambda e^\lambda=\lambda,\\
+    E[X^2]=\sum_{j=0}^{\infty}j^2\frac{\lambda^j}{j!}e^{-\lambda}
+    \qquad\text{(hard?)}
+  \end{gather*}
+  \begin{align*}
+    E[X(X-1)] & =\sum_{j=0}^{\infty}j(j-1)\frac{\lambda^j}{j!}e^{-\lambda}    \\
+              & =e^{-\lambda}\sum_{j=2}^{\infty}\frac{\lambda^j}{(j-2)!}      \\
+              & =\lambda^2e^{-\lambda}\sum_{m=0}^{\infty}\frac{\lambda^m}{m!} \\
+              & =\lambda^2=E[X^2]-E[X].
+  \end{align*}
+  \[
+    E[X^2]=\lambda^2+\lambda,\qquad
+    \operatorname{Var}(X)=E[X^2]-E[X]^2=\lambda.
+  \]
+\end{example}
+
+\begin{example}[Exponential Function of a Poisson Random Variable]
+  Suppose $X$ is a Poisson random variable with parameter $\lambda$ and
+  $f(x)=e^{tx}$ for $t$ constant.
+  \begin{align*}
+    E[e^{tX}] & =\sum_{k=0}^{\infty}e^{tk}\frac{\lambda^k}{k!}e^{-\lambda} \\
+              & =e^{-\lambda}\sum_{k=0}^{\infty}\frac{(\lambda e^t)^k}{k!} \\
+              & =e^{-\lambda}e^{\lambda e^t}=e^{\lambda(e^t-1)}.
+  \end{align*}
+\end{example}
+
+\subsection{Negative Binomial Distribution}
+
+\begin{definition}{Negative Binomial Distribution}{negative-binomial-distribution}
+  Parameters $r\in\{1,2,\ldots\}$ and $p\in(0,1)$.
+  $X$ is the trial of the $r$th success in independent trials with success probability $p$.
+  For $X\sim\operatorname{NBi}(r,p)$,
+  \[
+    P(X=n)=\binom{n-1}{r-1}p^r(1-p)^{n-r},\qquad n=r,r+1,\ldots.
+  \]
+\end{definition}
+
+\[
+  P(X=n)=\underbrace{\binom{n-1}{r-1}p^{r-1}(1-p)^{(n-1)-(r-1)}}_{r-1\text{ successes in the first }n-1\text{ trials}}\,p.
+\]
+\[
+  \underbrace{\underset{1}{\rule{.5cm}{.4pt}}\quad
+    \underset{2}{\rule{.5cm}{.4pt}}\quad\cdots\quad
+    \underset{n-1}{\rule{.5cm}{.4pt}}}_{\text{first }n-1\text{ trials}}
+  \quad\underset{n}{\text{success}}
+\]
+\begin{gather*}
+  E[X]=\frac rp,\\
+  \operatorname{Var}(X)=E[(X-EX)^2]=E[X^2]-E[X]^2
+  =\frac rp\left(\frac{r+1}p-1\right)-\left(\frac rp\right)^2
+  =\frac{r(1-p)}{p^2}.
+\end{gather*}
+
+\subsection{Hypergeometric Distribution}
+
+\begin{definition}{Hypergeometric Distribution}{hypergeometric-distribution}
+  An urn with $m$ white and $N-m$ black balls. Select $n$ balls at random
+  without replacement. $X$: number of white balls selected.
+  \[
+    P(X=k)=\frac{\binom mk\binom{N-m}{n-k}}{\binom Nn},
+    \qquad k=0,\ldots,m,
+  \]
+  with $\binom ab=0$ when $b<0$ or $b>a$.
+\end{definition}
+
+\begin{example}[Coyotes on Campus]
+  Estimate coyotes on campus: $N$.\\
+  Catch and release $m$ coyotes; tag them.\\
+  Later catch $n$ coyotes. Suppose $c$ of these are tagged.
+
+  Let $X=\#$ tagged and caught.
+  \[
+    P(X=i)=\frac{\binom mi\binom{N-m}{n-i}}{\binom Nn}.
+  \]
+  \[
+    \operatorname*{arg\,max}_{N\ge m+n-c}
+    \left\{\frac{\binom{N-m}{n-c}}{\binom Nn}\right\}.
+  \]
+\end{example}
+
+\subsubsection{Hypergeometric Moments}
+
+For $m,n\ge1$ and integer $k\ge1$,
+\begin{align*}
+  E[X^k] & =\sum_{i=0}^m i^kP(X=i)                                       \\
+         & =\sum_{i=0}^m i^k\frac{\binom mi\binom{N-m}{n-i}}{\binom Nn}.
+\end{align*}
+By
+\begin{align*}
+  i\binom mi & =i\frac{m!}{i!(m-i)!}
+  =m\frac{(m-1)!}{(i-1)!((m-1)-(i-1))!}
+  =m\binom{m-1}{i-1},                           \\
+  n\binom Nn & =\frac{N!}{(n-1)!((N-1)-(n-1))!}
+  =N\binom{N-1}{n-1},
+\end{align*}
+\begin{align*}
+  E[X^k] & =\sum_{i=1}^m i^{k-1}
+  \frac{mn\binom{m-1}{i-1}\binom{N-m}{n-i}}{n\binom Nn}             \\
+         & =mn\sum_{i=1}^m i^{k-1}
+  \frac{\binom{m-1}{i-1}\binom{N-m}{n-i}}{N\binom{N-1}{n-1}}        \\
+         & =\frac{mn}N\sum_{i=1}^m i^{k-1}
+  \frac{\binom{m-1}{i-1}\binom{N-m}{(n-1)-(i-1)}}{\binom{N-1}{n-1}} \\
+         & =\frac{mn}N\sum_{j=0}^{m-1}(j+1)^{k-1}
+  \frac{\binom{m-1}j\binom{N-m}{n-1-j}}{\binom{N-1}{n-1}},\qquad j=i-1.
+\end{align*}
+The fraction is hypergeometric with parameters $N-1,m-1,n-1$.
+Let
+\[
+  P(Z=j)=\frac{\binom{m-1}j\binom{N-m}{n-1-j}}{\binom{N-1}{n-1}}.
+\]
+Then
+\[
+  E[X^k]=\frac{mn}N E[(Z+1)^{k-1}].
+\]
+Consider:
+\[
+  E[X]=\frac{mn}N=np\qquad\text{(same as binomial)},\qquad p=\frac mN.
+\]
+For $N>1$,
+\begin{align*}
+  E[X^2]                & =\frac{mn}N E[Z+1]                                \\
+                        & =\frac{mn}N\left(\frac{(m-1)(n-1)}{N-1}+1\right), \\
+  \operatorname{Var}(X) & =E[X^2]-E[X]^2
+  =np(1-p)\left(1-\frac{n-1}{N-1}\right).
+\end{align*}
