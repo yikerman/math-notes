@@ -405,15 +405,15 @@ Not enough eigenvectors? Use elimination.
   \]
   \begin{align*}
     \det
-        \begin{bmatrix}
-          8-\lambda & 9 & 0 \\-6&-7-\lambda&0\\3&3&-1-\lambda
-        \end{bmatrix}
+    \begin{bmatrix}
+      8-\lambda & 9 & 0 \\-6&-7-\lambda&0\\3&3&-1-\lambda
+    \end{bmatrix}
      & =0-0+(-\lambda-1)\det
-                            \begin{bmatrix}
-                              8-\lambda & 9 \\-6&-7-\lambda
-                            \end{bmatrix}
+    \begin{bmatrix}
+      8-\lambda & 9 \\-6&-7-\lambda
+    \end{bmatrix}
     \\
-     & =-(1+\lambda)(\lambda^2-\lambda-2)             \\
+     & =-(1+\lambda)(\lambda^2-\lambda-2) \\
      & =-(1+\lambda)^2(\lambda-2).
   \end{align*}
   \[
@@ -501,42 +501,412 @@ Not enough eigenvectors? Use elimination.
   \end{align*}
   Or:
   \begin{align*}
-    \lambda_1 & =2i,                                                 &
+    \lambda_1 & =2i,                                  &
     E_1       & =\operatorname{Null}
-                                    \begin{bmatrix}
-                                      -2-2i & 8 \\-1&2-2i
-                                    \end{bmatrix}
+    \begin{bmatrix}
+      -2-2i & 8 \\-1&2-2i
+    \end{bmatrix}
     =\operatorname{span}\left\{
-                               \begin{bmatrix}
-                                 2-2i \\1
-                               \end{bmatrix}
-    \right\},                                                          \\
-    \lambda_2 & =-2i,                                                &
+    \begin{bmatrix}
+      2-2i \\1
+    \end{bmatrix}
+    \right\},                                           \\
+    \lambda_2 & =-2i,                                 &
     E_2       & =\operatorname{span}\left\{\overline{
-                                                       \begin{bmatrix}
-                                                         2-2i \\1
-                                                       \end{bmatrix}
+      \begin{bmatrix}
+        2-2i \\1
+      \end{bmatrix}
     }\right\}
     =\operatorname{span}\left\{
-                               \begin{bmatrix}
-                                 2+2i \\1
-                               \end{bmatrix}
+    \begin{bmatrix}
+      2+2i \\1
+    \end{bmatrix}
     \right\}.
   \end{align*}
   \begin{align*}
     \mathbf{x}(t) & =ae^{2it}
-                             \begin{bmatrix}
-                               2-2i \\1
-                             \end{bmatrix}
+    \begin{bmatrix}
+      2-2i \\1
+    \end{bmatrix}
     +\overline{a}e^{-2it}
-                         \begin{bmatrix}
-                           2+2i \\1
-                         \end{bmatrix}
+    \begin{bmatrix}
+      2+2i \\1
+    \end{bmatrix}
     \\
                   & =(p+iq)(\cos 2t+i\sin 2t)
-                                             \begin{bmatrix}
-                                               \cdots
-                                             \end{bmatrix}
+    \begin{bmatrix}
+      \cdots
+    \end{bmatrix}
     +\cdots.
   \end{align*}
+\end{example}
+
+\subsection{Two-Dimensional Linear Systems and Vector Fields}
+
+\begin{example}
+  Consider $\mathbf{x}'=\mathbf{A}\mathbf{x}$, where
+  \[
+    \mathbf{A}=
+    \begin{bmatrix}
+      7 & 1 \\6&8
+    \end{bmatrix}
+    .
+  \]
+  Char. eqn.:
+  \[
+    \det
+    \begin{bmatrix}
+      7-\lambda & 1 \\6&8-\lambda
+    \end{bmatrix}
+    =0,
+    \qquad \lambda^2-15\lambda+50=0.
+  \]
+  \begin{align*}
+    \lambda_1 & =10, & E_{10} & =\operatorname{Null}(\mathbf{A}-10\mathbf{I})
+    =\operatorname{Null}
+                        \begin{bmatrix}
+                          -3 & 1 \\6&-2
+                        \end{bmatrix}
+    =\operatorname{span}\left\{
+                               \begin{bmatrix}
+                                 1 \\3
+                               \end{bmatrix}
+    \right\},                                                                 \\
+    \lambda_2 & =5,  & E_5    & =\operatorname{span}\left\{
+                                                           \begin{bmatrix}
+                                                             1 \\-2
+                                                           \end{bmatrix}
+    \right\}.
+  \end{align*}
+  General solution:
+  \[
+    \mathbf{x}(t)=C_1e^{10t}
+    \begin{bmatrix}
+      1 \\3
+    \end{bmatrix}
+    +C_2e^{5t}
+    \begin{bmatrix}
+      1 \\-2
+    \end{bmatrix}
+    .
+  \]
+  How to plot?
+
+  When $t\to+\infty$, $e^{10t}\gg e^{5t}$.
+  \[
+    \mathbf{x}(t)\sim C_1e^{10t}
+    \begin{bmatrix}
+      1 \\3
+    \end{bmatrix}
+    \quad(C_1\ne0)\qquad\text{``is asymptotic to.''}
+  \]
+  Solutions get parallel to $
+    \begin{bmatrix}
+      1 \\3
+    \end{bmatrix}
+  $.
+
+  Special case: $C_1=0$, $\mathbf{x}(t)=C_2e^{5t}
+    \begin{bmatrix}
+      1 \\-2
+    \end{bmatrix}
+  $.
+
+  When $t\to-\infty$, $e^{10t}\ll e^{5t}$.
+  \[
+    \mathbf{x}(t)\sim C_2e^{5t}
+    \begin{bmatrix}
+      1 \\-2
+    \end{bmatrix}
+    \quad(C_2\ne0).
+  \]
+  \begin{center}
+    Phase portrait\\
+    \input{figures/linear-source}
+  \end{center}
+\end{example}
+
+For general $\mathbf{x}'=\mathbf{A}\mathbf{x}$, eigenvalues $\lambda_1>\lambda_2>0$:
+\[
+  \mathbf{x}(t)=C_1e^{\lambda_1t}\mathbf{v}_1+C_2e^{\lambda_2t}\mathbf{v}_2.
+\]
+\begin{align*}
+  t\to\infty:  & \quad\mathbf{x}(t)\sim C_1e^{\lambda_1t}\mathbf{v}_1
+  \quad(C_1\ne0),\quad\text{asymptotically parallel to }\mathbf{v}_1, \\
+  t\to-\infty: & \quad\mathbf{x}(t)\sim C_2e^{\lambda_2t}\mathbf{v}_2
+  \quad(C_2\ne0),\quad\text{asymptotically parallel to }\mathbf{v}_2.
+\end{align*}
+Call critical point $(0,0)$ an \textbf{improper nodal source};
+$\mathbf{x}(t)=\mathbf{0}$ is an equilibrium.\\
+Trajectories near origin $\parallel\mathbf{v}_2$, head to infinity $\parallel\mathbf{v}_1$
+(except eigenvector solutions).
+\begin{center}
+  \input{figures/general-source}
+\end{center}
+\[
+  \begin{array}{c|l}
+    \lambda_1<\lambda_2<0   & \text{improper nodal sink} \\
+    \lambda_1>0>\lambda_2   & \text{saddle point}        \\
+    \lambda_1=\lambda_2\ne0 & \text{nodal source/sink}
+  \end{array}
+\]
+
+\subsubsection{Isolated Critical Points}
+Suppose $\mathbf{c}$ is a critical point.\\
+$\mathbf{x}(t)=\mathbf{c}$ is a solution.
+\[
+  \mathbf{0}=\mathbf{A}\mathbf{c}:\quad
+  \text{either }\mathbf{c}=\mathbf{0}\text{ or }0\text{ is an eigenvalue}.
+\]
+$\mathbf{x}'=\mathbf{A}\mathbf{x}$ has an isolated critical point
+$\implies$ all eigenvalues $\ne0$.
+
+\begin{example}
+  \[
+    \mathbf{x}'=
+    \begin{bmatrix}
+      -1 & -4 \\2&3
+    \end{bmatrix}
+    \mathbf{x}.
+  \]
+  Char. eqn.:
+  \[
+    (-1-\lambda)(3-\lambda)-(-8)=0,\qquad\lambda^2-2\lambda+5=0.
+  \]
+  $\lambda_1=1+2i$, $\lambda_2=1-2i$.
+  \begin{align*}
+    x(t) & =C_1e^t\cos2t+C_2e^t\sin2t, \\
+    y(t) & =D_1e^t\cos2t+D_2e^t\sin2t,
+  \end{align*}
+  where $D_1,D_2$ depend on $C_1,C_2$.
+
+  Or
+  \[
+    x(t)=A_1e^t\cos(2t-\gamma_1),\qquad
+    y(t)=A_2e^t\cos(2t-\gamma_2).
+  \]
+  Trajectory: without $e^t$, ellipse. With it?\\
+  $\lambda=p+iq$ and positive $p$: spiral around origin.
+
+  Check one point: at $
+    \begin{bmatrix}
+      1 \\0
+    \end{bmatrix}
+  $,
+  $\mathbf{A}
+    \begin{bmatrix}
+      1 \\0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      -1 \\2
+    \end{bmatrix}
+  $.
+  \begin{center}
+    \input{figures/linear-spiral}\\Spiral counterclockwise.
+  \end{center}
+\end{example}
+
+\begin{center}
+  \begin{tabular}{c|l}
+    Eigenvalues               & Case          \\\hline
+    Real, both $>0$           & Nodal source  \\
+    Real, both $<0$           & Nodal sink    \\
+    Opposite signs            & Saddle        \\
+    Equal, $>0$               & Nodal source  \\
+    Equal, $<0$               & Nodal sink    \\
+    $p\pm iq$, $q\ne0$, $p>0$ & Spiral source \\
+    $p\pm iq$, $q\ne0$, $p<0$ & Spiral sink   \\
+    $p\pm iq$, $q\ne0$, $p=0$ & Center
+  \end{tabular}
+\end{center}
+
+\subsection{Nonlinear Systems}
+Consider autonomous systems: not $t$-dependent.
+\[
+  \begin{cases}
+    \dfrac{dx}{dt}=f(x,y), \\[4pt]
+    \dfrac{dy}{dt}=g(x,y).
+  \end{cases}
+\]
+In general, impossible to solve explicitly.
+
+\begin{definition}{Critical Point}{autonomous-critical-point}
+  $P=(x_0,y_0)$ is a critical point (that is, $(x,y)=(x_0,y_0)$ is a constant solution)
+  $\iff f(x_0,y_0)=g(x_0,y_0)=0$.
+\end{definition}
+
+Replace $f,g$ with linear approximations centered at $P$:
+\begin{align*}
+  f(x,y) & \approx f(P)+\left.\frac{\partial f}{\partial x}\right|_P(x-x_0)
+  +\left.\frac{\partial f}{\partial y}\right|_P(y-y_0),                     \\
+  g(x,y) & \approx g(P)+g_x(P)(x-x_0)+g_y(P)(y-y_0).
+\end{align*}
+Define $u=x-x_0$, $v=y-y_0$.
+\[
+  \frac{du}{dt}=\frac{dx}{dt},\qquad \frac{dv}{dt}=\frac{dy}{dt},\qquad f(P)=0=g(P).
+\]
+Linear system:
+\[
+  \begin{cases}
+    u'=f_x(P)u+f_y(P)v, \\v'=g_x(P)u+g_y(P)v.
+  \end{cases}
+\]
+\begin{definition}{Jacobian}{system-jacobian}
+  \[
+    \mathbf{J}(P)=
+    \begin{bmatrix}
+      f_x(P) & f_y(P) \\g_x(P)&g_y(P)
+    \end{bmatrix}
+    .
+  \]
+\end{definition}
+\[
+  \mathbf{u}=
+  \begin{bmatrix}
+    u \\v
+  \end{bmatrix}
+  ,\qquad
+  \mathbf{u}'=\mathbf{J}(P)\mathbf{u}.
+\]
+
+\begin{example}
+  \[
+    \begin{cases}
+      x'=(x-2y)x, \\y'=(x-2)y.
+    \end{cases}
+  \]
+  Critical points: $x'=y'=0$.
+  \[
+    \begin{cases}
+      (x-2y)x=0, \\(x-2)y=0
+    \end{cases}
+    \implies P_1=(2,1),\quad P_2=(0,0).
+  \]
+  \[
+    \mathbf{J}=
+    \begin{bmatrix}
+      2x-2y & -2x \\y&x-2
+    \end{bmatrix}
+    .
+  \]
+  For $P_1=(2,1)$,
+  \[
+    \mathbf{J}(P_1)=
+    \begin{bmatrix}
+      2 & -4 \\1&0
+    \end{bmatrix}
+    ,\qquad
+    \lambda=1\pm\sqrt3\,i.
+  \]
+  Spiral source, counterclockwise.
+\end{example}
+
+\begin{theorem}{Almost Linear Systems}{almost-linear-systems}
+  For $f,g$ continuously differentiable near a critical point $P$, the system is
+  almost linear at $P$ if $\mathbf{J}(P)$ has no zero eigenvalues.
+
+  The critical point type is the same as the linearization, with caveats:
+  \begin{itemize}
+    \item Repeated real eigenvalues: $P$ might be spiral instead of nodal.
+    \item Pure imaginary eigenvalues: $P$ might be spiral instead of center.
+  \end{itemize}
+\end{theorem}
+
+Algorithm:
+\begin{enumerate}
+  \item Find critical points $P$.
+  \item Compute $\mathbf{J}(P)$ and eigenvalues.
+  \item ``Patch'' a phase portrait.
+\end{enumerate}
+
+\begin{example}
+  \[
+    \begin{cases}
+      x'=2x-3y+4x^2+2xy, \\
+      y'=x+2y-3xy+4x^3.
+    \end{cases}
+  \]
+  Plainly: $P=(0,0)$ is a critical point.
+  \[
+    \mathbf{J}=
+    \begin{bmatrix}
+      2+8x+2y & -3+2x \\1-3y+12x^2&2-3x
+    \end{bmatrix}
+    ,
+    \qquad \mathbf{J}(P)=
+    \begin{bmatrix}
+      2 & -3 \\1&2
+    \end{bmatrix}
+    .
+  \]
+  Char. eqn.: $(2-\lambda)(2-\lambda)-1(-3)=0$.
+  \[
+    \lambda=2+\sqrt3\,i,\qquad\lambda=2-\sqrt3\,i.
+  \]
+  At $P$: spiral source, rotating counterclockwise.
+\end{example}
+
+\begin{example}[Identify and sketch]
+  \begin{align*}
+    x' & =x-y-x^2+xy,\tag{1} \\
+    y' & =-x^2-y.\tag{2}
+  \end{align*}
+  (2): $y=-x^2$.\\
+  Sub. into (1): $x-(-x^2)-x^2+x(-x^2)=0$.
+  \[
+    x=0,\pm1,\quad y=0,-1:\qquad (0,0),\ (1,-1),\ (-1,-1).
+  \]
+  Jacobian:
+  \[
+    \mathbf{J}=
+    \begin{bmatrix}
+      1-2x+y & -1+x \\-2x&-1
+    \end{bmatrix}
+    .
+  \]
+  Identify types:
+  \[
+    \mathbf{J}(0,0)=
+    \begin{bmatrix}
+      1 & -1 \\0&-1
+    \end{bmatrix}
+    ,\qquad
+    \lambda_1=1,\quad\lambda_2=-1.
+  \]
+  Saddle.
+  \begin{center}
+    \input{figures/local-saddle}
+  \end{center}
+  \[
+    \mathbf{J}(1,-1)=
+    \begin{bmatrix}
+      -2 & 0 \\-2&-1
+    \end{bmatrix}
+    ,\qquad
+    \lambda_1=-2,\quad\lambda_2=-1.
+  \]
+  Improper nodal sink.
+  \begin{center}
+    \input{figures/local-sink}
+  \end{center}
+  \[
+    \mathbf{J}(-1,-1)=
+    \begin{bmatrix}
+      2 & -2 \\2&-1
+    \end{bmatrix}
+    ,\qquad
+    \lambda_{1,2}=\frac12\pm\frac{\sqrt7}{2}i.
+  \]
+  Spiral source, CCW.
+  \begin{center}
+    \input{figures/local-spiral}\\
+    Local linearized portraits (coordinates relative to each critical point).
+  \end{center}
+  \begin{center}
+    \begin{minipage}{\linewidth}
+      \centering Together:\\
+      \input{figures/nonlinear-combined}
+    \end{minipage}
+  \end{center}
 \end{example}
