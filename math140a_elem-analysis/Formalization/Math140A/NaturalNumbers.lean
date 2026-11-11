@@ -10,4 +10,18 @@ class NatStruct (N : Type) where
     P one → (∀ n : N, P n → P (succ n)) →
     ∀ n : N, P n
 
+-- every nat is either one or succ of smth
+theorem one_or_succ {N : Type} [NatStruct N] (n : N) :
+  n = NatStruct.one ∨ ∃ m : N, n = NatStruct.succ m := by
+  refine NatStruct.induction_principle
+    (fun k : N => k = NatStruct.one ∨ ∃ m : N, k = NatStruct.succ m)
+    ?_
+    ?_
+    n
+  · left
+    rfl
+  · intro k _ih
+    right
+    exact ⟨k, rfl⟩
+
 end Math140A
