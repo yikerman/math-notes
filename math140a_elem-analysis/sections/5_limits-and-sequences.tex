@@ -1381,3 +1381,113 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
     \sum_{n=1}^{\infty}\frac{1}{n^p}\text{ conv.}\iff p>1.
   \]
 \end{theorem}
+
+\begin{theorem}{Comparison Test}{comparison-test}
+  Seq. $(a_n)$, $\forall n\in\N$, $a_n\ge0$.
+  \begin{enumerate}[label=(\roman*)]
+    \item $(b_n)$ seq., $\abs{b_n}\le a_n$, $\forall n\in\N$.
+          \[
+            \sum a_n\text{ conv.}\implies\sum b_n\text{ conv.}
+          \]
+    \item $(b_n)$ seq. s.t. $\forall n\in\N$, $b_n\ge a_n$.
+          \[
+            \sum a_n\to+\infty\implies\sum b_n\to+\infty.
+          \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Corollary to the Comparison Test (i)}{absolute-convergence}
+  Seq. $(b_n)$,
+  \[
+    \sum\abs{b_n}\text{ conv.}\implies\sum b_n\text{ conv.}
+  \]
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:comparison-test} (i)]
+  Let $S_n=\sum_{k=1}^{n}b_k$.\\
+  WTS $(S_n)$ conv.\\
+  ETS $(S_n)$ Cauchy.
+
+  Let $\varepsilon>0$. By $\sum a_n$ conv.,
+  \[
+    \left(\sum_{k=1}^{n}a_k\right)\text{ conv.}\iff\text{Cauchy}.
+  \]
+  \[
+    \implies\exists N\text{ s.t. }n,m>N\implies
+    \left|\sum_{k=1}^{n}a_k-\sum_{k=1}^{m}a_k\right|<\varepsilon.
+  \]
+  If $n\ge m$,
+  \[
+    \left|\sum_{k=m+1}^{n}a_k\right|<\varepsilon.
+  \]
+  By $a_k\ge0$,
+  \[
+    \sum_{k=m+1}^{n}a_k<\varepsilon.
+  \]
+  \[
+    \begin{aligned}
+      \abs{S_n-S_m}
+       & =\cdots=\left|\sum_{k=m+1}^{n}b_k\right| \\
+       & \le\sum_{k=m+1}^{n}\abs{b_k}
+      \le\sum_{k=m+1}^{n}a_k<\varepsilon.
+    \end{aligned}
+  \]
+\end{proof}
+
+\subsubsection{Ratio and Root Tests}
+
+\begin{theorem}{Ratio Test}{ratio-test}
+  Seq. $(a_n)$, $\forall n$, $a_n\ne0$.
+  \begin{enumerate}[label=(\roman*)]
+    \item $\displaystyle\limsup\left|\frac{a_{n+1}}{a_n}\right|<1
+            \implies\sum\abs{a_n}\text{ conv.}$
+    \item $\displaystyle\liminf\left|\frac{a_{n+1}}{a_n}\right|>1
+            \implies\sum a_n\text{ does not conv.}$
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Root Test}{root-test}
+  Seq. $(a_n)$.
+  \begin{enumerate}[label=(\roman*)]
+    \item $\displaystyle\limsup\abs{a_n}^{1/n}<1
+            \implies\sum\abs{a_n}\text{ conv.}$
+    \item $\displaystyle\liminf\abs{a_n}^{1/n}>1
+            \implies\sum a_n\text{ does not conv.}$
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Root Test Implies Ratio Test}{root-implies-ratio-test}
+  Root Test (Theorem~\ref{thm:root-test})
+  $\implies$ Ratio Test (Theorem~\ref{thm:ratio-test}).
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:root-test} (i)]
+  Let $\alpha=\limsup\abs{a_n}^{1/n}$.\\
+  (i) $\alpha<1$.
+
+  Choose $\varepsilon>0$ s.t. $\alpha+\varepsilon<1$.\\
+  Geometric series $\sum(\alpha+\varepsilon)^n$ conv.
+
+  ETS $\exists N$ s.t.
+  \[
+    \abs{a_n}<(\alpha+\varepsilon)^n,\qquad\forall n>N.
+  \]
+  Recall:
+  \[
+    \alpha=\lim_{N\to\infty}
+    \sup\{\abs{a_n}^{1/n}\mid n>N\}.
+  \]
+  Or $\exists N$ s.t.
+  \[
+    \alpha-\varepsilon
+    <\sup\{\abs{a_n}^{1/n}\mid n>N\}
+    <\alpha+\varepsilon.
+  \]
+  In particular, $n>N$, have
+  \[
+    \abs{a_n}^{1/n}<\alpha+\varepsilon.
+  \]
+  \[
+    \abs{a_n}<(\alpha+\varepsilon)^n.
+  \]
+\end{proof}
