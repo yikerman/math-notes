@@ -1,0 +1,169 @@
+\subsection{Laplace Transform}
+
+\begin{example}
+  $y''+7y=f(t)$. Solve for general $f$?
+\end{example}
+
+\begin{definition}{Laplace transform}{laplace-transform}
+  The Laplace transform of a function $f$ is
+  \[
+    F(s)=\mathcal L\{f(t)\}=\int_0^\infty e^{-st}f(t)\dd t
+  \]
+  if the integral exists.
+\end{definition}
+
+\begin{example}
+  For $f(t)=1+e^t$, the Laplace transform is
+  \begin{align*}
+    F(s) & =\mathcal L\{1+e^t\}=\int_0^\infty e^{-st}(1+e^t)\dd t        \\
+         & =\left[-\frac1s e^{-st}+\frac1{1-s}e^{(1-s)t}\right]_0^\infty \\
+         & =-\frac1s\lim_{t\to\infty}e^{-st}+\frac1s
+    +\frac1{1-s}\lim_{t\to\infty}e^{(1-s)t}-\frac1{1-s}                  \\
+         & =\frac1s+\frac1{s-1}\qquad\text{if }s>1.
+  \end{align*}
+\end{example}
+
+\begin{example}
+  $\mathcal L\{\sin kt\}=\int_0^\infty e^{-st}\sin kt\dd t$.
+  For $k\ne0$,
+  \begin{align*}
+    F(s)                  & =\int_0^\infty e^{-st}\sin kt\dd t
+    =\left[-\frac1k e^{-st}\cos kt\right]_0^\infty
+    -\int_0^\infty\frac{s}{k}e^{-st}\cos kt\dd t                                    \\
+                          & =-\frac1k\left(\lim_{t\to\infty}e^{-st}\cos kt-1\right)
+    -\frac{s}{k}\int_0^\infty e^{-st}\cos kt\dd t                                   \\
+                          & =-\frac1k(0-1)-\frac{s}{k}\left(
+    \left[\frac1k e^{-st}\sin kt\right]_0^\infty
+    +\int_0^\infty\frac{s}{k}e^{-st}\sin kt\dd t\right)                             \\
+                          & =\frac1k-\frac{s^2}{k^2}F(s)\qquad\text{if }s>0.        \\
+    \Rightarrow\quad F(s) & =\mathcal L\{\sin kt\}
+    =\frac{1}{k(1+s^2/k^2)}=\frac{k}{s^2+k^2}.
+  \end{align*}
+\end{example}
+
+\subsubsection*{Common Laplace transforms}
+\[
+  \renewcommand{\arraystretch}{1.45}
+  \begin{array}{lll}
+    f(t)                & F(s)        & \text{Domain} \\ \hline
+    1                   & 1/s         & s>0           \\
+    e^{kt}\quad(k\in\R) & 1/(s-k)     & s>k           \\
+    \sin kt             & k/(s^2+k^2) & s>0           \\
+    \cos kt             & s/(s^2+k^2) & s>0           \\
+    t^n\quad(n\in\N)    & n!/s^{n+1}  & s>0           \\
+    \sinh kt            & k/(s^2-k^2) & s>|k|         \\
+    \cosh kt            & s/(s^2-k^2) & s>|k|
+  \end{array}
+\]
+
+\begin{theorem}{Linearity of the Laplace transform}{laplace-linearity}
+  $\mathcal L$ is a linear map, since $\int_0^\infty e^{-st}(\,\cdot\,)\dd t$ is linear.
+\end{theorem}
+
+\begin{theorem}{Exponential shift}{laplace-exponential-shift}
+  \[
+    \mathcal L\{f(t)\}=F(s)\quad(s>a)
+    \quad\Rightarrow\quad
+    \mathcal L\{e^{-kt}f(t)\}=F(s+k)\quad(s+k>a).
+  \]
+\end{theorem}
+
+\begin{theorem}{Laplace transform of a derivative}{laplace-derivative}
+  \[\mathcal L\{x'(t)\}=sX(s)-x(0).\]
+\end{theorem}
+
+\begin{example}
+  \[
+    \mathcal L\{g(t)\}=\frac{s-2}{(s-2)^2+9}
+    =F(s-2)=\mathcal L\{e^{2t}f(t)\},
+  \]
+  where $f(t)=\cos 3t$. Thus $g(t)=e^{2t}\cos 3t$.
+\end{example}
+
+\begin{example}
+  \begin{align*}
+    F(s) & =\mathcal L\{f(t)\}=\frac1{(s-2)(s+2)^2},   \\
+    F(s) & =\frac A{s-2}+\frac B{s+2}+\frac C{(s+2)^2}
+    =\frac{A(s+2)^2+B(s-2)(s+2)+C(s-2)}{(s-2)(s+2)^2}.
+  \end{align*}
+  Let $s=-2$: $-4C=1$.\\
+  Let $s=2$: $16A=1$.
+  \[
+    C=-\tfrac14,\qquad A=\tfrac1{16},\qquad B=-\tfrac1{16}.
+  \]
+  \begin{align*}
+    F(s) & =\frac{1/16}{s-2}-\frac{1/16}{s+2}-\frac{1/4}{(s+2)^2}                            \\
+         & =\mathcal L\left\{\tfrac1{16}e^{2t}-\tfrac1{16}e^{-2t}-\tfrac14 te^{-2t}\right\}.
+  \end{align*}
+  Note: $\mathcal L\{t\}=1/s^2$, $\mathcal L\{e^{-2t}t\}=1/(s+2)^2$.
+\end{example}
+
+\subsection{Laplace Transforms and Derivatives}
+
+Suppose $x(t)$ unknown with $X(s)=\mathcal L\{x\}$. For $s$ large enough that $e^{-st}x(t)\to0$ and the transform converges,
+\begin{align*}
+  \mathcal L\{x'\} & =\int_0^\infty e^{-st}x'(t)\dd t                                     \\
+                   & =\left[e^{-st}x(t)\right]_0^\infty-\int_0^\infty(-s)e^{-st}x(t)\dd t \\
+                   & =sX(s)-x(0).
+\end{align*}
+Similarly,
+\begin{align*}
+  \mathcal L\{x''\} & =s\mathcal L\{x'\}-x'(0)         \\
+                    & =s^2\mathcal L\{x\}-x'(0)-sx(0).
+\end{align*}
+Generally,
+\[
+  \mathcal L\{x^{(n)}\}=s^nX(s)-s^{n-1}x(0)-\cdots-x^{(n-1)}(0).
+\]
+
+\begin{example}
+  Solve $x''+16x=0$.
+  \[
+    \bigl(s^2X(s)-sx(0)-x'(0)\bigr)+16X=0,\qquad X=\mathcal L\{x\}.
+  \]
+  \begin{align*}
+    X(s) & =\frac{sx(0)+x'(0)}{s^2+16}                                                                              \\
+         & =x(0)\frac{s}{s^2+16}+\frac{x'(0)}4\frac4{s^2+16}
+         &                                                             & \text{(linear combination of table forms)} \\
+         & =\mathcal L\left\{x(0)\cos 4t+\frac{x'(0)}4\sin 4t\right\}.
+  \end{align*}
+\end{example}
+
+\begin{definition}{Step function}{step-function}
+  \[
+    U_a(t)=
+    \begin{cases}
+      1 & t\ge a, \\0&t<a.
+    \end{cases}
+  \]
+  \begin{center}
+    \begin{tikzpicture}[>=stealth]
+      \draw[->] (-2.3,0)--(2,0) node[right] {$t$};
+      \draw[->] (0,-.4)--(0,1.6);
+      \draw[thick] (-2.2,0)--(-1,0);
+      \draw[thick] (-1,1)--(1.8,1);
+      \draw[fill=white] (-1,0) circle (2pt) node[below] {$a$};
+      \fill (-1,1) circle (2pt);
+      \node[above right] at (0,1) {$1$};
+    \end{tikzpicture}
+  \end{center}
+\end{definition}
+For $a>0$:
+\[
+  \mathcal L\{U_a\}=\int_0^a e^{-st}\,0\dd t+\int_a^\infty e^{-st}\,1\dd t
+  =\frac1s e^{-as}\qquad(s>0).
+\]
+
+\begin{example}
+  Solve
+  \[
+    \begin{cases}
+      x''+16x=2U_3(t), \\ x(0)=1,\quad x'(0)=0.
+    \end{cases}
+  \]
+  \begin{align*}
+    s^2X-sx(0)-x'(0)+16X & =\frac2s e^{-3s},              \\
+    X                    & =\frac{(2/s)e^{-3s}+s}{s^2+16}
+    =\frac{s}{s^2+16}+2e^{-3s}\left[\frac As+\frac{Bs+C}{s^2+16}\right].
+  \end{align*}
+\end{example}
