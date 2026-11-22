@@ -164,14 +164,11 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
 
 \begin{proof}[$(\Rightarrow)$]
   Suppose $f$ continuous at $x_0$.\\
-  Let $(x_n)$ be a seq. in $U$ s.t. $x_n\to x_0$.\\
-  WTS $f(x_n)\to f(x_0)$.
-  \[
-    \text{WTS }\forall\varepsilon>0,\ \exists N\text{ s.t. }
-    n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon.
-  \]
+  Let $(x_n)$ be a seq. in $U$ s.t. $x_n\to x_0$.
+  \proofgoal{WTS:}{$f(x_n)\to f(x_0)$.}
+  \proofgoal{WTS:}{$\forall\varepsilon>0,\ \exists N\text{ s.t. }n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon$.}
   Write out definitions. Let $\varepsilon>0$.
-  \begin{enumerate}
+  \begin{enumerate}[proofparts]
     \item $f$ cont. at $x_0\implies\exists\delta>0$ s.t.
           $\forall x\in U$, $\abs{x-x_0}<\delta\implies\abs{f(x)-f(x_0)}<\varepsilon$.
     \item $x_n\to x_0\implies\exists N$ s.t.
@@ -199,12 +196,8 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
 
 \begin{proof}[$(\Leftarrow)$ by contrapositive]
   Suppose $f$ not cont. at $x_0$.
-  \[
-    \begin{aligned}
-       & \text{WTS }\neg\bigl(\forall (x_n)\text{ in }U,\quad x_n\to x_0\implies f(x_n)\to f(x_0)\bigr). \\
-       & \text{WTS }\exists (x_n)\text{ in }U,\quad x_n\to x_0\text{ and }f(x_n)\not\to f(x_0).
-    \end{aligned}
-  \]
+  \proofgoal{WTS:}{$\neg\bigl(\forall (x_n)\text{ in }U,\quad x_n\to x_0\implies f(x_n)\to f(x_0)\bigr)$.}
+  \proofgoal{WTS:}{$\exists (x_n)\text{ in }U,\quad x_n\to x_0\text{ and }f(x_n)\not\to f(x_0)$.}
   $f$ not cont. at $x_0\iff$
   \[
     \exists\varepsilon>0,\ \forall\delta>0,\ \exists x\in U,\quad
@@ -260,8 +253,8 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
 
 \begin{proof}
   Use the sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}).\\
-  Suppose $(x_n)$ in $U$ s.t. $x_n\to x_0$.\\
-  WTS $(f+g)(x_n)\to(f+g)(x_0)$.
+  Suppose $(x_n)$ in $U$ s.t. $x_n\to x_0$.
+  \proofgoal{WTS:}{$(f+g)(x_n)\to(f+g)(x_0)$.}
   \[
     f(x_n)\to f(x_0),\qquad g(x_n)\to g(x_0).
   \]

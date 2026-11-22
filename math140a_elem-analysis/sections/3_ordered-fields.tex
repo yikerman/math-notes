@@ -67,19 +67,24 @@ Likewise, define properties/axioms for the structure of $\R$.
     \forall a\in\mathbb{F},\qquad a\cdot0=0.
   \]
   \begin{proof}
-    (i)
-    \begin{align*}
-      a\cdot0 & = a\cdot(0+0)     &  & \text{(additive identity)} \\
-              & = a\cdot0+a\cdot0 &  & \text{(distributivity)}
-    \end{align*}
-    (ii)
-    \begin{align*}
-      0 & = (a\cdot0)+(-(a\cdot0))             &  & \text{(additive inverse)}           \\
-        & = ((a\cdot0)+(a\cdot0))+(-(a\cdot0)) &  & \text{(i)}                          \\
-        & = (a\cdot0)+((a\cdot0)+(-(a\cdot0))) &  & \text{(additive associativity)}     \\
-        & = (a\cdot0)+0                        &  & \text{(additive inverse)}           \\
-        & = a\cdot0                            &  & \text{(additive identity).}\qedhere
-    \end{align*}
+    \proofheadingbreak
+    \begin{enumerate}[label=(\roman*), proofparts]
+      \item $
+              \begin{aligned}[t]
+                a\cdot0 & = a\cdot(0+0)     &  & \text{(additive identity)} \\
+                        & = a\cdot0+a\cdot0 &  & \text{(distributivity)}
+              \end{aligned}
+            $
+      \item $
+              \begin{aligned}[t]
+                0 & = (a\cdot0)+(-(a\cdot0))             &  & \text{(additive inverse)}       \\
+                  & = ((a\cdot0)+(a\cdot0))+(-(a\cdot0)) &  & \text{(i)}                      \\
+                  & = (a\cdot0)+((a\cdot0)+(-(a\cdot0))) &  & \text{(additive associativity)} \\
+                  & = (a\cdot0)+0                        &  & \text{(additive inverse)}       \\
+                  & = a\cdot0                            &  & \text{(additive identity).}
+              \end{aligned}
+            $
+    \end{enumerate}
   \end{proof}
 \end{example}
 

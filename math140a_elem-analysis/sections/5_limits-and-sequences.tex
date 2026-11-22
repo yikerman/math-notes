@@ -91,14 +91,13 @@
   $S_n\to0$: looks like so on the graph.
 
   \begin{thinking}[Sketch (intuition)]
-    WTS
-    (Definition~\ref{def:sequence-convergence}):
-    \[
-      \begin{gathered}
-        \forall\varepsilon>0,\quad\exists N\in\N,\\[0.5em]
-        \forall n>N,\quad\left|\frac1n-0\right|<\varepsilon.
-      \end{gathered}
-    \]
+    \proofgoal{WTS}{(Definition~\ref{def:sequence-convergence}):
+      \[
+        \begin{gathered}
+          \forall\varepsilon>0,\quad\exists N\in\N,\\[0.5em]
+          \forall n>N,\quad\left|\frac1n-0\right|<\varepsilon.
+        \end{gathered}
+      \]}
     \begin{flushleft}
       Want to construct $N$ to
       answer challenging $\varepsilon$\\
@@ -122,13 +121,13 @@
   Prove $\displaystyle\lim_{n\to\infty}\frac1{n^2}=0$.
 
   \begin{thinking}[Scratch work]
-    WTS (Definition~\ref{def:sequence-convergence}):
-    \[
-      \begin{gathered}
-        \forall\varepsilon>0,\quad\exists N\in\N\\
-        \text{s.t. }n>N\implies\left|\frac1{n^2}-0\right|<\varepsilon.
-      \end{gathered}
-    \]
+    \proofgoal{WTS}{(Definition~\ref{def:sequence-convergence}):
+      \[
+        \begin{gathered}
+          \forall\varepsilon>0,\quad\exists N\in\N\\
+          \text{s.t. }n>N\implies\left|\frac1{n^2}-0\right|<\varepsilon.
+        \end{gathered}
+      \]}
     Given $\varepsilon>0$, how to choose $N$?
     \begin{align*}
       \text{We need } & \frac1{n^2}<\varepsilon,    \\
@@ -177,7 +176,7 @@
 \newpage
 \begin{proof}[Proof of Theorem~\ref{thm:unique-sequence-limit}]
   By assumption:
-  \begin{enumerate}
+  \begin{enumerate}[proofparts]
     \item $\forall\varepsilon_1>0,\quad\exists N_1\in\N$, s.t.
           \[
             n>N_1\implies\abs{S_n-t_1}<\varepsilon_1.
@@ -187,10 +186,10 @@
             n>N_2\implies\abs{S_n-t_2}<\varepsilon_2.
           \]
   \end{enumerate}
-  WTS, by Lemma~\ref{lem:arbitrarily-small-distance},
-  \[
-    t_1=t_2\iff\forall\varepsilon>0,\quad\abs{t_1-t_2}<\varepsilon.
-  \]
+  \proofgoal{WTS,}{by Lemma~\ref{lem:arbitrarily-small-distance},
+    \[
+      t_1=t_2\iff\forall\varepsilon>0,\quad\abs{t_1-t_2}<\varepsilon.
+    \]}
 
   \begin{thinking}[Trick (observation)]
     Note that
@@ -234,11 +233,11 @@
     \lim_{n\to\infty}\frac{5n+1}{7n-3}=\frac57.
   \]
   \begin{thinking}[Proof sketch]
-    WTS:
-    \[
-      \forall\varepsilon>0,\quad\exists N\in\N,\quad
-      n>N\implies\left|\frac{5n+1}{7n-3}-\frac57\right|<\varepsilon.
-    \]
+    \proofgoal{WTS:}{
+      \[
+        \forall\varepsilon>0,\quad\exists N\in\N,\quad
+        n>N\implies\left|\frac{5n+1}{7n-3}-\frac57\right|<\varepsilon.
+      \]}
     \begin{align*}
       \left|\frac{5n+1}{7n-3}-\frac57\right|
        & =\left|\frac{7(5n+1)-5(7n-3)}{7(7n-3)}\right|      \\
@@ -274,26 +273,30 @@
   $S_n=(-1)^n$, so $(S_n)=(-1,1,-1,1,\ldots)$, does not converge.
 
   \begin{proof}
-    WTS: $\forall t\in\R,\ \neg(S_n\to t)$.
-    Fix $t\in\R$. WTS:
-    \begin{align*}
-             & \neg\bigl(\forall\varepsilon>0,\ \exists N\in\N,\
-      \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                            \\
-      \iff{} & \exists\varepsilon>0,\
-      \neg\bigl(\exists N\in\N,\ \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr) \\
-      \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
-      \neg\bigl(\forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                  \\
-      \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
-      \exists n>N,\ \abs{S_n-t}\ge\varepsilon.
-    \end{align*}
-    Let $\varepsilon=\frac12$. WTS:
-    \[
-      \forall N\in\N,\quad\exists n>N,\quad\abs{S_n-t}\ge\frac12.
-    \]
+    \proofheadingbreak
+    \proofgoal{WTS:}{$\forall t\in\R,\ \neg(S_n\to t)$.}
+    Fix $t\in\R$.
+    \proofgoal{WTS:}{
+      \begin{align*}
+               & \neg\bigl(\forall\varepsilon>0,\ \exists N\in\N,\
+        \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                            \\
+        \iff{} & \exists\varepsilon>0,\
+        \neg\bigl(\exists N\in\N,\ \forall n>N,\ \abs{S_n-t}<\varepsilon\bigr) \\
+        \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
+        \neg\bigl(\forall n>N,\ \abs{S_n-t}<\varepsilon\bigr)                  \\
+        \iff{} & \exists\varepsilon>0,\ \forall N\in\N,\
+        \exists n>N,\ \abs{S_n-t}\ge\varepsilon.
+      \end{align*}
+    }
+    Let $\varepsilon=\frac12$.
+    \proofgoal{WTS:}{
+      \[
+        \forall N\in\N,\quad\exists n>N,\quad\abs{S_n-t}\ge\frac12.
+      \]}
     For $\forall N\in\N$:
-    \begin{enumerate}
-      \item Assume $N$ even. So $S_{N+1}=-1$.\\
-            WTS $\abs{-1-t}\ge\frac12$.\\
+    \begin{enumerate}[label=Case \arabic*., proofparts]
+      \item Assume $N$ even. So $S_{N+1}=-1$.
+            \proofgoal{WTS:}{$\abs{-1-t}\ge\frac12$.}
             Suppose instead $\abs{-1-t}<\frac12$.
             \begin{thinking}
               \begin{center}
@@ -314,7 +317,7 @@
               \end{center}
               If $t$ inside, step out of window.
             \end{thinking}
-            WTS: $\abs{S_{N+2}-t}\ge\frac12$.
+            \proofgoal{WTS:}{$\abs{S_{N+2}-t}\ge\frac12$.}
             \[
               2=\abs{(1-t)-(-1-t)}
               \le\abs{1-t}+\abs{-1-t}<\abs{1-t}+\frac12.
@@ -334,11 +337,11 @@
 \end{theorem}
 
 \begin{thinking}[Proof sketch]
-  WTS:
-  \[
-    \forall\varepsilon>0,\quad\exists N\in\N\text{ s.t. }
-    n>N\implies\abs{\sqrt{S_n}-\sqrt{t}}<\varepsilon.
-  \]
+  \proofgoal{WTS:}{
+    \[
+      \forall\varepsilon>0,\quad\exists N\in\N\text{ s.t. }
+      n>N\implies\abs{\sqrt{S_n}-\sqrt{t}}<\varepsilon.
+    \]}
   \begin{flushleft}
     We know $\abs{S_n-t}<\varepsilon$ for $n$ large.\\
     Connect the two?
@@ -363,7 +366,8 @@
     \qquad(\sqrt{S_n}\text{ nonnegative}).
   \]
   \begin{flushleft}
-    If $t=0$: WTS $\abs{\sqrt{S_n}}<\varepsilon$ for large $n$.\\
+    If $t=0$:
+    \proofgoal{WTS:}{$\abs{\sqrt{S_n}}<\varepsilon$ for large $n$.}
     If $\abs{S_n}<\varepsilon^2$, then $\abs{\sqrt{S_n}}=\sqrt{S_n}<\varepsilon$.\\
     If $t<0$?
   \end{flushleft}
@@ -379,7 +383,7 @@ If every term is bounded below, the limit should not be smaller.
 \begin{proof}[Formal proof of Theorem~\ref{thm:limit-square-roots}]
   By Lemma~\ref{lem:limit-lower-bound}, $t\ge0$.\\
   Two cases: $t=0$ and $t>0$.
-  \begin{enumerate}
+  \begin{enumerate}[label=Case \arabic*., proofparts]
     \item $t=0$. Let $\varepsilon$ be arbitrary $>0$.\\
           Choose $N\in\N$ s.t.\ $n>N\implies\abs{S_n}<\varepsilon^2$\\
           (we know this by definition of $S_n\to t$).\\
@@ -487,8 +491,8 @@ If every term is bounded below, the limit should not be smaller.
   \[
     \lim_{n\to\infty}S_n=p,\qquad\lim_{n\to\infty}t_n=q.
   \]
-  Let $\varepsilon>0$.\\
-  WTS $\abs{S_n+t_n-p-q}<\varepsilon$ for $n$ large.
+  Let $\varepsilon>0$.
+  \proofgoal{WTS:}{$\abs{S_n+t_n-p-q}<\varepsilon$ for $n$ large.}
 
   Observe
   \begin{align*}
@@ -513,13 +517,13 @@ If every term is bounded below, the limit should not be smaller.
 
 \begin{proof}[Proof of Theorem~\ref{thm:sequence-limit-laws}(iv)]
   Let $\lim_{n\to\infty}S_n=p$, $\lim_{n\to\infty}t_n=q$.
-  Enough to show
-  \[
-    \lim_{n\to\infty}\frac1{S_n}=\frac1p
-    \qquad\text{(by (iii)).}
-  \]
-  WTS: $\left|\dfrac1{S_n}-\dfrac1p\right|<\varepsilon$
-  for $\forall\varepsilon>0$ and $n$ large.
+  \proofgoal{Enough to show}{
+    \[
+      \lim_{n\to\infty}\frac1{S_n}=\frac1p
+      \qquad\text{(by (iii)).}
+    \]}
+  \proofgoal{WTS:}{$\left|\dfrac1{S_n}-\dfrac1p\right|<\varepsilon$
+    for $\forall\varepsilon>0$ and $n$ large.}
   \[
     \left|\frac1{S_n}-\frac1p\right|
     =\left|\frac{S_n-p}{S_np}\right|
@@ -572,24 +576,27 @@ If every term is bounded below, the limit should not be smaller.
 \end{theorem}
 
 \noindent\textit{Proof of (ii) (incomplete).}
-\begin{enumerate}
+\begin{enumerate}[label=Case \arabic*., proofparts]
   \item $\abs a=0$: trivial.
-  \item $\abs a>0$: WTS $\abs{a^n}$ is small for $n$ large.\\
+  \item $\abs a>0$:
+        \proofgoal{WTS:}{$\abs{a^n}$ is small for $n$ large.}
         Let $\varepsilon>0$.
-        \begin{align*}
-          \text{WTS }\abs{a^n}<\varepsilon
-           & \iff\abs a^n<\varepsilon
-          \iff\ln(\abs a^n)<\ln\varepsilon                    \\
-           & \iff n\ln\abs a<\ln\varepsilon\qquad\text{(???)} \\
-           & \iff n>\frac{\ln\varepsilon}{\ln\abs a}.
-        \end{align*}
+        \proofgoal{WTS:}{
+          \begin{align*}
+            \abs{a^n}<\varepsilon
+             & \iff\abs a^n<\varepsilon
+            \iff\ln(\abs a^n)<\ln\varepsilon                    \\
+             & \iff n\ln\abs a<\ln\varepsilon\qquad\text{(???)} \\
+             & \iff n>\frac{\ln\varepsilon}{\ln\abs a}.
+          \end{align*}
+        }
         For $\varepsilon$, choose $N\in\N$ s.t.\ $N>\dfrac{\ln\varepsilon}{\ln\abs a}$.
         \[
           n>N\implies\abs{a^n}<\varepsilon.
         \]
 \end{enumerate}
 
-\noindent Proof of (ii) without undefined-yet functions:
+\noindent\textit{Proof of (ii) without undefined-yet functions:}
 
 \begin{lemma}{Binomial Theorem}{binomial-theorem}
   $\forall a,b\in\R$, $n\in\N$,
@@ -602,22 +609,24 @@ If every term is bounded below, the limit should not be smaller.
   Trivial.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:power-root-limits}(ii)]
-  Again, $\abs a=0$: trivial.\\
-  For $\abs a>0$: since $0<\abs a<1$, let $\abs a=\dfrac1{1+b}$ for $b>0$.
-  \[
-    \abs a^n=\frac1{(1+b)^n}.
-  \]
-  By the binomial theorem (Lemma~\ref{lem:binomial-theorem}),
-  \[
-    (1+b)^n=\sum_{k=0}^n\binom nk1^{n-k}b^k
-    \ge\binom n1 1^{n-1}b^1=nb.
-  \]
-  Choose $N\in\N$ s.t.\ $N>\dfrac1{\varepsilon b}\implies\dfrac1{Nb}<\varepsilon$.
-  For $n>N$,
-  \[
-    \abs{a^n}=\frac1{(1+b)^n}\le\frac1{nb}<\varepsilon.\qedhere
-  \]
+\begin{proof}[Proof of Theorem~\ref{thm:power-root-limits}(ii)]\proofheadingbreak
+  \begin{enumerate}[label=Case \arabic*., proofparts]
+    \item Again, $\abs a=0$: trivial.
+    \item For $\abs a>0$: since $0<\abs a<1$, let $\abs a=\dfrac1{1+b}$ for $b>0$.
+          \[
+            \abs a^n=\frac1{(1+b)^n}.
+          \]
+          By the binomial theorem (Lemma~\ref{lem:binomial-theorem}),
+          \[
+            (1+b)^n=\sum_{k=0}^n\binom nk1^{n-k}b^k
+            \ge\binom n1 1^{n-1}b^1=nb.
+          \]
+          Choose $N\in\N$ s.t.\ $N>\dfrac1{\varepsilon b}\implies\dfrac1{Nb}<\varepsilon$.
+          For $n>N$,
+          \[
+            \abs{a^n}=\frac1{(1+b)^n}\le\frac1{nb}<\varepsilon.\qedhere
+          \]
+  \end{enumerate}
 \end{proof}
 
 \subsection{Monotone and Cauchy Sequences}
@@ -699,8 +708,8 @@ Goal: how to say $S_n$ converges without knowing the limit explicitly?
   \[
     S_n\text{ bounded and in }\R\implies\exists\sup S.
   \]
-  WTS $S_n\to\sup S$.\\
-  WTS $N$, $n>N\implies\abs{S_n-\sup S}<\varepsilon$.
+  \proofgoal{WTS:}{$S_n\to\sup S$.}
+  \proofgoal{WTS:}{$N$, $n>N\implies\abs{S_n-\sup S}<\varepsilon$.}
 
   Let $\varepsilon>0$.\\
   By definition of $\sup S$, $\sup S-\varepsilon$ is not an upper bound of $S$.
@@ -743,8 +752,8 @@ Goal: how to say $S_n$ converges without knowing the limit explicitly?
 Upshot: to prove convergence, only need Cauchy.
 
 \begin{proof}[$(\Rightarrow)$]
-  For $S_n\to t$:\\
-  WTS $\forall\varepsilon>0$, $\exists N\in\N$ s.t.\ $m,n>N\implies\abs{S_n-S_m}<\varepsilon$.
+  For $S_n\to t$:
+  \proofgoal{WTS:}{$\forall\varepsilon>0$, $\exists N\in\N$ s.t.\ $m,n>N\implies\abs{S_n-S_m}<\varepsilon$.}
 
   Let $\varepsilon>0$ be arbitrary. Choose $N$ s.t.
   \[
@@ -810,10 +819,11 @@ $(\Leftarrow)$: hard!
 \end{theorem}
 
 \begin{proof}[Proof that $\limsup$ exists]
-  Let $t_N=\sup\{S_n\mid n>N\}$. WTS $\exists\lim_{N\to\infty}t_N$.
+  Let $t_N=\sup\{S_n\mid n>N\}$.
+  \proofgoal{WTS:}{$\exists\lim_{N\to\infty}t_N$.}
 
   Use the monotone convergence theorem (Theorem~\ref{thm:monotone-convergence}):
-  WTS $t_N$ bounded and monotone.
+  \proofgoal{WTS:}{$t_N$ bounded and monotone.}
   \begin{gather*}
     S_n\text{ bounded}:\quad\exists M>0\text{ s.t. }\abs{S_n}<M.\\
     \text{So }t_N=\sup\{S_n\mid n>N\}\le M.\\
@@ -840,18 +850,20 @@ $(\Leftarrow)$: hard!
   \end{gather*}
 \end{theorem}
 
-\noindent WTS for Theorem~\ref{thm:convergence-limsup-liminf}:
-\begin{enumerate}[label=(\roman*)]
-  \item Assume $\lim S_n=p$. ETS $\limsup S_n\le p$, $\liminf S_n\ge p$.
+\proofgoal{WTS}{for Theorem~\ref{thm:convergence-limsup-liminf}:}
+\begin{enumerate}[label=(\roman*), proofparts]
+  \item Assume $\lim S_n=p$.
+        \proofgoal{ETS:}{$\limsup S_n\le p$, $\liminf S_n\ge p$.}
   \item $\limsup S_n=\liminf S_n\implies\exists\lim S_n$,
         and $\limsup S_n=\liminf S_n=\lim S_n$.
 \end{enumerate}
 
 \begin{proof}[Proof of (i)]
-  To show $\limsup S_n\le p$, let $\varepsilon>0$. WTS
-  \[
-    \limsup S_n\le p+\varepsilon.
-  \]
+  To show $\limsup S_n\le p$, let $\varepsilon>0$.
+  \proofgoal{WTS:}{
+    \[
+      \limsup S_n\le p+\varepsilon.
+    \]}
   Since $S_n\to p$, $\exists M\in\N$ s.t.
   \[
     n>M\implies\abs{S_n-p}<\varepsilon.
@@ -907,13 +919,10 @@ $(\Leftarrow)$: hard!
   $S_n$ Cauchy $\implies S_n$ bounded
   $\implies\exists\limsup S_n,\liminf S_n$.
 
-  Since $\limsup S_n\ge\liminf S_n$,\\
-  enough to show $\limsup S_n\le\liminf S_n$\\
-  (to make $\limsup S_n=\liminf S_n$).
-  \[
-    \text{ETS: }\forall\varepsilon>0,\quad
-    \limsup S_n\le\liminf S_n+\varepsilon.
-  \]
+  Since $\limsup S_n\ge\liminf S_n$,
+  \proofgoal{enough to show}{$\limsup S_n\le\liminf S_n$\\
+    (to make $\limsup S_n=\liminf S_n$).}
+  \proofgoal{ETS:}{$\forall\varepsilon>0,\quad \limsup S_n\le\liminf S_n+\varepsilon$.}
   Let $\varepsilon>0$.
   \begin{align*}
     a_N & =\sup\{S_n\mid n>N\}, \\
@@ -1038,7 +1047,7 @@ What if $(S_n)$ does not converge?
   $(S_n)$ bounded $\implies\exists$ convergent subsequence.
 \end{theorem}
 
-Enough to show:
+\proofgoal{Enough to show:}{}
 \begin{lemma}{Monotone Subsequence}{monotone-subsequence}
   Any $(S_n)$ has a monotone subsequence.
 \end{lemma}
@@ -1051,8 +1060,8 @@ Enough to show:
   ($S_n>$ any term after it.)
 \end{definition}
 
-\begin{proof}[Proof of Lemma~\ref{lem:monotone-subsequence}]
-  \begin{enumerate}
+\begin{proof}[Proof of Lemma~\ref{lem:monotone-subsequence}]\proofheadingbreak
+  \begin{enumerate}[label=Case \arabic*., proofparts]
     \item $(S_n)$ has infinitely many dominant terms.
           \begin{center}
             \begin{tikzpicture}[x=0.9cm,y=0.8cm]
@@ -1074,7 +1083,7 @@ Enough to show:
           \[
             \exists N\in\N\text{ s.t. }n>N\implies S_n\text{ is not dominant}.
           \]
-          Let $n_1=N+1$, $t_1=S_{N+1}$. \hfill Base case
+          \inductionlabel{Base case.} Let $n_1=N+1$, $t_1=S_{N+1}$.
 
           By $S_{N+1}$ not dominant,
           \[
@@ -1082,7 +1091,7 @@ Enough to show:
           \]
           Let $t_2=S_{n_2}$.
 
-          Formally, can construct $t_k$ inductively:\\
+          \inductionlabel{Inductive step.} Formally, can construct $t_k$ inductively:\\
           Assume $t_1,\ldots,t_k$ defined.\\
           $t_k=S_{n_k}$ is not dominant, so
           \[
@@ -1142,10 +1151,10 @@ If $(S_n)$ converges, how many different limits of subsequences can it have?
   Suppose $\forall\varepsilon>0$, $\{n\in\N\mid\abs{S_n-r}<\varepsilon\}$ is infinite.\\
   Build $(t_k)$ by induction:
 
-  Let $\varepsilon=1$. $\{n\in\N\mid\abs{S_n-r}<1\}$ is infinite.\\
-  Pick some $n_1$ in this set; let $t_1=S_{n_1}$. \hfill Base case
+  \inductionlabel{Base case.} Let $\varepsilon=1$. $\{n\in\N\mid\abs{S_n-r}<1\}$ is infinite.\\
+  Pick some $n_1$ in this set; let $t_1=S_{n_1}$.
 
-  Suppose $t_1,\ldots,t_k$ have been chosen s.t.
+  \inductionlabel{Inductive step.} Suppose $t_1,\ldots,t_k$ have been chosen s.t.
   \[
     \abs{t_m-r}<\frac1m,\qquad\forall\,1\le m\le k.
   \]
@@ -1161,6 +1170,7 @@ If $(S_n)$ converges, how many different limits of subsequences can it have?
   By squeeze, $t_k\to r$.
 \end{proof}
 
+\newpage
 \begin{example}[Fun consequence]
   \begin{center}
     \begin{tikzpicture}[x=1.15cm,y=1.05cm,>=latex]
@@ -1191,7 +1201,6 @@ If $(S_n)$ converges, how many different limits of subsequences can it have?
   Have a subsequence converging to $\forall r\in\R$.
 \end{example}
 
-\newpage
 \begin{theorem}{Limit Superior and Inferior as Subsequential Limits}{limsup-liminf-subsequences}
   $(S_n)$ bounded $\implies\exists$ subsequences $(t_k)$, $(r_k)$ s.t.
   \[
@@ -1202,11 +1211,12 @@ If $(S_n)$ converges, how many different limits of subsequences can it have?
 \begin{proof}[Proof of the $\limsup$ subsequence]
   Note: we know $\forall$ sequences, there is a monotone subsequence.
 
-  By Theorem~\ref{thm:subsequential-limit-criterion}, ETS
-  \[
-    \forall\varepsilon>0,\quad
-    \{n\in\N\mid\abs{S_n-\limsup S_n}<\varepsilon\}\text{ is infinite}.
-  \]
+  By Theorem~\ref{thm:subsequential-limit-criterion},
+  \proofgoal{ETS:}{
+    \[
+      \forall\varepsilon>0,\quad
+      \{n\in\N\mid\abs{S_n-\limsup S_n}<\varepsilon\}\text{ is infinite}.
+    \]}
   For $\forall\varepsilon>0$, since
   \[
     \limsup S_n=\lim_{N\to\infty}\sup\{S_n\mid n>N\},
@@ -1311,9 +1321,10 @@ Question: For $(a_n)$, $\sum a_n$ conv.?
 \begin{proof}[Proof of Theorem~\ref{thm:series-terms-zero}]
   Let $S_n=\sum_{k=1}^{n}a_k$. $S_n$ conv.
 
-  WTS $a_n\to0$.
+  \proofgoal{WTS:}{$a_n\to0$.}
 
-  Let $\varepsilon>0$. WTS $\exists N,\ n>N\implies\abs{a_n}<\varepsilon$.
+  Let $\varepsilon>0$.
+  \proofgoal{WTS:}{$\exists N,\ n>N\implies\abs{a_n}<\varepsilon$.}
   \[
     S_n\text{ conv.}\iff S_n\text{ Cauchy}.
   \]
@@ -1343,28 +1354,28 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
   \end{enumerate}
 \end{theorem}
 
-\begin{proof}[Easy one: proof of (ii)]
-  WTS $ar^n\not\to0$.\\
+\begin{proof}[Easy one: proof of (ii)]\proofheadingbreak
+  \proofgoal{WTS:}{$ar^n\not\to0$.}
   Easy to show.
 \end{proof}
 
 \begin{proof}[Harder one: proof of (i)]
   Suppose $\abs{r}<1$.
 
-  ETS:
-  \[
-    \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
-  \]
+  \proofgoal{ETS:}{
+    \[
+      \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
+    \]}
   By
   \[
     \lim_{n\to\infty}a\frac{1-r^{n+1}}{1-r}
     =a\frac{1-\lim_{n\to\infty}r^{n+1}}{1-r}
     =a\frac{1}{1-r}.
   \]
-  WTS:
-  \[
-    \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
-  \]
+  \proofgoal{WTS:}{
+    \[
+      \sum_{k=0}^{n}ar^k=a\frac{1-r^{n+1}}{1-r}.
+    \]}
   Observe that
   \[
     \begin{aligned}
@@ -1404,9 +1415,9 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem~\ref{thm:comparison-test} (i)]
-  Let $S_n=\sum_{k=1}^{n}b_k$.\\
-  WTS $(S_n)$ conv.\\
-  ETS $(S_n)$ Cauchy.
+  Let $S_n=\sum_{k=1}^{n}b_k$.
+  \proofgoal{WTS:}{$(S_n)$ conv.}
+  \proofgoal{ETS:}{$(S_n)$ Cauchy.}
 
   Let $\varepsilon>0$. By $\sum a_n$ conv.,
   \[
@@ -1462,16 +1473,15 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
 \end{theorem}
 
 \begin{proof}[Proof of Theorem~\ref{thm:root-test} (i)]
-  Let $\alpha=\limsup\abs{a_n}^{1/n}$.\\
-  (i) $\alpha<1$.
+  Let $\alpha=\limsup\abs{a_n}^{1/n}$. Assume $\alpha<1$.
 
   Choose $\varepsilon>0$ s.t. $\alpha+\varepsilon<1$.\\
   Geometric series $\sum(\alpha+\varepsilon)^n$ conv.
 
-  ETS $\exists N$ s.t.
-  \[
-    \abs{a_n}<(\alpha+\varepsilon)^n,\qquad\forall n>N.
-  \]
+  \proofgoal{ETS:}{$\exists N$ s.t.
+    \[
+      \abs{a_n}<(\alpha+\varepsilon)^n,\qquad\forall n>N.
+    \]}
   Recall:
   \[
     \alpha=\lim_{N\to\infty}
@@ -1493,9 +1503,9 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:root-test} (ii)]
-  $\alpha>1$ by assumption.\\
-  WTS $\sum a_n$ does not converge.\\
-  ETS $a_n\not\to0$ by Theorem~\ref{thm:series-terms-zero}.
+  $\alpha>1$ by assumption.
+  \proofgoal{WTS:}{$\sum a_n$ does not converge.}
+  \proofgoal{ETS:}{$a_n\not\to0$ by Theorem~\ref{thm:series-terms-zero}.}
 
   Choose a subseq. $(\abs{a_{n_k}}^{1/n_k})_{k\in\N}$ of
   $(\abs{a_n}^{1/n})_{n\in\N}$ s.t.
@@ -1534,41 +1544,45 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
 \end{example}
 
 \begin{proof}[Proof of Theorem~\ref{thm:alternating-series-test}]
-  Let $S_n=\sum_{k=1}^n(-1)^{k+1}a_k$. WTS $(S_n)$ conv.
+  Let $S_n=\sum_{k=1}^n(-1)^{k+1}a_k$.
+  \proofgoal{WTS:}{$(S_n)$ conv.}
   \[
     \begin{aligned}
       (t_k) & :=(S_{2k})_{k\in\N}   &  & \text{even terms}, \\
       (r_k) & :=(S_{2k+1})_{k\in\N} &  & \text{odd terms}.
     \end{aligned}
   \]
-  \textbf{Step 1.} $(t_k)$ conv. ETS monotone and bounded.
-  \begin{enumerate}[label=(\roman*)]
-    \item $\displaystyle
-            t_{k+1}-t_k=\sum_{m=1}^{2k+2}(-1)^{m+1}a_m
-            -\sum_{m=1}^{2k}(-1)^{m+1}a_m
-            =-a_{2k+2}+a_{2k+1}\ge0$.\\
-          $\implies(t_k)$ increasing.
-    \item ETS $t_k=S_{2k}\le a_1$, $\forall k\in\N$.
+  \begin{enumerate}[label=\textbf{Step \arabic*.}, proofparts]
+    \item $(t_k)$ conv.
+          \proofgoal{ETS:}{monotone and bounded.}
+          \begin{enumerate}[label=(\roman*), proofparts]
+            \item $\displaystyle
+                    t_{k+1}-t_k=\sum_{m=1}^{2k+2}(-1)^{m+1}a_m
+                    -\sum_{m=1}^{2k}(-1)^{m+1}a_m
+                    =-a_{2k+2}+a_{2k+1}\ge0$.\\
+                  $\implies(t_k)$ increasing.
+            \item \proofgoal{ETS:}{$t_k=S_{2k}\le a_1$, $\forall k\in\N$.}
+                  \[
+                    \begin{aligned}
+                      S_{2k}
+                       & =(a_1-a_2)+(a_3-a_4)+\cdots+(a_{2k-1}-a_{2k})              \\
+                       & =a_1-(a_2-a_3)-(a_4-a_5)-\cdots-(a_{2k-2}-a_{2k-1})-a_{2k} \\
+                       & \le a_1,
+                    \end{aligned}
+                  \]
+                  since $-(a_{2j}-a_{2j+1})\le0$, $\forall j$, by $(a_n)$ decreasing.
+          \end{enumerate}
+          $(t_k)$ increasing and bounded $\implies(t_k)$ conv.
+
+    \item $(r_k)$ conv. Similarly proven.
+
+          Let $t_k\to p$, $r_k\to q$.
+
+    \item $p=q$, since
           \[
-            \begin{aligned}
-              S_{2k}
-               & =(a_1-a_2)+(a_3-a_4)+\cdots+(a_{2k-1}-a_{2k})              \\
-               & =a_1-(a_2-a_3)-(a_4-a_5)-\cdots-(a_{2k-2}-a_{2k-1})-a_{2k} \\
-               & \le a_1,
-            \end{aligned}
+            q-p=\lim S_{2k+1}-\lim S_{2k}
+            =\lim(S_{2k+1}-S_{2k})=\lim a_{2k+1}=0.
           \]
-          since $-(a_{2j}-a_{2j+1})\le0$, $\forall j$, by $(a_n)$ decreasing.
   \end{enumerate}
-  $(t_k)$ increasing and bounded $\implies(t_k)$ conv.
-
-  \textbf{Step 2.} $(r_k)$ conv. Similarly proven.
-
-  Let $t_k\to p$, $r_k\to q$.
-
-  \textbf{Step 3.} $p=q$, since
-  \[
-    q-p=\lim S_{2k+1}-\lim S_{2k}
-    =\lim(S_{2k+1}-S_{2k})=\lim a_{2k+1}=0.
-  \]
   Hence $S_n\to p$.
 \end{proof}

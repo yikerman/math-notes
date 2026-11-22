@@ -70,6 +70,29 @@
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
 
+% --- Proof layout ---
+\definecolor{prooflabel}{gray}{0.30}
+\newcommand{\UseUnindentedProofParagraphs}{%
+  \AddToHook{env/proof/begin}{\setlength{\parindent}{0pt}}%
+}
+\newcommand{\inductionlabel}[1]{\textcolor{prooflabel}{\textit{#1}}}
+\newcommand{\proofheadingbreak}{\leavevmode\par\nopagebreak}
+\newlength{\proofgoalindent}
+\setlength{\proofgoalindent}{1.5em}
+\makeatletter
+\newcommand{\proofgoal}[2]{%
+  \par{\noindent
+    % Keep an opening list label in its column, even when the item starts with a goal.
+    \parshape 2 \@totalleftmargin \linewidth
+    \dimexpr\@totalleftmargin+\proofgoalindent\relax
+    \dimexpr\linewidth-\proofgoalindent\relax
+    \hspace*{\proofgoalindent}\textcolor{prooflabel}{#1}\space#2\par}%
+}
+\makeatother
+\SetEnumitemKey{proofparts}{font=\color{prooflabel}, align=left, labelindent=0pt, widest*=3,
+  leftmargin=*, topsep=\smallskipamount, itemsep=\smallskipamount,
+  parsep=0pt, partopsep=0pt}
+
 % --- Common shortcuts ---
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}

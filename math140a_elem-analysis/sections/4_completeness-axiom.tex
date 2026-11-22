@@ -75,11 +75,11 @@
   \[
     \sup S=1,\qquad\inf S=0.
   \]
-  \begin{proof}[Proof that $\sup S=1$]
-    \begin{enumerate}[label=(\roman*)]
+  \begin{proof}[Proof that $\sup S=1$]\proofheadingbreak
+    \begin{enumerate}[label=(\roman*), proofparts]
       \item $1$ is an upper bound by the definition of $S$.
-      \item Let $t\in\Q$ be any other upper bound.\\
-            Want to show $1\le t$.\\
+      \item Let $t\in\Q$ be any other upper bound.
+            \proofgoal{Want to show}{$1\le t$.}
             Prove the contrapositive: $1>t\implies t$ is not an upper bound.\\
             Borrow the argument from no max in $S$
             (Theorem~\ref{thm:open-rational-interval-extrema}).\\
@@ -278,8 +278,8 @@ Hard to prove!
 
 \begin{thinking}[Proof sketch]
   \begin{flushleft}
-    Want to show $a<\dfrac mn<b$.\\
-    WTS $na<m<nb$.
+    \proofgoal{Want to show}{$a<\dfrac mn<b$.}
+    \proofgoal{WTS:}{$na<m<nb$.}
   \end{flushleft}
 
   Take $n$ really big, that
