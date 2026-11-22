@@ -1,0 +1,286 @@
+\subsection{Continuity}
+
+Next goal: study functions $f:U\to\R$, where $U\subseteq\R$,
+usually $U=\R$ or $(a,b)$ or $[a,b]$.
+
+\begin{definition}{Continuity at a Point}{continuity-at-point}
+  Let $U\subseteq\R$, $f:U\to\R$, and $x_0\in U$.
+  \[
+    \begin{aligned}
+      f\text{ is continuous at }x_0
+      \iff{} & \forall\varepsilon>0,\ \exists\delta>0\text{ s.t.} \\
+             & \forall x\in U,\quad \abs{x-x_0}<\delta
+      \implies\abs{f(x)-f(x_0)}<\varepsilon.
+    \end{aligned}
+  \]
+\end{definition}
+
+\begin{definition}{Continuity on a Set}{continuity-on-set}
+  $f$ is continuous on $U$ $\iff$ $\forall x_0\in U$, $f$ is continuous at $x_0$.
+\end{definition}
+
+\begin{thinking}
+  \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[font=\small,declare function={f(\x)=0.4+0.23*(\x+0.3)^2;}]
+      \draw[->] (-0.4,0) -- (3.6,0) node[right] {$x$};
+      \draw[->] (0,-0.1) -- (0,3.6) node[above] {$y=f(x)$};
+      \draw[sketch accent,domain=-0.35:3.3,samples=40] plot (\x,{f(\x)});
+      \foreach \x/\lab/\pos in {1.7/{x_0-\delta}/below left,2.2/{x_0}/below,2.7/{x_0+\delta}/below right}{
+        \draw[densely dashed] (\x,0) node[\pos] {$\lab$} -- (\x,{f(\x)});
+      }
+      \foreach \dy/\lab in {-0.7/{f(x_0)-\varepsilon},0/{f(x_0)},0.7/{f(x_0)+\varepsilon}}{
+        \draw[densely dashed] (0,{f(2.2)+\dy}) node[left] {$\lab$} -- (2.85,{f(2.2)+\dy});
+        \fill (0,{f(2.2)+\dy}) circle (1.2pt);
+      }
+      \node[sketch point] at (2.2,{f(2.2)}) {};
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.51\linewidth}
+    \begin{enumerate}[leftmargin=*]
+      \item For a small $\varepsilon$-window,
+      \item choose a $\delta$-window
+      \item s.t. $f\bigl((x_0-\delta,x_0+\delta)\cap U\bigr)$\\
+            $\subseteq(f(x_0)-\varepsilon,f(x_0)+\varepsilon)$.
+    \end{enumerate}
+    Usually find $\delta=\delta(\varepsilon,x_0)$.
+  \end{minipage}
+\end{thinking}
+
+\begin{example}
+  $f(x)=3x-1$. Prove $f$ continuous at $x_0=1$.
+
+  \textit{Proof sketch.}
+  For $\varepsilon>0$, want $\abs{x-1}$ small enough so that $\abs{f(x)-f(1)}<\varepsilon$.
+  \[
+    \abs{f(x)-f(x_0)}=\abs{f(x)-f(1)}=3\abs{x-1}.
+  \]
+  Want it $<\varepsilon$. Want $\abs{x-1}<\frac13\varepsilon$.
+
+  \begin{proof}[Formal proof]
+    $\forall\varepsilon>0$, let $\delta=\varepsilon/3$.\\
+    Suppose $x\in\R$, $\abs{x-1}<\delta=\varepsilon/3$.
+    \[
+      \abs{f(x)-f(1)}=3\abs{x-1}<3\frac{\varepsilon}{3}=\varepsilon. \qedhere
+    \]
+  \end{proof}
+\end{example}
+
+\begin{example}[Step function]
+  \[
+    \begin{tikzpicture}[baseline=(current bounding box.center),font=\small]
+      \draw[->] (-0.3,0) -- (3.6,0) node[right] {$x$};
+      \draw[->] (0,-0.2) -- (0,2);
+      \draw[densely dashed] (0,1.3) node[left] {$1$} -- (1.8,1.3);
+      \draw[sketch accent] (-0.3,0) -- (1.8,0);
+      \draw[sketch accent] (1.8,1.3) -- (3.35,1.3);
+      \draw[sketch accent,fill=white] (1.8,0) circle (2pt) node[below=2pt,black] {$x_0$};
+      \node[sketch point] at (1.8,1.3) {};
+      \draw[<->] (0.32,0.65) -- (0.32,1.3) node[midway,right] {$\varepsilon$};
+      \draw[<->] (0.32,1.3) -- (0.32,1.95) node[midway,right] {$\varepsilon$};
+    \end{tikzpicture}
+    \qquad
+    u_{x_0}(x)=
+    \begin{cases}
+      1 & x\ge x_0, \\
+      0 & x<x_0.
+    \end{cases}
+  \]
+  Negation of continuity (Definition~\ref{def:continuity-at-point}):
+  \[
+    \begin{gathered}
+      \exists\varepsilon>0\text{ s.t. }\forall\delta>0,\ \exists x\in U\\
+      \text{s.t. }\abs{x-x_0}<\delta\text{ and }\abs{f(x)-f(x_0)}\ge\varepsilon.
+    \end{gathered}
+  \]
+  At $x_0$, pick window $\varepsilon=\tfrac12$.
+  $\forall\delta>0$, take $x=x_0-\delta/2$. Then
+  $\abs{u_{x_0}(x)-u_{x_0}(x_0)}=1>\varepsilon$.
+\end{example}
+
+\begin{example}
+  Let $U=\R$, $f:\R\to\R$, $f(x)=2x^2+1$. Prove $f$ continuous everywhere.
+
+  \textit{Sketch.} Want $\abs{x-x_0}$ small enough to ensure $\abs{f(x)-f(x_0)}<\varepsilon$.
+  \[
+    \begin{aligned}
+      \abs{f(x)-f(x_0)}
+       & =\abs{2x^2+1-2x_0^2-1}                             \\
+       & =2\abs{x^2-x_0^2}                                  \\
+       & =2\underbrace{\abs{x-x_0}}_{\text{some control}}\,
+      \underbrace{\abs{x+x_0}}_{\text{how?}}.
+    \end{aligned}
+  \]
+  If we assume $\abs{x-x_0}<1$,
+  \[
+    \begin{aligned}
+      \abs{x}             & =\abs{x-x_0+x_0}\le\abs{x-x_0}+\abs{x_0}<1+\abs{x_0},                  \\
+      \implies\abs{x+x_0} & \le\abs{x}+\abs{x_0}<\underbrace{1+2\abs{x_0}}_{\text{some constant}}.
+    \end{aligned}
+  \]
+  Some control of $\abs{x-x_0}$ can yield control of $\abs{x+x_0}$.
+
+  \begin{proof}
+    Let $x_0\in\R$, $\varepsilon>0$. Let
+    $\displaystyle\delta=\min\left\{1,\frac{\varepsilon}{2(1+2\abs{x_0})}\right\}$.\\
+    Let $x\in\R$ s.t. $\abs{x-x_0}<\delta$.\\
+    Since $\abs{x-x_0}<1$, $\abs{x+x_0}<1+2\abs{x_0}$.
+    \[
+      \abs{f(x)-f(x_0)}=2\abs{x-x_0}\abs{x+x_0}
+      <2\frac{\varepsilon}{2(1+2\abs{x_0})}(1+2\abs{x_0})=\varepsilon. \qedhere
+    \]
+  \end{proof}
+\end{example}
+
+\subsection{Sequential Criterion for Continuity}
+
+\begin{theorem}{Sequential Criterion for Continuity}{sequential-criterion-continuity}
+  $f:U\to\R$, $x_0\in U$.
+  \[
+    \begin{aligned}
+       & f\text{ continuous at }x_0                            \\
+       & \iff\bigl(\forall\text{ seq. }(x_n)\text{ in }U,\quad
+      x_n\to x_0\implies f(x_n)\to f(x_0)\bigr).
+    \end{aligned}
+  \]
+\end{theorem}
+
+\begin{thinking}
+  $f$ continuous $\iff f$ “commutes” with limits of sequences.
+  \begin{center}
+    \begin{tikzpicture}[font=\small,x=1.35cm,declare function={f(\x)=0.38+0.21*(\x+0.5)^2;}]
+      \draw[->] (-0.5,0) -- (4.4,0) node[right] {$x$};
+      \draw[->] (0,-0.15) -- (0,3.8);
+      \draw[sketch accent,domain=-0.5:3.5,samples=40] plot (\x,{f(\x)});
+      \foreach \x/\i in {1.3/0,2/3,2.5/2,3/1}{
+        \draw[densely dashed] (0,{f(\x)}) node[left] {$f(x_{\i})$}
+          -- (\x,{f(\x)}) -- (\x,0) node[below] {$x_{\i}$};
+      }
+      \node[below] at (1.65,0) {$\cdots$};
+    \end{tikzpicture}
+  \end{center}
+\end{thinking}
+
+\begin{proof}[$(\Rightarrow)$]
+  Suppose $f$ continuous at $x_0$.\\
+  Let $(x_n)$ be a seq. in $U$ s.t. $x_n\to x_0$.\\
+  WTS $f(x_n)\to f(x_0)$.
+  \[
+    \text{WTS }\forall\varepsilon>0,\ \exists N\text{ s.t. }
+    n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon.
+  \]
+  Write out definitions. Let $\varepsilon>0$.
+  \begin{enumerate}
+    \item $f$ cont. at $x_0\implies\exists\delta>0$ s.t.
+          $\forall x\in U$, $\abs{x-x_0}<\delta\implies\abs{f(x)-f(x_0)}<\varepsilon$.
+    \item $x_n\to x_0\implies\exists N$ s.t.
+          $n>N\implies\abs{x_n-x_0}<\delta$.
+  \end{enumerate}
+  \begin{center}
+    \begin{tikzpicture}[font=\small,declare function={f(\x)=0.4+0.22*(\x+0.4)^2;}]
+      \draw[->] (-0.6,0) -- (4.1,0) node[right] {$x$};
+      \draw[->] (0,-0.1) -- (0,3.8);
+      \draw[sketch accent,domain=-0.6:3.45,samples=40] plot (\x,{f(\x)});
+      \foreach \x/\lab/\pos in {1.7/{x_0-\delta}/below left,2.2/{x_0}/below,2.7/{x_0+\delta}/below right}{
+        \draw[densely dashed] (\x,0) node[\pos] {$\lab$} -- (\x,{f(\x)});
+      }
+      \foreach \dy in {-0.7,0,0.7}{
+        \draw[densely dashed] (0,{f(2.2)+\dy}) -- (2.85,{f(2.2)+\dy});
+      }
+      \node[left] at (0,{f(2.2)}) {$f(x_0)$};
+      \draw[->] (-0.25,{f(2.2)+0.23}) -- (-0.25,{f(2.2)+0.7}) node[above] {$+\varepsilon$};
+      \draw[->] (-0.25,{f(2.2)-0.23}) -- (-0.25,{f(2.2)-0.7}) node[below] {$-\varepsilon$};
+      \node[sketch point] at (2.2,{f(2.2)}) {};
+    \end{tikzpicture}
+  \end{center}
+  Thus $n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon$.
+\end{proof}
+
+\begin{proof}[$(\Leftarrow)$ by contrapositive]
+  Suppose $f$ not cont. at $x_0$.
+  \[
+    \begin{aligned}
+       & \text{WTS }\neg\bigl(\forall (x_n)\text{ in }U,\quad x_n\to x_0\implies f(x_n)\to f(x_0)\bigr). \\
+       & \text{WTS }\exists (x_n)\text{ in }U,\quad x_n\to x_0\text{ and }f(x_n)\not\to f(x_0).
+    \end{aligned}
+  \]
+  $f$ not cont. at $x_0\iff$
+  \[
+    \exists\varepsilon>0,\ \forall\delta>0,\ \exists x\in U,\quad
+    \abs{x-x_0}<\delta\text{ and }\abs{f(x)-f(x_0)}\ge\varepsilon.
+  \]
+  Given $n\in\N$, we can choose $x_n\in U$ s.t.
+  \[
+    \abs{x_n-x_0}<\frac1n=\delta\quad\text{and}\quad\abs{f(x_n)-f(x_0)}\ge\varepsilon.
+  \]
+  \begin{center}
+    \begin{tikzpicture}[font=\small,x=1.3cm]
+      \draw[->] (-0.5,0) -- (5,0) node[right] {$x$};
+      \draw[->] (0,-0.15) -- (0,3.2);
+      \foreach \x in {1.2,1.9,2.4,2.7,2.9}{
+        \draw[densely dashed] (0,{0.45+0.3*\x}) -- (\x,{0.45+0.3*\x}) -- (\x,0);
+      }
+      \foreach \x/\lab in {1.2/{x_1},1.9/{x_2},2.35/{\cdots},2.9/{x_n}}{
+        \node[below] at (\x,0) {$\lab$};
+      }
+      \node[left] at (0,0.81) {$f(x_1)$};
+      \node[left] at (0,1.32) {$f(x_n)$};
+      \draw[densely dashed] (0,2.4) node[left] {$f(x_0)$} -- (3.1,2.4);
+      \draw[densely dashed] (3.1,1.38) -- (3.1,0) node[below right] {$x_0$};
+      \draw[sketch accent] (-0.45,0.315) -- (3.1,1.38);
+      \draw[sketch accent,fill=white] (3.1,1.38) circle (2pt);
+      \draw[sketch accent] (3.1,2.4) -- (4.6,3.1);
+      \node[sketch point] at (3.1,2.4) {};
+    \end{tikzpicture}
+  \end{center}
+  This defines a seq. $(x_n)$.\\
+  On one hand, $\abs{x_n-x_0}<1/n$.
+  \[
+    x_n\to x_0.
+  \]
+  On the other hand, $\abs{f(x_n)-f(x_0)}\ge\varepsilon$, $\forall n$.
+  \[
+    f(x_n)\not\to f(x_0). \qedhere
+  \]
+\end{proof}
+
+\newpage
+\subsubsection{Some Applications}
+
+\begin{theorem}{Arithmetic of Continuous Functions}{arithmetic-continuous-functions}
+  Let $f,g:U\to\R$, $f,g$ cont. at $x_0\in U$.
+  The following are cont. at $x_0$ (pointwise operations):
+  \begin{enumerate}
+    \item $f+g$.
+    \item $f\cdot g$.
+    \item $f/g$ if $g$ is nonzero at $x_0$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Use the sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}).\\
+  Suppose $(x_n)$ in $U$ s.t. $x_n\to x_0$.\\
+  WTS $(f+g)(x_n)\to(f+g)(x_0)$.
+  \[
+    f(x_n)\to f(x_0),\qquad g(x_n)\to g(x_0).
+  \]
+  By the sequence limit laws (Theorem~\ref{thm:sequence-limit-laws}),
+  \[
+    f(x_n)+g(x_n)\to f(x_0)+g(x_0).
+  \]
+  Same for multiplication and division.
+\end{proof}
+
+\begin{theorem}{Continuity of Composition}{continuity-composition}
+  Let $f:U\to\R$, $g:V\to\R$, for $U,V\subseteq\R$.
+  $f(U)\subseteq V$, so $g\circ f$ is well-defined.
+  \[
+    f\text{ cont. at }x_0,\quad g\text{ cont. at }f(x_0)
+    \implies g\circ f\text{ cont. at }x_0.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}).
+\end{proof}

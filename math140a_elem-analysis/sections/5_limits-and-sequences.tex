@@ -1451,7 +1451,7 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
   \begin{enumerate}[label=(\roman*)]
     \item $\displaystyle\limsup\abs{a_n}^{1/n}<1
             \implies\sum\abs{a_n}\text{ conv.}$
-    \item $\displaystyle\liminf\abs{a_n}^{1/n}>1
+    \item $\displaystyle\limsup\abs{a_n}^{1/n}>1
             \implies\sum a_n\text{ does not conv.}$
   \end{enumerate}
 \end{theorem}
@@ -1490,4 +1490,85 @@ For $a,r\in\R$, $a\ne0$: $\sum_{n=0}^{\infty}ar^n$.
   \[
     \abs{a_n}<(\alpha+\varepsilon)^n.
   \]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:root-test} (ii)]
+  $\alpha>1$ by assumption.\\
+  WTS $\sum a_n$ does not converge.\\
+  ETS $a_n\not\to0$ by Theorem~\ref{thm:series-terms-zero}.
+
+  Choose a subseq. $(\abs{a_{n_k}}^{1/n_k})_{k\in\N}$ of
+  $(\abs{a_n}^{1/n})_{n\in\N}$ s.t.
+  \[
+    \abs{a_{n_k}}^{1/n_k}\to\alpha>1.
+  \]
+  Infinitely many $n$ have $\abs{a_n}^{1/n}>1$\\
+  $\implies\abs{a_n}>1$ for infinitely many $n$\\
+  $\implies a_n$ can't converge to $0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:root-implies-ratio-test}]
+  Let $(s_n)$ be a seq. s.t. $\forall n$, $s_n\ne0$. Then
+  \[
+    \liminf\left|\frac{s_{n+1}}{s_n}\right|
+    \le\liminf\abs{s_n}^{1/n}
+    \le\limsup\abs{s_n}^{1/n}
+    \le\limsup\left|\frac{s_{n+1}}{s_n}\right|. \qedhere
+  \]
+\end{proof}
+
+\subsubsection{Alternating Series Test}
+
+\begin{theorem}{Alternating Series Test}{alternating-series-test}
+  $(a_n)$ seq. s.t.
+  \begin{enumerate}[label=(\roman*)]
+    \item $(a_n)$ decreasing, i.e. $a_n\ge a_{n+1}$, $\forall n$.
+    \item $a_n\ge0$, $\forall n$.
+    \item $a_n\to0$.
+  \end{enumerate}
+  $\implies\sum(-1)^{n+1}a_n$ converges.
+\end{theorem}
+
+\begin{example}
+  $\displaystyle\sum(-1)^{n+1}\frac1n$ converges.
+\end{example}
+
+\begin{proof}[Proof of Theorem~\ref{thm:alternating-series-test}]
+  Let $S_n=\sum_{k=1}^n(-1)^{k+1}a_k$. WTS $(S_n)$ conv.
+  \[
+    \begin{aligned}
+      (t_k) & :=(S_{2k})_{k\in\N}   &  & \text{even terms}, \\
+      (r_k) & :=(S_{2k+1})_{k\in\N} &  & \text{odd terms}.
+    \end{aligned}
+  \]
+  \textbf{Step 1.} $(t_k)$ conv. ETS monotone and bounded.
+  \begin{enumerate}[label=(\roman*)]
+    \item $\displaystyle
+            t_{k+1}-t_k=\sum_{m=1}^{2k+2}(-1)^{m+1}a_m
+            -\sum_{m=1}^{2k}(-1)^{m+1}a_m
+            =-a_{2k+2}+a_{2k+1}\ge0$.\\
+          $\implies(t_k)$ increasing.
+    \item ETS $t_k=S_{2k}\le a_1$, $\forall k\in\N$.
+          \[
+            \begin{aligned}
+              S_{2k}
+               & =(a_1-a_2)+(a_3-a_4)+\cdots+(a_{2k-1}-a_{2k})              \\
+               & =a_1-(a_2-a_3)-(a_4-a_5)-\cdots-(a_{2k-2}-a_{2k-1})-a_{2k} \\
+               & \le a_1,
+            \end{aligned}
+          \]
+          since $-(a_{2j}-a_{2j+1})\le0$, $\forall j$, by $(a_n)$ decreasing.
+  \end{enumerate}
+  $(t_k)$ increasing and bounded $\implies(t_k)$ conv.
+
+  \textbf{Step 2.} $(r_k)$ conv. Similarly proven.
+
+  Let $t_k\to p$, $r_k\to q$.
+
+  \textbf{Step 3.} $p=q$, since
+  \[
+    q-p=\lim S_{2k+1}-\lim S_{2k}
+    =\lim(S_{2k+1}-S_{2k})=\lim a_{2k+1}=0.
+  \]
+  Hence $S_n\to p$.
 \end{proof}
