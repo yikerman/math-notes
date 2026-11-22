@@ -93,6 +93,14 @@ Axiom (4) in Definition~\ref{def:natural-numbers} is the basis for proof by indu
 
 \begin{proof}
   Define $A=\{n\in\N : P_n\text{ is true}\}$.
-  The hypotheses give $1\in A$ and $n\in A\implies S(n)=n+1\in A$.
-  By axiom (4), $A=\N$.
+  \proofgoal{ETS:}{$A=\N$.}
+  Apply axiom (4) of Definition~\ref{def:natural-numbers}.
+  \begin{enumerate}[proofsubgoals]
+    \subgoal{$1\in A$.}
+    This is the hypothesis that $P_1$ is true.
+    \subgoal{For every $n\in A$, $S(n)\in A$.}
+    Fix $n\in A$. Then $P_n$ is true, so the second hypothesis gives $P_{n+1}$.
+    Thus $S(n)=n+1\in A$.
+  \end{enumerate}
+  Hence $A=\N$, so $P_n$ is true for every $n\in\N$.
 \end{proof}

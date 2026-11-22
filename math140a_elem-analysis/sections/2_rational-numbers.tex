@@ -28,7 +28,8 @@ Our goal is to define $\R$. Why do we need $\R$?
 
 \begin{proof}
   Let $r=m/n\in\Q$, where $m,n\in\Z$ and $n\ne0$.
-  Then $r$ satisfies $nx-m=0$, so it is algebraic by Definition~\ref{def:algebraic-number}.
+  Take the polynomial $p(x)=nx-m$. Its coefficients are integers, $n\ne0$,
+  and $p(r)=n(m/n)-m=0$. Thus $r$ is algebraic by Definition~\ref{def:algebraic-number}.
 \end{proof}
 
 \begin{definition}{Divisibility}{divisibility}
@@ -85,20 +86,20 @@ Our goal is to define $\R$. Why do we need $\R$?
   \[
     c_nc^n+c_{n-1}c^{n-1}d+\cdots+c_1cd^{n-1}+c_0d^n=0.
   \]
-  \begin{enumerate}[proofparts]
-    \item $
-            \begin{aligned}[t]
-              c_0d^n & = -(c_nc^n+\cdots+c_1cd^{n-1})      \\
-                     & = -c(c_nc^{n-1}+\cdots+c_1d^{n-1}).
-            \end{aligned}
-          $\par
-          Thus $c\mid c_0d^n$. Since $c,d$ are coprime by assumption, $c\mid c_0$.
-    \item $
-            \begin{aligned}[t]
-              c_nc^n & = -(c_{n-1}c^{n-1}d+\cdots+c_0d^n)      \\
-                     & = -d(c_{n-1}c^{n-1}+\cdots+c_0d^{n-1}).
-            \end{aligned}
-          $\par
-          Thus $d\mid c_nc^n$. Similarly, $d\mid c_n$.
+  \begin{enumerate}[proofsubgoals]
+    \subgoal{$c\mid c_0$.}
+    Isolate the constant term:
+    \[
+      c_0d^n=-(c_nc^n+\cdots+c_1cd^{n-1})
+      =-c(c_nc^{n-1}+\cdots+c_1d^{n-1}).
+    \]
+    Thus $c\mid c_0d^n$. Since $c,d$ are coprime, $c\mid c_0$.
+    \subgoal{$d\mid c_n$.}
+    Isolate the leading term:
+    \[
+      c_nc^n=-(c_{n-1}c^{n-1}d+\cdots+c_0d^n)
+      =-d(c_{n-1}c^{n-1}+\cdots+c_0d^{n-1}).
+    \]
+    Thus $d\mid c_nc^n$. Since $d,c$ are coprime, $d\mid c_n$.\qedhere
   \end{enumerate}
 \end{proof}

@@ -67,7 +67,7 @@ Likewise, define properties/axioms for the structure of $\R$.
     \forall a\in\mathbb{F},\qquad a\cdot0=0.
   \]
   \begin{proof}
-    \proofheadingbreak
+    Fix $a\in\mathbb F$. First use distributivity, then cancel $a\cdot0$.
     \begin{enumerate}[label=(\roman*), proofparts]
       \item $
               \begin{aligned}[t]
@@ -177,16 +177,14 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
 \end{theorem}
 
 \begin{proof}[Proof of (iii)]
-  Easy to show: $-\abs{a}\le a\le\abs{a}$ and
+  Fix $a,b\in\mathbb F$. Use the equivalence
   \[
-    -\abs{x}\le y\le\abs{x}\iff\abs{y}\le\abs{x}.
+    -\abs{x}\le y\le\abs{x}\iff\abs{y}\le\abs{x}
   \]
-  \[
-    -(\abs{a}+\abs{b})\le a+b\le\abs{a}+\abs{b},
-  \]
-  \[
-    \boxed{\abs{a+b}\le\bigl|\abs{a}+\abs{b}\bigr|}=\abs{a}+\abs{b}.\qedhere
-  \]
+  with $x=\abs{a}+\abs{b}\ge0$ and $y=a+b$.
+  \proofgoal{ETS:}{$-(\abs{a}+\abs{b})\le a+b\le\abs{a}+\abs{b}$.}
+  Add $-\abs{a}\le a\le\abs{a}$ and $-\abs{b}\le b\le\abs{b}$.
+  Thus $\boxed{\abs{a+b}\le\abs{a}+\abs{b}}$.
 \end{proof}
 
 \begin{thinking}
@@ -195,7 +193,7 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
 \end{thinking}
 
 \begin{proof}[Proof of (v)]
-  Assume $1<0$.
+  Since $1\ne0$, it suffices to rule out $1<0$. Assume $1<0$.
   \begin{align*}
      & \implies 1+(-1)<0+(-1)\implies 0<-1,            \\
      & \implies 0(-1)<(-1)(-1),                        \\
@@ -207,10 +205,10 @@ In general, any ordered field contains a ``copy'' of $\N$, $\Z$, and $\Q$.
   \begin{lemma}{Positive Reciprocals}{positive-reciprocals}
     $a>0\implies a^{-1}>0$.
   \end{lemma}
-  $\ldots$
-  \begin{gather*}
-    a^{-1},b^{-1}>0\implies a^{-1}b^{-1}>0,\\
-    a<b\implies a(a^{-1}b^{-1})<b(a^{-1}b^{-1}),\\
-    0<b^{-1}<a^{-1}.\qedhere
-  \end{gather*}
+  Assume $0<a<b$. By Lemma~\ref{lem:positive-reciprocals}, both reciprocals are positive.
+  \proofgoal{Remaining goal:}{$b^{-1}<a^{-1}$.}
+  Multiply $a<b$ by the positive product $a^{-1}b^{-1}$:
+  \[
+    b^{-1}=a(a^{-1}b^{-1})<b(a^{-1}b^{-1})=a^{-1}.\qedhere
+  \]
 \end{proof}

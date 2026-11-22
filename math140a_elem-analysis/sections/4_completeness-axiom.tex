@@ -76,14 +76,15 @@
     \sup S=1,\qquad\inf S=0.
   \]
   \begin{proof}[Proof that $\sup S=1$]\proofheadingbreak
-    \begin{enumerate}[label=(\roman*), proofparts]
-      \item $1$ is an upper bound by the definition of $S$.
-      \item Let $t\in\Q$ be any other upper bound.
-            \proofgoal{Want to show}{$1\le t$.}
-            Prove the contrapositive: $1>t\implies t$ is not an upper bound.\\
-            Borrow the argument from no max in $S$
-            (Theorem~\ref{thm:open-rational-interval-extrema}).\\
-            Such an upper bound $t<1$ must not exist.
+    By Definition~\ref{def:supremum-infimum}, verify both:
+    \begin{enumerate}[proofsubgoals]
+      \subgoal{$1$ is an upper bound.}
+      For $r\in S$, the definition of $S$ gives $r<1$.
+      \subgoal{$1\le t$ for every upper bound $t\in\Q$.}
+      Fix an upper bound $t$. Since $\frac12\in S$, $t\ge\frac12$.
+      If $t<1$, use the midpoint from Theorem~\ref{thm:open-rational-interval-extrema}:
+      $r=(t+1)/2$ satisfies $0<t<r<1$.
+      Then $r\in S$ and $r>t$, contradicting the upper bound.
     \end{enumerate}
     So $1$ is indeed the least upper bound.
   \end{proof}
@@ -123,19 +124,15 @@
 \end{theorem}
 
 \begin{proof}
-  $(\Leftarrow)$ Trivial.
+  $(\Leftarrow)$ If $S=\{a\}$, then $\inf S=a=\sup S$.
 
-  $(\Rightarrow)$ Proof by contradiction:\\
-  suppose $S$ has more than one element.
-  \[
-    \exists t_1,t_2\in S,\quad t_1\ne t_2.
-  \]
-  So $t_1<t_2$ or $t_1>t_2$.\\
-  Let $t_1<t_2$.
+  $(\Rightarrow)$ Assume $\inf S=\sup S$. Since $S$ is nonempty, choose $a\in S$.
+  \proofgoal{Remaining goal:}{$S=\{a\}$.}
+  If $S$ had another element, we could order the two as $t_1<t_2$. Then
   \[
     \inf S\le t_1<t_2\le\sup S,
   \]
-  Not equal, contradiction.
+  contradicting $\inf S=\sup S$.
 \end{proof}
 
 \subsection{Completeness of the Real Numbers}
@@ -219,12 +216,9 @@ Hard to prove!
   \[
     \exists a,b>0\text{ s.t. }na\le b\quad\forall n\in\N.
   \]
-  Let $S=\{na\mid n\in\N\}$.
-  \begin{flushleft}
-    $\implies b$ is an upper bound for $S$.\\
-    $\implies$ by completeness (Theorem~\ref{thm:existence-real-numbers}),
-    $\exists$ least upper bound $\exists\sup S$.
-  \end{flushleft}
+  Let $S=\{na\mid n\in\N\}$. Since $a\in S$ and $b$ is an upper bound,
+  completeness (Theorem~\ref{thm:existence-real-numbers}) gives $\sup S$.
+  \proofgoal{For a contradiction:}{find an element of $S$ greater than $\sup S$.}
   Since $a>0$, $\sup S-a<\sup S$.
   \begin{align*}
      & \implies\sup S-a\text{ is not an upper bound}, \\
@@ -301,19 +295,13 @@ Hard to prove!
 \end{thinking}
 
 \begin{proof}
-  By the Archimedean property (Theorem~\ref{thm:archimedean-property}):
-  \begin{gather*}
-    \exists n\in\N,\text{ s.t. }n(b-a)>1,\\
-    \iff nb-na>1.
-  \end{gather*}
-  Also by AP:
-  \begin{gather*}
-    \exists k\in\N,\text{ s.t. }k>\max\{\abs{na},\abs{nb}\},\\
-    \implies-k<na<nb<k.
-  \end{gather*}
-  Let $m=\min\{j\in\Z\mid-k\le j\le k,\ na<j\}$.
-  \begin{gather*}
-    m-1\le na\iff m\le na+1<nb,\\
-    \implies na<m<nb.\qedhere
-  \end{gather*}
+  By the Archimedean property (Theorem~\ref{thm:archimedean-property}),
+  choose $n\in\N$ with $n(b-a)>1$. Then $na+1<nb$.
+  \proofgoal{ETS:}{find $m\in\Z$ with $na<m<nb$.}
+  Choose $k\in\N$ with $k>\max\{\abs{na},\abs{nb}\}$. Let
+  \[
+    m=\min\{j\in\Z\mid -k\le j\le k,\ na<j\}.
+  \]
+  This finite set contains $k$. Since $-k<na<m$, minimality gives $m-1\le na$.
+  Hence $na<m\le na+1<nb$. Take $r=m/n\in\Q$. Dividing by $n>0$ gives $a<r<b$.
 \end{proof}

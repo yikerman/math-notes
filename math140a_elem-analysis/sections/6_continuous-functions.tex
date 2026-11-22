@@ -124,8 +124,10 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
   \begin{proof}
     Let $x_0\in\R$, $\varepsilon>0$. Let
     $\displaystyle\delta=\min\left\{1,\frac{\varepsilon}{2(1+2\abs{x_0})}\right\}$.\\
-    Let $x\in\R$ s.t. $\abs{x-x_0}<\delta$.\\
-    Since $\abs{x-x_0}<1$, $\abs{x+x_0}<1+2\abs{x_0}$.
+    Let $x\in\R$ s.t. $\abs{x-x_0}<\delta$.
+    \proofgoal{Remaining goal:}{$2\abs{x-x_0}\abs{x+x_0}<\varepsilon$.}
+    The first bound $\delta\le1$ gives $\abs{x+x_0}<1+2\abs{x_0}$.
+    Use the second bound on $\delta$ for $\abs{x-x_0}$:
     \[
       \abs{f(x)-f(x_0)}=2\abs{x-x_0}\abs{x+x_0}
       <2\frac{\varepsilon}{2(1+2\abs{x_0})}(1+2\abs{x_0})=\varepsilon. \qedhere
@@ -166,12 +168,14 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
   Suppose $f$ continuous at $x_0$.\\
   Let $(x_n)$ be a seq. in $U$ s.t. $x_n\to x_0$.
   \proofgoal{WTS:}{$f(x_n)\to f(x_0)$.}
-  \proofgoal{WTS:}{$\forall\varepsilon>0,\ \exists N\text{ s.t. }n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon$.}
-  Write out definitions. Let $\varepsilon>0$.
+  Fix $\varepsilon>0$.
+  \proofgoal{By definition:}{$\exists N\in\N,\ \forall n>N,\ \abs{f(x_n)-f(x_0)}<\varepsilon$.}
   \begin{enumerate}[proofparts]
-    \item $f$ cont. at $x_0\implies\exists\delta>0$ s.t.
-          $\forall x\in U$, $\abs{x-x_0}<\delta\implies\abs{f(x)-f(x_0)}<\varepsilon$.
-    \item $x_n\to x_0\implies\exists N$ s.t.
+    \item For this $\varepsilon$, continuity at $x_0$ gives $\delta>0$ s.t. for every $x\in U$,
+          \[
+            \abs{x-x_0}<\delta\implies\abs{f(x)-f(x_0)}<\varepsilon.
+          \]
+    \item For this $\delta$, convergence of $(x_n)$ gives $N\in\N$ s.t.
           $n>N\implies\abs{x_n-x_0}<\delta$.
   \end{enumerate}
   \begin{center}
@@ -191,21 +195,25 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
       \node[sketch point] at (2.2,{f(2.2)}) {};
     \end{tikzpicture}
   \end{center}
-  Thus $n>N\implies\abs{f(x_n)-f(x_0)}<\varepsilon$.
+  Use this $N$ and fix $n>N$. Since $x_n\in U$, the two implications give
+  \[
+    n>N\implies\abs{x_n-x_0}<\delta
+    \implies\abs{f(x_n)-f(x_0)}<\varepsilon. \qedhere
+  \]
 \end{proof}
 
 \begin{proof}[$(\Leftarrow)$ by contrapositive]
   Suppose $f$ not cont. at $x_0$.
   \proofgoal{WTS:}{$\neg\bigl(\forall (x_n)\text{ in }U,\quad x_n\to x_0\implies f(x_n)\to f(x_0)\bigr)$.}
-  \proofgoal{WTS:}{$\exists (x_n)\text{ in }U,\quad x_n\to x_0\text{ and }f(x_n)\not\to f(x_0)$.}
+  \proofgoal{Equivalently:}{$\exists (x_n)\text{ in }U,\quad x_n\to x_0\text{ and }f(x_n)\not\to f(x_0)$.}
   $f$ not cont. at $x_0\iff$
   \[
     \exists\varepsilon>0,\ \forall\delta>0,\ \exists x\in U,\quad
     \abs{x-x_0}<\delta\text{ and }\abs{f(x)-f(x_0)}\ge\varepsilon.
   \]
-  Given $n\in\N$, we can choose $x_n\in U$ s.t.
+  Fix such an $\varepsilon$. For each $n\in\N$, take $\delta=1/n$ and choose $x_n\in U$ s.t.
   \[
-    \abs{x_n-x_0}<\frac1n=\delta\quad\text{and}\quad\abs{f(x_n)-f(x_0)}\ge\varepsilon.
+    \abs{x_n-x_0}<\frac1n\quad\text{and}\quad\abs{f(x_n)-f(x_0)}\ge\varepsilon.
   \]
   \begin{center}
     \begin{tikzpicture}[font=\small,x=1.3cm]
@@ -227,15 +235,14 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
       \node[sketch point] at (3.1,2.4) {};
     \end{tikzpicture}
   \end{center}
-  This defines a seq. $(x_n)$.\\
-  On one hand, $\abs{x_n-x_0}<1/n$.
-  \[
-    x_n\to x_0.
-  \]
-  On the other hand, $\abs{f(x_n)-f(x_0)}\ge\varepsilon$, $\forall n$.
-  \[
-    f(x_n)\not\to f(x_0). \qedhere
-  \]
+  Use this sequence $(x_n)$. It remains to verify both:
+  \begin{enumerate}[proofsubgoals]
+    \subgoal{$x_n\to x_0$.}
+    Since $0\le\abs{x_n-x_0}<1/n$ and $1/n\to0$, the squeeze theorem applies.
+    \subgoal{$f(x_n)\not\to f(x_0)$.}
+    For the same $\varepsilon>0$ and any $N$, take $n=N+1>N$.
+    Then $\abs{f(x_n)-f(x_0)}\ge\varepsilon$.\qedhere
+  \end{enumerate}
 \end{proof}
 
 \newpage
@@ -247,7 +254,7 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
   \begin{enumerate}
     \item $f+g$.
     \item $f\cdot g$.
-    \item $f/g$ if $g$ is nonzero at $x_0$.
+    \item $f/g$ on its domain if $g$ is nonzero at $x_0$.
   \end{enumerate}
 \end{theorem}
 
@@ -262,7 +269,9 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
   \[
     f(x_n)+g(x_n)\to f(x_0)+g(x_0).
   \]
-  Same for multiplication and division.
+  The product law likewise gives $f(x_n)g(x_n)\to f(x_0)g(x_0)$.
+  For the quotient, $g(x_0)\ne0$ allows the quotient law:
+  $f(x_n)/g(x_n)\to f(x_0)/g(x_0)$ for sequences in the domain of $f/g$.
 \end{proof}
 
 \begin{theorem}{Continuity of Composition}{continuity-composition}
@@ -275,5 +284,10 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
 \end{theorem}
 
 \begin{proof}
-  Sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}).
+  By the sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}),
+  fix $(x_n)$ in $U$ with $x_n\to x_0$.
+  \proofgoal{WTS:}{$g(f(x_n))\to g(f(x_0))$.}
+  Continuity of $f$ gives $f(x_n)\to f(x_0)$.
+  Since $f(U)\subseteq V$, this is a sequence in $V$.
+  Continuity of $g$ at $f(x_0)$ gives the desired limit.
 \end{proof}
