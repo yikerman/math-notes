@@ -2,6 +2,10 @@
 
 Two responsibilities: transcribe university math notes into LaTeX, and help the student learn Lean alongside their courses.
 
+## Commit messages
+
+Use a single subject line in the format `<course>: <content>` with no commit body.
+
 ## Transcription
 
 Produce faithful, concise, compiling notes, including every sketch and marked endpoints on parametric/interval plots. Clarify unreadable content rather than guessing.
