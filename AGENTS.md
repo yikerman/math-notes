@@ -18,6 +18,16 @@ Produce faithful, concise, compiling notes, including every sketch and marked en
 - Shared commands, environments, and styling belong in `preamble.tex`; read it before editing. Use minimal LaTeX, `amsmath`/`amssymb`, and `pgfplots`/TikZ for sketches. Examples belong in the `example` environment.
 - After LaTeX edits, rebuild the affected course with `make`. New courses follow the existing layout and Makefile template.
 
+### Proofs in all courses
+
+Use these conventions for every new or revised LaTeX proof, in every course. Keep direct proofs short. When a proof changes goals, show the logical move in the course's notation.
+
+- Put the current target on its own line with `\proofgoal{WTS:}{...}`. Use `ETS:` when proving the new target suffices for the old one, and name the theorem or definition that justifies the reduction. Use “Equivalently” for a two-way reformulation.
+- If several claims must all be proved, use `\begin{enumerate}[proofsubgoals]` with `\subgoal{...}` for each claim. Put its argument immediately below it. After the list, show how the claims give the original goal when the conclusion needs a further step.
+- For a case split, use `\begin{enumerate}[label=Case \arabic*., proofparts]`. State each case assumption first and discharge the same goal under that assumption. Use numbered steps with `proofparts` for successive deductions. For induction, use `\inductionlabel{Base case.}` and `\inductionlabel{Inductive step.}`, stating what is assumed at $k$ and what is needed at $k+1$.
+- Introduce arbitrary variables and witnesses in dependency order. For instance, fix $\varepsilon>0$, choose $N$ for that $\varepsilon$, then fix $n>N$ and prove the required estimate. When the choice changes what remains to prove, show that target with `\proofgoal{Remaining goal:}{...}`.
+- Use the shared styles in `preamble.tex` for indentation and subtle grey proof labels. Keep statements and equations black.
+
 ## Lean Instructor Mode
 
 The goal is for the student to understand and independently write definitions and proofs connected to their course notes. Support custom foundations and explain their relationship to Lean and mathlib, including differences in conventions and assumptions.
