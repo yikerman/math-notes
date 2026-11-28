@@ -291,3 +291,178 @@ usually $U=\R$ or $(a,b)$ or $[a,b]$.
   Since $f(U)\subseteq V$, this is a sequence in $V$.
   Continuity of $g$ at $f(x_0)$ gives the desired limit.
 \end{proof}
+
+\newpage
+\subsection{Properties of Continuous Functions}
+
+Mostly synthesize previous work.
+
+\begin{definition}{Bounded Function}{bounded-function}
+  A function $f:U\to\R$ is bounded $\iff$ the set $\{f(x)\mid x\in U\}$ is bounded.
+  Or, say, $\exists M>0,\ \forall x\in U,\ \abs{f(x)}<M$.
+\end{definition}
+
+\begin{theorem}{Extreme Value Theorem}{extreme-value}
+  For $f:[a,b]\to\R$, where $a,b\in\R$, $a\le b$,
+  \[
+    f\text{ cont.}\implies \{f(x)\mid x\in[a,b]\}\text{ has a max and min.}
+  \]
+  In other words, $\exists x_0,x_1\in[a,b]$ s.t.
+  $\forall x\in[a,b],\ f(x_0)\le f(x)\le f(x_1)$.
+\end{theorem}
+
+\textbf{Corollary.} Every continuous $f:[a,b]\to\R$ is bounded.
+
+\begin{proof}[Proof of Theorem~\ref{thm:extreme-value}]
+  \proofheadingbreak
+  \begin{enumerate}[label=\textbf{Step \arabic*.}, proofparts]
+    \item $f$ is bounded.\par\nopagebreak
+          Suppose for contradiction $f$ is unbounded. By Definition~\ref{def:bounded-function},
+          $\forall n\in\N,\ \exists x_n\in[a,b]$ s.t. $\abs{f(x_n)}>n$.
+          By Bolzano--Weierstrass (Theorem~\ref{thm:bolzano-weierstrass}), $(x_n)$ has a
+          convergent subsequence $x_{n_k}\to x_0$. Since $a\le x_{n_k}\le b$, $x_0\in[a,b]$.
+
+          \begin{thinking}
+            \centering
+            \begin{tikzpicture}[font=\small,x=1.2cm,y=.8cm]
+        \draw[->] (0,0)--(5,0);
+        \draw[->] (0,0)--(0,3.4) node[left] {$\abs{f}$};
+        \draw (.35,.12)--(.28,.12)--(.28,-.12)--(.35,-.12) node[below] {$a$};
+        \draw (4.6,.12)--(4.67,.12)--(4.67,-.12)--(4.6,-.12) node[below] {$b$};
+        \draw[dashed] (3,0) node[below] {$x_0$} -- (3,3.3);
+        \foreach \x/\h in {1/.7,1.85/1.2,2.4/1.8,2.7/2.4,2.85/3}{
+          \draw[gray,dotted] (\x,0)--(\x,\h);
+          \node[sketch point] at (\x,\h) {};
+        }
+        \node[below] at (1,0) {$x_{n_1}$};
+        \node[below] at (1.85,0) {$x_{n_2}$};
+      \end{tikzpicture}\par
+            Could $\abs{f(x_{n_k})}\to+\infty$ while $x_{n_k}\to x_0$?
+          \end{thinking}
+          By continuity and the sequential criterion (Theorem~\ref{thm:sequential-criterion-continuity}),
+          $f(x_{n_k})\to f(x_0)$. But $\abs{f(x_{n_k})}>n_k\to+\infty$, a contradiction.
+
+    \item $f$ has a max and min.\par\nopagebreak
+          Let $M=\sup\{f(x)\mid x\in[a,b]\}$, which exists by boundedness and completeness.
+          \proofgoal{ETS for the max:}{$\exists y_0\in[a,b]$ s.t. $f(y_0)=M$, by the definition of maximum.}
+          By definition of sup, $\forall n\in\N,\ \exists y_n\in[a,b]$ s.t.
+          \[
+            \underbrace{M-1/n}_{\text{not an upper bound}}<f(y_n)\le\underbrace{M}_{\sup}.
+          \]
+          By Bolzano--Weierstrass, $(y_n)$ has a convergent subsequence $y_{n_k}\to y_0\in[a,b]$.
+          \begin{thinking}
+            \centering
+            \begin{tikzpicture}[font=\small,x=1.3cm,y=.85cm]
+        \draw[->] (0,0)--(5,0);
+        \draw[->] (0,0)--(0,2.9);
+        \draw[dashed] (0,2.5) node[left] {$M$} -- (4.8,2.5);
+        \draw[sketch accent,domain=.4:4.5,samples=50] plot (\x,{2.5-.23*(\x-3.4)^2});
+        \foreach \x in {.4,4.5,1,1.85,2.5,2.95,3.4}{
+          \draw[dotted] (\x,0)--(\x,{2.5-.23*(\x-3.4)^2});
+          \node[sketch point] at (\x,{2.5-.23*(\x-3.4)^2}) {};
+        }
+        \foreach \x/\lab in {.4/a,1/y_{n_1},1.85/y_{n_2},3.4/y_0,4.5/b}
+          \node[below] at (\x,0) {$\lab$};
+      \end{tikzpicture}
+          \end{thinking}
+          By continuity and the squeeze theorem,
+          \[
+            f(y_0)=f\Bigl(\lim_{k\to\infty}y_{n_k}\Bigr)
+            =\lim_{k\to\infty}f(y_{n_k})=M.
+          \]
+          The minimum follows similarly.\qedhere
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}{Interval}{real-interval}
+  An interval $I\subseteq\R$ is of the form
+  \[
+    \text{(i) }(a,b),\qquad \text{(ii) }(a,b],\qquad
+    \text{(iii) }[a,b),\qquad \text{(iv) }[a,b].
+  \]
+  May take $a=-\infty$ in (i) and (ii), and $b=+\infty$ in (i) and (iii).
+\end{definition}
+
+\begin{theorem}{Intermediate Value Theorem}{intermediate-value}
+  Let $I\subseteq\R$ be an interval and $f:I\to\R$ cont.\\
+  $\forall a,b\in I$ with $a<b$, $\forall y\in\R$ s.t.
+  $f(a)<y<f(b)$ or $f(b)<y<f(a)$,
+  $\exists x\in(a,b)$ s.t. $f(x)=y$.
+\end{theorem}
+
+\begin{thinking}
+  Every value between $f(a)$ and $f(b)$ is hit.
+  \begin{center}
+    \begin{tikzpicture}[font=\small]
+      \draw[->] (0,0)--(6,0);
+      \draw[->] (0,0)--(0,2.6);
+      \node at (.55,0) {$($};
+      \node at (5.45,0) {$)$};
+      \node[below] at (5.6,0) {$I$};
+      \draw[dashed] (0,1.4) node[left] {$y$} -- (5,1.4);
+      \draw[sketch accent] (1,.55) .. controls (1.5,.8) and (2.3,1.4) .. (3,1.4)
+        .. controls (3.8,1.4) and (4,2.15) .. (5,2.3);
+      \foreach \x/\h/\lab in {1/.55/a,3/1.4/x,5/2.3/b}{
+        \draw[dotted] (\x,0) node[below] {$\lab$} -- (\x,\h);
+        \node[sketch point] at (\x,\h) {};
+      }
+    \end{tikzpicture}
+  \end{center}
+\end{thinking}
+
+\begin{proof}
+  Fix $a,b\in I$, $a<b$. Assume $f(a)<y<f(b)$ without loss of generality
+  (otherwise use $-f$ and $-y$). Let
+  \[
+    S=\{x\in[a,b]\mid f(x)<y\},\qquad x_0=\sup S.
+  \]
+  Since $a\in S$ and $b$ is an upper bound, $a\le x_0\le b$.
+  \proofgoal{ETS:}{$f(x_0)=y$, since the endpoint inequalities then give $a<x_0<b$.}
+
+  \begin{thinking}
+    $x_0$ is the rightmost point approached by points where $f(x)<y$.
+    \begin{center}
+      \begin{tikzpicture}[font=\small]
+        \draw[->] (0,0)--(6.3,0);
+        \draw[->] (0,0)--(0,2.8);
+        \draw[dashed] (0,1.5) node[left] {$y$} -- (6,1.5);
+        \draw[sketch accent] (1,.6) .. controls (1.3,.6) and (1.45,1.2) .. (1.6,1.5)
+          .. controls (2,2.4) and (2.5,2.4) .. (2.9,1.5)
+          .. controls (3.3,.65) and (3.8,.65) .. (4.2,1.5)
+          .. controls (4.55,2.2) and (5.2,2.05) .. (5.8,2.55);
+        \foreach \x/\h/\lab in {1/.6/a,4.2/1.5/x_0,5.8/2.55/b}{
+          \draw[dotted] (\x,\h)--(\x,0) node[below] {$\lab$};
+          \node[sketch point] at (\x,\h) {};
+        }
+        \node[left] at (0,.6) {$f(a)$};
+        \node[left] at (0,2.55) {$f(b)$};
+        \node[left] at (.8,-.68) {$S$};
+        \foreach \l/\r in {1/1.6,2.9/4.2}
+          \draw[sketch accent] (\l,-.68)--(\r,-.68);
+        \node[sketch point] at (1,-.68) {};
+        \foreach \x in {1.6,2.9,4.2}
+          \draw[sketch accent,fill=white] (\x,-.68) circle (2pt);
+      \end{tikzpicture}
+    \end{center}
+  \end{thinking}
+
+  \begin{enumerate}[proofsubgoals]
+    \subgoal{$f(x_0)\le y$.}
+    For every $n\in\N$, $x_0-1/n$ is not an upper bound for $S$.
+    Choose $s_n\in S$ s.t. $x_0-1/n<s_n\le x_0$.\\
+    By squeeze, $s_n\to x_0$. By continuity, $f(s_n)\to f(x_0)$.\\
+    $\forall n,\ s_n\in S\implies f(s_n)<y$. Hence $f(x_0)\le y$.
+
+    \subgoal{$f(x_0)\ge y$.}
+    \proofgoal{ETS:}{Construct $(t_n)$ in $[a,b]$ with $t_n\to x_0$ and $t_n\notin S$ $\forall n$, by continuity and the order law for limits.}
+    Take $t_n=\min\{b,x_0+1/n\}$.
+    \begin{enumerate}[label=\arabic*., proofparts]
+      \item $t_n\in[a,b]$, since $a\le x_0\le t_n\le b$.
+      \item $x_0\le t_n\le x_0+1/n$, so $t_n\to x_0$ by squeeze.
+      \item If $t_n=b$, then $f(t_n)=f(b)>y$.
+            Otherwise $t_n=x_0+1/n>\sup S$, so $t_n\notin S$ and $f(t_n)\ge y$.
+    \end{enumerate}
+    Thus $f(x_0)=\lim_{n\to\infty}f(t_n)\ge y$.
+  \end{enumerate}
+  Together the inequalities give $f(x_0)=y$.
+\end{proof}
